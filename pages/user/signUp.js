@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-function LoginPage(props) {
+function SignUpPage(props) {
 	const router = useRouter()
 	return (
 		<Fragment>
 			<Head>
-				<title>Login</title>
-				<meta name='description' content='Login section' />
+				<title>SignUp</title>
+				<meta name='description' content='SignUp section' />
 			</Head>
 		</Fragment>
 	)
 }
 
-export default LoginPage
+export default SignUpPage
