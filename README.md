@@ -1,7 +1,7 @@
 # Bookspot
 
-<h4> Bookspot is an online platform for accessing thousands free audiobooks, ePubs pdfs, magazines and podcasts.<br>
-Our Aim is to help people explore and share books they love and improve process of learning and reading throughout the world via the efforts of a fantastic community of active collaborators.</h4>
+<h4> Bookspot is an online platform for accessing thousands of free audiobooks, ePubs pdfs, magazines and podcasts.<br>
+Our Aim is to help people explore, discuss and share books they love and improve process of learning and reading via the efforts of a fantastic community of readers.</h4>
 
 <br>
 
