@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 function LoginPage(props) {
-	const router = useRouter()
 	return (
 		<Fragment>
 			<Head>
