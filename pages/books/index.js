@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-function BookList(props) {
+function BookListPage(props) {
 	return (
 		<Fragment>
 			<Head>
@@ -18,4 +18,4 @@ function BookList(props) {
 	)
 }
 
-export default BookList
+export default BookListPage

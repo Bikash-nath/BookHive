@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 // import Book from '../../components/Book'
 
-function BookList(props) {
+function BookDetailPage(props) {
 	const router = useRouter()
 	return (
 		<Fragment>
@@ -22,4 +22,4 @@ function BookList(props) {
 	)
 }
 
-export default BookList
+export default BookDetailPage

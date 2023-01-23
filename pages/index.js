@@ -13,19 +13,31 @@ function HomePage(props) {
 				/>
 			</Head>
 			<div>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					<Link href='/books/'>
-						Popular Books
-						<br />
-					</Link>
-					<Link
-						href={{
-							pathname: '/books/[bookId]',
-							query: { bookId: new Date().getMinutes() },
-						}}>
+				<Link href='/books/'>
+					<p className='text-3xl font-bold text-blue-600'>Popular Books</p>
+				</Link>
+				<br />
+
+				<Link
+					href={{
+						pathname: '/books/[bookId]',
+						query: { bookId: new Date().getMinutes() },
+					}}>
+					<p className='text-3xl font-bold text-green-600 underline'>
 						New Book
-					</Link>
-				</h1>
+					</p>
+				</Link>
+				<br />
+
+				<Link
+					href={{
+						pathname: '/authors/[authorId]',
+						query: { authorId: new Date().getMinutes() },
+					}}>
+					<p className='text-3xl font-bold text-orange-600 underline'>
+						New Author
+					</p>
+				</Link>
 			</div>
 		</Fragment>
 	)
