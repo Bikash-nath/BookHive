@@ -6,6 +6,7 @@
 # testing
 /coverage
 /.components*
+/public
 
 # next.js
 /.next/
