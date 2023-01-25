@@ -12,35 +12,19 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div>
-				<Link href='/books/'>
-					<p className='text-3xl font-bold text-blue-600'>Popular Books</p>
-				</Link>
-				<br />
-
-				<Link
-					href={{
-						pathname: '/books/[bookId]',
-						query: { bookId: new Date().getMinutes() },
-					}}>
-					<p className='text-3xl font-bold text-green-600 underline'>
-						New Book
-					</p>
-				</Link>
-				<br />
-
-				<Link
-					href={{
-						pathname: '/authors/[authorId]',
-						query: { authorId: new Date().getMinutes() },
-					}}>
-					<p className='text-3xl font-bold text-orange-600 underline'>
-						New Author
-					</p>
-				</Link>
-			</div>
+			<div></div>
 		</Fragment>
 	)
+}
+
+export async function getStaticProps() {
+	const featuredPosts = await getFeaturedPosts()
+
+	return {
+		props: {
+			posts: featuredPosts,
+		},
+	}
 }
 
 export default HomePage

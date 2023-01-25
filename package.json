@@ -1,22 +1,24 @@
 {
-	"name": "nextjs-app",
+	"name": "BookHive",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
-		"watch": "tailwindcss -i ./input.css -o ./css/style.css --watch",
-		"tailwind-build": "tailwindcss -i ./input.css -o ./css/style.css"
+		"lint": "next lint"
 	},
 	"dependencies": {
 		"@ant-design/react-slick": "^1.0.0",
 		"@next/font": "13.1.1",
-		"framer-motion": "^8.5.2",
+		"axios": "",
 		"next": "13.1.1",
 		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react-dom": "18.2.0",
+		"framer-motion": "^8.5.2",
+		"react-slick": "",
+		"slick-carousel": "",
+		"react-responsive-carousel": "^3.2.23"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.13",

@@ -8,6 +8,14 @@ function DonatePage(props) {
 				<title>Donate</title>
 				<meta name='description' content='Donate section' />
 			</Head>
+			<div>
+				<h2>
+					Your small, recurring donations will allow us to respond to requests
+					more quickly and add new user-friendly features to the site.
+				</h2>
+				<h3>Consider supporting us via Patreon!</h3>
+				<h3>Or make a one time donation via UPI</h3>
+			</div>
 		</Fragment>
 	)
 }

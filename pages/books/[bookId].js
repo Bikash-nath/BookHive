@@ -22,4 +22,18 @@ function BookDetailPage(props) {
 	)
 }
 
+export async function getStaticProps(context) {
+	const { params } = context
+	const { bookId } = params
+
+	const bookData = await getBookData(bookId)
+
+	return {
+		props: {
+			post: bookData,
+		},
+		revalidate: 60,
+	}
+}
+
 export default BookDetailPage
