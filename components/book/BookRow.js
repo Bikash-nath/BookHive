@@ -41,17 +41,16 @@ function BooksRow({ books }) {
 		],
 	}
 
-	const books = [
-		{ title: 'Scion of Ikshvaku', image: '/images/Scion of Ikshvaku.jpg' },
-		{ title: 'Immortals of Meluha', image: '/images/Immortals of Meluha.jpg' },
-	]
-
 	return (
 		// <Row className="mb-3 px-5">
 		<Slider {...settings}>
 			{books?.map((book) => (
 				<div key={book.id} xs={6} sm={5} md={3} lg={2} xl={2} className='px-1'>
-					<BookCard title={book.title} image={book.image} />
+					<BookCard
+						title={book.title}
+						image={book.image}
+						author={book.author}
+					/>
 				</div>
 			))}
 		</Slider>
