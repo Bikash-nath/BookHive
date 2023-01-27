@@ -1,6 +1,23 @@
-import React from 'react'
-
 export default function SearchBar(props) {
+	const [keyword, setKeyword] = useState('')
+	const [debouncedTerm, setDebouncedTerm] = useState(keyword)
+
+	useEffect(() => {
+		const timerId = setTimeout(() => {
+			setDebouncedTerm(keyword)
+		}, 1000)
+
+		return () => {
+			clearTimeout(timerId)
+		}
+	}, [keyword])
+
+	useEffect(() => {
+		if (debouncedTerm) {
+			props.onSearch(keyword)
+		}
+	}, [debouncedTerm]) //don't add setPath as dependency of useEffect; CallBack hell
+
 	return (
 		<div>
 			<div class='flex flex-col justify-between space-y-5 md:flex-row md:space-y-0'>

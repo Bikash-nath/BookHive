@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 
-// import Book from '../../components/Book'
+import Book from '../../components/book/BookCard'
 
 function BookDetailPage(props) {
 	const router = useRouter()
@@ -12,27 +12,50 @@ function BookDetailPage(props) {
 				<title>{router.query.bookId}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
-			<div>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					{`Book ${router.query.bookId}`}
-				</h1>
+			<div class='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
+				<div class='flex justify-center mb-20 md:justify-between'>
+					<h2 class='text-4xl text-center'>{props.book.title}</h2>
+
+					<button class='hidden btn md:block'>See All</button>
+				</div>
+				<BookCard
+					title={props.book.title}
+					image={props.book.image}
+					author={props.book.author}
+					slug={props.book.slug}
+				/>
 			</div>
-			{/* <Book posts={props.book} /> */}
 		</Fragment>
 	)
 }
 
+async function getBooks() {
+	const filePath = path.join(process.cwd, 'data', 'booksData.json')
+	const jsonData = await fs.readFile(filePath)
+	return await JSON.parse(jsonData)
+}
+
 export async function getStaticProps(context) {
 	const { params } = context
-	const { bookId } = params
-
-	const bookData = await getBookData(bookId)
+	const { bookId } = params.bookId
+	const bookList = getBooks()
+	const book = bookList.find((book) => book.slug === bookId)
 
 	return {
 		props: {
-			post: bookData,
+			book: book,
 		},
 		revalidate: 60,
+	}
+}
+
+export async function getStaticPaths() {
+	const bookList = getBooks()
+	return {
+		paths: bookList.map((book) => {
+			params: book
+		}),
+		fallback: false,
 	}
 }
 

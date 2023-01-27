@@ -1,40 +1,52 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
-import BookRow from '../../components/book/BookRow'
-function BookListPage(props) {
-	const books = [
-		{
-			title: 'Scion of Ikshvaku',
-			image: '/images/Scion of Ikshvaku.jpg',
-			author: 'Amish Tripathi',
-		},
-		{
-			title: 'Immortals of Meluha',
-			image: '/images/Immortals of Meluha.jpg',
-			author: 'Amish Tripathi',
-		},
-	]
+import BookGrid from '../../components/book/BookGrid'
+import AuthorGrid from '../../components/author/AuthorGrid'
 
+function BookListPage(props) {
 	return (
 		<Fragment>
 			<Head>
 				<title>Popular Books</title>
 				<meta name='description' content='A list of all popular ebooks!' />
 			</Head>
-			<div className='my-4 mx-1'>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					Popular Books
-				</h1>
-				{<BookRow books={books} />}
-			</div>
-			<div className='my-4 mx-1'>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					New Books
-				</h1>
-				{<BookRow books={books} />}
-			</div>
+
+			<section className='my-8 mx-4'>
+				<div class='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
+					<div class='flex justify-center mb-20 md:justify-between'>
+						<h3 class='text-4xl text-center uppercase md:text-left md:text-5xl'>
+							Popular Books
+						</h3>
+					</div>
+				</div>
+				{<BookGrid books={props.books} />}
+			</section>
 		</Fragment>
 	)
+}
+
+export async function getStaticProps() {
+	const booksFilePath = path.join(process.cwd, 'data', 'booksData.json')
+	const booksData = await fs.readFile(booksFilePath)
+	const bookList = JSON.parse(booksData)
+
+	const authorsFilePath = path.join(process.cwd, 'data', 'authorsData.json')
+	const authorsData = await fs.readFile(authorsFilePath)
+	const authorList = JSON.parse(authorsData)
+
+	if (!bookList || !authorList) {
+		return {
+			notFound: true,
+		}
+	}
+
+	return {
+		props: {
+			books: bookList,
+			authors: authorList,
+		},
+		revalidate: 60, //for production
+	}
 }
 
 export default BookListPage

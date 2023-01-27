@@ -1,11 +1,11 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import path from 'path'
+import fs from 'fs'
 import BookRow from '../components/book/BookRow'
 
 function HomePage(props) {
-	const { books } = props
-
 	return (
 		<Fragment>
 			<Head>
@@ -15,40 +15,59 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='my-4 mx-1'>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					Popular Books
-				</h1>
-				{<BookRow books={books} />}
-			</div>
-			<div className='my-4 mx-1'>
-				<h1 className='text-4xl font-bold text-blue-600 underline'>
-					New Books
-				</h1>
-				{<BookRow books={books} />}
-			</div>
+
+			<section className='my-8 mx-4'>
+				<div class='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
+					<div class='flex justify-center mb-20 md:justify-between'>
+						<h3 class='text-4xl text-center uppercase md:text-left md:text-5xl'>
+							Popular Books
+						</h3>
+						<button class='hidden btn md:block -tracking-widest'>
+							See All
+						</button>
+					</div>
+					{<BookRow books={props.books} />}
+				</div>
+			</section>
+
+			<section className='my-8 mx-4'>
+				<div class='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
+					<div class='flex justify-center mb-20 md:justify-between'>
+						<h3 class='text-4xl text-center uppercase md:text-left md:text-5xl'>
+							Trending Books
+						</h3>
+						<button class='hidden btn md:block -tracking-widest'>
+							See All
+						</button>
+					</div>
+					{<BookRow books={props.books} />}
+				</div>
+			</section>
+
+			<section className='my-8 mx-4'>
+				<div class='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
+					<div class='flex justify-center mb-20 md:justify-between'>
+						<h3 class='text-4xl text-center uppercase md:text-left md:text-5xl'>
+							Popular Authors
+						</h3>
+					</div>
+				</div>
+				{<AuthorGrid authors={props.authors} />}
+			</section>
 		</Fragment>
 	)
 }
 
 export async function getStaticProps() {
-	const bookList = [
-		{
-			title: 'Scion of Ikshvaku',
-			image: '/images/Scion of Ikshvaku.jpg',
-			author: 'Amish Tripathi',
-		},
-		{
-			title: 'Immortals of Meluha',
-			image: '/images/Immortals of Meluha.jpg',
-			author: 'Amish Tripathi',
-		},
-	]
+	const filePath = path.join(process.cwd(), 'data', 'booksData.json')
+	const jsonData = fs.readFileSync(filePath, 'utf8')
+	const bookList = JSON.parse(jsonData)
 
 	return {
 		props: {
 			books: bookList,
 		},
+		// revalidate: 60,
 	}
 }
 

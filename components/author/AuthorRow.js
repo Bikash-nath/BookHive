@@ -1,9 +1,9 @@
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
-import BookCard from './BookCard'
+import AuthorCard from './AuthorCard'
 
-function BooksRow({ books }) {
+function AuthorsRow({ authors }) {
 	var settings = {
 		infinite: true,
 		arrows: true,
@@ -44,13 +44,12 @@ function BooksRow({ books }) {
 	return (
 		// <Row className="mb-3 px-5">
 		<Slider {...settings}>
-			{books?.map((book) => (
-				<div key={book._id} className='px-1'>
-					<BookCard
-						title={book.title}
-						image={book.image}
-						author={book.author}
-						slug={book.slug}
+			{authors?.map((author) => (
+				<div key={author._id} className='px-1'>
+					<AuthorCard
+						name={author.name}
+						image={author.image}
+						slug={author.slug}
 					/>
 				</div>
 			))}
@@ -58,4 +57,4 @@ function BooksRow({ books }) {
 	)
 }
 
-export default BooksRow
+export default AuthorsRow

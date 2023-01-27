@@ -4,18 +4,19 @@ import Logo from './logo'
 
 function MainNavigation() {
 	return (
-		<header className='bg-black'>
-			<Link href='/'>
-				<a>
-					<Logo />
-				</a>
-			</Link>
-			<nav>
-				<ul>
-					<li>
-						<Link href='/settings'>Settings</Link>
-					</li>
-				</ul>
+		<header className='bg-black flex flex-row justify-between'>
+			<nav className='relative container mx-auto p-6'>
+				<div className='flex items-center justify-between'>
+					<div className='flex items-center space-x-20'>
+						<Link href='/'>
+							<Logo />
+						</Link>
+					</div>
+
+					<div className='flex items-center space-x-6 font-bold text-grayishViolet'>
+						<div className='hover:text-veryDarkViolet'>Login</div>
+					</div>
+				</div>
 			</nav>
 		</header>
 	)

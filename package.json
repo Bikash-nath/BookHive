@@ -1,6 +1,7 @@
 {
-	"name": "BookHive",
+	"name": "bookhive",
 	"version": "0.1.0",
+	"description": "A app for accessing millions of free audiobooks, ePubs, PDFs, magazines and podcasts.",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
@@ -27,6 +28,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Bikash-nath/Bookspot.git"
+		"url": "https://github.com/Bikash-nath/BookHive-backend"
 	}
 }

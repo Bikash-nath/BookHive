@@ -1,11 +1,18 @@
+import { useRouter } from 'next/router'
 import SearchBar from '../components/ui/SearchBar'
-import second from '../components/ui/SearchBar'
 
 export default function SearchPage() {
-	const SearchTerm = ''
+	const router = useRouter()
+
+	const searchHandler = (keyword) => {
+		const searchPath = `/search/?keyword=${keyword}`
+		router.push(searchPath)
+	}
+
 	return (
 		<div>
-			<SearchBar term={SearchTerm} />
+			<SearchBar onSearch={searchHandler} />
+			<GenreSection />
 		</div>
 	)
 }
