@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import Logo from './logo'
+import Logo from '../elements/Logo'
 
-function MainNavigation() {
+function Header() {
 	return (
 		<header className='bg-black flex flex-row justify-between'>
 			<nav className='relative container mx-auto p-6'>
@@ -22,4 +22,4 @@ function MainNavigation() {
 	)
 }
 
-export default MainNavigation
+export default Header

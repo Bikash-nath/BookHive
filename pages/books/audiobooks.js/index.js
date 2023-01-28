@@ -25,8 +25,8 @@ function AudioBooksPage(props) {
 }
 
 export async function getStaticProps() {
-	const filePath = path.join(process.cwd, 'data', 'booksData.json')
-	const jsonData = await fs.readFile(filePath)
+	const filePath = path.join(process.cwd(), 'data', 'booksData.json')
+	const jsonData = fs.readFileSync(filePath, 'utf8')
 	const audiobookList = JSON.parse(jsonData)
 
 	return {

@@ -26,8 +26,8 @@ function AuthorListPage(props) {
 }
 
 export async function getStaticProps() {
-	const filePath = path.join(process.cwd, 'data', 'authorsData.json')
-	const jsonData = await fs.readFile(filePath)
+	const filePath = path.join(process.cwd(), 'data', 'authorsData.json')
+	const jsonData = fs.readFileSync(filePath, 'utf8')
 	const authorList = JSON.parse(jsonData)
 
 	if (!authorList) {

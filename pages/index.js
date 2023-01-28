@@ -4,6 +4,7 @@ import Link from 'next/link'
 import path from 'path'
 import fs from 'fs'
 import BookRow from '../components/book/BookRow'
+import AuthorRow from '../components/author/AuthorRow'
 
 function HomePage(props) {
 	return (
@@ -52,20 +53,25 @@ function HomePage(props) {
 						</h3>
 					</div>
 				</div>
-				{<AuthorGrid authors={props.authors} />}
+				{<AuthorRow authors={props.authors} />}
 			</section>
 		</Fragment>
 	)
 }
 
 export async function getStaticProps() {
-	const filePath = path.join(process.cwd(), 'data', 'booksData.json')
-	const jsonData = fs.readFileSync(filePath, 'utf8')
+	const booksFile = path.join(process.cwd(), 'data', 'booksData.json')
+	const jsonData = fs.readFileSync(booksFile, 'utf8')
 	const bookList = JSON.parse(jsonData)
+
+	const authorsFile = path.join(process.cwd(), 'data', 'authorsData.json')
+	const authorsData = fs.readFileSync(authorsFile, 'utf8')
+	const authorList = JSON.parse(authorsData)
 
 	return {
 		props: {
 			books: bookList,
+			authors: authorList,
 		},
 		// revalidate: 60,
 	}

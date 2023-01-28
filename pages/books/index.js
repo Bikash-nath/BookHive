@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 import BookGrid from '../../components/book/BookGrid'
-import AuthorGrid from '../../components/author/AuthorGrid'
 
 function BookListPage(props) {
 	return (
@@ -30,10 +29,6 @@ export async function getStaticProps() {
 	const booksData = await fs.readFile(booksFilePath)
 	const bookList = JSON.parse(booksData)
 
-	const authorsFilePath = path.join(process.cwd, 'data', 'authorsData.json')
-	const authorsData = await fs.readFile(authorsFilePath)
-	const authorList = JSON.parse(authorsData)
-
 	if (!bookList || !authorList) {
 		return {
 			notFound: true,
@@ -43,7 +38,6 @@ export async function getStaticProps() {
 	return {
 		props: {
 			books: bookList,
-			authors: authorList,
 		},
 		revalidate: 60, //for production
 	}
