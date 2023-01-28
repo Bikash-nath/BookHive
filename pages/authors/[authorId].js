@@ -12,11 +12,11 @@ function AuthorDetailPage(props) {
 				<title>{router.query.authorId}</title>
 				<meta name='description' content='A author' />
 			</Head>
-			<div class='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-				<div class='flex justify-center mb-20 md:justify-between'>
-					<h2 class='text-4xl text-center'>{props.author.title}</h2>
+			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
+				<div className='flex justify-center mb-20 md:justify-between'>
+					<h2 className='text-4xl text-center'>{props.author.title}</h2>
 
-					<button class='hidden btn md:block'>See All</button>
+					<button className='hidden btn md:block'>See All</button>
 				</div>
 				<AuthorCard
 					name={props.author.name}

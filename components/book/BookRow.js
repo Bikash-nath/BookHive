@@ -5,7 +5,6 @@ import BookCard from './BookCard'
 
 function BooksRow({ books }) {
 	var settings = {
-		infinite: true,
 		arrows: true,
 		speed: 200,
 		slidesToShow: 6,

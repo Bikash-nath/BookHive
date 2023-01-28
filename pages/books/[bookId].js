@@ -12,11 +12,11 @@ function BookDetailPage(props) {
 				<title>{router.query.bookId}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
-			<div class='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-				<div class='flex justify-center mb-20 md:justify-between'>
-					<h2 class='text-4xl text-center'>{props.book.title}</h2>
+			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
+				<div className='flex justify-center mb-20 md:justify-between'>
+					<h2 className='text-4xl text-center'>{props.book.title}</h2>
 
-					<button class='hidden btn md:block'>See All</button>
+					<button className='hidden btn md:block'>See All</button>
 				</div>
 				<BookCard
 					title={props.book.title}

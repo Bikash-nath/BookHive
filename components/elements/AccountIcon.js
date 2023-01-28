@@ -1,4 +1,4 @@
-export default function HomeIcon() {
+export default function AccountIcon() {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -6,7 +6,7 @@ export default function HomeIcon() {
 			viewBox='0 0 24 24'
 			stroke-width='1.5'
 			stroke='currentColor'
-			class='w-6 h-6'>
+			className='w-6 h-6'>
 			<path
 				stroke-linecap='round'
 				stroke-linejoin='round'
