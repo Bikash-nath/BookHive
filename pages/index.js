@@ -16,8 +16,7 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-
-			<section className='my-8 mx-4 bg-black h-screen overflow-hidden'>
+			<section className='my-8 mx-4 bg-gradient-to-b to-black from-gray-700 h-screen overflow-hidden'>
 				<div className='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
 					<div className='flex justify-center mb-20 md:justify-between'>
 						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>

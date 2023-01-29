@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Header from './Header'
 import Navbar from './Navbar'
 
-function Layout(props) {
+function Container(props) {
 	return (
 		<Fragment>
 			<Header />
@@ -13,4 +13,4 @@ function Layout(props) {
 	)
 }
 
-export default Layout
+export default Container

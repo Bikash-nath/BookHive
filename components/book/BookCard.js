@@ -2,10 +2,10 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 
 function BookCard(props) {
-	const { title, image, author, slug } = props
+	const { title, image, author, slug, key } = props
 	return (
-		<Fragment>
-			<div className='flex items-center justify-center bg-slate-900'>
+		<Fragment key={key}>
+			<div className='flex items-center justify-center bg-slate-900 active:bg-black group-hover:flex'>
 				<div className='bg-zinc-800 p-2 mx-6 rounded-xl'>
 					<Link href={`/books/${slug}`}>
 						<div className='flex flex-col rounded-xl'>

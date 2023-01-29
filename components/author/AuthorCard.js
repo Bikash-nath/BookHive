@@ -2,10 +2,10 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 
 function AuthorCard(props) {
-	const { name, image_sm, slug } = props
+	const { name, image_sm, slug, key } = props
 	return (
-		<Fragment>
-			<div className='flex items-center justify-center h-screen bg-slate-900'>
+		<Fragment key={key}>
+			<div className='flex items-center justify-center bg-slate-900 active:bg-black group-hover:flex'>
 				<div className='bg-zinc-800 p-2 mx-2 rounded-2xl'>
 					<Link href={`/authors/${slug}`}>
 						<div className='flex flex-col md:flex-row rounded-xl'>

@@ -43,16 +43,17 @@ function BooksRow({ books }) {
 	return (
 		// <Row className="mb-3 px-5">
 		<Slider {...settings}>
-			{books?.map((book) => (
-				<div key={book._id} className='px-1'>
+			<div className='relative w-full h-56 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+				{books?.map((book) => (
 					<BookCard
+						key={book._id}
 						title={book.title}
 						image={book.image}
 						author={book.author}
 						slug={book.slug}
 					/>
-				</div>
-			))}
+				))}
+			</div>
 		</Slider>
 	)
 }
