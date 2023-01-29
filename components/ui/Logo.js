@@ -3,11 +3,17 @@ import Image from 'next/image'
 
 function Logo({ xs }) {
 	return (
-		<Link href='/' className='Logo'>
-			<Image src='/audiobook.png' alt='BookHive' height={40} width={40} />
-			<span>
-				<h1 className='text-4xl font-bold'>BookHive</h1>
-			</span>
+		<Link href='/'>
+			<Image
+				src='/images/audiobook.png'
+				alt='BookHive'
+				className='inline'
+				height={60}
+				width={60}
+			/>
+			<p className='text-3xl hidden lg:inline text-white px-2 font-semibold'>
+				BookHive
+			</p>
 		</Link>
 	)
 }

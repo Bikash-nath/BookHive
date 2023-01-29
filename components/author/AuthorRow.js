@@ -43,18 +43,18 @@ function AuthorsRow({ authors }) {
 
 	return (
 		// <Row className="mb-3 px-5">
-		<Slider {...settings}>
-			<div className='relative w-full h-56 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+		<div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+			<Slider {...settings}>
 				{authors?.map((author) => (
 					<AuthorCard
 						name={author.name}
-						image={author.image}
+						image={author.image_sm}
 						slug={author.slug}
 						key={author._id}
 					/>
 				))}
-			</div>
-		</Slider>
+			</Slider>
+		</div>
 	)
 }
 

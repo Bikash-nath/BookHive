@@ -8,7 +8,6 @@ function Container(props) {
 		<Fragment>
 			<Header />
 			<main>{props.children}</main>
-			<Navbar />
 		</Fragment>
 	)
 }

@@ -1,4 +1,4 @@
-export default function HomeIcon() {
+export default function HomeIcon({ dimensions }) {
 	return (
 		<div>
 			<svg
@@ -7,7 +7,7 @@ export default function HomeIcon() {
 				viewBox='0 0 24 24'
 				strokeWidth={1.5}
 				stroke='currentColor'
-				className='w-6 h-6'>
+				className={dimensions}>
 				<path
 					strokeLinecap='round'
 					strokeLinejoin='round'

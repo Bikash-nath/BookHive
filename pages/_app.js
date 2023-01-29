@@ -1,16 +1,16 @@
 import Head from 'next/head'
 
-import Layout from '../components/layout/Layout'
+import Container from '../components/layouts/Container'
 import '../globals.css'
 
 function App({ Component, pageProps }) {
 	return (
-		<Layout>
+		<Container>
 			<Head>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
 			<Component {...pageProps} />
-		</Layout>
+		</Container>
 	)
 }
 

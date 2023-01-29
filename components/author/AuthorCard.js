@@ -2,28 +2,26 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 
 function AuthorCard(props) {
-	const { name, image_sm, slug, key } = props
+	const { name, image, slug, key } = props
 	return (
-		<Fragment key={key}>
-			<div className='flex items-center justify-center bg-slate-900 active:bg-black group-hover:flex'>
-				<div className='bg-zinc-800 p-2 mx-2 rounded-2xl'>
-					<Link href={`/authors/${slug}`}>
-						<div className='flex flex-col md:flex-row rounded-xl'>
-							<img
-								src={image_sm}
-								alt={name}
-								className='object-fit rounded-xl h-auto md:h-64 md:rounded-r-none transform hover:scale-105 hover:rounded-xl duration-200'
-							/>
-							<div className='p-6 md:p-12'>
-								<h2 className='font-serif text-xl font-medium text-white'>
-									{name}
-								</h2>
-							</div>
-						</div>
-					</Link>
+		<div
+			key={key}
+			className='flex flex-row items-center justify-center bg-slate-900 active:bg-black group-hover:flex'>
+			<Link href={`/books/${slug}`}>
+				<div className='flex flex-col rounded-xl bg-zinc-800 p-1 lg:p-2 mx-6 w-40 h-60'>
+					<img
+						src={image}
+						alt={name}
+						className='object-fit rounded-xl h-auto md:h-64 md:rounded-r-none transform hover:scale-105 hover:rounded-xl duration-200'
+					/>
+					<div className='mt-2 flex flex-col'>
+						<p className='font-semibold text-base text-white truncate'>
+							{name}
+						</p>
+					</div>
 				</div>
-			</div>
-		</Fragment>
+			</Link>
+		</div>
 	)
 }
 

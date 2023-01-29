@@ -5,10 +5,11 @@ import path from 'path'
 import fs from 'fs'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
+import Navbar from '../components/layouts/Navbar'
 
 function HomePage(props) {
 	return (
-		<Fragment>
+		<div className='bg-black h-screen overflow-hidden'>
 			<Head>
 				<title>Bookspot</title>
 				<meta
@@ -16,45 +17,50 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<section className='my-8 mx-4 bg-gradient-to-b to-black from-gray-700 h-screen overflow-hidden'>
-				<div className='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
-					<div className='flex justify-center mb-20 md:justify-between'>
-						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-							Popular Books
-						</h3>
-						<button className='hidden btn md:block -tracking-widest'>
-							See All
-						</button>
-					</div>
-					{<BookRow books={props.books} />}
-				</div>
-			</section>
 
-			<section className='my-8 mx-4'>
-				<div className='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
-					<div className='flex justify-center mb-20 md:justify-between'>
-						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-							Trending Books
-						</h3>
-						<button className='hidden btn md:block -tracking-widest'>
-							See All
-						</button>
-					</div>
-					{<BookRow books={props.books} />}
-				</div>
-			</section>
+			<main className='flex'>
+				<Navbar />
+				<div className='flex-grow h-screen overflow-y-scroll scrollbar-hide select-none'>
+					<div className='bg-gradient-to-b from-black to-gray-700'>
+						<section className='p-6'>
+							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+								<div className='flex justify-center mb-10 md:justify-between'>
+									<h3 className='text-2xl text-center uppercase md:text-left lg:text-4xl'>
+										Popular Books
+									</h3>
+									<button className='hidden btn md:block'>See All</button>
+								</div>
+								{<BookRow books={props.books} />}
+							</div>
+						</section>
 
-			<section className='my-8 mx-4'>
-				<div className='container max-w-6xl mx-auto my-8 px-6 text-gray-900 md:px-0'>
-					<div className='flex justify-center mb-20 md:justify-between'>
-						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-							Popular Authors
-						</h3>
+						<section className='p-6'>
+							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+								<div className='flex justify-center mb-20 md:justify-between'>
+									<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
+										Trending Books
+									</h3>
+									<button className='hidden btn md:block'>See All</button>
+								</div>
+								{<BookRow books={props.books} />}
+							</div>
+						</section>
+
+						<section className='p-6'>
+							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+								<div className='flex justify-center mb-20 md:justify-between'>
+									<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
+										Popular Authors
+									</h3>
+									<button className='hidden btn md:block'>See All</button>
+								</div>
+							</div>
+							{<AuthorRow authors={props.authors} />}
+						</section>
 					</div>
 				</div>
-				{<AuthorRow authors={props.authors} />}
-			</section>
-		</Fragment>
+			</main>
+		</div>
 	)
 }
 

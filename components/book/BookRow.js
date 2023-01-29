@@ -5,18 +5,16 @@ import BookCard from './BookCard'
 
 function BooksRow({ books }) {
 	var settings = {
-		arrows: true,
 		speed: 200,
-		slidesToShow: 6,
-		slidesToScroll: 6,
+		slidesToShow: 5,
+		slidesToScroll: 5,
 		initialSlide: 0,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: 6,
-					slidesToScroll: 6,
-					infinite: true,
+					slidesToShow: 5,
+					slidesToScroll: 5,
 					dots: true,
 					arrows: true,
 				},
@@ -24,10 +22,10 @@ function BooksRow({ books }) {
 			{
 				breakpoint: 600,
 				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 4,
-					initialSlide: 4,
-					arrows: true,
+					slidesToShow: 3,
+					slidesToScroll: 3,
+					initialSlide: 0,
+					dots: false,
 				},
 			},
 			{
@@ -35,6 +33,7 @@ function BooksRow({ books }) {
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
+					dots: false,
 				},
 			},
 		],
@@ -42,8 +41,8 @@ function BooksRow({ books }) {
 
 	return (
 		// <Row className="mb-3 px-5">
-		<Slider {...settings}>
-			<div className='relative w-full h-56 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+		<div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
+			<Slider {...settings}>
 				{books?.map((book) => (
 					<BookCard
 						key={book._id}
@@ -53,8 +52,8 @@ function BooksRow({ books }) {
 						slug={book.slug}
 					/>
 				))}
-			</div>
-		</Slider>
+			</Slider>
+		</div>
 	)
 }
 

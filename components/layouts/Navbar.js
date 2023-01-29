@@ -1,40 +1,40 @@
 import Link from 'next/link'
 import HomeIcon from '../ui/icons/HomeIcon'
 import SearchIcon from '../ui/icons/SearchIcon'
-import HamburgerIcon from '../ui/icons/HamburgerIcon'
-import HistoryIcon from '../ui/icons/HistoryIcon'
-import AccountIcon from '../ui/icons/SettingsIcon'
+import AccountIcon from '../ui/icons/AccountIcon'
+import LibraryIcon from '../ui/icons/LibraryIcon'
 import SettingIcon from '../ui/icons/SettingsIcon'
+import HistoryIcon from '../ui/icons/HistoryIcon'
 
 function Navbar() {
 	return (
-		<nav>
-			<div className='bg-black p-6 m-3 space-y-10 shadow-2xl rounded-3xl md:p-40'>
-				<div className='flex flex-row items-center justify-center space-x-4 lg:hidden md:space-y-0 md:space-x-8 md:mb-24 md:justify-end'>
-					<div className='group'>
+		<div className='overflow-y-scroll h-screen scrollbar-hide hidden md:inline-block p-2 md:min-w-[10rem] lg:min-w-[12rem] text-gray-500 text-sm border-r border-gray-900'>
+			<div className='bg-red-700 space-y-2 shadow-2xl rounded-xl'>
+				<div className='flex flex-row items-center justify-center space-x-4 md:hidden md:space-y-0 md:space-x-8 md:mb-24 md:justify-end'>
+					<div className='group z-10'>
 						<Link href='/'>
-							<HomeIcon className='h-5 w-5' />
+							<HomeIcon dimensions='h-8 w-8' />
 							Home
 						</Link>
 						<div className='mx-2 mt-2 duration-500 border-b-2 opacity-0 border-black group-hover:opacity-100'></div>
 					</div>
 					<div className='group'>
 						<Link href='/search'>
-							<SearchIcon className='h-5 w-5' />
+							<SearchIcon dimensions='h-8 w-8' />
 							Search
 						</Link>
 						<div className='mx-2 mt-2 duration-500 border-b-2 opacity-0 border-black group-hover:opacity-100'></div>
 					</div>
 					<div className='group'>
 						<Link href='/user/library'>
-							<LibraryIcon className='h-5 w-5' />
+							<LibraryIcon dimensions='h-8 w-8' />
 							Library
 						</Link>
 						<div className='mx-2 mt-2 duration-500 border-b-2 opacity-0 border-black group-hover:opacity-100'></div>
 					</div>
 					<div className='group'>
 						<Link href='/user/profile'>
-							<AccountIcon className='h-5 w-5' />
+							<AccountIcon dimensions='h-8 w-8' />
 							Profile
 						</Link>
 						<div className='mx-2 mt-2 duration-500 border-b-2 opacity-0 border-black group-hover:opacity-100'></div>
@@ -42,54 +42,61 @@ function Navbar() {
 				</div>
 			</div>
 
-			<div className='text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex '>
-				<div className='space-y-4'>
-					<div className='flex items-center space-x-2 hover:text-white'>
-						<Link href='/'>
-							<HomeIcon className='h-5 w-5' />
-							<p className='font-mono'>Home</p>
-						</Link>
+			<div className='space-y-4 relative cursor-pointer'>
+				<Link href='/'>
+					<div className='flex items-center space-x-2 my-4 hover:text-white'>
+						<HomeIcon dimensions='h-8 w-8' />
+						<p className='font-mono text-base'>Home</p>
 					</div>
-					<div className='flex items-center space-x-2 hover:text-white'>
-						<Link href='/search'>
-							<SearchIcon className='h-5 w-5' />
-							<p className='font-mono'>Search</p>
-						</Link>
+				</Link>
+				<Link href='/search'>
+					<div className='flex items-center space-x-2 my-4 hover:text-white'>
+						<SearchIcon dimensions='h-8 w-8' />
+						<p className='font-mono text-base'>Search</p>
 					</div>
-					<div className='flex items-center space-x-2 hover:text-white'>
-						<Link href='/user/library'>
-							<LibraryIcon className='h-5 w-5' />
-							<p className='font-mono'>Library</p>
-						</Link>
+				</Link>
+				<Link href='/user/library'>
+					<div className='flex items-center space-x-2 my-4 hover:text-white'>
+						<LibraryIcon dimensions='h-8 w-8' />
+						<p className='font-mono text-base'>Library</p>
 					</div>
-					<div className='flex items-center space-x-2 hover:text-white'>
-						<Link href='/user/profile'>
-							<AccountIcon className='h-5 w-5' />
-							<p className='font-mono'>Profile</p>
-						</Link>
+				</Link>
+				<Link href='/user/profile'>
+					<div className='flex items-center space-x-2 my-4 hover:text-white'>
+						<AccountIcon dimensions='h-8 w-8' />
+						<p className='font-mono text-base'>Profile</p>
 					</div>
-					<hr className='border-t-[0.1px] border-gray-900' />
+				</Link>
 
-					<div className='flex items-center space-x-2 hover:text-white'>
-						<Link href='/user/library'>
-							<HistoryIcon className='h-5 w-5' />
-							<p className='font-mono'>History</p>
-						</Link>
+				<Link href='/user/history'>
+					<div className='flex items-center space-x-2 my-4 hover:text-white'>
+						<HistoryIcon dimensions='h-8 w-8' />
+						<p className='font-mono text-base'>History</p>
 					</div>
+				</Link>
 
-					<hr className='border-t-[0.1px] border-gray-900' />
-					{/* {playlists.map((playlist) => (
+				<hr className='border-t-[0.1px] border-gray-900' />
+
+				<div className='absolute mb-0'>
+					<Link href='/user/settings'>
+						<div className='flex items-center mb-2 space-x-2 my-4 hover:text-white'>
+							<SettingIcon dimensions='h-8 w-8' />
+							<p className='font-mono text-base'>Setting</p>
+						</div>
+					</Link>
+				</div>
+
+				{/* {playlists.map((playlist) => (
           <p
             key={playlist.id}
             onClick={() => setPlaylistId(playlist.id)}
             className="cursor-pointer hover:text-white"
           >
-            {playlist.name} className='font-mono'
+            {playlist.name} className='font-mono text-base'
           </p>
         ))} */}
-				</div>
 			</div>
-		</nav>
+		</div>
 	)
 }
 
