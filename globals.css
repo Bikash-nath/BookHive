@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-	h5 {
-		@apply absolute px-6 duration-200 w-52 bottom-4 md:bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black;
-	}
-}
-
 @layer components {
 	.btn {
-		@apply px-6 py-2 my-0 font-bold tracking-widest uppercase border-2 border-black hover:bg-black hover:text-white;
+		@apply px-6 py-2 my-0 font-bold uppercase border-2 border-black hover:bg-black hover:text-white;
+	}
+}
+@layer base {
+	.box-text {
+		@apply absolute px-6 duration-200 w-52 bottom-4 md:bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black;
 	}
 }
 
@@ -24,4 +23,20 @@
 
 .item-gradient {
 	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-300 group-hover:from-gray-50 group-hover:to-white group-hover:opacity-70;
+}
+
+.line-clamp-2 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }

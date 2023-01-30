@@ -12,7 +12,7 @@ function AuthorCard(props) {
 					<img
 						src={image}
 						alt={name}
-						className='object-fit rounded-xl h-auto md:h-64 md:rounded-r-none transform hover:scale-105 hover:rounded-xl duration-200'
+						className='object-fit rounded-full h-auto md:h-64 transform hover:scale-105 hover:rounded-xl duration-200'
 					/>
 					<div className='mt-2 flex flex-col'>
 						<p className='font-semibold text-base text-white truncate'>

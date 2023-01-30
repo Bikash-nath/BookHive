@@ -10,7 +10,7 @@ function Header() {
 	const user = ''
 
 	return (
-		<header className='bg-black flex flex-row flex-grow justify-between'>
+		<header className='flex flex-row flex-grow sticky top-0 justify-between opacity-40 bg-black'>
 			<nav className='relative container mx-auto p-2'>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center space-x-20'>
@@ -19,7 +19,7 @@ function Header() {
 						</Link>
 					</div>
 
-					<header className='flex flex-row absolute top-5 right-8'>
+					<header className='flex flex-row absolute top-5 right-8 opacity-100'>
 						<div className='flex items-center cursor-pointer p-2 mx-4'>
 							<SearchIcon className='text-white' dimensions='h-7 w-7' />
 						</div>
@@ -33,21 +33,23 @@ function Header() {
 									<HamburgerIcon className=' h-7 w-7' />
 									{user?.name ? (
 										<img
-											className='rounded-full w-10 p-1 h-10'
+											className='rounded-full p-1 w-8 h-8'
 											src={user?.image}
 											alt='user image'
 										/>
 									) : (
-										<AccountIcon dimensions='h-7 w-7' />
+										<AccountIcon dimensions='h-8 w-8' />
 									)}
 								</>
 							) : (
-								<button className='flex items-center space-x-2 p-2 font-bold text-grayishViolet'>
-									<AccountIcon dimensions='h-7 w-7' />
-									<div className='text-white hover:text-veryDarkViolet'>
-										Login
-									</div>
-								</button>
+								<Link href='/user/login'>
+									<button className='flex items-center space-x-2 p-2 font-bold text-grayishViolet'>
+										<AccountIcon dimensions='h-7 w-7' />
+										<div className='text-white hover:text-veryDarkViolet'>
+											Login
+										</div>
+									</button>
+								</Link>
 							)}
 						</div>
 					</header>

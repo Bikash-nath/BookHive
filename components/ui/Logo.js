@@ -8,10 +8,10 @@ function Logo({ xs }) {
 				src='/images/audiobook.png'
 				alt='BookHive'
 				className='inline'
-				height={60}
-				width={60}
+				height={50}
+				width={50}
 			/>
-			<p className='text-3xl hidden lg:inline text-white px-2 font-semibold'>
+			<p className='text-2xl lg:text-xl hidden lg:inline text-white px-1 font-semibold'>
 				BookHive
 			</p>
 		</Link>

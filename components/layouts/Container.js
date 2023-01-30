@@ -5,10 +5,15 @@ import Navbar from './Navbar'
 
 function Container(props) {
 	return (
-		<Fragment>
+		<div className='bg-black h-screen overflow-hidden'>
 			<Header />
-			<main>{props.children}</main>
-		</Fragment>
+			<div className='flex'>
+				<Navbar />
+				<main className='flex-grow h-screen overflow-y-scroll hide-scrollbar select-none'>
+					{props.children}
+				</main>
+			</div>
+		</div>
 	)
 }
 

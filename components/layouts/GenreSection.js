@@ -15,7 +15,7 @@ export default function GenresSection() {
 							className='hidden w-full duration-200 md:block group-hover:scale-110'
 						/>
 						<div className='item-gradient'></div>
-						<h5>{genre}</h5>
+						<h5 className='box-text'>{genre}</h5>
 					</div>
 				</div>
 			</div>

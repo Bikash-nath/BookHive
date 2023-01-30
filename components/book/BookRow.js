@@ -41,7 +41,8 @@ function BooksRow({ books }) {
 
 	return (
 		// <Row className="mb-3 px-5">
-		<div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
+		// <div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
+		<div className='flex flex-wrap sm:justify-start justify-center gap-4'>
 			<Slider {...settings}>
 				{books?.map((book) => (
 					<BookCard

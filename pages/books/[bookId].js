@@ -20,12 +20,14 @@ function BookDetailPage(props) {
 				<div className='flex justify-center mb-20 md:justify-between'>
 					<BookBgCover name={props.book.title} />
 				</div>
-				<BookCard
-					title={props.book.title}
-					image={props.book.image}
-					author={props.book.author}
-					slug={props.book.slug}
-				/>
+				<div className=''>
+					<BookCard
+						title={props.book.title}
+						image={props.book.image}
+						author={props.book.author}
+						slug={props.book.slug}
+					/>
+				</div>
 			</div>
 		</Fragment>
 	)

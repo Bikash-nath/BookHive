@@ -9,7 +9,7 @@ import Navbar from '../components/layouts/Navbar'
 
 function HomePage(props) {
 	return (
-		<div className='bg-black h-screen overflow-hidden'>
+		<Fragment>
 			<Head>
 				<title>Bookspot</title>
 				<meta
@@ -18,49 +18,50 @@ function HomePage(props) {
 				/>
 			</Head>
 
-			<main className='flex'>
-				<Navbar />
-				<div className='flex-grow h-screen overflow-y-scroll scrollbar-hide select-none'>
-					<div className='bg-gradient-to-b from-black to-gray-700'>
-						<section className='p-6'>
-							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-								<div className='flex justify-center mb-10 md:justify-between'>
-									<h3 className='text-2xl text-center uppercase md:text-left lg:text-4xl'>
-										Popular Books
-									</h3>
-									<button className='hidden btn md:block'>See All</button>
-								</div>
-								{<BookRow books={props.books} />}
-							</div>
-						</section>
-
-						<section className='p-6'>
-							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-								<div className='flex justify-center mb-20 md:justify-between'>
-									<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-										Trending Books
-									</h3>
-									<button className='hidden btn md:block'>See All</button>
-								</div>
-								{<BookRow books={props.books} />}
-							</div>
-						</section>
-
-						<section className='p-6'>
-							<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-								<div className='flex justify-center mb-20 md:justify-between'>
-									<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-										Popular Authors
-									</h3>
-									<button className='hidden btn md:block'>See All</button>
-								</div>
-							</div>
-							{<AuthorRow authors={props.authors} />}
-						</section>
+			<div className='bg-gradient-to-b from-gray-900 to-black'>
+				<section className='p-6'>
+					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+						<div className='flex justify-center mb-10 md:justify-between'>
+							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+								Popular Books
+							</h3>
+							<Link href='/books'>
+								<button className='hidden btn md:block'>See All</button>
+							</Link>
+						</div>
+						{<BookRow books={props.books} />}
 					</div>
-				</div>
-			</main>
-		</div>
+				</section>
+
+				<section className='p-6'>
+					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+						<div className='flex justify-center mb-20 md:justify-between'>
+							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+								Trending Books
+							</h3>
+							<Link href='/books'>
+								<button className='hidden btn md:block'>See All</button>
+							</Link>
+						</div>
+						{<BookRow books={props.books} />}
+					</div>
+				</section>
+
+				<section className='p-6'>
+					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
+						<div className='flex justify-center mb-20 md:justify-between'>
+							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+								Popular Authors
+							</h3>
+							<Link href='/authors'>
+								<button className='hidden btn md:block'>See All</button>
+							</Link>
+						</div>
+					</div>
+					{<AuthorRow authors={props.authors} />}
+				</section>
+			</div>
+		</Fragment>
 	)
 }
 
