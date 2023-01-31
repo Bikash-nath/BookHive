@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Discover() {
+export default function Discover({ dimensions }) {
 	return (
 		// width='10'
 		// height='10'

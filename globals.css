@@ -22,7 +22,7 @@
 }
 
 .item-gradient {
-	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-300 group-hover:from-gray-50 group-hover:to-white group-hover:opacity-70;
+	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-black;
 }
 
 .line-clamp-2 {
