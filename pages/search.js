@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import SearchBar from '../components/ui/SearchBar'
+import SearchBar from '../components/layouts/SearchBar'
 import GenreSection from '../components/layouts/GenreSection'
 
 export default function SearchPage() {

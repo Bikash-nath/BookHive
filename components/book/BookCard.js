@@ -3,27 +3,23 @@ import Link from 'next/link'
 
 function BookCard(props) {
 	const { title, image, author, slug, key } = props
-	// w-full h-84 group hover:bg-opacity-100 (top level)
-	// <div className='items-center justify-center bg-slate-700 group-hover:flex active:bg-black'> (before link)
-	// <div className='w-full h-86 group'>
-	// justify-center items-center bg-opacity-50 group-hover:flex
 
 	return (
 		<div
 			key={key}
-			className='flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+			className='flex flex-row items-center justify-center mx-3 md:mx-4 md:w-44 md:h-80 rounded-md group-hover:flex '>
 			<Link href={`/books/${slug}`}>
-				<div className='flex flex-col rounded-md bg-zinc-800 p-1 lg:p-2 mx-6 w-40 h-84 overflow-hidden'>
+				<div className='flex flex-col w-full h-full rounded-md p-1 bg-gray-700 bg-opacity-60 hover:bg-opacity-100 overflow-hidden'>
 					<img
 						src={image}
 						alt={title}
-						className='object-fit rounded-md h-auto min-w-full transform hover:scale-105 duration-200'
+						className='object-contain rounded-md md:w-40 md:h-60 md:py-1 min-w-full transform hover:scale-105 duration-200'
 					/>
-					<div className='mt-1 flex flex-col'>
-						<p className='font-semibold text-base text-white line-clamp-2'>
+					<div className='px-1 flex flex-col'>
+						<p className='font-semibold text-sm md:text-base mt-1 md:mt-0 leading-none md:leading-tight line-clamp-2 text-white '>
 							{title}
 						</p>
-						<p className='text-sm truncate text-gray-300 mt-1'>
+						<p className='text-xs font-thin md:text-sm truncate text-gray-200 md:mt-1'>
 							{`By ${author}`}
 						</p>
 					</div>

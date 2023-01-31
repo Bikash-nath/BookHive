@@ -6,13 +6,13 @@ import AccountIcon from '../ui/icons/AccountIcon'
 import HamburgerIcon from '../ui/icons/HamburgerIcon'
 import BellIcon from '../ui/icons/BellIcon'
 import SearchIcon from '../ui/icons/SearchIcon'
-import LightModeIcon from '../ui/icons/LightModeIcon'
-import DarkModeIcon from '../ui/icons/DarkModeIcon'
+import LightmodeIcon from '../ui/icons/LightmodeIcon'
+import DarkmodeIcon from '../ui/icons/DarkmodeIcon'
 
 function Header() {
 	const user = ''
 	const router = useRouter()
-	const paths = ['login', 'signUp']
+	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => router.pathname.includes(path))
 
 	return (
@@ -23,7 +23,7 @@ function Header() {
 						<div className='flex items-center justify-between'>
 							<div className='flex items-center space-x-20'>
 								<Link href='/'>
-									<Logo />
+									<Logo size={50} />
 								</Link>
 							</div>
 
@@ -34,8 +34,8 @@ function Header() {
 								<button
 									id='theme-toggle'
 									class='p-2 mx-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm'>
-									<LightModeIcon />
-									<DarkModeIcon />
+									<LightmodeIcon />
+									<DarkmodeIcon className='fill-white' />
 								</button>
 
 								<div className='flex items-center bg-[#2e2e2e] space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>

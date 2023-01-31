@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LightModeIcon() {
+export default function LightmodeIcon() {
 	return (
 		<svg
 			id='theme-toggle-light-icon'

@@ -10,13 +10,13 @@ import HistoryIcon from '../ui/icons/HistoryIcon'
 
 function Navbar() {
 	const router = useRouter()
-	const paths = ['login', 'signUp']
+	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => router.pathname.includes(path))
 
 	return (
 		<>
 			{showRoute && (
-				<div className='overflow-y-scroll h-screen hide-scrollbar hidden md:inline-block p-2 md:min-w-[10rem] lg:min-w-[12rem] text-gray-500 text-sm border-r border-gray-900'>
+				<div className='overflow-y-scroll h-screen hide-scrollbar hidden md:inline-block relative p-2 md:min-w-[10rem] lg:min-w-[12rem] text-gray-500 text-sm border-r border-gray-900'>
 					<div className='bg-red-700 space-y-2 shadow-2xl rounded-xl'>
 						<div className='flex flex-row items-center justify-center space-x-4 md:hidden md:space-y-0 md:space-x-8 md:mb-24 md:justify-end'>
 							<div className='group z-10'>
@@ -50,7 +50,7 @@ function Navbar() {
 						</div>
 					</div>
 
-					<div className='space-y-4 relative cursor-pointer'>
+					<div className='space-y-4 cursor-pointer'>
 						<Link href='/'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
 								<HomeIcon dimensions='h-8 w-8' />
@@ -85,7 +85,7 @@ function Navbar() {
 
 						<hr className='border-t-[0.1px] border-gray-900' />
 
-						<div className='absolute bottom-0'>
+						<div className='absolute bottom-20'>
 							<Link href='/user/settings'>
 								<div className='flex items-center mb-2 space-x-2 my-4 hover:text-white'>
 									<SettingIcon dimensions='h-8 w-8' />

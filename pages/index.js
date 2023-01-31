@@ -5,7 +5,6 @@ import path from 'path'
 import fs from 'fs'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
-import Navbar from '../components/layouts/Navbar'
 
 function HomePage(props) {
 	return (
@@ -18,10 +17,10 @@ function HomePage(props) {
 				/>
 			</Head>
 
-			<div className='bg-gradient-to-b from-gray-900 to-black'>
-				<section className='p-6'>
-					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-						<div className='flex justify-center mb-10 md:justify-between'>
+			<div className='my-2 mb-24 relative text-white bg-gradient-to-b from-gray-900 via-black to-gray-900'>
+				<section className='my-2 md:my-4 p-2 md:p-4'>
+					<div className='container mx-auto my-2 md:px-6'>
+						<div className='flex justify-center my-2 md:justify-between'>
 							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
 								Popular Books
 							</h3>
@@ -33,9 +32,9 @@ function HomePage(props) {
 					</div>
 				</section>
 
-				<section className='p-6'>
-					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-						<div className='flex justify-center mb-20 md:justify-between'>
+				<section className='my-2 md:my-4 p-2 md:p-4'>
+					<div className='container mx-auto my-2 md:px-6'>
+						<div className='flex justify-center my-2 md:justify-between'>
 							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
 								Trending Books
 							</h3>
@@ -47,9 +46,9 @@ function HomePage(props) {
 					</div>
 				</section>
 
-				<section className='p-6'>
-					<div className='container mx-auto my-4 px-6 text-gray-900 md:px-0'>
-						<div className='flex justify-center mb-20 md:justify-between'>
+				<section className='my-2 md:my-4 p-4 md:p-4'>
+					<div className='container mx-auto my-2 md:px-6'>
+						<div className='flex justify-center my-2 md:justify-between'>
 							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
 								Popular Authors
 							</h3>

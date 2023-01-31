@@ -1,4 +1,8 @@
 import { Fragment } from 'react'
+import Link from 'next/link'
+
+import Logo from '../../components/ui/Logo'
+import CloseIcon from '../../components/ui/icons/CloseIcon'
 
 function LoginModal(props) {
 	return (
@@ -6,8 +10,11 @@ function LoginModal(props) {
 			<div className='relative flex flex-col shadow-2xl rounded-2xl md:flex-row md:space-y-0 md:m-0 md:h-screen md:flex justify-center items-center'>
 				<div className='px-4 py-2 md:p-4 w-screen md:w-1/2'>
 					<div className='md:flex md:items-center justify-center'>
-						<Link href=''>
-							<Logo className='absolute top-0 left-0 md:static w-full' />
+						<Link href='/'>
+							<Logo
+								className='absolute top-0 left-0 md:static w-full'
+								size={40}
+							/>
 						</Link>
 					</div>
 					<div className='flex flex-col items-center mb-8 relative'>
@@ -16,7 +23,7 @@ function LoginModal(props) {
 							<img
 								src='/images/bookhive.webp'
 								alt='Bookhive'
-								className=' w-10/12'
+								className=' w-8/12'
 							/>
 						</div>
 						<div className='absolute bottom-0 md:static'>
@@ -29,23 +36,8 @@ function LoginModal(props) {
 						</div>
 					</div>
 					{props.children}
-					<div className='flex items-center justify-between mt-4 space-y-6 md:space-y-0'>
-						<Link href='/'>
-							<div className='font-normal underline underline-offset-4 text-gray-400'>
-								Skip for now
-							</div>
-						</Link>
-						<button className='rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150'>
-							<span>Next</span>
-							<ArrowIcon />
-						</button>
-					</div>
-					<div className='mt-10 border-b border-b-gray-500'></div>
-					<p className='my-4 text-sm font-medium text-center text-gray-400'>
-						or log in with
-					</p>
 					<div className='flex space-x-4 justify-between'>
-						<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-300 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+						<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-500 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 							<img
 								src='/images/facebook.png'
 								alt='Facebook login'
@@ -53,7 +45,7 @@ function LoginModal(props) {
 							/>
 							<span className='font-thin'>Facebook</span>
 						</button>
-						<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-300 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+						<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-500 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 							<img
 								src='/images/google.png'
 								alt='Google login'
@@ -63,11 +55,18 @@ function LoginModal(props) {
 						</button>
 					</div>
 					<div className='flex flex-col items-center my-6'>
-						<p className='text-bold text-lg my-4'>Don't have an account?</p>
-						<button className='w-full rounded-full flex justify-center max-sm: items-center p-2 lg:p-4 space-x-4 font-sans font-bold shadow-sm px-9 hover:bg-opacity-90 hover:border-2 border-purple-400 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
-							<span>Sign up now</span>
-						</button>
+						<p className='text-bold text-lg my-2'>{props.accountMsg}</p>
+						<Link href={props.btnLink} className='w-full'>
+							<button className='w-full rounded-full flex justify-center max-sm: items-center p-2 lg:p-4 space-x-4 font-sans font-bold shadow-sm px-9 hover:bg-opacity-90 border-purple-400 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
+								<span>{props.btnMsg}</span>
+							</button>
+						</Link>
 					</div>
+					<Link href='/'>
+						<div className='font-normal underline underline-offset-4 text-gray-400 text-center my-1'>
+							Skip for now
+						</div>
+					</Link>
 				</div>
 				<div className='hidden md:w-1/2 md:h-screen md:flex justify-center items-center'>
 					<img src='/images/bookhive.webp' alt='' className='w-full' />

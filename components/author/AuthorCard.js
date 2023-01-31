@@ -6,16 +6,16 @@ function AuthorCard(props) {
 	return (
 		<div
 			key={key}
-			className='flex flex-row items-center justify-center bg-slate-900 active:bg-black group-hover:flex'>
-			<Link href={`/books/${slug}`}>
-				<div className='flex flex-col rounded-xl bg-zinc-800 p-1 lg:p-2 mx-6 w-40 h-60'>
+			className='flex flex-row items-center justify-center mx-3 md:mx-4 md:w-44 md:h-80 rounded-md group-hover:flex '>
+			<Link href={`/author/${slug}`}>
+				<div className='flex flex-col w-full h-full rounded-md p-1 bg-gray-700 bg-opacity-60 hover:bg-opacity-100 overflow-hidden'>
 					<img
 						src={image}
 						alt={name}
-						className='object-fit rounded-full h-auto md:h-64 transform hover:scale-105 hover:rounded-xl duration-200'
+						className='object-contain rounded-md md:w-40 md:h-60 md:py-1 min-w-full transform hover:scale-105 duration-200'
 					/>
-					<div className='mt-2 flex flex-col'>
-						<p className='font-semibold text-base text-white truncate'>
+					<div className='px-1 flex flex-col'>
+						<p className='items-center font-semibold text-base md:text-md mt-1 leading-tight truncate text-white '>
 							{name}
 						</p>
 					</div>

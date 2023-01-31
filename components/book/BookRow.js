@@ -3,29 +3,42 @@ import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import BookCard from './BookCard'
 
+function DarkDot(props) {
+	const { className, style, onClick } = props
+	return (
+		<div
+			className={className}
+			style={{ ...style, background: 'green', color: 'white' }}
+			onClick={onClick}
+		/>
+	)
+}
+
 function BooksRow({ books }) {
-	var settings = {
-		speed: 200,
+	const settings = {
+		dots: true,
+		infinite: false,
+		speed: 500,
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		initialSlide: 0,
+		dots: <DarkDot />,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: 5,
-					slidesToScroll: 5,
+					slidesToShow: 4,
+					slidesToScroll: 4,
+					infinite: true,
 					dots: true,
-					arrows: true,
 				},
 			},
 			{
-				breakpoint: 600,
+				breakpoint: 640,
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 3,
-					initialSlide: 0,
-					dots: false,
+					initialSlide: 3,
 				},
 			},
 			{
@@ -33,16 +46,14 @@ function BooksRow({ books }) {
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
-					dots: false,
+					arrows: false,
 				},
 			},
 		],
 	}
 
 	return (
-		// <Row className="mb-3 px-5">
-		// <div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
-		<div className='flex flex-wrap sm:justify-start justify-center gap-4'>
+		<div className='h-auto group p-1 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
 			<Slider {...settings}>
 				{books?.map((book) => (
 					<BookCard

@@ -4,31 +4,29 @@ import Slider from 'react-slick'
 import AuthorCard from './AuthorCard'
 
 function AuthorsRow({ authors }) {
-	var settings = {
-		infinite: true,
-		arrows: true,
-		speed: 200,
-		slidesToShow: 6,
-		slidesToScroll: 6,
+	const settings = {
+		dots: true,
+		infinite: false,
+		speed: 500,
+		slidesToShow: 5,
+		slidesToScroll: 5,
 		initialSlide: 0,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: 6,
-					slidesToScroll: 6,
+					slidesToShow: 4,
+					slidesToScroll: 4,
 					infinite: true,
 					dots: true,
-					arrows: true,
 				},
 			},
 			{
 				breakpoint: 600,
 				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 4,
-					initialSlide: 4,
-					arrows: true,
+					slidesToShow: 3,
+					slidesToScroll: 3,
+					initialSlide: 3,
 				},
 			},
 			{
@@ -42,15 +40,14 @@ function AuthorsRow({ authors }) {
 	}
 
 	return (
-		// <Row className="mb-3 px-5">
-		<div className='w-full h-80 group p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+		<div className='h-auto group m-2 p-2 bg-opacity-60 backdrop-blur-sm animate-slideup rounded-lg'>
 			<Slider {...settings}>
 				{authors?.map((author) => (
 					<AuthorCard
+						key={author._id}
 						name={author.name}
 						image={author.image_sm}
 						slug={author.slug}
-						key={author._id}
 					/>
 				))}
 			</Slider>
