@@ -22,23 +22,21 @@ function BooksRow({ books }) {
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		initialSlide: 0,
-		dots: <DarkDot />,
 		responsive: [
 			{
-				breakpoint: 1024,
+				breakpoint: 1280,
 				settings: {
 					slidesToShow: 4,
 					slidesToScroll: 4,
-					infinite: true,
 					dots: true,
 				},
 			},
 			{
-				breakpoint: 640,
+				breakpoint: 680,
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 3,
-					initialSlide: 3,
+					arrows: false,
 				},
 			},
 			{

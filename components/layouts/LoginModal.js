@@ -71,7 +71,7 @@ function LoginModal(props) {
 				<div className='hidden md:w-1/2 md:h-screen md:flex justify-center items-center'>
 					<img src='/images/bookhive.webp' alt='' className='w-full' />
 				</div>
-				<div className='group absolute top-5 right-4 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+				<div className='group absolute top-4 right-4 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 					<CloseIcon />
 				</div>
 			</div>

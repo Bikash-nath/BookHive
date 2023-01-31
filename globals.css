@@ -4,7 +4,7 @@
 
 @layer components {
 	.btn {
-		@apply px-6 py-2 my-0 font-bold uppercase border-2 border-black hover:bg-black hover:text-white;
+		@apply px-4 py-2 my-0 font-bold border-2 border-black hover:bg-black hover:text-white bg-gray-800 rounded-lg;
 	}
 }
 @layer base {

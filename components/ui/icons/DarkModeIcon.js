@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function DarkModeIcon() {
+export default function DarkModeIcon({ dimensions }) {
 	return (
 		<svg
 			id='theme-toggle-dark-icon'
-			class='w-5 h-5'
+			className={dimensions}
 			fill='currentColor'
 			viewBox='0 0 20 20'
 			xmlns='http://www.w3.org/2000/svg'>

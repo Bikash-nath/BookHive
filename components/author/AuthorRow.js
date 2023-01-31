@@ -13,20 +13,19 @@ function AuthorsRow({ authors }) {
 		initialSlide: 0,
 		responsive: [
 			{
-				breakpoint: 1024,
+				breakpoint: 1240,
 				settings: {
 					slidesToShow: 4,
 					slidesToScroll: 4,
-					infinite: true,
 					dots: true,
 				},
 			},
 			{
-				breakpoint: 600,
+				breakpoint: 680,
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 3,
-					initialSlide: 3,
+					arrows: false,
 				},
 			},
 			{
@@ -34,13 +33,14 @@ function AuthorsRow({ authors }) {
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
+					arrows: false,
 				},
 			},
 		],
 	}
 
 	return (
-		<div className='h-auto group m-2 p-2 bg-opacity-60 backdrop-blur-sm animate-slideup rounded-lg'>
+		<div className='h-auto group p-1 sm:px-4 md:px-6 bg-opacity-60 backdrop-blur-sm animate-slideup rounded-lg'>
 			<Slider {...settings}>
 				{authors?.map((author) => (
 					<AuthorCard

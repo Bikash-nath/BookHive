@@ -8,6 +8,7 @@ import BellIcon from '../ui/icons/BellIcon'
 import SearchIcon from '../ui/icons/SearchIcon'
 import LightmodeIcon from '../ui/icons/LightmodeIcon'
 import DarkmodeIcon from '../ui/icons/DarkmodeIcon'
+import HeadphoneIcon from '../ui/icons/HeadphoneIcon'
 
 function Header() {
 	const user = ''
@@ -18,7 +19,7 @@ function Header() {
 	return (
 		<>
 			{showRoute && (
-				<header className='flex flex-row flex-grow sticky top-0 justify-between opacity-40 bg-black'>
+				<header className='flex flex-row flex-grow sticky top-0 justify-between bg-black'>
 					<nav className='relative container mx-auto p-2'>
 						<div className='flex items-center justify-between'>
 							<div className='flex items-center space-x-20'>
@@ -27,15 +28,15 @@ function Header() {
 								</Link>
 							</div>
 
-							<header className='flex flex-row absolute top-5 right-8 opacity-100'>
-								<div className='flex items-center cursor-pointer p-2 mx-4'>
-									<SearchIcon className='text-white' dimensions='h-7 w-7' />
+							<header className='flex flex-row absolute top-5 right-8 opacity-100 gap-2'>
+								<div className='flex items-center cursor-pointer p-2'>
+									<SearchIcon dimensions='h-7 w-7' />
 								</div>
 								<button
 									id='theme-toggle'
-									class='p-2 mx-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm'>
+									className='p-2 mx-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm'>
 									<LightmodeIcon />
-									<DarkmodeIcon className='fill-white' />
+									<DarkmodeIcon dimensions='h-7 w-7' />
 								</button>
 
 								<div className='flex items-center bg-[#2e2e2e] space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>

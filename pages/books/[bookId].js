@@ -8,7 +8,6 @@ import BookCard from '../../components/book/BookCard'
 import BookBgCover from '../../components/covers/BookBgCover'
 
 function BookDetailPage(props) {
-	console.log('params', params)
 	const router = useRouter()
 	return (
 		<Fragment>
@@ -18,15 +17,16 @@ function BookDetailPage(props) {
 			</Head>
 			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
 				<div className='flex justify-center mb-20 md:justify-between'>
-					<BookBgCover name={props.book.title} />
+					<BookBgCover name={'Book'} />
 				</div>
 				<div className=''>
-					<BookCard
+					{console.log('Page:', props)}
+					{/* <BookCard
 						title={props.book.title}
 						image={props.book.image}
 						author={props.book.author}
 						slug={props.book.slug}
-					/>
+					/> */}
 				</div>
 			</div>
 		</Fragment>
@@ -41,13 +41,24 @@ async function getBooks() {
 
 export async function getStaticProps(context) {
 	const { params } = context
+	console.log('\n\nStaticProps params', params)
 	const { bookId } = params.bookId
 	const bookList = await getBooks()
-	const book = bookList.find((book) => book.slug === bookId)
-	console.log(book)
+	console.log('\nbookId:', bookId)
+	console.log('StaticProps-bookList:', bookList.length)
+	const bookIds = bookList.map((book) => book.bookId)
+	console.log('\nbookIds:', bookIds)
+	console.log('\nincludes?:', bookIds.includes(bookId?.toString()))
+	const book = bookIds.find((bookid) => bookid == bookId)
+	console.log('\nbook:', book)
+
+	if (!book) {
+		return { notFound: true }
+	}
+
 	return {
 		props: {
-			book: book,
+			book: 'book',
 		},
 		revalidate: 60,
 	}
@@ -55,9 +66,9 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const bookList = await getBooks()
-	console.log('\n\n\n\n bookList', bookList.length)
+	console.log('\n\n\n\n StaticPaths-bookList', bookList.length)
 	const params = bookList.map((book) => ({
-		params: { bookId: book._id },
+		params: { bookId: book._id.toString() },
 	}))
 	console.log('\n\n\n params', params)
 

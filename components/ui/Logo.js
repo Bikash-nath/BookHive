@@ -11,7 +11,7 @@ function Logo({ size }) {
 				height={size}
 				width={size}
 			/>
-			<p className='text-2xl lg:text-xl hidden lg:inline text-white px-1 font-semibold'>
+			<p className='text-3xl hidden lg:inline text-white px-1 font-semibold'>
 				BookHive
 			</p>
 		</Link>

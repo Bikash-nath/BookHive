@@ -22,7 +22,7 @@ function BgCover({ name }) {
 			className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white pl-5 pb-5 border-[.5px]`}>
 			<img
 				className='h-44 w-44 shadow-2xl'
-				src={playlist?.images?.[0]?.url}
+				src={'imageUrl'}
 				alt='album image'
 			/>
 			<div>
