@@ -10,6 +10,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"autoprefixer": "^10.4.13",
 		"axios": "^1.2.5",
 		"framer-motion": "^8.5.2",
 		"next": "13.1.1",

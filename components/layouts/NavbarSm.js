@@ -15,13 +15,13 @@ function Navbar() {
 	return (
 		<>
 			{showRoute && (
-				<div className='absolute bottom-0 z-10 w-screen lg:hidden md:scale-100 p-[0.4rem] md:p-2 rounded-md text-gray-200 bg-black bg-opacity-90 shadow-inner shadow-gray-700'>
+				<div className='absolute bottom-0 z-10 w-screen lg:hidden md:scale-100 p-[0.4rem] md:p-2 rounded-md text-white bg-black bg-opacity-90 shadow-inner shadow-gray-700'>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className='group z-10'>
 							<Link href='/'>
 								<div className='flex w-full'>
 									<div className='mx-auto'>
-										<HomeIcon dimensions='h-6 w-6' />
+										<HomeIcon color={'currentColor'} dimensions='h-6 w-6' />
 									</div>
 								</div>
 								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
@@ -33,7 +33,7 @@ function Navbar() {
 							<Link href='/search'>
 								<div className='flex w-full'>
 									<div className='mx-auto'>
-										<DiscoverIcon dimensions='h-6 w-6' />
+										<DiscoverIcon color={'#6b7280'} dimensions='h-6 w-6' />
 									</div>
 								</div>
 								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
@@ -45,7 +45,7 @@ function Navbar() {
 							<Link href='/user/library'>
 								<div className='flex w-full'>
 									<div className='mx-auto'>
-										<LibraryIcon dimensions='h-6 w-6' />
+										<LibraryIcon color={'currentColor'} dimensions='h-6 w-6' />
 									</div>
 								</div>
 								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
@@ -57,7 +57,7 @@ function Navbar() {
 							<Link href='/user/profile'>
 								<div className='flex w-full'>
 									<div className='mx-auto'>
-										<HistoryIcon dimensions='h-6 w-6' />
+										<HistoryIcon color={'currentColor'} dimensions='h-6 w-6' />
 									</div>
 								</div>
 								<p className='font-mono text-xs leading-none mt-[0.1rem]'>

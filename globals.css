@@ -30,10 +30,6 @@
 	@apply text-white bg-gradient-to-b from-gray-900 via-black to-gray-900;
 }
 
-h4{
-	font
-}
-
 .line-clamp-2 {
 	overflow: hidden;
 	display: -webkit-box;

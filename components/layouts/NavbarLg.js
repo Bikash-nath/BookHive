@@ -20,32 +20,32 @@ function Navbar() {
 					<div className='space-y-4 cursor-pointer'>
 						<Link href='/'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
-								<HomeIcon dimensions='h-8 w-8' />
+								<HomeIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Home</p>
 							</div>
 						</Link>
 						<Link href='/search'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
-								<DiscoverIcon dimensions='h-8 w-8' />
+								<DiscoverIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Discover</p>
 							</div>
 						</Link>
 						<Link href='/user/library'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
-								<LibraryIcon dimensions='h-8 w-8' />
+								<LibraryIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Library</p>
 							</div>
 						</Link>
 						<Link href='/user/profile'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
-								<AccountIcon dimensions='h-8 w-8' />
+								<AccountIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Profile</p>
 							</div>
 						</Link>
 
 						<Link href='/user/history'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
-								<HistoryIcon dimensions='h-8 w-8' />
+								<HistoryIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>History</p>
 							</div>
 						</Link>
@@ -55,7 +55,7 @@ function Navbar() {
 						<div className='absolute bottom-20'>
 							<Link href='/user/settings'>
 								<div className='flex items-center mb-2 space-x-2 my-4 hover:text-white'>
-									<SettingIcon dimensions='h-8 w-8' />
+									<SettingIcon color={'currentColor'} dimensions='h-8 w-8' />
 									<p className='font-mono text-base'>Setting</p>
 								</div>
 							</Link>
