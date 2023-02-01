@@ -17,8 +17,8 @@ function HomePage(props) {
 				/>
 			</Head>
 
-			<div className='mb-16 relative text-white bg-gradient-to-b from-gray-900 via-black to-gray-900'>
-				<section className='my-2 md:my-4 p-2 md:p-4'>
+			<div className='pb-24 relative text-white bg-gradient-to-b from-gray-900 via-black to-gray-900'>
+				<section className='mb-2 md:mb-4 p-2 md:p-4'>
 					<div className='container mx-auto my-2 md:px-6'>
 						<div className='flex justify-center my-2 md:justify-between'>
 							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>

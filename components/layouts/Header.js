@@ -28,7 +28,7 @@ function Header() {
 								</Link>
 							</div>
 
-							<header className='flex flex-row absolute top-5 right-8 opacity-100 gap-2'>
+							<header className='flex flex-row right-8 opacity-100 gap-1 md:gap-2'>
 								<div className='flex items-center cursor-pointer p-2'>
 									<SearchIcon dimensions='h-7 w-7' />
 								</div>

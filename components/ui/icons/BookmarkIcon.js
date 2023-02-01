@@ -7,6 +7,7 @@ export default function BookmarkIcon({ dimensions }) {
 			strokeWidth={1.5}
 			stroke={dimensions}
 			className='w-6 h-6'>
+			<title>Dark mode</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

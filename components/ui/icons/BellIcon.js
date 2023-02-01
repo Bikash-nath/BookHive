@@ -7,6 +7,7 @@ export default function BellIcon({ dimensions }) {
 			strokeWidth={1.5}
 			stroke='currentColor'
 			className={dimensions}>
+			<title>Notification</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

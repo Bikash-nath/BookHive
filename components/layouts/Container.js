@@ -1,14 +1,16 @@
 import { Fragment } from 'react'
 
 import Header from './Header'
-import Navbar from './Navbar'
+import NavbarLg from './NavbarLg'
+import NavbarSm from './NavbarSm'
 
 function Container(props) {
 	return (
 		<div className='bg-black h-screen overflow-hidden'>
 			<Header />
+			<NavbarSm />
 			<div className='flex'>
-				<Navbar />
+				<NavbarLg />
 				<main className='flex-grow h-screen overflow-y-scroll hide-scrollbar select-none'>
 					{props.children}
 				</main>

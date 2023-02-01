@@ -7,6 +7,7 @@ export default function HistoryIcon({ dimensions, color }) {
 			strokeWidth={1.5}
 			stroke='currentColor'
 			className={dimensions}>
+			<title>History</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

@@ -8,6 +8,7 @@ export default function HomeIcon({ dimensions }) {
 				strokeWidth={1.5}
 				stroke='currentColor'
 				className={dimensions}>
+				<title>Home</title>
 				<path
 					strokeLinecap='round'
 					strokeLinejoin='round'

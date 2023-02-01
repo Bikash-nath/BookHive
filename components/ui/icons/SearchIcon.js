@@ -7,6 +7,7 @@ export default function SettingIcon({ dimensions }) {
 			strokeWidth={2}
 			stroke='white'
 			className={dimensions}>
+			<title>Search</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

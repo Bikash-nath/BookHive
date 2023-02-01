@@ -1,4 +1,4 @@
-export default function SettingsIcon({ dimensions }) {
+export default function SettingIcon({ dimensions }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -7,6 +7,7 @@ export default function SettingsIcon({ dimensions }) {
 			strokeWidth={1.5}
 			stroke='currentColor'
 			className={dimensions}>
+			<title>Setting</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'
