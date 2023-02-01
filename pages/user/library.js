@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
+import AccountIcon from '../../components/ui/icons/AccountIcon'
 
 function LibraryPage(props) {
 	const user = ''

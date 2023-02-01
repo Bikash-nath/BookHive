@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
+
 import BookGrid from '../../components/book/BookGrid'
+import { getBooks } from '../data/getData'
 
 function BookListPage(props) {
 	return (
@@ -25,9 +27,7 @@ function BookListPage(props) {
 }
 
 export async function getStaticProps() {
-	const booksFilePath = path.join(process.cwd, 'data', 'booksData.json')
-	const booksData = await fs.readFile(booksFilePath)
-	const bookList = JSON.parse(booksData)
+	const bookList = getBooks()
 
 	if (!bookList || !authorList) {
 		return {

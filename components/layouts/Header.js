@@ -39,7 +39,7 @@ function Header() {
 									<DarkmodeIcon dimensions='h-7 w-7' />
 								</button>
 
-								<div className='flex items-center bg-[#2e2e2e] space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>
+								<div className='flex items-center space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>
 									{user?.name ? (
 										<>
 											<div className='flex items-center cursor-pointer p-2 space-x-4'>
@@ -58,9 +58,9 @@ function Header() {
 										</>
 									) : (
 										<Link href='/user/login'>
-											<button className='flex items-center space-x-2 p-2 font-bold text-grayishViolet'>
+											<button className='flex items-center space-x-2 p-2 font-bold'>
 												<AccountIcon dimensions='h-7 w-7' />
-												<div className='text-white hover:text-veryDarkViolet'>
+												<div className='text-white hover:text-gray-200'>
 													Login
 												</div>
 											</button>

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import SearchBar from '../components/layouts/SearchBar'
-import GenreSection from '../components/layouts/GenreSection'
+import GenreGrid from '../components/layouts/GenreGrid'
 
 export default function SearchPage() {
 	const router = useRouter()
@@ -13,7 +13,7 @@ export default function SearchPage() {
 	return (
 		<div>
 			<SearchBar onSearch={searchHandler} />
-			<GenreSection />
+			<GenreGrid />
 		</div>
 	)
 }

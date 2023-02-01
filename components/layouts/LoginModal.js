@@ -57,7 +57,7 @@ function LoginModal(props) {
 					<div className='flex flex-col items-center my-6'>
 						<p className='text-bold text-lg my-2'>{props.accountMsg}</p>
 						<Link href={props.btnLink} className='w-full'>
-							<button className='w-full rounded-full flex justify-center max-sm: items-center p-2 lg:p-4 space-x-4 font-sans font-bold shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-400 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
+							<button className='w-full rounded-full flex justify-center max-sm: items-center p-2 lg:p-4 space-x-4 font-sans font-bold shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
 								<span>{props.btnMsg}</span>
 							</button>
 						</Link>

@@ -1,9 +1,10 @@
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import BookCard from './BookCard'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 function DarkDot(props) {
+	console.log('\n\nBookrow Darkdot:\n', props)
 	const { className, style, onClick } = props
 	return (
 		<div
@@ -16,7 +17,7 @@ function DarkDot(props) {
 
 function BooksRow({ books }) {
 	const settings = {
-		dots: true,
+		dots: DarkDot,
 		infinite: false,
 		speed: 500,
 		slidesToShow: 5,
@@ -28,7 +29,6 @@ function BooksRow({ books }) {
 				settings: {
 					slidesToShow: 4,
 					slidesToScroll: 4,
-					dots: true,
 				},
 			},
 			{
@@ -45,6 +45,7 @@ function BooksRow({ books }) {
 					slidesToShow: 2,
 					slidesToScroll: 2,
 					arrows: false,
+					dots: true,
 				},
 			},
 		],

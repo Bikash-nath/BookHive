@@ -1,15 +1,15 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
-import AccountIcon from '../../components/ui/icons/AccountIcon'
+import HistoryIcon from '../../components/ui/icons/HistoryIcon'
 
-function ProfilePage(props) {
+function HistoryPage(props) {
 	const user = ''
 
 	return (
 		<Fragment>
 			<Head>
-				<title>Profile</title>
-				<meta name='description' content='Profile section' />
+				<title>History</title>
+				<meta name='description' content='History section' />
 			</Head>
 			<div className='flex items-center screen-gradient'>
 				{user?.name ? (
@@ -21,13 +21,13 @@ function ProfilePage(props) {
 								alt='user image'
 							/>
 						) : (
-							<AccountIcon dimensions='h-20 w-20' />
+							<HistoryIcon dimensions='h-20 w-20' />
 						)}
 					</>
 				) : (
 					<Link href='/user/login'>
 						<button className='flex items-center space-x-2 p-2 font-bold rounded-full justify-center lg:p-4 font-sans shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
-							<AccountIcon dimensions='h-10 w-10' />
+							<HistoryIcon dimensions='h-10 w-10' />
 							<div className='text-white text-2xl hover:text-gray-200'>
 								Login
 							</div>
@@ -39,4 +39,4 @@ function ProfilePage(props) {
 	)
 }
 
-export default ProfilePage
+export default HistoryPage
