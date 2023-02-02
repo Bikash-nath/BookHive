@@ -22,25 +22,37 @@ export default function GenresGrid() {
 		'Travel',
 	]
 
+	const imgs = [
+		'arcade.jpg',
+		'borealis.jpg',
+		'earth.jpg',
+		'fisheye.jpg',
+		'grid.jpg',
+		'roads.jpg',
+	]
+
 	return (
 		<section>
-			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-				<h2 className='text-4xl text-center md:text-left md:text-3xl'>
+			<div className='container mx-auto p-4 md:p-6 text-white'>
+				<h2 className='text-center md:text-left text-2xl md:text-3xl p-4 md:p-6'>
 					Popular Genres
 				</h2>
-				{genreList.map((genre) => (
-					<div className='item-container'>
+				<div className='item-container'>
+					{genreList.map((genre) => (
 						<div className='group item'>
 							<img
-								src='/images/genres/deep-earth.jpg'
+								src={
+									'/images/genres/' +
+									imgs[Math.floor(Math.random() * imgs.length)]
+								}
 								alt=''
 								className='hidden w-full duration-200 md:block group-hover:scale-110'
 							/>
 							<div className='item-gradient'></div>
 							<h5 className='box-text'>{genre}</h5>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
 		</section>
 	)

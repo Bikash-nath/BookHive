@@ -1,9 +1,10 @@
+import { Fragment } from 'react'
 import Slider from 'react-slick'
 import BookCard from './BookCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-function DarkDot(props) {
+function DarkDots(props) {
 	console.log('\n\nBookrow Darkdot:\n', props)
 	const { className, style, onClick } = props
 	return (
@@ -23,6 +24,7 @@ function BooksRow({ books }) {
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		initialSlide: 0,
+		dots: DarkDots,
 		responsive: [
 			{
 				breakpoint: 1280,
@@ -52,19 +54,34 @@ function BooksRow({ books }) {
 	}
 
 	return (
-		<div className='h-auto group p-1 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg'>
-			<Slider {...settings}>
+		<Fragment>
+			<div className='flex md:hidden items-center justify-between gap-2 p-1 w-screen h-auto'>
 				{books?.map((book) => (
-					<BookCard
-						key={book._id}
-						title={book.title}
-						image={book.image}
-						author={book.author}
-						slug={book.slug}
-					/>
+					<div className='w-2/5'>
+						<BookCard
+							key={book._id}
+							title={book.title}
+							image={book.image}
+							author={book.author}
+							slug={book.slug}
+						/>
+					</div>
 				))}
-			</Slider>
-		</div>
+			</div>
+			<div className='hidden md:static❓ h-auto group p-1'>
+				<Slider {...settings}>
+					{books?.map((book) => (
+						<BookCard
+							key={book._id}
+							title={book.title}
+							image={book.image}
+							author={book.author}
+							slug={book.slug}
+						/>
+					))}
+				</Slider>
+			</div>
+		</Fragment>
 	)
 }
 

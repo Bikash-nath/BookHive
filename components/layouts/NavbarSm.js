@@ -15,7 +15,7 @@ function Navbar() {
 	return (
 		<>
 			{showRoute && (
-				<div className='absolute bottom-0 z-10 w-screen lg:hidden md:scale-100 p-[0.4rem] md:p-2 rounded-md text-white bg-black bg-opacity-90 shadow-inner shadow-gray-700'>
+				<div className='absolute bottom-0 z-20 w-screen lg:hidden md:scale-100 p-[0.4rem] md:p-2 my-0 rounded-md text-white bg-black bg-opacity-90 shadow-inner shadow-gray-700'>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className='group z-10'>
 							<Link href='/'>

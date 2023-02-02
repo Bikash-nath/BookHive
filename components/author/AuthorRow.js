@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import Slider from 'react-slick'
 import AuthorCard from './AuthorCard'
 import 'slick-carousel/slick/slick.css'
@@ -40,18 +41,33 @@ function AuthorsRow({ authors }) {
 	}
 
 	return (
-		<div className='h-auto group p-1 sm:px-4 md:px-6 bg-opacity-60 backdrop-blur-sm animate-slideup rounded-lg'>
-			<Slider {...settings}>
-				{authors?.map((author) => (
-					<AuthorCard
-						key={author._id}
-						name={author.name}
-						image={author.image_sm}
-						slug={author.slug}
-					/>
+		<Fragment>
+			<div className='flex md:hidden items-center justify-between gap-2 p-1 w-screen h-auto'>
+				{books?.map((book) => (
+					<div className='w-2/5'>
+						<BookCard
+							key={book._id}
+							title={book.title}
+							image={book.image}
+							author={book.author}
+							slug={book.slug}
+						/>
+					</div>
 				))}
-			</Slider>
-		</div>
+			</div>
+			<div className='h-auto group p-1 sm:px-4 md:px-6'>
+				<Slider {...settings}>
+					{authors?.map((author) => (
+						<AuthorCard
+							key={author._id}
+							name={author.name}
+							image={author.image_sm}
+							slug={author.slug}
+						/>
+					))}
+				</Slider>
+			</div>
+		</Fragment>
 	)
 }
 
