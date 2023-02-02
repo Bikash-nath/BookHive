@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LibraryIcon({ dimensions }) {
+export default function LibraryIcon({ dimensions, color }) {
 	return (
 		<svg
-			fill='white'
+			fill={color}
 			className={dimensions}
 			viewBox='0 0 36 36'
 			version='1.1'

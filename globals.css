@@ -7,26 +7,26 @@
 		@apply px-4 py-2 my-0 font-bold border-2 border-black hover:bg-black hover:text-white bg-gray-800 rounded-lg;
 	}
 }
-@layer base {
-	.box-text {
-		@apply absolute px-6 duration-200 w-52 bottom-4 md:bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black;
-	}
+
+.screen-gradient {
+	/* absoulte + sticky */
+	@apply text-white bg-gradient-to-b from-gray-900 via-black to-gray-900;
 }
 
 .item-container {
-	@apply flex flex-col justify-between w-full space-y-6 text-2xl text-white uppercase md:flex-row md:space-y-0 md:space-x-8;
+	@apply flex flex-row flex-wrap justify-between w-full gap-6 p-4 md:p-6 text-2xl text-white;
 }
 
 .item {
-	@apply relative overflow-hidden md:w-1/4;
+	@apply relative overflow-hidden w-40 sm:w-60 md:w-80;
 }
 
 .item-gradient {
 	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-black;
 }
 
-.screen-gradient {
-	@apply h-screen absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-gray-900 to-gray-700;
+.box-text {
+	@apply absolute px-6 duration-200 sm:w-40 md:w-52 bottom-4 md:bottom-8 md:px-10 group-hover:scale-110;
 }
 
 .line-clamp-2 {
@@ -39,7 +39,6 @@
 .hide-scrollbar::-webkit-scrollbar {
 	display: none;
 }
-
 .hide-scrollbar {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */

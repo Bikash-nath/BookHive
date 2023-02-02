@@ -16,9 +16,17 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-				<div className='flex justify-center mb-20 md:justify-between'>
-					<BookBgCover name={'Book'} />
-				</div>
+				<BookBgCover>
+					<img
+						className='h-44 w-44 shadow-2xl'
+						src={'imageUrl'}
+						alt='album image'
+					/>
+					<div>
+						<p>{title}</p>
+						<h1 className='text-2xl md:text-3xl xl:text-5xl'>{title}</h1>
+					</div>
+				</BookBgCover>
 				<div className=''>
 					{console.log('Page:', props)}
 					{/* <BookCard
@@ -58,7 +66,7 @@ export async function getStaticProps(context) {
 
 	return {
 		props: {
-			book: 'book',
+			book: book,
 		},
 		revalidate: 60,
 	}

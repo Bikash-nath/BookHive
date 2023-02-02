@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 function Footer() {
 	return (
 		<footer className='bg-darkBlue2 text-white'>
@@ -8,42 +10,42 @@ function Footer() {
 							Resources
 						</div>
 						<div className='flex flex-col items-center space-y-3 md:items-start'>
-							<a
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								Blog
-							</a>
-							<a
+							</Link>
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								Events
-							</a>
-							<a
+							</Link>
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								Support
-							</a>
+							</Link>
 						</div>
 					</div>
 
 					<div className='flex flex-col items-center w-full md:items-start'>
 						<div className='mb-5 font-bold text-white capitalize'>Our Team</div>
 						<div className='flex flex-col items-center space-y-3 md:items-start'>
-							<a
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								About
-							</a>
-							<a
+							</Link>
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								Developers
-							</a>
-							<a
+							</Link>
+							<Link
 								href='#'
 								className='capitalize text-grayishViolet hover:text-softRed'>
 								Contact Us
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -51,51 +53,51 @@ function Footer() {
 				<div className='flex flex-col items-center w-full md:items-start'>
 					<div className='mb-5 font-bold text-white capitalize'>Company</div>
 					<div className='flex flex-col items-center space-y-3 md:items-start'>
-						<a
+						<Link
 							href='#'
 							className='capitalize text-grayishViolet hover:text-softRed'>
 							Terms
-						</a>
-						<a
+						</Link>
+						<Link
 							href='#'
 							className='capitalize text-grayishViolet hover:text-softRed'>
 							Privacy
-						</a>
-						<a
+						</Link>
+						<Link
 							href='#'
 							className='capitalize text-grayishViolet hover:text-softRed'>
 							FAQ
-						</a>
+						</Link>
 					</div>
 				</div>
 
 				<div className='flex justify-center pb-10 space-x-3'>
 					<div>
-						<a href='#'>
+						<Link href='#'>
 							<img
 								src='images/twitter.svg'
 								alt='twitter'
 								className='p-2 bg-darkBlue rounded-full ficon'
 							/>
-						</a>
+						</Link>
 					</div>
 					<div>
-						<a href='#'>
+						<Link href='#'>
 							<img
 								src='images/instagram.svg'
 								alt='instagram'
 								className='p-2 bg-darkBlue rounded-full ficon'
 							/>
-						</a>
+						</Link>
 					</div>
 					<div>
-						<a href='#'>
+						<Link href='#'>
 							<img
 								src='images/facebook.svg'
 								alt='facebook'
 								className='p-2 bg-darkBlue rounded-full ficon'
 							/>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

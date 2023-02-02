@@ -6,7 +6,7 @@ import NavbarSm from './NavbarSm'
 
 function Container(props) {
 	return (
-		<div className='bg-black h-screen overflow-hidden'>
+		<div className='bg-black h-screen overflow-hidden m-0'>
 			<Header />
 			<NavbarSm />
 			<div className='flex'>

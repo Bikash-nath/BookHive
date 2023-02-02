@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import AuthorGrid from '../../components/author/AuthorGrid'
+import { getAuthors } from '../data/getData'
 
 function AuthorListPage(props) {
 	return (
@@ -26,9 +27,7 @@ function AuthorListPage(props) {
 }
 
 export async function getStaticProps() {
-	const filePath = path.join(process.cwd(), 'data', 'authorsData.json')
-	const jsonData = fs.readFileSync(filePath, 'utf8')
-	const authorList = JSON.parse(jsonData)
+	const authorList = getAuthors()
 
 	if (!authorList) {
 		return {

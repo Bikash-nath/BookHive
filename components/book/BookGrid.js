@@ -2,19 +2,19 @@ import { Fragment } from 'react'
 import BookCard from './BookCard'
 
 function BookGrid({ books }) {
+	books.forEach((book) => {
+		console.log(book.title, book.image, book.author, book.slug, book._id)
+	})
 	return (
-		<div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
-			<div className='w-full h-56 group'>
-				{books.map((book) => (
-					<BookCard
-						key={book._id}
-						title={book.title}
-						image={book.image}
-						author={book.author}
-						slug={book.slug}
-					/>
-				))}
-			</div>
+		<div className='grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 p-2 md:p-6 animate-slideup rounded-lg'>
+			{books.map((book) => (
+				<BookCard
+					title={book.title}
+					image={book.image}
+					author={book.author}
+					slug={book.slug}
+				/>
+			))}
 		</div>
 	)
 }

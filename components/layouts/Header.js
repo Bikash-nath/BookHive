@@ -2,16 +2,16 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Logo from '../ui/Logo'
-import AccountIcon from '../ui/icons/AccountIcon'
+import LoginButton from '../ui/LoginButton'
 import HamburgerIcon from '../ui/icons/HamburgerIcon'
 import BellIcon from '../ui/icons/BellIcon'
 import SearchIcon from '../ui/icons/SearchIcon'
 import LightmodeIcon from '../ui/icons/LightmodeIcon'
 import DarkmodeIcon from '../ui/icons/DarkmodeIcon'
-import HeadphoneIcon from '../ui/icons/HeadphoneIcon'
 
 function Header() {
-	const user = ''
+	const user = undefined
+
 	const router = useRouter()
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => router.pathname.includes(path))
@@ -28,7 +28,7 @@ function Header() {
 								</Link>
 							</div>
 
-							<header className='flex flex-row right-8 opacity-100 gap-1 md:gap-2'>
+							<header className='flex flex-row right-8 opacity-100 gap-[0.1rem] md:gap-2'>
 								<div className='flex items-center cursor-pointer p-2'>
 									<SearchIcon dimensions='h-7 w-7' />
 								</div>
@@ -39,8 +39,8 @@ function Header() {
 									<DarkmodeIcon dimensions='h-7 w-7' />
 								</button>
 
-								<div className='flex items-center bg-[#2e2e2e] space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>
-									{user?.name ? (
+								<div className='flex items-center space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full pr-2'>
+									{user ? (
 										<>
 											<div className='flex items-center cursor-pointer p-2 space-x-4'>
 												<BellIcon dimensions='h-7 w-7' />
@@ -57,14 +57,7 @@ function Header() {
 											)}
 										</>
 									) : (
-										<Link href='/user/login'>
-											<button className='flex items-center space-x-2 p-2 font-bold text-grayishViolet'>
-												<AccountIcon dimensions='h-7 w-7' />
-												<div className='text-white hover:text-veryDarkViolet'>
-													Login
-												</div>
-											</button>
-										</Link>
+										<LoginButton />
 									)}
 								</div>
 							</header>

@@ -6,7 +6,7 @@ export default function ArrowIcon() {
 			xmlns='http://www.w3.org/2000/svg'
 			className='w-7'
 			viewBox='0 0 24 24'
-			stroke-width='2'
+			strokeWidth='2'
 			stroke='#ffffff'
 			fill='none'
 			strokeLinecap='round'
