@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
+import LoginBanner from '../../components/layouts/LoginBanner'
+import LibraryIcon from '../../components/ui/icons/LibraryIcon'
 import AccountIcon from '../../components/ui/icons/AccountIcon'
-import LoginButton from '../../components/ui/LoginButton'
 
 function LibraryPage(props) {
-	const user = undefined
+	const user = '21'
+	const list = ''
 
 	return (
 		<Fragment>
@@ -13,77 +15,65 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='screen-gradient p-6 items-center space-x-3 text-white'>
+			<div className='screen-gradient text-white'>
 				{!user ? (
-					<div className='flex flex-col h-screen justify-center items-center'>
-						<h2 className='py-4'>Please login to access your account</h2>
-						<div className=''>
-							<LoginButton />
-						</div>
-					</div>
+					<LoginBanner
+						title='Enjoy Your Favourite Books'
+						message='Log in to see saved books, podcasts, authors,
+						and collections in Your Library.'
+						icon={<LibraryIcon />}
+					/>
 				) : (
 					<>
-						{user?.image ? (
-							<img
-								className='rounded-full p-2 w-10 h-10'
-								src={user?.image}
-								alt='user image'
-							/>
-						) : (
-							<AccountIcon dimensions='h-20 w-20' />
-						)}
-						<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-							Your Library
-						</h3>
-
+						<div className='flex p-2 md:p-4'>
+							{user?.image ? (
+								<img
+									className='rounded-full p-2 w-10 h-10'
+									src={user?.image}
+									alt='user image'
+								/>
+							) : (
+								<AccountIcon dimensions='h-16 w-16' color={'white'} />
+							)}
+							<p className='text-xl md:text-2xl mx-2 md:mx-4 my-auto'>
+								Your Library
+							</p>
+						</div>
 						<section id='tabs'>
-							<div className='container relative mx-auto my-6 mb-32 mt-12 px-6'>
+							<div className='container relative sm:text-left px-4'>
 								<div className='bg-tabs'></div>
-								<div className='flex justify-between max-w-xl mx-auto mb-6 border-b md:space-x-10'>
-									<div
-										className='flex justify-center text-center cursor-pointer text-gray-600 border-b md:border-b-0 hover:text-softRed md:w-1/3 tab'
-										data-target='panel-1'>
-										<div
-											className='py-5 border-b-4 border-softRed'
-											data-target='panel-1'>
-											Collections
-										</div>
+								<div className='flex items-center mx-auto md:mx-6 mb-6 justify-between sm:justify-start space-x-1 sm:space-x-6 md:space-x-10'>
+									<div className='py-1 text-lg md:text-2xl border-b-2 md:border-b-3 border-gray-200'>
+										Collections
 									</div>
-
-									<div
-										className='flex justify-center text-center cursor-pointer text-gray-600 border-b md:border-b-0 hover:text-softRed md:w-1/3 tab'
-										data-target='panel-2'>
-										<div className='py-5' data-target='panel-2'>
-											Audiobooks
-										</div>
+									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+										Audiobooks
 									</div>
-
-									<div
-										className='flex justify-center text-center cursor-pointer text-gray-600 border-b md:border-b-0 hover:text-softRed md:w-1/3 tab'
-										data-target='panel-3'>
-										<div className='py-5' data-target='panel-3'>
-											Ebooks
-										</div>
+									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+										Ebooks
 									</div>
-
-									<div
-										className='flex justify-center text-center cursor-pointer text-gray-600 border-b md:border-b-0 hover:text-softRed md:w-1/3 tab'
-										data-target='panel-3'>
-										<div className='py-5' data-target='panel-3'>
-											Podcasts
-										</div>
+									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+										Podcasts
 									</div>
 								</div>
 
-								<div id='panels' className='container mx-auto'>
-									<div className='flex flex-col py-5 md:flex-row md:space-x-7 panel panel-1'>
-										<div className='flex flex-col space-y-8 md:w-1/2'>
-											<h3 className='mt-32 text-3xl font-semibold text-center md:mt-0 md:text-left'>
-												{'Lists'}
-											</h3>
+								{list?.length ? (
+									<div id='panels' className='container mx-auto'>
+										<div className='flex flex-col py-2 sm:text-xl md:text-2xl md:flex-row md:space-x-7 panel panel-1'>
+											<div className='flex flex-col space-y-8 md:w-1/2'>
+												<h3 className='mt-32 text-3xl font-semibold text-center md:mt-0 md:text-left'>
+													{'Lists'}
+												</h3>
+											</div>
 										</div>
 									</div>
-								</div>
+								) : (
+									<div className='flex flex-auto justify-center items-center'>
+										<h3 className='text-xl md:text-2xl font-semibold text-center'>
+											{'Add books to collection'}
+										</h3>
+									</div>
+								)}
 							</div>
 						</section>
 					</>

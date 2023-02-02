@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
+import LoginBanner from '../../components/layouts/LoginBanner'
 import AccountIcon from '../../components/ui/icons/AccountIcon'
-import LoginButton from '../../components/ui/LoginButton'
 
 function ProfilePage(props) {
 	const user = undefined
@@ -15,12 +15,11 @@ function ProfilePage(props) {
 			</head>
 			<div className='screen-gradient text-white'>
 				{!user ? (
-					<div className='flex flex-col h-screen justify-center items-center'>
-						<h2 className='py-4'>Please login to access your account</h2>
-						<div className=''>
-							<LoginButton />
-						</div>
-					</div>
+					<LoginBanner
+						title='Access Your Account'
+						message='Please login to access your personal account'
+						icon={<AccountIcon />}
+					/>
 				) : (
 					<>
 						{user?.name ? (

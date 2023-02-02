@@ -18,7 +18,6 @@ function DarkDots(props) {
 
 function BooksRow({ books }) {
 	const settings = {
-		dots: DarkDots,
 		infinite: false,
 		speed: 500,
 		slidesToShow: 5,
@@ -38,7 +37,6 @@ function BooksRow({ books }) {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 3,
-					arrows: false,
 				},
 			},
 			{
@@ -46,8 +44,8 @@ function BooksRow({ books }) {
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
-					arrows: false,
 					dots: true,
+					arrows: false,
 				},
 			},
 		],
@@ -55,20 +53,7 @@ function BooksRow({ books }) {
 
 	return (
 		<Fragment>
-			<div className='flex md:hidden items-center justify-between gap-2 p-1 w-screen h-auto'>
-				{books?.map((book) => (
-					<div className='w-2/5'>
-						<BookCard
-							key={book._id}
-							title={book.title}
-							image={book.image}
-							author={book.author}
-							slug={book.slug}
-						/>
-					</div>
-				))}
-			</div>
-			<div className='hidden md:static❓ h-auto group p-1'>
+			<div className='h-auto group p-1'>
 				<Slider {...settings}>
 					{books?.map((book) => (
 						<BookCard
@@ -83,6 +68,22 @@ function BooksRow({ books }) {
 			</div>
 		</Fragment>
 	)
+}
+
+{
+	/* <div className='flex md:hidden items-center justify-between gap-2 p-1 w-auto h-auto'>
+	{books?.map((book) => (
+		<div className=''>
+			<BookCard
+				key={book._id}
+				title={book.title}
+				image={book.image}
+				author={book.author}
+				slug={book.slug}
+			/>
+		</div>
+	))}
+</div> */
 }
 
 export default BooksRow

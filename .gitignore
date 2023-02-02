@@ -8,6 +8,7 @@
 /.components*
 /public
 /data
+pending.md
 
 # next.js
 /.next/

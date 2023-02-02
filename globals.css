@@ -14,7 +14,7 @@
 }
 
 .item-container {
-	@apply flex flex-row flex-wrap justify-between w-full gap-6 p-4 md:p-6 text-2xl text-white;
+	@apply flex flex-row flex-wrap justify-between w-full gap-1 md:gap-2 text-2xl text-white;
 }
 
 .item {
@@ -26,7 +26,7 @@
 }
 
 .box-text {
-	@apply absolute px-6 duration-200 sm:w-40 md:w-52 bottom-4 md:bottom-8 md:px-10 group-hover:scale-110;
+	@apply absolute px-2 md:px-4 duration-200 w-32 sm:w-40 md:w-56 bottom-4 md:bottom-4 group-hover:scale-105;
 }
 
 .line-clamp-2 {

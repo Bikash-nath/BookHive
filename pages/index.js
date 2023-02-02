@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
@@ -18,47 +17,17 @@ function HomePage(props) {
 			</Head>
 
 			<div className='pb-24 relative text-white screen-gradient'>
-				<section className='mb-2 md:mb-4 p-2 md:p-4'>
-					<div className='container mx-auto my-2 md:px-6'>
-						<div className='flex justify-center my-2 md:justify-between'>
-							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-								Popular Books
-							</h3>
-							<Link href='/books'>
-								<button className='hidden btn md:block'>See All</button>
-							</Link>
-						</div>
-						{<BookRow books={props.books} />}
-					</div>
-				</section>
+				<ItemsListModal listTitle='Popular Books' listLink='/books'>
+					{<BookRow books={props.books} />}
+				</ItemsListModal>
 
-				<section className='my-2 md:my-4 p-2 md:p-4'>
-					<div className='container mx-auto my-2 md:px-6'>
-						<div className='flex justify-center my-2 md:justify-between'>
-							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-								Trending Books
-							</h3>
-							<Link href='/books'>
-								<button className='hidden btn md:block'>See All</button>
-							</Link>
-						</div>
-						{<BookRow books={props.books} />}
-					</div>
-				</section>
+				<ItemsListModal listTitle='Trending Books' listLink='/books'>
+					{<BookRow books={props.books} />}
+				</ItemsListModal>
 
-				<section className='my-2 md:my-4 p-4 md:p-4'>
-					<div className='container mx-auto my-2 md:px-6'>
-						<div className='flex justify-center my-2 md:justify-between'>
-							<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-								Popular Authors
-							</h3>
-							<Link href='/authors'>
-								<button className='hidden btn md:block'>See All</button>
-							</Link>
-						</div>
-					</div>
+				<ItemsListModal listTitle='Popular Authors' listLink='/authors'>
 					{<AuthorRow authors={props.authors} />}
-				</section>
+				</ItemsListModal>
 			</div>
 		</Fragment>
 	)
@@ -78,3 +47,47 @@ export async function getStaticProps() {
 }
 
 export default HomePage
+
+/*
+<section className='mb-2 md:mb-4 p-2 md:p-4'>
+	<div className='container mx-auto my-2 md:px-6'>
+		<div className='flex justify-center my-2 md:justify-between'>
+			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+				Popular Books
+			</h3>
+			<Link href='/books'>
+				<button className='hidden btn md:block'>See All</button>
+			</Link>
+		</div>
+		{<BookRow books={props.books} />}
+	</div>
+</section>
+
+<section className='my-2 md:my-4 p-2 md:p-4'>
+	<div className='container mx-auto my-2 md:px-6'>
+		<div className='flex justify-center my-2 md:justify-between'>
+			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+				Trending Books
+			</h3>
+			<Link href='/books'>
+				<button className='hidden btn md:block'>See All</button>
+			</Link>
+		</div>
+		{<BookRow books={props.books} />}
+	</div>
+</section>
+
+<section className='my-2 md:my-4 p-4 md:p-4'>
+	<div className='container mx-auto my-2 md:px-6'>
+		<div className='flex justify-center my-2 md:justify-between'>
+			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
+				Popular Authors
+			</h3>
+			<Link href='/authors'>
+				<button className='hidden btn md:block'>See All</button>
+			</Link>
+		</div>
+	</div>
+	{<AuthorRow authors={props.authors} />}
+</section>
+*/

@@ -12,7 +12,6 @@ function AuthorsRow({ authors }) {
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		initialSlide: 0,
-		dots: DarkDots,
 		responsive: [
 			{
 				breakpoint: 1240,
@@ -43,19 +42,6 @@ function AuthorsRow({ authors }) {
 
 	return (
 		<Fragment>
-			<div className='flex md:hidden items-center justify-between gap-2 p-1 w-screen h-auto'>
-				{books?.map((book) => (
-					<div className='w-2/5'>
-						<BookCard
-							key={book._id}
-							title={book.title}
-							image={book.image}
-							author={book.author}
-							slug={book.slug}
-						/>
-					</div>
-				))}
-			</div>
 			<div className='h-auto group p-1 sm:px-4 md:px-6'>
 				<Slider {...settings}>
 					{authors?.map((author) => (
@@ -70,6 +56,21 @@ function AuthorsRow({ authors }) {
 			</div>
 		</Fragment>
 	)
+}
+
+{
+	/* <div className='flex md:hidden items-center justify-between gap-2 p-1 w-screen h-auto'>
+	{authors?.map((author) => (
+		<div className='w-2/5'>
+			<AuthorCard
+				key={author.slug}
+				name={author.name}
+				image={author.image_sm}
+				slug={author.slug}
+			/>
+		</div>
+	))}
+</div> */
 }
 
 export default AuthorsRow

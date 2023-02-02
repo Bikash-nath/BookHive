@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import HeadphoneIcon from '../ui/icons/HeadphoneIcon'
 
+//flex flex-col += overflow-hidden backdrop-blur-sm animate-slideup
+
 function BookCard(props) {
 	const { title, image, author, slug } = props
 	return (
 		<div
 			key={slug}
-			className='flex flex-row items-center justify-center mx-2 sm:mx-3 lg:mx-4 lg:w-44 lg:h-80 lg:py-2 rounded-md group-hover:flex'>
+			className='flex flex-row items-center justify-center mx-2 sm:mx-3 lg:mx-4 lg:w-44 lg:h-full lg:py-2 rounded-md group-hover:flex'>
 			<Link href={`/books/${slug}`}>
-				<div className='relative flex flex-col w-full h-full rounded-md p-2 bg-gray-700 bg-opacity-60 hover:bg-opacity-100 hover:scale-105 transform duration-200 overflow-hidden backdrop-blur-sm animate-slideup'>
+				<div className='relative flex flex-col w-full h-full rounded-md p-2 bg-gray-700 bg-opacity-60 hover:bg-opacity-100 hover:scale-105 transform duration-200'>
 					<button className='absolute top-2 right-2 lg:top-3 lg:right-3 z-10 rounded-full bg-violet-900 p-1'>
 						<HeadphoneIcon className='' dimensions='h-5 w-5' />
 					</button>
