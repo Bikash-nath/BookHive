@@ -18,7 +18,7 @@ function DarkDots(props) {
 
 function BooksRow({ books }) {
 	const settings = {
-		dots: DarkDot,
+		dots: DarkDots,
 		infinite: false,
 		speed: 500,
 		slidesToShow: 5,

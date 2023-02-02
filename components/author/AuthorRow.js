@@ -12,13 +12,13 @@ function AuthorsRow({ authors }) {
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		initialSlide: 0,
+		dots: DarkDots,
 		responsive: [
 			{
 				breakpoint: 1240,
 				settings: {
 					slidesToShow: 4,
 					slidesToScroll: 4,
-					dots: true,
 				},
 			},
 			{
@@ -35,6 +35,7 @@ function AuthorsRow({ authors }) {
 					slidesToShow: 2,
 					slidesToScroll: 2,
 					arrows: false,
+					dots: true,
 				},
 			},
 		],
