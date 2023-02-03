@@ -23,9 +23,7 @@ function Header() {
 					<nav className='relative container mx-auto p-2'>
 						<div className='flex items-center justify-between'>
 							<div className='flex items-center space-x-20'>
-								<Link href='/'>
-									<Logo size={50} />
-								</Link>
+								<Logo size={50} />
 							</div>
 
 							<header className='flex flex-row right-8 opacity-100 gap-[0.1rem] md:gap-2'>

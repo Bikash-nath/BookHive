@@ -1,8 +1,7 @@
-import { Fragment } from 'react'
 import Link from 'next/link'
 
-import Logo from '../../components/ui/Logo'
-import CloseIcon from '../../components/ui/icons/CloseIcon'
+import Logo from '../ui/Logo'
+import CloseIcon from '../ui/icons/CloseIcon'
 
 function LoginModal(props) {
 	return (
@@ -10,12 +9,10 @@ function LoginModal(props) {
 			<div className='relative flex flex-col rounded-2xl md:flex-row md:space-y-0 py-1 md:m-0 md:h-screen md:flex justify-center items-center'>
 				<div className='px-4 md:p-4 w-screen md:w-1/2'>
 					<div className='md:flex md:items-center justify-center'>
-						<Link href='/'>
-							<Logo
-								className='absolute top-0 left-0 md:static w-full'
-								size={50}
-							/>
-						</Link>
+						<Logo
+							className='absolute top-0 left-0 md:static w-full'
+							size={50}
+						/>
 					</div>
 					<div className='flex flex-col items-center mb-8 relative'>
 						<div className='flex md:hidden justify-center items-center -mt-10'>

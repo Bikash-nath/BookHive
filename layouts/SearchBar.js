@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import SettingIcon from '../ui/icons/SearchIcon'
+import SearchIcon from '../components/ui/icons/SearchIcon'
 
 export default function SearchBar(props) {
 	const [keyword, setKeyword] = useState('')
@@ -30,23 +30,22 @@ export default function SearchBar(props) {
 					e.preventDefault()
 					setKeyword(e.target.value)
 				}}
-				className='m-2 ml-6 w-full xs:w-4/5 md:w-2/5 h-10 md:h-12 p-2 placeholder:font-light rounded-full focus:outline-none bg-gray-200'
-				placeholder='Search books, authors or series'
-			/>
-			<button className='rounded-md p-2'>
-				<SettingIcon className='w-8 h-8 text-gray-300 duration-200 hover:scale-110' />
+				className='m-2 ml-6 w-full xs:w-2/5 h-8 md:h-9 lg:h-10 p-4 pr-0 mr-0 text-black text-lg rounded-full focus:outline-none bg-gray-300'
+				placeholder='Search books, authors or series'></input>
+			<button className='rounded-md p-2 pl-0 ml-0'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
-					className='w-8 text-gray-300 duration-200 hover:scale-110'
-					viewBox='0 0 24 24'
-					stroke-width='1.5'
-					stroke='currentColor'
 					fill='none'
-					strokeLinecap='round'
-					strokeLinejoin='round'>
-					<path stroke='none' d='M0 0h24v24H0z' fill='none' />
-					<circle cx='10' cy='10' r='7' />
-					<line x1='21' y1='21' x2='15' y2='15' />
+					viewBox='0 0 24 24'
+					strokeWidth={2}
+					stroke='white'
+					className='w-10 h-10'>
+					<title>Search</title>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						d='M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z'
+					/>
 				</svg>
 			</button>
 		</div>

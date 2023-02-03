@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 import BookCard from './BookCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { settings } from '../../constants/sliderSetting'
 
 function DarkDots(props) {
 	console.log('\n\nBookrow Darkdot:\n', props)
@@ -17,40 +18,6 @@ function DarkDots(props) {
 }
 
 function BooksRow({ books }) {
-	const settings = {
-		infinite: false,
-		speed: 500,
-		slidesToShow: 5,
-		slidesToScroll: 5,
-		initialSlide: 0,
-		dots: DarkDots,
-		responsive: [
-			{
-				breakpoint: 1280,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 4,
-				},
-			},
-			{
-				breakpoint: 680,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 3,
-				},
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2,
-					dots: true,
-					arrows: false,
-				},
-			},
-		],
-	}
-
 	return (
 		<Fragment>
 			<div className='h-auto group p-1'>

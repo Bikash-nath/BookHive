@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import Container from '../components/layouts/Container'
-import '../globals.css'
+import Container from '../layouts/Container'
+import '../assets/globals.css'
 
 function App({ Component, pageProps }) {
 	return (

@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
+import ItemsListModal from '../components/modals/ItemsListModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
 import { getBooks, getAuthors } from '../data/getData'
