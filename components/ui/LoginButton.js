@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import AccountIcon from '../ui/icons/AccountIcon'
+import AccountIcon from '../../assets/icons/AccountIcon'
 
 export default function LoginButton() {
 	return (

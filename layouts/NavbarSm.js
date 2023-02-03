@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import HomeIcon from '../ui/icons/HomeIcon'
-import DiscoverIcon from '../ui/icons/DiscoverIcon'
-import LibraryIcon from '../ui/icons/LibraryIcon'
-import HistoryIcon from '../ui/icons/HistoryIcon'
-import AccountIcon from '../ui/icons/AccountIcon'
+import HomeIcon from '../assets/icons/HomeIcon'
+import DiscoverIcon from '../assets/icons/DiscoverIcon'
+import LibraryIcon from '../assets/icons/LibraryIcon'
+import HistoryIcon from '../assets/icons/HistoryIcon'
+import AccountIcon from '../assets/icons/AccountIcon'
 
 function Navbar() {
 	const router = useRouter()

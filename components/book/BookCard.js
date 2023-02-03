@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import HeadphoneIcon from '../ui/icons/HeadphoneIcon'
+import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 
 //flex flex-col += overflow-hidden backdrop-blur-sm animate-slideup
 

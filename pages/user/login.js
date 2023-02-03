@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 
 import LoginModal from '../../components/modals/LoginModal'
-import ArrowIcon from '../../assets/icons/SearchIconArrowIcon'
+import ArrowIcon from '../../assets/icons/ArrowIcon'
 
 function LoginPage(props) {
 	return (
@@ -15,7 +15,7 @@ function LoginPage(props) {
 
 			<LoginModal
 				btnLink='/user/signup'
-				btnMsg='Sign up now'
+				btnMsg='Sign up free'
 				accountMsg="Don't have an account?">
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>
 				<input

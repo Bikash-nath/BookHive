@@ -17,7 +17,7 @@ function HomePage(props) {
 				/>
 			</Head>
 
-			<div className='pb-24 relative text-white screen-gradient'>
+			<div className='relative text-white screen-gradient'>
 				<ListSliderModal listTitle='Popular Books' listLink='/books'>
 					{<BookRow books={props.books} />}
 				</ListSliderModal>

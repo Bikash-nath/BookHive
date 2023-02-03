@@ -4,7 +4,7 @@ export const settings = {
 	slidesToShow: 5,
 	slidesToScroll: 5,
 	initialSlide: 0,
-	dots: DarkDots,
+	dots: true,
 	responsive: [
 		{
 			breakpoint: 1280,
@@ -25,7 +25,6 @@ export const settings = {
 			settings: {
 				slidesToShow: 2,
 				slidesToScroll: 2,
-				dots: true,
 				arrows: false,
 			},
 		},

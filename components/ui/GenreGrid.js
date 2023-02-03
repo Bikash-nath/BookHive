@@ -1,4 +1,4 @@
-import { genreList } from '../../data/genreConstants'
+import { genreList } from '../../constants/genreConstants'
 
 export default function GenresGrid() {
 	const imgs = [
@@ -25,7 +25,7 @@ export default function GenresGrid() {
 									imgs[Math.floor(Math.random() * imgs.length)]
 								}
 								alt=''
-								className=''
+								className='rounded-lg '
 							/>
 							<div className='item-gradient'></div>
 							<h5 className='box-text'>{genre}</h5>

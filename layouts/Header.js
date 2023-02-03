@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Logo from '../ui/Logo'
-import LoginButton from '../ui/LoginButton'
-import HamburgerIcon from '../ui/icons/HamburgerIcon'
-import BellIcon from '../ui/icons/BellIcon'
-import SearchIcon from '../ui/icons/SearchIcon'
-import LightmodeIcon from '../ui/icons/LightmodeIcon'
-import DarkmodeIcon from '../ui/icons/DarkmodeIcon'
+import Logo from '../components/ui/Logo'
+import LoginButton from '../components/ui/LoginButton'
+import HamburgerIcon from '../assets/icons/HamburgerIcon'
+import BellIcon from '../assets/icons/BellIcon'
+import SearchIcon from '../assets/icons/SearchIcon'
+import LightmodeIcon from '../assets/icons/LightmodeIcon'
+import DarkmodeIcon from '../assets/icons/DarkmodeIcon'
 
 function Header() {
 	const user = undefined

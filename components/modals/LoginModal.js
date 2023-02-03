@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import Logo from '../ui/Logo'
-import CloseIcon from '../ui/icons/CloseIcon'
+import CloseIcon from '../../assets/icons/CloseIcon'
 
 function LoginModal(props) {
 	return (

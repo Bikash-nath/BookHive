@@ -7,7 +7,6 @@ import SettingsIcon from '../../assets/icons/SearchIconSettingsIcon'
 function SettingPage(props) {
 	const user = undefined
 
-	//<button className='flex items-center space-x-2 p-2 font-bold rounded-full justify-center lg:p-4 font-sans shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
 	return (
 		<Fragment>
 			<head>

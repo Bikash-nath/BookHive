@@ -1,22 +1,23 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
-import fs from 'fs'
-import path from 'path'
+
+import BgCover from '../../components/modals/BgCover'
+import { getBooks } from '../../data/getData'
 
 import BookCard from '../../components/book/BookCard'
-import BgCover from '../../components/modals/BgCover'
-import { getBooks } from '../data/getData'
 
 function BookDetailPage(props) {
+	const book = props.book
 	const router = useRouter()
+
 	return (
 		<Fragment>
 			<Head>
 				<title>{router.query.bookId}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
-			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
+			<div className='container max-w-6xl mx-auto my-32 px-6 screen-gradient md:px-0'>
 				<BgCover>
 					<img
 						className='h-44 w-44 shadow-2xl'
@@ -24,18 +25,18 @@ function BookDetailPage(props) {
 						alt='album image'
 					/>
 					<div>
-						<p>{title}</p>
-						<h3 className='text-2xl md:text-3xl xl:text-5xl'>{title}</h3>
+						<p>{book.title}</p>
+						<h3 className='text-2xl md:text-3xl xl:text-5xl'>{book.title}</h3>
 					</div>
 				</BgCover>
 				<div className=''>
 					{console.log('Page:', props)}
-					{/* <BookCard
-						title={props.book.title}
-						image={props.book.image}
-						author={props.book.author}
-						slug={props.book.slug}
-					/> */}
+					<BookCard
+						title={book.title}
+						image={book.image}
+						author={book.author}
+						slug={book.slug}
+					/>
 				</div>
 			</div>
 		</Fragment>
@@ -49,7 +50,7 @@ export async function getStaticProps(context) {
 	console.log('\nbookId:', bookId)
 	const bookList = await getBooks()
 	console.log('StaticProps-bookList:', bookList.length)
-	const bookIds = bookList.map((book) => book.bookId)
+	const bookIds = bookList.map((book) => book._id)
 	console.log('\nbookIds:', bookIds)
 	console.log('\nincludes?:', bookIds.includes(bookId?.toString()))
 	const book = bookIds.find((bookid) => bookid == bookId)
