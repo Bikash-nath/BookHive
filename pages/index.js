@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
-import ItemsListModal from '../components/modals/ItemsListModal'
+import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
 import { getBooks, getAuthors } from '../data/getData'
@@ -18,17 +18,17 @@ function HomePage(props) {
 			</Head>
 
 			<div className='pb-24 relative text-white screen-gradient'>
-				<ItemsListModal listTitle='Popular Books' listLink='/books'>
+				<ListSliderModal listTitle='Popular Books' listLink='/books'>
 					{<BookRow books={props.books} />}
-				</ItemsListModal>
+				</ListSliderModal>
 
-				<ItemsListModal listTitle='Trending Books' listLink='/books'>
+				<ListSliderModal listTitle='Trending Books' listLink='/books'>
 					{<BookRow books={props.books} />}
-				</ItemsListModal>
+				</ListSliderModal>
 
-				<ItemsListModal listTitle='Popular Authors' listLink='/authors'>
+				<ListSliderModal listTitle='Popular Authors' listLink='/authors'>
 					{<AuthorRow authors={props.authors} />}
-				</ItemsListModal>
+				</ListSliderModal>
 			</div>
 		</Fragment>
 	)

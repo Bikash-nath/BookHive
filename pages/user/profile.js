@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 import LoginBanner from '../../layouts/LoginBanner'
-import AccountIcon from '../../components/ui/icons/AccountIcon'
+import AccountIcon from '../../assets/icons/SearchIconAccountIcon'
 
 function ProfilePage(props) {
 	const user = undefined

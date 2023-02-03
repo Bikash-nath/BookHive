@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import BookCard from './BookCard'
 
 function BookGrid({ books }) {

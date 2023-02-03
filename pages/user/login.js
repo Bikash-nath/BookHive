@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 
 import LoginModal from '../../components/modals/LoginModal'
-import ArrowIcon from '../../components/ui/icons/ArrowIcon'
+import ArrowIcon from '../../assets/icons/SearchIconArrowIcon'
 
 function LoginPage(props) {
 	return (

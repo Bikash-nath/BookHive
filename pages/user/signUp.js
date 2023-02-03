@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginModal from '../../components/modals/LoginModal'
-import ArrowIcon from '../../components/ui/icons/ArrowIcon'
+import ArrowIcon from '../../assets/icons/SearchIconArrowIcon'
 
 function SignUpPage(props) {
 	return (

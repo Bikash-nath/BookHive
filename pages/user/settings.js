@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 
 import LoginBanner from '../../layouts/LoginBanner'
-import AccountIcon from '../../components/ui/icons/AccountIcon'
-import SettingsIcon from '../../components/ui/icons/SettingsIcon'
+import AccountIcon from '../../assets/icons/SearchIconAccountIcon'
+import SettingsIcon from '../../assets/icons/SearchIconSettingsIcon'
 
 function SettingPage(props) {
 	const user = undefined

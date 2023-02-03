@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import SearchIcon from '../components/ui/icons/SearchIcon'
 
 export default function SearchBar(props) {
 	const [keyword, setKeyword] = useState('')
@@ -31,7 +30,8 @@ export default function SearchBar(props) {
 					setKeyword(e.target.value)
 				}}
 				className='m-2 ml-6 w-full xs:w-2/5 h-8 md:h-9 lg:h-10 p-4 pr-0 mr-0 text-black text-lg rounded-full focus:outline-none bg-gray-300'
-				placeholder='Search books, authors or series'></input>
+				placeholder='Search books, authors or series'
+			/>
 			<button className='rounded-md p-2 pl-0 ml-0'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'

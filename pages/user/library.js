@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginBanner from '../../layouts/LoginBanner'
-import LibraryIcon from '../../components/ui/icons/LibraryIcon'
-import AccountIcon from '../../components/ui/icons/AccountIcon'
+import LibraryIcon from '../../assets/icons/SearchIconLibraryIcon'
+import AccountIcon from '../../assets/icons/SearchIconAccountIcon'
 
 function LibraryPage(props) {
 	const user = '21'

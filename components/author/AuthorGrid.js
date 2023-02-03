@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import AuthorCard from './AuthorCard'
 
 function AuthorGrid({ authors }) {

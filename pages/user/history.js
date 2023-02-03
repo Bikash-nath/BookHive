@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginBanner from '../../layouts/LoginBanner'
-import HistoryIcon from '../../components/ui/icons/HistoryIcon'
+import HistoryIcon from '../../assets/icons/SearchIconHistoryIcon'
 
 function HistoryPage(props) {
 	const user = ''

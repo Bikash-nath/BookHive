@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Discover({ dimensions, color }) {
 	return (
 		// width='10'

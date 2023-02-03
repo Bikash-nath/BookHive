@@ -5,7 +5,8 @@ import fs from 'fs'
 import path from 'path'
 
 import BookCard from '../../components/book/BookCard'
-import BookBgCover from '../../components/covers/BookBgCover'
+import BgCover from '../../components/modals/BgCover'
+import { getBooks } from '../data/getData'
 
 function BookDetailPage(props) {
 	const router = useRouter()
@@ -16,7 +17,7 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-				<BookBgCover>
+				<BgCover>
 					<img
 						className='h-44 w-44 shadow-2xl'
 						src={'imageUrl'}
@@ -24,9 +25,9 @@ function BookDetailPage(props) {
 					/>
 					<div>
 						<p>{title}</p>
-						<h1 className='text-2xl md:text-3xl xl:text-5xl'>{title}</h1>
+						<h3 className='text-2xl md:text-3xl xl:text-5xl'>{title}</h3>
 					</div>
-				</BookBgCover>
+				</BgCover>
 				<div className=''>
 					{console.log('Page:', props)}
 					{/* <BookCard
@@ -41,18 +42,12 @@ function BookDetailPage(props) {
 	)
 }
 
-async function getBooks() {
-	const filePath = path.join(process.cwd(), 'data', 'booksData.json')
-	const jsonData = fs.readFileSync(filePath)
-	return await JSON.parse(jsonData)
-}
-
 export async function getStaticProps(context) {
 	const { params } = context
 	console.log('\n\nStaticProps params', params)
-	const { bookId } = params.bookId
-	const bookList = await getBooks()
+	const bookId = params.bookId
 	console.log('\nbookId:', bookId)
+	const bookList = await getBooks()
 	console.log('StaticProps-bookList:', bookList.length)
 	const bookIds = bookList.map((book) => book.bookId)
 	console.log('\nbookIds:', bookIds)
