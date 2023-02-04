@@ -1,4 +1,4 @@
-import { genreList } from '../../constants/genreConstants'
+import { genreList } from '../utils/constants/genreConstants'
 
 export default function GenresGrid() {
 	const imgs = [

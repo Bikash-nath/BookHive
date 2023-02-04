@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
+import Head from 'next/head'
 
-import LoginBanner from '../../layouts/LoginBanner'
+import LoginBanner from '../../components/LoginBanner'
 import AccountIcon from '../../assets/icons/SearchIconAccountIcon'
 import SettingsIcon from '../../assets/icons/SearchIconSettingsIcon'
 
@@ -9,10 +10,10 @@ function SettingPage(props) {
 
 	return (
 		<Fragment>
-			<head>
+			<Head>
 				<title>Setting</title>
 				<meta name='description' content='Setting section' />
-			</head>
+			</Head>
 			<div className='screen-gradient text-white'>
 				{!user ? (
 					<LoginBanner

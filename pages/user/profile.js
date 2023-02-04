@@ -1,22 +1,24 @@
 import { Fragment } from 'react'
+import Head from 'next/head'
 
-import LoginBanner from '../../layouts/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
+import LoginBanner from '../../components/LoginBanner'
 
 function ProfilePage(props) {
 	const user = undefined
 
+	//<button className='flex items-center space-x-2 p-2 font-bold rounded-full justify-center lg:p-4 font-sans shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
 	return (
-		<>
-			<head>
+		<Fragment>
+			<Head>
 				<title>Profile</title>
 				<meta name='description' content='Profile section' />
-			</head>
+			</Head>
 			<div className='screen-gradient text-white'>
 				{!user ? (
 					<LoginBanner
-						title='Access Your Account'
-						message='Please login to access your personal account'
+						title='Access Your Account Settings'
+						message='Please login to access your personal account settings'
 						icon={<AccountIcon />}
 					/>
 				) : (
@@ -34,7 +36,7 @@ function ProfilePage(props) {
 					</>
 				)}
 			</div>
-		</>
+		</Fragment>
 	)
 }
 
