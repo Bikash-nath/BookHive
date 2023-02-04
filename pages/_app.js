@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import Container from '../layouts/Container'
+import Container from '../components/layouts/Container'
 import '../assets/globals.css'
 
 function App({ Component, pageProps }) {

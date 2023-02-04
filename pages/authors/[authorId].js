@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import AuthorCard from '../../components/author/AuthorCard'
 import BgCover from '../../components/modals/BgCover'
-import { getAuthors } from '../data/getData'
+import { getAuthors } from '../../data/getData'
 
 function AuthorDetailPage(props) {
 	const router = useRouter()

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
-import BookGrid from '../../components/book/BookGrid'
+import BookGrid from '../../../components/book/BookGrid'
 
 function AudioBooksPage(props) {
 	return (

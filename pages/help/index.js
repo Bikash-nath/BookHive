@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import Footer from '../../layouts/Footer'
+import Footer from '../../components/layouts/Footer'
 import ArrowDownIcon from '../../assets/icons/ArrowDownIcon'
 
 function HelpPage(props) {

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import LoginBanner from '../../layouts/LoginBanner'
+import LoginBanner from '../../components/layouts/LoginBanner'
 import HistoryIcon from '../../assets/icons/HistoryIcon'
 
 function HistoryPage(props) {
