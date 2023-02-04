@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import LoginBanner from '../../layouts/LoginBanner'
+import LoginBanner from '../../components/LoginBanner'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 
