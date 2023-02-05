@@ -16,8 +16,7 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-
-			<div className='relative text-white screen-gradient'>
+			<div className='relative text-white'>
 				<ListSliderModal listTitle='Popular Books' listLink='/books'>
 					{<BookRow books={props.books} />}
 				</ListSliderModal>
@@ -41,7 +40,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			books: bookList,
-			authors: authorList,
+			authors: authorList.slice(0, 20),
 		},
 		// revalidate: 60,
 	}

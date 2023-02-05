@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Link from 'next/link'
 
-import LoginContainer from '../../components/login/LoginContainer'
-import ArrowIcon from '../../assets/icons/ArrowIcon'
-import InputField from '../../components/ui/InputField'
+import LoginContainer from '../../../components/login/LoginContainer'
+import InputField from '../../../components/ui/InputField'
+import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function SignUpPage(props) {
 	return (
@@ -14,11 +14,16 @@ function SignUpPage(props) {
 				<meta name='description' content='BookHive SignUp page' />
 			</Head>
 			<LoginContainer>
-				<h2 className='font-mono mb-4 text-3xl font-bold'>Sign Up</h2>
-				<InputField inputType='text' placeholderText='Enter your name' />
+				<h2 className='font-mono mb-8 text-3xl font-bold'>Sign Up</h2>
+				<InputField
+					inputType='text'
+					placeholderText='Enter your name'
+					margin='mb-4'
+				/>
 				<InputField
 					inputType='email'
 					placeholderText='Enter your email address'
+					margin='mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>
 					<Link href='/'>

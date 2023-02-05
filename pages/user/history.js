@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import LoginBanner from '../../components/layouts/LoginBanner'
+import LoginBanner from '../../components/login/LoginBanner'
 import HistoryIcon from '../../assets/icons/HistoryIcon'
 
 function HistoryPage(props) {
@@ -13,7 +13,7 @@ function HistoryPage(props) {
 				<title>History</title>
 				<meta name='description' content='History section' />
 			</Head>
-			<div className='screen-gradient text-white'>
+			<div className='text-white'>
 				{!user ? (
 					<LoginBanner
 						title='Keep track of what you watch'

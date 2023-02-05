@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
-import LoginBanner from '../../components/LoginBanner'
-import AccountIcon from '../../assets/icons/SearchIconAccountIcon'
-import SettingsIcon from '../../assets/icons/SearchIconSettingsIcon'
+import LoginBanner from '../../components/login/LoginBanner'
+import AccountIcon from '../../assets/icons/AccountIcon'
+import SettingsIcon from '../../assets/icons/SettingsIcon'
 
 function SettingPage(props) {
 	const user = undefined
@@ -14,7 +14,7 @@ function SettingPage(props) {
 				<title>Setting</title>
 				<meta name='description' content='Setting section' />
 			</Head>
-			<div className='screen-gradient text-white'>
+			<div className='text-white'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account Settings'

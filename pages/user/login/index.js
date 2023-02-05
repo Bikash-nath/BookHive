@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 
 import LoginContainer from '../../../components/login/LoginContainer'
+import InputField from '../../../components/ui/InputField'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function LoginPage(props) {
@@ -17,10 +18,12 @@ function LoginPage(props) {
 				<InputField
 					inputType='email'
 					placeholderText='Enter your email address'
+					margin='mb-4'
 				/>
 				<InputField
 					inputType='password'
 					placeholderText='Enter your password'
+					margin='mb-4'
 				/>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<Link href='/user/forgotPassword'>

@@ -10,7 +10,7 @@
 
 .screen-gradient {
 	/* absoulte + sticky */
-	@apply h-screen text-white bg-gradient-to-b from-gray-900 via-black to-gray-900;
+	@apply text-white bg-gradient-to-b from-gray-900 via-black to-gray-900;
 }
 
 .list-grid {

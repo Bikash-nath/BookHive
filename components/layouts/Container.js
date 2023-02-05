@@ -6,12 +6,12 @@ import NavbarSm from './NavbarSm'
 
 function Container(props) {
 	return (
-		<div className='bg-black h-screen overflow-hidden m-0'>
-			<Header />
+		<div className='screen-gradient overflow-hidden m-0'>
 			<NavbarSm />
 			<div className='flex'>
 				<NavbarLg />
-				<main className='flex-grow h-screen overflow-y-scroll hide-scrollbar select-none'>
+				<main className='flex-grow h-screen pb-20 lg:pb-12 overflow-y-scroll select-none'>
+					<Header />
 					{props.children}
 				</main>
 			</div>

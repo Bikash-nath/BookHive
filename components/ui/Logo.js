@@ -4,16 +4,18 @@ import Image from 'next/image'
 function Logo({ size }) {
 	return (
 		<Link href='/'>
-			<Image
-				src='/images/audiobook.png'
-				alt='BookHive'
-				className='inline'
-				height={size}
-				width={size}
-			/>
-			<p className='text-3xl hidden lg:inline text-white px-1 font-semibold'>
-				BookHive
-			</p>
+			<div className='lg:p-2'>
+				<Image
+					src='/images/audiobook.png'
+					alt='BookHive'
+					className='inline'
+					height={size}
+					width={size}
+				/>
+				<p className='text-2xl hidden lg:inline text-white px-1 font-semibold'>
+					BookHive
+				</p>
+			</div>
 		</Link>
 	)
 }

@@ -5,20 +5,22 @@ import { useRouter } from 'next/router'
 import BgCover from '../../components/modals/BgCover'
 import { getBooks } from '../../data/getData'
 
-import openInNewTab from '../../utils/openLink'
+import openInNewTab from '../../utils/helpers/openLink'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 
 function BookDetailPage(props) {
+	const { book } = props
+
 	return (
 		<Fragment>
 			<Head>
-				<title>{router.query.bookId}</title>
+				<title>{book.bookId}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
 			<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
 				<BgCover>
-					<Image
+					<img
 						src={book.image}
 						alt={book.title}
 						className='object-contain rounded-md lg:w-40 lg:h-60 lg:py-1 min-w-full'
@@ -38,7 +40,7 @@ function BookDetailPage(props) {
 						</button>
 					</div>
 					<div>
-						{book.formats && (
+						{book.formats.length && (
 							<div className='flex'>
 								{book.formats?.map((ele, i) => (
 									<button
@@ -67,8 +69,8 @@ function BookDetailPage(props) {
 				</div>
 			</div>
 			<div className='flex items-center justify-center'>
-				{book.genres.map((genre) => (
-					<button className='p-2 m-4 bg-gray-500 border-r-zinc-400'>
+				{book.genres?.map((genre, i) => (
+					<button key={i} className='p-2 m-4 bg-gray-500 border-r-zinc-400'>
 						{genre}
 					</button>
 				))}
@@ -82,15 +84,10 @@ function BookDetailPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	console.log('\n\nStaticProps params', params)
 	const bookId = params.bookId
 	console.log('\nbookId:', bookId)
 	const bookList = await getBooks()
-	console.log('StaticProps-bookList:', bookList.length)
-	const bookIds = bookList.map((book) => book._id)
-	console.log('\nbookIds:', bookIds)
-	console.log('\nincludes?:', bookIds.includes(bookId?.toString()))
-	const book = bookIds.find((bookid) => bookid == bookId)
+	const book = bookList.find((book) => book._id == bookId)
 	console.log('\nbook:', book)
 
 	if (!book) {

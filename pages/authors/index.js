@@ -12,7 +12,7 @@ function AuthorListPage(props) {
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
 
-			<section className='pb-24 relative text-white screen-gradient'>
+			<section className='relative text-white '>
 				<div className='container mx-auto px-6 py-4 md:py-6'>
 					<h3 className='text-2xl text-center md:text-left sm:text-3xl md:text-4xl'>
 						Popular Books

@@ -11,7 +11,7 @@ function HelpPage(props) {
 				<title>Help</title>
 				<meta name='description' content='Help section' />
 			</Head>
-			<div className='screen-gradient'>
+			<div className=''>
 				<section id='faq' className='text-white'>
 					<div className='container mx-auto'>
 						<h2 className='mb-6 text-3xl font-semibold text-center md:text-4xl'>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import LoginBanner from '../../components/LoginBanner'
+import LoginBanner from '../../components/login/LoginBanner'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 
@@ -15,7 +15,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='screen-gradient text-white'>
+			<div className='text-white'>
 				{!user ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'

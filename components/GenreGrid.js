@@ -5,11 +5,11 @@ export default function GenresGrid(props) {
 	const [genreImages, setGenreImages] = useState([])
 
 	useEffect(() => {
-		setGenreImages(
-			genreList.map(
-				() => genreImages[Math.floor(Math.random() * genreImages.length)]
-			)
+		const imageList = genreList.map(
+			() =>
+				'/images/genres/' + images[Math.floor(Math.random() * images.length)]
 		)
+		setGenreImages(imageList)
 	}, [])
 
 	return (

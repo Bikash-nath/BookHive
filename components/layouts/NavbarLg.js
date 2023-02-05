@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import HomeIcon from '../assets/icons/HomeIcon'
-import DiscoverIcon from '../assets/icons/DiscoverIcon'
-import AccountIcon from '../assets/icons/AccountIcon'
-import LibraryIcon from '../assets/icons/LibraryIcon'
-import SettingIcon from '../assets/icons/SettingsIcon'
-import HistoryIcon from '../assets/icons/HistoryIcon'
+import Logo from '../ui/Logo'
+import HomeIcon from '../../assets/icons/HomeIcon'
+import DiscoverIcon from '../../assets/icons/DiscoverIcon'
+import AccountIcon from '../../assets/icons/AccountIcon'
+import LibraryIcon from '../../assets/icons/LibraryIcon'
+import SettingIcon from '../../assets/icons/SettingsIcon'
+import HistoryIcon from '../../assets/icons/HistoryIcon'
 
 function NavbarLg() {
 	const router = useRouter()
@@ -16,8 +17,11 @@ function NavbarLg() {
 	return (
 		<>
 			{showRoute && (
-				<div className='overflow-y-scroll h-screen hide-scrollbar hidden lg:inline-block relative p-2 md:min-w-[10rem] lg:min-w-[12rem] text-gray-500 text-sm border-r border-gray-900'>
+				<div className='overflow-y-hidden hide-scrollbar hidden lg:inline-block relative p-2 md:min-w-[10rem] lg:min-w-[12rem] bg-black text-gray-400 border-r border-gray-900'>
 					<div className='space-y-4 cursor-pointer'>
+						<div className='flex items-center space-x-20'>
+							<Logo size={45} />
+						</div>
 						<Link href='/'>
 							<div className='flex items-center space-x-2 my-4 hover:text-white'>
 								<HomeIcon color={'currentColor'} dimensions='h-8 w-8' />
@@ -52,9 +56,9 @@ function NavbarLg() {
 
 						<hr className='border-t-[0.1px] border-gray-900' />
 
-						<div className='absolute bottom-20'>
+						<div className='absolute bottom-4'>
 							<Link href='/user/settings'>
-								<div className='flex items-center mb-2 space-x-2 my-4 hover:text-white'>
+								<div className='flex items-center mb-2 space-x-2 p-2 hover:text-white'>
 									<SettingIcon color={'currentColor'} dimensions='h-8 w-8' />
 									<p className='font-mono text-base'>Setting</p>
 								</div>

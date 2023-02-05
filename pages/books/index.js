@@ -12,7 +12,7 @@ function BookListPage(props) {
 				<meta name='description' content='A list of all popular ebooks!' />
 			</Head>
 
-			<div className='pb-24 relative text-white screen-gradient'>
+			<div className='relative text-white '>
 				<section className=''>
 					<div className='container mx-4 px-6 py-4 sm:py-6 lg:py-10'>
 						<h3 className='text-2xl text-center md:text-left sm:text-3xl md:text-4xl'>

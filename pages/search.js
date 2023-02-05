@@ -14,7 +14,7 @@ export default function SearchPage() {
 	}
 
 	return (
-		<div className='screen-gradient'>
+		<div className=''>
 			<SearchBar onSearch={searchHandler} />
 			<GenreGrid genreList={genreList} images={images} />
 		</div>

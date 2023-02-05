@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Logo from '../components/ui/Logo'
-import LoginButton from '../components/ui/LoginButton'
-import HamburgerIcon from '../assets/icons/HamburgerIcon'
-import BellIcon from '../assets/icons/BellIcon'
-import SearchIcon from '../assets/icons/SearchIcon'
-import LightmodeIcon from '../assets/icons/LightmodeIcon'
-import DarkmodeIcon from '../assets/icons/DarkmodeIcon'
+import Logo from '../ui/Logo'
+import LoginButton from '../ui/LoginButton'
+import HamburgerIcon from '../../assets/icons/HamburgerIcon'
+import BellIcon from '../../assets/icons/BellIcon'
+import SearchIcon from '../../assets/icons/SearchIcon'
+import LightmodeIcon from '../../assets/icons/LightmodeIcon'
+import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
 
 function Header() {
 	const user = undefined
@@ -19,14 +19,14 @@ function Header() {
 	return (
 		<>
 			{showRoute && (
-				<header className='flex flex-row flex-grow sticky top-0 justify-between bg-black'>
+				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black'>
 					<nav className='relative container mx-auto p-2'>
 						<div className='flex items-center justify-between'>
-							<div className='flex items-center space-x-20'>
+							<div className='flex lg:hidden items-center space-x-20 w-full'>
 								<Logo size={50} />
 							</div>
 
-							<header className='flex flex-row right-8 opacity-100 gap-[0.1rem] md:gap-2'>
+							<header className='flex right-8 opacity-100 gap-[0.1rem] md:gap-2 justify-end w-full'>
 								<div className='flex items-center cursor-pointer p-2'>
 									<SearchIcon dimensions='h-7 w-7' />
 								</div>

@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
+import LoginBanner from '../../components/login/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
-import LoginBanner from '../../components/LoginBanner'
 
 function ProfilePage(props) {
 	const user = undefined
@@ -14,7 +14,7 @@ function ProfilePage(props) {
 				<title>Profile</title>
 				<meta name='description' content='Profile section' />
 			</Head>
-			<div className='screen-gradient text-white'>
+			<div className='text-white'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account Settings'
