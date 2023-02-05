@@ -7,7 +7,7 @@ import LibraryIcon from '../assets/icons/LibraryIcon'
 import HistoryIcon from '../assets/icons/HistoryIcon'
 import AccountIcon from '../assets/icons/AccountIcon'
 
-function Navbar() {
+function NavbarLg() {
 	const router = useRouter()
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => router.pathname.includes(path))
@@ -72,4 +72,4 @@ function Navbar() {
 	)
 }
 
-export default Navbar
+export default NavbarLg

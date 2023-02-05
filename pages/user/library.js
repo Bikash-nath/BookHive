@@ -46,13 +46,13 @@ function LibraryPage(props) {
 									<div className='py-1 text-lg md:text-2xl border-b-2 md:border-b-3 border-gray-200'>
 										Collections
 									</div>
-									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+									<div className='py-1 text-base md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
 										Audiobooks
 									</div>
-									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+									<div className='py-1 text-base md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
 										Ebooks
 									</div>
-									<div className='py-1 text-md md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
+									<div className='py-1 text-base md:text-xl cursor-pointer text-gray-600 hover:text-gray-200'>
 										Podcasts
 									</div>
 								</div>

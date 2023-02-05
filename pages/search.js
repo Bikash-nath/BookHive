@@ -2,6 +2,9 @@ import { useRouter } from 'next/router'
 import SearchBar from '../components/SearchBar'
 import GenreGrid from '../components/GenreGrid'
 
+import { genreList } from '../utils/constants/genreConstants'
+import { images } from '../utils/constants/genrePics'
+
 export default function SearchPage() {
 	const router = useRouter()
 
@@ -13,7 +16,7 @@ export default function SearchPage() {
 	return (
 		<div className='screen-gradient'>
 			<SearchBar onSearch={searchHandler} />
-			<GenreGrid />
+			<GenreGrid genreList={genreList} images={images} />
 		</div>
 	)
 }

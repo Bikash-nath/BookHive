@@ -15,7 +15,7 @@ export default function LoginBanner({ title, message, icon }) {
 				<div className='flex-none py-2 md:py-4 text-xl md:text-3xl'>
 					<h2>{title}</h2>
 				</div>
-				<div className='flex-none text-center py-2 md:py-4 text-md md:text-xl'>
+				<div className='flex-none text-center py-2 md:py-4 text-lg md:text-xl'>
 					<h4>{message}</h4>
 				</div>
 				<div className='flex-none transform scale-125 py-4'>

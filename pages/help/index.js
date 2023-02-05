@@ -13,30 +13,30 @@ function HelpPage(props) {
 			</Head>
 			<div className='screen-gradient'>
 				<section id='faq' className='text-white'>
-					<div class='container mx-auto'>
-						<h2 class='mb-6 text-3xl font-semibold text-center md:text-4xl'>
+					<div className='container mx-auto'>
+						<h2 className='mb-6 text-3xl font-semibold text-center md:text-4xl'>
 							Frequently Asked Questions
 						</h2>
-						<p class='max-w-lg px-6 mx-auto text-center text-graishBlue'>
+						<p className='max-w-lg px-6 mx-auto text-center text-graishBlue'>
 							Here are some of our FAQs. If you have any other questions you'd
 							like answered please feel free to email us.
 						</p>
 					</div>
 				</section>
 				<section id='faq-accordion'>
-					<div class='container mx-auto px-6 mb-32'>
-						<div class='max-w-2xl m-8 mx-auto overflow-hidden'>
-							<div class='py-1 border-b outline-none group' tabindex='1'>
-								<div class='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
-									<div class='transition duration-500 ease group-hover:text-red-500'>
+					<div className='container mx-auto px-6 mb-32'>
+						<div className='max-w-2xl m-8 mx-auto overflow-hidden'>
+							<div className='py-1 border-b outline-none group'>
+								<div className='flex items-center justify-between py-3 text-gray-400 transition duration-500 cursor-pointer group ease'>
+									<div className='transition duration-500 ease text-lg group-hover:text-purple-400'>
 										What is BookHive?
 									</div>
-									<div class='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+									<div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-purple-400'>
 										<ArrowDownIcon />
 									</div>
 								</div>
-								<div class='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
-									<p class='py-2 text-justify text-gray-400'>
+								<div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+									<p className='py-2 text-justify text-gray-400'>
 										BookHive is an online platform for accessing thousands of
 										free audiobooks, ePubs, PDFs, magazines and podcasts.
 										<br />
@@ -46,22 +46,22 @@ function HelpPage(props) {
 									</p>
 								</div>
 							</div>
-							<div class='py-1 border-b outline-none group' tabindex='2'>
-								<div class='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
-									<div class='transition duration-500 ease group-hover:text-indigo-600'>
-										How can I find a new audiobooks?
+							<div className='py-1 border-b outline-none group'>
+								<div className='flex items-center justify-between py-3 text-gray-400 transition duration-500 cursor-pointer group ease'>
+									<div className='transition duration-500 ease text-lg group-hover:text-indigo-600'>
+										How can I find latest audiobooks?
 									</div>
-									<div class='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+									<div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-purple-400'>
 										<ArrowDownIcon />
 									</div>
 								</div>
-								<div class='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
-									<p class='py-2 text-justify text-gray-400'>
-										Lorem ipsum dolor sit amet consectetur adipisicing elit.
-										Fugiat, repellat amet doloribus consequuntur eos similique
-										provident tempora voluptates iure quia fuga dicta
-										voluptatibus culpa mollitia recusandae delectus id suscipit
-										labore?
+								<div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+									<p className='py-2 text-justify text-gray-400'>
+										Visit
+										<a href='https://bookhive.vercel.app/audiobooks/new-arrivals'>
+											bookhive.vercel.app/audiobooks/new-arrivals
+										</a>
+										to find latest audiobooks.
 									</p>
 								</div>
 							</div>

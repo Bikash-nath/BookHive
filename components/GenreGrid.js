@@ -1,14 +1,16 @@
-import { genreList } from '../utils/constants/genreConstants'
+import { useEffect, useState } from 'react'
 
-export default function GenresGrid() {
-	const imgs = [
-		'arcade.jpg',
-		'borealis.jpg',
-		'earth.jpg',
-		'fisheye.jpg',
-		'grid.jpg',
-		'roads.jpg',
-	]
+export default function GenresGrid(props) {
+	const { genreList, images } = props
+	const [genreImages, setGenreImages] = useState([])
+
+	useEffect(() => {
+		setGenreImages(
+			genreList.map(
+				() => genreImages[Math.floor(Math.random() * genreImages.length)]
+			)
+		)
+	}, [])
 
 	return (
 		<section>
@@ -17,16 +19,9 @@ export default function GenresGrid() {
 					Popular Genres
 				</h2>
 				<div className='item-container genre-grid'>
-					{genreList.map((genre) => (
-						<div key={genre} className='group item'>
-							<img
-								src={
-									'/images/genres/' +
-									imgs[Math.floor(Math.random() * imgs.length)]
-								}
-								alt=''
-								className='rounded-lg '
-							/>
+					{genreList.map((genre, i) => (
+						<div key={genre} className='group item rounded-lg'>
+							<img src={genreImages[i]} alt={genre} className='rounded-lg' />
 							<div className='item-gradient'></div>
 							<h5 className='box-text'>{genre}</h5>
 						</div>

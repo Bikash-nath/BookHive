@@ -17,7 +17,7 @@ function AuthorCard(props) {
 						className='object-contain rounded-xl h-44 md:w-40 md:h-60 p-1 min-w-full'
 					/>
 					<div className='px-1 '>
-						<p className='text-center font-semibold text-base md:text-md my-1 leading-tight truncate text-white '>
+						<p className='text-center font-semibold text-base md:text-lg my-1 leading-tight truncate text-white '>
 							{name}
 						</p>
 					</div>

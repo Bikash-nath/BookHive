@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Fragment } from 'react'
 
-import LoginModal from '../../components/modals/LoginModal'
-import ArrowIcon from '../../assets/icons/SearchIconArrowIcon'
+import LoginContainer from '../../../components/login/LoginContainer'
+import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function LoginPage(props) {
 	return (
@@ -12,21 +12,15 @@ function LoginPage(props) {
 				<title>Login</title>
 				<meta name='description' content='Login section' />
 			</Head>
-
-			<LoginModal
-				btnLink='/user/signup'
-				btnMsg='Sign up free'
-				accountMsg="Don't have an account?">
+			<LoginContainer>
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>
-				<input
-					type='email'
-					className='w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 '
-					placeholder='Enter your email address'
+				<InputField
+					inputType='email'
+					placeholderText='Enter your email address'
 				/>
-				<input
-					type='password'
-					className='w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 '
-					placeholder='Enter your password'
+				<InputField
+					inputType='password'
+					placeholderText='Enter your password'
 				/>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<Link href='/user/forgotPassword'>
@@ -39,11 +33,7 @@ function LoginPage(props) {
 						<ArrowIcon />
 					</button>
 				</div>
-				<div className='my-4 border-b border-b-gray-500'></div>
-				<p className='my-4 text-sm font-medium text-center text-gray-400'>
-					or log in with
-				</p>
-			</LoginModal>
+			</LoginContainer>
 		</Fragment>
 	)
 }
