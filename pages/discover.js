@@ -5,7 +5,7 @@ import GenreGrid from '../components/GenreGrid'
 import { genreList } from '../utils/constants/genreConstants'
 import { images } from '../utils/constants/genrePics'
 
-export default function SearchPage() {
+function DiscoverPage() {
 	const router = useRouter()
 
 	const searchHandler = (keyword) => {
@@ -14,9 +14,11 @@ export default function SearchPage() {
 	}
 
 	return (
-		<div className=''>
+		<div className='bg-gradient'>
 			<SearchBar onSearch={searchHandler} />
 			<GenreGrid genreList={genreList} images={images} />
 		</div>
 	)
 }
+
+export default DiscoverPage

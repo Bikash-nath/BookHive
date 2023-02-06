@@ -15,7 +15,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='text-white'>
+			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'

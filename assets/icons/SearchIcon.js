@@ -1,4 +1,4 @@
-export default function SettingIcon({ dimensions }) {
+export default function SearchIcon({ dimensions }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

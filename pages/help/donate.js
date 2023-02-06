@@ -8,7 +8,7 @@ function DonatePage(props) {
 				<title>Donate</title>
 				<meta name='description' content='Donate section' />
 			</Head>
-			<div>
+			<div className='bg-gradient'>
 				<h2>
 					Your small, recurring donations will allow us to respond to requests
 					more quickly and add new user-friendly features to the site.

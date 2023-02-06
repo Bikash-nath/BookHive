@@ -20,7 +20,7 @@ function Header() {
 		<>
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black'>
-					<nav className='relative container mx-auto p-2'>
+					<nav className='container mx-auto p-2'>
 						<div className='flex items-center justify-between'>
 							<div className='flex lg:hidden items-center space-x-20 w-full'>
 								<Logo size={50} />

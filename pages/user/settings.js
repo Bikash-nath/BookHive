@@ -5,16 +5,16 @@ import LoginBanner from '../../components/login/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import SettingsIcon from '../../assets/icons/SettingsIcon'
 
-function SettingPage(props) {
+function SettingsPage(props) {
 	const user = undefined
 
 	return (
 		<Fragment>
 			<Head>
-				<title>Setting</title>
-				<meta name='description' content='Setting section' />
+				<title>Settings</title>
+				<meta name='description' content='Settings section' />
 			</Head>
-			<div className='text-white'>
+			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account Settings'
@@ -40,4 +40,4 @@ function SettingPage(props) {
 	)
 }
 
-export default SettingPage
+export default SettingsPage

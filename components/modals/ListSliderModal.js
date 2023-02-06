@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function ItemsListModal(props) {
+export default function ListSliderModal(props) {
 	const { listTitle, listLink } = props
 
 	return (

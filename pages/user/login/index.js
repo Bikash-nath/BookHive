@@ -6,18 +6,18 @@ import LoginContainer from '../../../components/login/LoginContainer'
 import InputField from '../../../components/ui/InputField'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
-function LoginPage(props) {
+function LoginEmailPage(props) {
 	return (
 		<Fragment>
 			<Head>
 				<title>Login</title>
-				<meta name='description' content='Login section' />
+				<meta name='description' content='Login page' />
 			</Head>
 			<LoginContainer>
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>
 				<InputField
 					inputType='email'
-					placeholderText='Enter your email address'
+					placeholderText='Enter email address or phone'
 					margin='mb-4'
 				/>
 				<InputField
@@ -41,4 +41,4 @@ function LoginPage(props) {
 	)
 }
 
-export default LoginPage
+export default LoginEmailPage

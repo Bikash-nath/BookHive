@@ -26,7 +26,7 @@ function SetupPasswordPage(props) {
 				<div className='flex items-center justify-end my-3 md:my-6'>
 					<Link href='/'>
 						<button className='rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150'>
-							<span>SignUp</span>
+							<span>Create account</span>
 							<ArrowIcon />
 						</button>
 					</Link>

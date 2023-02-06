@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import AuthorCard from './AuthorCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { settings } from '../../utils/constants/sliderSetting'
+import { settings } from '../../utils/constants/sliderSettings'
 
 function AuthorsRow({ authors }) {
 	return (

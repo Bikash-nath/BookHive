@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import BookCard from './BookCard'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { settings } from '../../utils/constants/sliderSetting'
+import { settings } from '../../utils/constants/sliderSettings'
 
 function DarkDots(props) {
 	console.log('\n\nBookrow Darkdot:\n', props)

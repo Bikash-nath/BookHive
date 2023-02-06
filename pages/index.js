@@ -16,7 +16,7 @@ function HomePage(props) {
 					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='relative text-white'>
+			<div className='bg-gradient'>
 				<ListSliderModal listTitle='Popular Books' listLink='/books'>
 					{<BookRow books={props.books} />}
 				</ListSliderModal>

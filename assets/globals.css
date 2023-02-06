@@ -8,9 +8,9 @@
 	}
 }
 
-.screen-gradient {
+.bg-gradient {
 	/* absoulte + sticky */
-	@apply text-white bg-gradient-to-b from-gray-900 via-black to-gray-900;
+	@apply bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white pb-20 lg:pb-12;
 }
 
 .list-grid {

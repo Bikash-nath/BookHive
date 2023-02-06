@@ -9,25 +9,23 @@ function AudioBooksPage(props) {
 				<title>Popular AudioBooks</title>
 				<meta name='description' content='A list of all popular audiobooks!' />
 			</Head>
-
-			<section className='my-8 mx-4'>
-				<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-					<div className='flex justify-center mb-20 md:justify-between'>
-						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-							Popular AudioBooks
-						</h3>
-					</div>
-				</div>
-				{<BookGrid books={props.audiobooks} />}
-			</section>
+			<div className='bg-gradient'>
+				<ListGridModal listTitle='Popular AudioBooks' listLink='/audiobooks'>
+					{<BookGrid books={props.audiobooks} />}
+				</ListGridModal>
+			</div>
 		</Fragment>
 	)
 }
 
 export async function getStaticProps() {
-	const filePath = path.join(process.cwd(), 'data', 'booksData.json')
-	const jsonData = fs.readFileSync(filePath, 'utf8')
-	const audiobookList = JSON.parse(jsonData)
+	const bookList = getBooks()
+
+	if (!bookList) {
+		return {
+			notFound: true,
+		}
+	}
 
 	return {
 		props: {

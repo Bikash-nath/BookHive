@@ -11,8 +11,8 @@ function HelpPage(props) {
 				<title>Help</title>
 				<meta name='description' content='Help section' />
 			</Head>
-			<div className=''>
-				<section id='faq' className='text-white'>
+			<div className='bg-gradient flex items-center relative'>
+				<section id='faq' className=''>
 					<div className='container mx-auto'>
 						<h2 className='mb-6 text-3xl font-semibold text-center md:text-4xl'>
 							Frequently Asked Questions

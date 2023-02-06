@@ -14,11 +14,11 @@ function ProfilePage(props) {
 				<title>Profile</title>
 				<meta name='description' content='Profile section' />
 			</Head>
-			<div className='text-white'>
+			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
-						title='Access Your Account Settings'
-						message='Please login to access your personal account settings'
+						title='Access Your Account'
+						message='Please login to access your personal account'
 						icon={<AccountIcon />}
 					/>
 				) : (

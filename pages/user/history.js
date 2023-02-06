@@ -13,7 +13,7 @@ function HistoryPage(props) {
 				<title>History</title>
 				<meta name='description' content='History section' />
 			</Head>
-			<div className='text-white'>
+			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
 						title='Keep track of what you watch'
