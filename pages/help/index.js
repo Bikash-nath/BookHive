@@ -2,7 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import Footer from '../../components/layouts/Footer'
-import ArrowDownIcon from '../../assets/icons/ArrowDownIcon'
+import Accordion from '../../components/ui/Accordion'
+import FAQs from '../../utils/constants/FAQs'
 
 function HelpPage(props) {
 	return (
@@ -26,45 +27,32 @@ function HelpPage(props) {
 				<section id='faq-accordion'>
 					<div className='container mx-auto px-6 mb-32'>
 						<div className='max-w-2xl m-8 mx-auto overflow-hidden'>
-							<div className='py-1 border-b outline-none group'>
-								<div className='flex items-center justify-between py-3 text-gray-400 transition duration-500 cursor-pointer group ease'>
-									<div className='transition duration-500 ease text-lg group-hover:text-purple-400'>
-										What is BookHive?
-									</div>
-									<div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-purple-400'>
-										<ArrowDownIcon />
-									</div>
-								</div>
-								<div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
-									<p className='py-2 text-justify text-gray-400'>
-										BookHive is an online platform for accessing thousands of
-										free audiobooks, ePubs, PDFs, magazines and podcasts.
-										<br />
-										Our Aim is to help people explore, discuss and share books
-										they love and improve process of learning and reading via
-										the efforts of a fantastic community of readers.
-									</p>
-								</div>
-							</div>
-							<div className='py-1 border-b outline-none group'>
-								<div className='flex items-center justify-between py-3 text-gray-400 transition duration-500 cursor-pointer group ease'>
-									<div className='transition duration-500 ease text-lg group-hover:text-indigo-600'>
-										How can I find latest audiobooks?
-									</div>
-									<div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-purple-400'>
-										<ArrowDownIcon />
-									</div>
-								</div>
-								<div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
-									<p className='py-2 text-justify text-gray-400'>
-										Visit
-										<a href='https://bookhive.vercel.app/audiobooks/new-arrivals'>
-											bookhive.vercel.app/audiobooks/new-arrivals
-										</a>
-										to find latest audiobooks.
-									</p>
-								</div>
-							</div>
+							<Accordion title='What is BookHive?' tabindex='1'>
+								'BookHive is an online platform for accessing thousands of free
+								audiobooks, ePubs, PDFs, magazines and podcasts.
+								<br />
+								Our Aim is to help people explore, discuss and share books they
+								love and improve process of learning and reading via the efforts
+								of a fantastic community of readers.'
+							</Accordion>
+							<Accordion title='How can I find latest audiobooks?' tabindex='2'>
+								<p className='py-2 text-justify text-gray-400'>
+									Visit
+									<a href='https://bookhive.vercel.app/audiobooks/new-arrivals'>
+										bookhive.vercel.app/audiobooks/new-arrivals
+									</a>
+									to find latest audiobooks.
+								</p>
+							</Accordion>
+
+							<hr />
+							{FAQs.map((faq, index) => (
+								<Accordion
+									title={faq.title}
+									content={faq.content}
+									tabindex={index}
+								/>
+							))}
 						</div>
 					</div>
 				</section>

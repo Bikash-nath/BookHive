@@ -19,7 +19,7 @@ function Footer() {
 								{content[title].map((term) => (
 									<Link
 										href={term.toLowerCase()}
-										className='capitalize text-gray-300 hover:text-purple-600'>
+										className='capitalize text-center text-gray-300 hover:text-purple-600'>
 										{term}
 									</Link>
 								))}
