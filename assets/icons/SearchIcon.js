@@ -5,7 +5,7 @@ export default function SearchIcon({ dimensions }) {
 			fill='none'
 			viewBox='0 0 24 24'
 			strokeWidth={2}
-			stroke='white'
+			stroke='currentColor'
 			className={dimensions}>
 			<title>Search</title>
 			<path

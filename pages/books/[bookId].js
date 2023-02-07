@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
-import { useRouter } from 'next/router'
 
 import BgCover from '../../components/modals/BgCover'
 import { getBooks } from '../../data/getData'
@@ -45,7 +44,7 @@ function BookDetailPage(props) {
 								</div>
 							)}
 						</div>
-						<div className='flex flex-col justify-center items-center space-y-4'>
+						<div className='flex flex-col justify-center items-center space-y-4 text-white'>
 							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-purple-900 border border-gray-500 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
@@ -81,9 +80,7 @@ function BookDetailPage(props) {
 				</div>
 				<div className='p-2 py-4'>
 					<h4 className='text-xl md:text-2xl py-2'>Book description</h4>
-					<p className='text-lg font-medium text-gray-200'>
-						{book.description}
-					</p>
+					<p className='text-lg font-medium text-gray-200'>{book.description}</p>
 				</div>
 			</div>
 		</Fragment>

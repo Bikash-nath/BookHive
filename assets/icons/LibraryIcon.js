@@ -1,4 +1,4 @@
-export default function LibraryIcon({ dimensions, color }) {
+export default function LibraryIcon({ dimensions }) {
 	return (
 		<svg
 			fill={color}

@@ -10,7 +10,7 @@ function LoginSplashPage(props) {
 		<Fragment>
 			<Head>
 				<title>Login</title>
-				<meta name='description' content='Login section' />
+				<meta name='description' content='Login splash page' />
 			</Head>
 			<LoginContainer>
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>

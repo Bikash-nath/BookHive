@@ -8,13 +8,24 @@ import BellIcon from '../../assets/icons/BellIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
 import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
+import AccountIcon from '../../assets/icons/AccountIcon'
+import LogoutIcon from '../../assets/icons/LogoutIcon'
 
 function Header() {
-	const user = undefined
+	const user = 1
 
 	const router = useRouter()
+	const currentRoute = router.pathname
 	const paths = ['login', 'signup']
-	const showRoute = !paths.find((path) => router.pathname.includes(path))
+	const showRoute = !paths.find((path) => currentRoute.includes(path))
+
+	const routeClassHandler = (route) => {
+		return `flex items-center space-x-2 my-4 hover:text-white text-${
+			(currentRoute.includes(route) && route !== '/') || currentRoute === route
+				? 'white'
+				: 'gray-400'
+		}`
+	}
 
 	return (
 		<>
@@ -43,16 +54,68 @@ function Header() {
 											<div className='flex items-center cursor-pointer p-2 space-x-4'>
 												<BellIcon dimensions='h-7 w-7' />
 											</div>
-											<HamburgerIcon className=' h-7 w-7' />
-											{user?.name ? (
-												<img
-													className='rounded-full p-1 w-8 h-8'
-													src={user?.image}
-													alt='user image'
-												/>
-											) : (
-												<AccountIcon dimensions='h-8 w-8' />
-											)}
+											<div className='dropdown inline-block relative'>
+												<button className='bg-gray-300 py-2 px-4 rounded inline-flex items-center'>
+													<HamburgerIcon className=' h-7 w-7' />
+													{user?.image ? (
+														<img
+															className='rounded-full p-1 w-8 h-8'
+															src={user?.image}
+															alt='user image'
+														/>
+													) : (
+														<AccountIcon dimensions='h-8 w-8' />
+													)}
+												</button>
+												<ul className='dropdown-menu absolute hidden text-gray-700 pt-1'>
+													<li className='p-2'>
+														<Link href='/user/profile'>
+															<div className={() => routeClassHandler('/collections')}>
+																<AccountIcon dimensions='h-7 w-7' />
+																<p className='font-mono text-base'>Profile</p>
+															</div>
+														</Link>
+													</li>
+													{window.innerWidth > 1024 && (
+														<>
+															<li>
+																<Link href='/user/settings'>
+																	<div className={() => routeClassHandler('/settings')}>
+																		<SettingsIcon dimensions='h-8 w-8' />
+																		<p className='font-mono text-base'>Settings</p>
+																	</div>
+																</Link>
+															</li>
+															<hr className='border-t-[0.1px] border-gray-900' />
+															<li>
+																<Link href='/help'>
+																	<div className={() => routeClassHandler('/help')}>
+																		<HelpIcon dimensions='h-8 w-8' />
+																		<p className='font-mono text-base'>Help</p>
+																	</div>
+																</Link>
+															</li>
+															<li>
+																<Link href='/feedback'>
+																	<div className={() => routeClassHandler('/help/donate')}>
+																		<FeedbackIcon dimensions='h-8 w-8' />
+																		<p className='font-mono text-base'>Send Feedback</p>
+																	</div>
+																</Link>
+															</li>
+															<hr className='border-t-[0.1px] border-gray-900' />
+														</>
+													)}
+													<li className='p-2'>
+														<Link href='/user/library/favourites'>
+															<div className={() => routeClassHandler('/favourites')}>
+																<LogoutIcon dimensions='h-7 w-7' />
+																<p className='font-mono text-base'>Log out</p>
+															</div>
+														</Link>
+													</li>
+												</ul>
+											</div>
 										</>
 									) : (
 										<LoginButton />

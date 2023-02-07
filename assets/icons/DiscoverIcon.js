@@ -1,11 +1,11 @@
-export default function Discover({ dimensions, color }) {
+export default function Discover({ dimensions }) {
 	return (
 		// width='10'
 		// height='10'
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 24 24'
-			fill={color}
+			fill='currentColor'
 			className={dimensions}
 			strokeWidth={1.5}>
 			<path fill='none' d='M0 0h24v24H0z' />

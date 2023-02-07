@@ -1,9 +1,9 @@
-export default function AccountIcon({ dimensions, color }) {
+export default function AccountIcon({ dimensions }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 24 24'
-			fill={color}
+			fill='white'
 			className={dimensions}>
 			<title>User</title>
 			<path

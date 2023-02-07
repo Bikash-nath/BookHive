@@ -1,14 +1,12 @@
-import React from 'react'
-
-export default function HeartIcon() {
+export default function HeartIcon({ dimensions, color = 'none' }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			fill='none'
+			fill={color}
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-6 h-6'>
+			className={dimensions}>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

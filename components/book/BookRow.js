@@ -5,18 +5,6 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { settings } from '../../utils/constants/sliderSettings'
 
-function DarkDots(props) {
-	console.log('\n\nBookrow Darkdot:\n', props)
-	const { className, style, onClick } = props
-	return (
-		<div
-			className={className}
-			style={{ ...style, background: 'green', color: 'white' }}
-			onClick={onClick}
-		/>
-	)
-}
-
 function BooksRow({ books }) {
 	return (
 		<Fragment>
