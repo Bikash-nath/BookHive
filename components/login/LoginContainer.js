@@ -3,7 +3,7 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 
 function LoginContainer(props) {
 	return (
-		<div className='flex items-start justify-center h-screen bg-black text-white pt-8'>
+		<div className='flex items-start justify-center h-screen bg-black text-white pt-8 p-0 m-0'>
 			<div className='relative flex flex-col rounded-2xl md:flex-row md:space-y-0 py-1 md:m-0 md:h-screen md:flex justify-center items-center'>
 				<div className='px-4 md:p-4 w-screen md:w-1/2'>
 					<div className='md:flex md:items-center justify-center'>

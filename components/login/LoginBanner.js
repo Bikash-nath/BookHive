@@ -9,7 +9,7 @@ export default function LoginBanner({ title, message, icon }) {
 		},
 	}
 	return (
-		<div className='flex flex-col items-center justify-center p-1 py-20'>
+		<div className='flex flex-col items-center justify-center p-1 py-20 pb-40'>
 			<div className='flex py-4'>{pageIcon}</div>
 			<div className='flex py-2 md:py-4 text-2xl md:text-3xl'>
 				<h2>{title}</h2>

@@ -1,4 +1,4 @@
-export default FAQs = [
+export const FAQs = [
 	{
 		title: 'What is BookHive?',
 		content:

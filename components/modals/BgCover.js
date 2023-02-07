@@ -2,21 +2,37 @@ import { useState, useEffect } from 'react'
 import { colors } from '../../utils/constants/bgColors'
 
 function BgCover(props) {
-	const [color, setColor] = useState(colors[0])
+	const [color, setColor] = useState(null)
 
 	useEffect(() => {
-		setColor(colors[Math.floor(Math.random() * colors.length)])
-	}, [])
+		if (!color) {
+			const bgColor = colors[Math.floor(Math.random() * colors.length)]
+			setColor(bgColor)
+			console.warn('bgColor', bgColor)
+		}
+		console.error('useEffect color', color)
+	}, [color]) //router.pathname
+	// bg-gradient-to-b from-purple-500 to-indigo-900
 
 	return (
 		<div className='flex-grow h-screen overflow-y-scroll scrollbar-hide select-none relative'>
+			{console.log('return', color)}
 			<section
-				className={`flex flex-col md:flex-row items-end justify-between md:justify-start bg-gradient-to-b ${color} to-black space-x-7 h-80 text-white md:pl-5 pb-5 border-[.5px]`}>
+				className={`flex flex-col z-40 md:flex-row items-end justify-between md:justify-start bg-gradient-to-b to-black ${color} text-white space-x-6 md:space-x-10 h-auto md:pl-4 pb-4`}>
 				{props.children}
 			</section>
 		</div>
 	)
 }
+
+// export async function getServerSideProps(context) {
+// 	console.log(context.params)
+// 	return {
+// 		props: {
+// 			color: 'from-red-500',
+// 		},
+// 	}
+// }
 
 export default BgCover
 

@@ -36,23 +36,16 @@ function HelpPage(props) {
 								of a fantastic community of readers.'
 							</Accordion>
 							<Accordion title='How can I find latest audiobooks?' tabindex='2'>
-								<p className='py-2 text-justify text-gray-400'>
-									Visit
-									<a href='https://bookhive.vercel.app/audiobooks/new-arrivals'>
+								<p className='py-2 text-justify text-gray-400 font-semibold'>
+									Visit{' '}
+									<a
+										href='https://bookhive.vercel.app/audiobooks/new-arrivals'
+										className='text-indigo-500'>
 										bookhive.vercel.app/audiobooks/new-arrivals
-									</a>
+									</a>{' '}
 									to find latest audiobooks.
 								</p>
 							</Accordion>
-
-							<hr />
-							{FAQs.map((faq, index) => (
-								<Accordion
-									title={faq.title}
-									content={faq.content}
-									tabindex={index}
-								/>
-							))}
 						</div>
 					</div>
 				</section>

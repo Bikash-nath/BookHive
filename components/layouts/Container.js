@@ -7,7 +7,6 @@ import NavbarSm from './NavbarSm'
 function Container(props) {
 	return (
 		<div className='overflow-hidden m-0'>
-			<NavbarSm />
 			<div className='flex'>
 				<NavbarLg />
 				<main className='flex-grow h-screen bg-gray-100 overflow-y-scroll select-none'>
@@ -15,6 +14,7 @@ function Container(props) {
 					{props.children}
 				</main>
 			</div>
+			<NavbarSm />
 		</div>
 	)
 }

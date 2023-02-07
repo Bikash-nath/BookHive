@@ -13,7 +13,9 @@ function AuthorListPage(props) {
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
 
-			<ListGridModal>{<AuthorGrid authors={props.authors} />}</ListGridModal>
+			<ListGridModal listTitle='All popular authors'>
+				{<AuthorGrid authors={props.authors} />}
+			</ListGridModal>
 		</Fragment>
 	)
 }

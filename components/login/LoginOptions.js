@@ -3,9 +3,9 @@ import Link from 'next/link'
 function LoginModal(props) {
 	return (
 		<>
-			<div className='my-4 border-b border-b-gray-500'></div>
+			<div className='py-4 border-b border-b-gray-500'></div>
 			<p className='my-4 text-sm font-medium text-center text-gray-400'>
-				or continue in with
+				or continue with
 			</p>
 			<div className='flex space-x-4 justify-between'>
 				<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-500 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
@@ -30,7 +30,7 @@ function LoginModal(props) {
 				</Link>
 			</div>
 			<Link href='/'>
-				<div className='font-normal underline underline-offset-4 text-gray-400 text-center my-1'>
+				<div className='font-normal underline underline-offset-4 text-gray-400 text-center py-1'>
 					Skip for now
 				</div>
 			</Link>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import ListGridModal from '../../components/book/ListGridModal'
+import ListGridModal from '../../components/modals/ListGridModal'
 import BookGrid from '../../components/book/BookGrid'
 import { getBooks } from '../../data/getData'
 
@@ -12,8 +12,9 @@ function BookListPage(props) {
 				<title>Popular Books</title>
 				<meta name='description' content='A list of all popular ebooks!' />
 			</Head>
-
-			<ListGridModal>{<BookGrid books={props.books} />}</ListGridModal>
+			<ListGridModal listTitle='All popular books'>
+				{<BookGrid books={props.books} />}
+			</ListGridModal>
 		</Fragment>
 	)
 }

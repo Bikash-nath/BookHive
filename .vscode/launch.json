@@ -5,6 +5,12 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Attach by Process ID",
+			"processId": "${command:PickProcess}",
+			"request": "attach",
+			"type": "node"
+		},
+		{
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "msedge",

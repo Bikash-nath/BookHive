@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useRouter } from 'next/route'
+import { useRouter } from 'next/router'
 
 import Logo from '../ui/Logo'
 import HomeIcon from '../../assets/icons/HomeIcon'
@@ -27,7 +27,7 @@ function NavbarLg() {
 						<Link href='/'>
 							<div
 								className={`flex items-center space-x-2 my-4 hover:text-white text-${
-									!route.includes('/') ? 'white' : 'gray-400'
+									route === '/' ? 'white' : 'gray-400'
 								}`}>
 								<HomeIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Home</p>
@@ -60,10 +60,10 @@ function NavbarLg() {
 								<p className='font-mono text-base'>History</p>
 							</div>
 						</Link>
-						<Link href='/user/profile'>
+						<Link href='/user/downloads'>
 							<div
 								className={`flex items-center space-x-2 my-4 hover:text-white text-${
-									route.includes('/profile') ? 'white' : 'gray-400'
+									route.includes('/downloads') ? 'white' : 'gray-400'
 								}`}>
 								<DownloadsIcon color={'currentColor'} dimensions='h-8 w-8' />
 								<p className='font-mono text-base'>Downloads</p>

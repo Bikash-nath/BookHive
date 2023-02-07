@@ -3,9 +3,9 @@ export default function HistoryIcon({ dimensions, color }) {
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			fill='none'
-			stroke={color}
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
+			stroke={color}
 			className={dimensions}>
 			<title>History</title>
 			<path

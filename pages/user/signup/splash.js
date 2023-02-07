@@ -21,13 +21,6 @@ function SignUpSplashPage(props) {
 						</button>
 					</Link>
 				</div>
-				<div className='flex flex-col items-center my-6'>
-					<Link href='/user/signup' className='w-full'>
-						<button className='w-full rounded-full flex justify-center max-sm: items-center p-2 lg:p-4 space-x-4 font-sans font-bold shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
-							<span>Sign up with phone number</span>
-						</button>
-					</Link>
-				</div>
 				<LoginOptions
 					btnLink='/user/login/splash'
 					btnMsg='Login'

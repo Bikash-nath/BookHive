@@ -19,7 +19,7 @@ function Header() {
 	return (
 		<>
 			{showRoute && (
-				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black'>
+				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
 					<nav className='container mx-auto p-2'>
 						<div className='flex items-center justify-between'>
 							<div className='flex lg:hidden items-center space-x-20 w-full'>
