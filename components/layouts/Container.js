@@ -10,7 +10,7 @@ function Container(props) {
 			<div className='flex'>
 				<NavbarLg />
 				<main className='flex-grow h-screen bg-gray-900 overflow-y-scroll select-none p-0 m-0'>
-					{/* <Header /> */}
+					<Header />
 					{props.children}
 				</main>
 			</div>

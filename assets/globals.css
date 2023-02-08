@@ -37,6 +37,10 @@
 	@apply absolute px-1 md:px-2 w-full md:w-4/6 text-start left-1 bottom-1;
 }
 
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
 .line-clamp-2 {
 	overflow: hidden;
 	display: -webkit-box;

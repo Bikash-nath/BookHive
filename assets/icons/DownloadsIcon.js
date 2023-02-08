@@ -6,7 +6,7 @@ export default function HeartIcon({ dimensions, color = 'none' }) {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-6 h-6'>
+			className={dimensions}>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

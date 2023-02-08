@@ -1,7 +1,7 @@
 export default function LibraryIcon({ dimensions }) {
 	return (
 		<svg
-			fill={color}
+			fill={'currentColor'}
 			className={dimensions}
 			viewBox='0 0 36 36'
 			version='1.1'

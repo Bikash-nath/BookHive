@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import LoginBanner from '../../components/login/LoginBanner'
-import HeartIcon from '../../assets/icons/HeartIcon'
+import LoginBanner from '../../../components/login/LoginBanner'
+import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function FavouritesPage(props) {
 	const user = ''
@@ -10,14 +10,14 @@ function FavouritesPage(props) {
 	return (
 		<Fragment>
 			<Head>
-				<title>History</title>
+				<title>Favourites</title>
 				<meta name='description' content='History section' />
 			</Head>
 			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
 						title='Your favourite books'
-						message='Use heart icon to favourite books'
+						message='Login to save books as favourites'
 						icon={<HeartIcon />}
 					/>
 				) : (

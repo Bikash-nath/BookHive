@@ -8,7 +8,7 @@ export default function LoginBanner({ title, message, icon }) {
 		},
 	}
 	return (
-		<div className='flex flex-col items-center justify-center p-1 py-40 md:py-60'>
+		<div className='flex flex-col items-center justify-center p-1 py-20 md:py-24'>
 			<div className='flex py-4 text-white'>{pageIcon}</div>
 			<div className='flex py-2 md:py-4 text-2xl md:text-3xl'>
 				<h2>{title}</h2>

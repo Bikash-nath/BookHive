@@ -5,6 +5,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Launch Program",
+			"program": "${workspaceFolder}/ npm run dev",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "node"
+		},
+		{
 			"name": "Attach by Process ID",
 			"processId": "${command:PickProcess}",
 			"request": "attach",

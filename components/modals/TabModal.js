@@ -1,4 +1,4 @@
-export default function ({ props }) {
+export default function (props) {
 	return (
 		<>
 			<div className='bg-tabs'></div>
@@ -7,11 +7,11 @@ export default function ({ props }) {
 					<div
 						key={tabIndex}
 						className={`py-1 ${
-							selected
+							props.selectedTab === tabIndex
 								? 'border-b-2 md:border-b-3 border-gray-200 text-lg md:text-2xl'
 								: 'text-gray-600 hover:text-gray-200 text-base md:text-xl cursor-pointer'
 						}`}
-						onClick={() => props.onTabChange(tabIndex + 1)}>
+						onClick={() => props.onTabChange(tabIndex)}>
 						{tab}
 					</div>
 				))}

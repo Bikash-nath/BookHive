@@ -1,5 +1,5 @@
-import LoginBanner from '../../components/login/LoginBanner'
-import HistoryIcon from '../../assets/icons/HistoryIcon'
+import LoginBanner from '../../../components/login/LoginBanner'
+import HistoryIcon from '../../../assets/icons/HistoryIcon'
 
 function ReadHistoryPage() {
 	const user = ''

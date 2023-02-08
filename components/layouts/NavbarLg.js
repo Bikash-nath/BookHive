@@ -37,94 +37,85 @@ function NavbarLg() {
 							<Logo size={45} />
 						</div>
 						<Link href='/'>
-							<div className={() => routeClassHandler('/')}>
-								<HomeIcon dimensions='h-8 w-8' />
+							<div className={routeClassHandler('/')}>
+								<HomeIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Home</p>
 							</div>
 						</Link>
 						<Link href='/discover'>
-							<div className={() => routeClassHandler('/discover')}>
-								<DiscoverIcon dimensions='h-8 w-8' />
+							<div className={routeClassHandler('/discover')}>
+								<DiscoverIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Discover</p>
 							</div>
 						</Link>
-						<hr className='border-t-[0.1px] border-gray-900' />
+						<hr className='border-t-[0.1px] border-gray-700' />
 
 						<div className='dropdown inline-block relative'>
-							<button className='bg-gray-300 py-2 px-4 rounded inline-flex items-center'>
-								<span className='mr-1'>
-									<Link href='/user/library'>
-										<div className={() => routeClassHandler('/library')}>
-											<LibraryIcon dimensions='h-8 w-8' />
-											<p className='font-mono text-base'>Library</p>
-										</div>
-									</Link>
-								</span>
-								<DropdownIcon />
+							<button className='rounded inline-flex items-center'>
+								<Link href='/user/library'>
+									<div className={routeClassHandler('/library')}>
+										<LibraryIcon dimensions='h-7 w-7' />
+										<p className='font-mono text-base'>Library</p>
+									</div>
+								</Link>
+								<DropdownIcon dimensions='h-7 w-7' />
 							</button>
-							<ul className='dropdown-menu absolute hidden text-gray-700 pt-1'>
+							<ul className='dropdown-menu absolute hidden text-gray-700'>
 								<li className='p-2'>
 									<Link href='/user/library/collections'>
-										<div className={() => routeClassHandler('/collections')}>
-											<CollectionIcon dimensions='h-8 w-8' />
+										<div className={routeClassHandler('/collections')}>
+											<CollectionIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Collections</p>
 										</div>
 									</Link>
 								</li>
 								<li className='p-2'>
 									<Link href='/user/library/favourites'>
-										<div className={() => routeClassHandler('/favourites')}>
-											<HeartIcon dimensions='h-8 w-8' />
+										<div className={routeClassHandler('/favourites')}>
+											<HeartIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Favourite books</p>
 										</div>
 									</Link>
 								</li>
 								<li className='p-2'>
 									<Link href='/user/library/read-history'>
-										<div className={() => routeClassHandler('/history')}>
-											<HistoryIcon dimensions='h-8 w-8' />
+										<div className={routeClassHandler('/history')}>
+											<HistoryIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Read history</p>
 										</div>
 									</Link>
-								</li>
-								<li className='p-2'>
-									<a
-										className='rounded-b bg-gray-300 hover:bg-gray-500 py-2 px-4 block whitespace-no-wrap'
-										href='#'>
-										Three is the magic number
-									</a>
 								</li>
 							</ul>
 						</div>
 
 						<Link href='/user/downloads'>
-							<div className={() => routeClassHandler('/downloads')}>
-								<DownloadsIcon dimensions='h-8 w-8' />
+							<div className={routeClassHandler('/downloads')}>
+								<DownloadsIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Downloads</p>
 							</div>
 						</Link>
 
 						<hr className='border-t-[0.1px] border-gray-900' />
-						<div className='absolute bottom-16'>
+						<div className='absolute bottom-28'>
 							<Link href='/user/settings'>
-								<div className={() => routeClassHandler('/settings')}>
-									<SettingsIcon dimensions='h-8 w-8' />
+								<div className={routeClassHandler('/settings')}>
+									<SettingsIcon dimensions='h-7 w-7' />
 									<p className='font-mono text-base'>Settings</p>
 								</div>
 							</Link>
 						</div>
-						<div className='absolute bottom-4'>
+						<div className='absolute bottom-16'>
 							<Link href='/help'>
-								<div className={() => routeClassHandler('/help')}>
-									<HelpIcon dimensions='h-8 w-8' />
+								<div className={routeClassHandler('/help')}>
+									<HelpIcon dimensions='h-7 w-7' />
 									<p className='font-mono text-base'>Help</p>
 								</div>
 							</Link>
 						</div>
 						<div className='absolute bottom-4'>
 							<Link href='/feedback'>
-								<div className={() => routeClassHandler('/help/donate')}>
-									<FeedbackIcon dimensions='h-8 w-8' />
+								<div className={routeClassHandler('/help/donate')}>
+									<FeedbackIcon dimensions='h-7 w-7' />
 									<p className='font-mono text-base'>Send Feedback</p>
 								</div>
 							</Link>
@@ -132,7 +123,7 @@ function NavbarLg() {
 						{/* {collections.map((collection) => (
 							<p
 								key={collection.id}
-								onClick={() => setcollectionId(collection.id)}
+								onClick={setcollectionId(collection.id)}
 								className='cursor-pointer hover:text-white'>
 								{collection.name} className='font-mono text-base'
 							</p>

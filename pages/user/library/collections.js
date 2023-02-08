@@ -1,36 +1,42 @@
+import Head from 'next/head'
+import { Fragment, useState } from 'react'
+
 import TabModal from '../../../components/modals/TabModal'
 import LoginBanner from '../../../components/login/LoginBanner'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 function CollectionPage() {
-	const user = '21'
+	const [currentTab, setCurrentTab] = useState(0)
 	const list = ''
+	const user = '21'
+
+	const onTabChangeHandler = (tabIndex) => {
+		setCurrentTab(tabIndex)
+	}
 
 	return (
 		<Fragment>
 			<Head>
-				<title>Library</title>
-				<meta name='description' content='Library section' />
+				<title>Collections</title>
+				<meta name='description' content='Collections section' />
 			</Head>
 			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
-						title='Enjoy Your Favourite Books'
-						message='Log in to see saved books, podcasts, authors,
-						and collections in Your Library.'
+						title='Enjoy Your Books Collection'
+						message='Log in to see saved your collection of books, podcasts and more.'
 						icon={<LibraryIcon />}
 					/>
 				) : (
 					<div>
-						<p className='text-xl md:text-2xl mx-2 md:mx-4 my-auto'>
-							Your Library
-						</p>
+						<p className='text-xl md:text-2xl mx-2 md:mx-4 my-auto'>Your Library</p>
 						<section id='tabs'>
 							<div className='container relative sm:text-left px-4'>
 								<div className='bg-tabs'></div>
 								<TabModal
-									tabs={['Collections', 'Audiobooks', 'Ebooks', 'Podcasts']}
+									tabs={['All Collections', 'Audiobooks', 'Ebooks', 'Podcasts']}
 									onTabChange={onTabChangeHandler}
+									selectedTab={currentTab}
 								/>
 
 								{list?.length ? (
