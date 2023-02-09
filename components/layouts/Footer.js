@@ -7,13 +7,15 @@ function Footer() {
 		Company: ['Terms', 'Privacy', 'FAQ'],
 	}
 	return (
-		<footer className='bg-slate-900 w-full h-full'>
+		<footer className='bg-slate-900 w-full'>
 			<div className='container mx-auto px-5 pt-12 pb-10'>
-				<div className='flex flex-col justify-between space-x-12 md:flex-row md:space-y-0 w-full'>
-					{Object.keys(content).map((title) => (
-						<div className='flex flex-col items-center justify-center w-full md:items-start text-md md:text-lg'>
-							<div className='mb-5 font-bold text-white capitalize'>{title}</div>
-							<div className='flex flex-col items-center justify-around space-y-3'>
+				<div className='flex flex-col md:flex-row justify-center items-center space-y-8 md:space-x-12 w-full'>
+					{Object.keys(content).map((title, i) => (
+						<div
+							key={i}
+							className='flex flex-col items-center justify-center w-full text-md md:text-lg'>
+							<div className='mb-2 font-bold text-white capitalize'>{title}</div>
+							<div className='flex flex-col items-center justify-around space-y-2'>
 								{content[title].map((term) => (
 									<Link
 										href={term.toLowerCase()}

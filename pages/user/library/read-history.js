@@ -1,3 +1,6 @@
+import Head from 'next/head'
+import { Fragment } from 'react'
+
 import LoginBanner from '../../../components/login/LoginBanner'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 

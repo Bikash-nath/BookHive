@@ -12,15 +12,16 @@ function BgCover(props) {
 		}
 		console.error('useEffect color', color)
 	}, [color]) //router.pathname
-	// bg-gradient-to-b from-purple-500 to-indigo-900
-	// ||-betweeen
+
 	return (
-		<div className='flex-grow h-screen overflow-y-scroll scrollbar-hide select-none relative'>
+		<div className='flex-grow scrollbar-hide select-none relative'>
 			{console.log('return', color)}
-			<section
-				className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around bg-gradient-to-b to-black ${color} text-white space-x-6 md:space-x-10 h-auto md:px-4 pb-4`}>
-				{props.children}
-			</section>
+			<div className={`bg-gradient-to-b to-black ${color}`}>
+				<section
+					className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around z-40 text-white space-x-6 space-y-4 md:space-x-10 h-auto md:px-4 pb-4`}>
+					{props.children}
+				</section>
+			</div>
 		</div>
 	)
 }

@@ -17,11 +17,15 @@ function HomePage(props) {
 				/>
 			</Head>
 			<div className='bg-gradient'>
-				<ListSliderModal listTitle='Popular Books' listLink='/books'>
-					{<BookRow books={props.books} />}
+				<ListSliderModal listTitle='Most Popular Books' listLink='/books'>
+					{<BookRow books={props.books.slice(0, 10)} />}
 				</ListSliderModal>
 
-				<ListSliderModal listTitle='Trending Books' listLink='/books'>
+				<ListSliderModal listTitle='Top new releases' listLink='/books'>
+					{<BookRow books={props.books.slice(8)} />}
+				</ListSliderModal>
+
+				<ListSliderModal listTitle='Featured Audiobooks' listLink='/books'>
 					{<BookRow books={props.books} />}
 				</ListSliderModal>
 

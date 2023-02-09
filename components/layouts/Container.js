@@ -5,11 +5,13 @@ import NavbarLg from './NavbarLg'
 import NavbarSm from './NavbarSm'
 
 function Container(props) {
+	// const pageRef = useRef()
+
 	return (
 		<div className='overflow-hidden m-0'>
 			<div className='flex'>
 				<NavbarLg />
-				<main className='flex-grow h-screen bg-gray-900 overflow-y-scroll select-none p-0 m-0'>
+				<main className='flex-grow h-screen relative bg-gray-900 overflow-y-scroll select-none p-0 m-0'>
 					<Header />
 					{props.children}
 				</main>

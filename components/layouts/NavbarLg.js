@@ -13,83 +13,84 @@ import DownloadsIcon from '../../assets/icons/DownloadsIcon'
 import SettingsIcon from '../../assets/icons/SettingsIcon'
 import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
+import { useState } from 'react'
 
 function NavbarLg() {
+	const [libraryToggle, setLibraryToggle] = useState(true)
 	const router = useRouter()
 	const currentRoute = router.pathname
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
-		return `flex items-center space-x-2 my-4 hover:text-white text-${
+		return `flex items-center space-x-2 m-2 hover:text-white text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route
-				? 'white'
-				: 'gray-400'
+				? 'white '
+				: 'gray-400 '
 		}`
 	}
 
 	return (
 		<>
 			{showRoute && (
-				<div className='overflow-y-hidden hide-scrollbar hidden lg:inline-block relative p-2 md:min-w-[10rem] lg:min-w-[12rem] bg-black border-r border-gray-900'>
-					<div className='space-y-4 cursor-pointer'>
+				<div className='overflow-y-hidden hide-scrollbar hidden lg:inline-block relative p-2 min-w-[13rem] bg-black border-r border-gray-900'>
+					<div className='space-y-5 cursor-pointer'>
 						<div className='flex items-center space-x-20'>
 							<Logo size={45} />
 						</div>
 						<Link href='/'>
-							<div className={routeClassHandler('/')}>
+							<div className={routeClassHandler('/') + 'my-4'}>
 								<HomeIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Home</p>
 							</div>
 						</Link>
 						<Link href='/discover'>
-							<div className={routeClassHandler('/discover')}>
+							<div className={routeClassHandler('/discover') + 'my-4'}>
 								<DiscoverIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Discover</p>
 							</div>
 						</Link>
 						<hr className='border-t-[0.1px] border-gray-700' />
-
-						<div className='dropdown inline-block relative'>
-							<button className='rounded inline-flex items-center'>
+						<div className='flex flex-col'>
+							<div className='flex'>
 								<Link href='/user/library'>
 									<div className={routeClassHandler('/library')}>
 										<LibraryIcon dimensions='h-7 w-7' />
 										<p className='font-mono text-base'>Library</p>
 									</div>
 								</Link>
-								<DropdownIcon dimensions='h-7 w-7' />
-							</button>
-							<ul className='dropdown-menu absolute hidden text-gray-700'>
-								<li className='p-2'>
+								<div
+									className={'flex items-center m-2'}
+									onClick={() => setLibraryToggle(!libraryToggle)}>
+									<DropdownIcon dimensions='h-7 w-7' />
+								</div>
+							</div>
+							{libraryToggle && (
+								<div className='ml-2'>
 									<Link href='/user/library/collections'>
 										<div className={routeClassHandler('/collections')}>
 											<CollectionIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Collections</p>
 										</div>
 									</Link>
-								</li>
-								<li className='p-2'>
 									<Link href='/user/library/favourites'>
 										<div className={routeClassHandler('/favourites')}>
 											<HeartIcon dimensions='h-7 w-7' />
-											<p className='font-mono text-base'>Favourite books</p>
+											<p className='font-mono text-base'>Favourites</p>
 										</div>
 									</Link>
-								</li>
-								<li className='p-2'>
 									<Link href='/user/library/read-history'>
 										<div className={routeClassHandler('/history')}>
 											<HistoryIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Read history</p>
 										</div>
 									</Link>
-								</li>
-							</ul>
+								</div>
+							)}
 						</div>
 
 						<Link href='/user/downloads'>
-							<div className={routeClassHandler('/downloads')}>
+							<div className={routeClassHandler('/downloads') + 'my-4'}>
 								<DownloadsIcon dimensions='h-7 w-7' />
 								<p className='font-mono text-base'>Downloads</p>
 							</div>
@@ -105,16 +106,16 @@ function NavbarLg() {
 							</Link>
 						</div>
 						<div className='absolute bottom-16'>
-							<Link href='/help'>
-								<div className={routeClassHandler('/help')}>
+							<Link href='/help/faq'>
+								<div className={routeClassHandler('/faq')}>
 									<HelpIcon dimensions='h-7 w-7' />
 									<p className='font-mono text-base'>Help</p>
 								</div>
 							</Link>
 						</div>
 						<div className='absolute bottom-4'>
-							<Link href='/feedback'>
-								<div className={routeClassHandler('/help/donate')}>
+							<Link href='/help/donate'>
+								<div className={routeClassHandler('/donate')}>
 									<FeedbackIcon dimensions='h-7 w-7' />
 									<p className='font-mono text-base'>Send Feedback</p>
 								</div>

@@ -14,7 +14,7 @@ function DiscoverPage() {
 	}
 
 	return (
-		<div className='bg-gradient'>
+		<div className='bg-gradient pb-24'>
 			<SearchBar onSearch={searchHandler} />
 			<GenreGrid genreList={genreList} images={images} />
 		</div>

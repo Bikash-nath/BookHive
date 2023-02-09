@@ -6,18 +6,15 @@ export default function GenresGrid(props) {
 
 	useEffect(() => {
 		const imageList = genreList.map(
-			() =>
-				'/images/genres/' + images[Math.floor(Math.random() * images.length)]
+			() => '/images/genres/' + images[Math.floor(Math.random() * images.length)]
 		)
 		setGenreImages(imageList)
 	}, [])
 
 	return (
 		<section>
-			<div className='container mx-auto p-1 md:p-6 text-white'>
-				<h2 className='text-2xl md:text-3xl text-center md:text-left md:p-6'>
-					Popular Genres
-				</h2>
+			<div className='container mx-auto p-2 md:p-6 text-white'>
+				<h2 className='text-2xl md:text-3xl text-center md:text-left p-4 md:p-6'>Popular Genres</h2>
 				<div className='item-container genre-grid'>
 					{genreList.map((genre, i) => (
 						<div key={genre} className='group item rounded-lg'>

@@ -1,3 +1,6 @@
+import Head from 'next/head'
+import { Fragment } from 'react'
+
 import LoginBanner from '../../../components/login/LoginBanner'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 
@@ -7,8 +10,8 @@ function ReadLaterPage() {
 	return (
 		<Fragment>
 			<Head>
-				<title>History</title>
-				<meta name='description' content='History section' />
+				<title>Read later</title>
+				<meta name='description' content='Read later section' />
 			</Head>
 			<div className='bg-gradient'>
 				{!user ? (
