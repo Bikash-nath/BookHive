@@ -9,7 +9,7 @@ function AuthorCard(props) {
 		<div
 			key={key}
 			className='flex flex-row items-center justify-center sm:mx-3 mx-2 h-60 md:mx-4 md:w-44 md:h-80 rounded-xl group-hover:flex'>
-			<Link href={`/author/${slug}`}>
+			<Link href={`/authors/${slug}`}>
 				<div className='flex flex-col w-full h-full rounded-xl p-1 bg-gray-700 bg-opacity-60 hover:bg-opacity-100 hover:scale-105 duration-200 transform'>
 					<img
 						src={image}

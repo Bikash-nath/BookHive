@@ -14,7 +14,7 @@ function BookDetailPage(props) {
 	return (
 		<Fragment>
 			<Head>
-				<title>{book.bookId}</title>
+				<title>{book.title}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
 			<div className='bg-[#121212] text-white pb-20'>
@@ -23,7 +23,7 @@ function BookDetailPage(props) {
 						<img
 							src={book.image}
 							alt={book.title}
-							className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1 p-1'
+							className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1'
 						/>
 						<div className='px-2 md:px-4'>
 							<p className='text-xl md:text-2xl font-medium'>{book.title}</p>
@@ -107,11 +107,9 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const bookList = await getBooks()
-	console.log('\n\n\n\n StaticPaths-bookList', bookList.length)
 	const params = bookList.map((book) => ({
 		params: { bookId: book._id.toString() },
 	}))
-	console.log('\n\n\n params', params)
 
 	return {
 		paths: params,

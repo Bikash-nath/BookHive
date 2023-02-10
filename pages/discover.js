@@ -1,4 +1,7 @@
-import { useRouter } from 'next/router'
+import Head from 'next/head'
+import { Fragment } from 'react'
+
+// import { useRouter } from 'next/router'
 import SearchBar from '../components/SearchBar'
 import GenreGrid from '../components/GenreGrid'
 
@@ -6,18 +9,17 @@ import { genreList } from '../utils/constants/genreConstants'
 import { images } from '../utils/constants/genrePics'
 
 function DiscoverPage() {
-	const router = useRouter()
-
-	const searchHandler = (keyword) => {
-		const searchPath = `/search/?keyword=${keyword}`
-		router.push(searchPath)
-	}
-
 	return (
-		<div className='bg-gradient pb-24'>
-			<SearchBar onSearch={searchHandler} />
-			<GenreGrid genreList={genreList} images={images} />
-		</div>
+		<Fragment>
+			<Head>
+				<title>Discover</title>
+				<meta name='description' content='Discover section' />
+			</Head>
+			<div className='bg-gradient pb-24'>
+				<SearchBar />
+				<GenreGrid genreList={genreList} images={images} />
+			</div>
+		</Fragment>
 	)
 }
 

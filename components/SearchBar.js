@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 
-export default function SearchBar(props) {
+export default function SearchBar() {
+	const router = useRouter()
+
+	const searchHandler = (keyword) => {
+		const searchPath = `/search/?keyword=${keyword}`
+		router.push(searchPath)
+	}
+
 	const [keyword, setKeyword] = useState('')
 	const [debouncedTerm, setDebouncedTerm] = useState(keyword)
 
@@ -16,12 +23,12 @@ export default function SearchBar(props) {
 
 	useEffect(() => {
 		if (debouncedTerm) {
-			props.onSearch(keyword)
+			searchHandler(keyword)
 		}
 	}, [debouncedTerm]) //don't add setPath as dependency of useEffect; CallBack hell
 
 	return (
-		<div className='flex items-center justify-center gap-4 p-2'>
+		<div className='flex items-center justify-center w-full gap-4 p-2'>
 			<input
 				type='text'
 				value={keyword}
@@ -29,7 +36,7 @@ export default function SearchBar(props) {
 					e.preventDefault()
 					setKeyword(e.target.value)
 				}}
-				className='m-2 ml-6 w-full xs:w-2/5 h-8 md:h-9 lg:h-10 p-4 pr-0 mr-0 text-black text-lg rounded-full focus:outline-none bg-gray-300'
+				className='m-2 ml-6 w-full xs:w-2/5 h-8 md:h-9 lg:h-10 p-4 pr-0 mr-0 text-white text-lg rounded-full focus:outline-none bg-gray-900'
 				placeholder='Search books, authors or series'
 			/>
 			<button className='rounded-md p-2 pl-0 ml-0'>

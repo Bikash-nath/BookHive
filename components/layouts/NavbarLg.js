@@ -5,7 +5,8 @@ import Logo from '../ui/Logo'
 import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
-import DropdownIcon from '../../assets/icons/DropdownIcon'
+import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
+import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 import CollectionIcon from '../../assets/icons/CollectionIcon'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import HistoryIcon from '../../assets/icons/HistoryIcon'
@@ -62,7 +63,11 @@ function NavbarLg() {
 								<div
 									className={'flex items-center m-2'}
 									onClick={() => setLibraryToggle(!libraryToggle)}>
-									<DropdownIcon dimensions='h-7 w-7' />
+									{libraryToggle ? (
+										<ChevronDownIcon dimensions='h-7 w-7' />
+									) : (
+										<ChevronRightIcon dimensions='h-7 w-7' />
+									)}
 								</div>
 							</div>
 							{libraryToggle && (

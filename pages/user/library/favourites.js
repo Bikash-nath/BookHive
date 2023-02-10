@@ -19,7 +19,7 @@ function FavouritesPage(props) {
 		<Fragment>
 			<Head>
 				<title>Favourites</title>
-				<meta name='description' content='History section' />
+				<meta name='description' content='User favourites page' />
 			</Head>
 			<div className='bg-gradient'>
 				{!user ? (

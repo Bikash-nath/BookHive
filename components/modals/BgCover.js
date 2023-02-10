@@ -18,7 +18,7 @@ function BgCover(props) {
 			{console.log('return', color)}
 			<div className={`bg-gradient-to-b to-black ${color}`}>
 				<section
-					className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around z-40 text-white space-x-6 space-y-4 md:space-x-10 h-auto md:px-4 pb-4`}>
+					className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around text-white space-y-2 md:space-y-0 space-x-6 md:space-x-10 h-auto md:px-4 pb-4`}>
 					{props.children}
 				</section>
 			</div>

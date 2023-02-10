@@ -1,4 +1,4 @@
-import ArrowDownIcon from '../../assets/icons/ArrowDownIcon'
+import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 
 export default function Accordion(props) {
 	return (
@@ -8,7 +8,7 @@ export default function Accordion(props) {
 					{props.title}
 				</div>
 				<div className='p-2 transition duration-500 ease group-focus:-rotate-180 group-focus:text-purple-400'>
-					<ArrowDownIcon />
+					<ChevronDownIcon />
 				</div>
 			</div>
 			<div className='md:text-md overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>

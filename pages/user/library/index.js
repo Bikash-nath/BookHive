@@ -6,7 +6,7 @@ import AccountIcon from '../../../assets/icons/AccountIcon'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 import CollectionIcon from '../../../assets/icons/CollectionIcon'
 import HeartIcon from '../../../assets/icons/HeartIcon'
-import CheckIcon from '../../../assets/icons/CheckIcon'
+import CompletedIcon from '../../../assets/icons/CompletedIcon'
 
 function LibraryPage(props) {
 	const user = '21'
@@ -83,7 +83,7 @@ function LibraryPage(props) {
 							<Link href='/user/library/favourites'>
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
-										<CheckIcon dimensions='h-7 w-7' />
+										<CompletedIcon dimensions='h-7 w-7' />
 										<p class='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
 									</div>
 									<p class='text-base md:text-lg text-gray-400 text-left'>
@@ -141,7 +141,7 @@ export default LibraryPage
 	</Link>
 	<Link href='/user/library/favourites'>
 		<div className='flex w-full p-1 py-2 gap-2'>
-			<CheckIcon dimensions='h-7 w-7' />
+			<CompletedIcon dimensions='h-7 w-7' />
 			<p class='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
 		</div>
 		<p class='text-base md:text-lg text-gray-400 text-left'>

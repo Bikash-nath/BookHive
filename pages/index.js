@@ -10,10 +10,10 @@ function HomePage(props) {
 	return (
 		<Fragment>
 			<Head>
-				<title>Bookspot</title>
+				<title>Bookhive</title>
 				<meta
 					name='description'
-					content='Bookspot is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
+					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
 			<div className='bg-gradient'>
