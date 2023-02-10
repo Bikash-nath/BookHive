@@ -37,7 +37,7 @@ function NavbarLg() {
 				<div className='overflow-y-hidden hide-scrollbar hidden lg:inline-block relative p-2 min-w-[13rem] bg-black border-r border-gray-900'>
 					<div className='space-y-5 cursor-pointer'>
 						<div className='flex items-center space-x-20'>
-							<Logo size={45} />
+							<Logo size={48} />
 						</div>
 						<Link href='/'>
 							<div className={routeClassHandler('/') + 'my-4'}>
@@ -64,9 +64,9 @@ function NavbarLg() {
 									className={'flex items-center m-2'}
 									onClick={() => setLibraryToggle(!libraryToggle)}>
 									{libraryToggle ? (
-										<ChevronDownIcon dimensions='h-7 w-7' />
+										<ChevronDownIcon dimensions='h-6 w-6' />
 									) : (
-										<ChevronRightIcon dimensions='h-7 w-7' />
+										<ChevronRightIcon dimensions='h-6 w-6' />
 									)}
 								</div>
 							</div>

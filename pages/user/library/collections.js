@@ -23,7 +23,7 @@ function CollectionPage() {
 					/>
 				) : (
 					<div>
-						<p className='text-2xl md:text-3xl m-2 md:m-4'>Your Collections</p>
+						<p className='text-2xl md:text-3xl p-2 md:p-4'>Your Collections</p>
 						<section id='tabs'>
 							<div className='container relative sm:text-left px-4'>
 								{list?.length ? (

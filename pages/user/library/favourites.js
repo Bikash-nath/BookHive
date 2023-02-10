@@ -30,7 +30,7 @@ function FavouritesPage(props) {
 					/>
 				) : (
 					<div>
-						<p className='text-2xl md:text-3xl m-2 md:m-6'>Your Favourites</p>
+						<p className='text-2xl md:text-3xl p-2 md:p-6'>Your Favourites</p>
 						<section id='tabs'>
 							<div className='container relative sm:text-left px-2'>
 								<div className='bg-tabs'></div>

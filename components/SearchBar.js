@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function SearchBar() {
 	const router = useRouter()
@@ -28,7 +29,7 @@ export default function SearchBar() {
 	}, [debouncedTerm]) //don't add setPath as dependency of useEffect; CallBack hell
 
 	return (
-		<div className='flex items-center justify-center w-full gap-4 p-2'>
+		<div className='flex items-center justify-center w-full gap-4'>
 			<input
 				type='text'
 				value={keyword}
@@ -36,18 +37,17 @@ export default function SearchBar() {
 					e.preventDefault()
 					setKeyword(e.target.value)
 				}}
-				className='m-2 ml-6 w-full xs:w-2/5 h-8 md:h-9 lg:h-10 p-4 pr-0 mr-0 text-white text-lg rounded-full focus:outline-none bg-gray-900'
-				placeholder='Search books, authors or series'
-			/>
+				className='mx-2 w-full xs:w-2/5 md:w-full h-10 lg:h-11 p-4 pr-0 mr-0 text-white text-lg rounded-full focus:outline-none bg-gray-900'
+				placeholder='Search books, authors or series'></input>
 			<button className='rounded-md p-2 pl-0 ml-0'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
 					viewBox='0 0 24 24'
-					strokeWidth={2}
-					stroke='white'
-					className='w-10 h-10'>
-					<title>Search</title>
+					strokeWidth={1.6}
+					stroke='#f3f7ff'
+					className='w-7 h-7'>
+					<title>Search books</title>
 					<path
 						strokeLinecap='round'
 						strokeLinejoin='round'

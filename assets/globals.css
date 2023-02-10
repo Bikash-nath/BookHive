@@ -10,7 +10,7 @@
 
 .bg-gradient {
 	/* absoulte + sticky */
-	@apply bg-gradient-to-b from-gray-900 via-[#121212] to-gfrom-gray-900 text-white pb-20 lg:pb-12;
+	@apply bg-gradient-to-b from-[#202020] via-[#121212] to-[#202020] text-white pb-20 lg:pb-12;
 }
 
 .list-grid {
@@ -54,4 +54,8 @@
 .hide-scrollbar {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
+}
+
+.slick-dots button:before {
+	color: white !important;
 }
