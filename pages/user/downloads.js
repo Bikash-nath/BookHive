@@ -13,7 +13,7 @@ function DownloadsPage(props) {
 				<title>Downloads</title>
 				<meta name='description' content='Downloads page' />
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Your downloads'

@@ -23,10 +23,14 @@ function Header(props) {
 	const [searchBtn, setSearchBtn] = useState(false)
 	const [showNavBtn, setShowNavBtn] = useState(false)
 	const user = 1
-	const windowWidth = 740
+	const [windowWidth, setWindowWidth] = useState()
 	// const windowWidth = window.innerHeight
 	// const pageHeight = useState(props.pageRef.current.clientHeight)
 	const [opacity, setOpacity] = useState(70)
+
+	if (typeof window !== 'undefined') {
+		setWindowWidth(window.innerWidth)
+	}
 
 	const router = useRouter()
 	const currentRoute = router.pathname
@@ -51,7 +55,7 @@ function Header(props) {
 								<div className='flex lg:hidden items-center space-x-20 w-full'>
 									<Logo size={50} />
 								</div>
-								<div className='hidden lg:flex items-center mx-8 space-x-6 w-full'>
+								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
 									<Link href={'/'}>
 										<button className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'>
 											<ChevronLeftIcon dimensions='h-6 w-6' />
@@ -159,10 +163,10 @@ function Header(props) {
 								</header>
 							</div>
 						) : (
-							<>
-								<ArrowBackIcon />
+							<div className='flex space-x-2 text-gray-300 hover:text-white px-2'>
+								<ArrowBackIcon dimensions='h-6 w-6' />
 								<SearchBar />
-							</>
+							</div>
 						)}
 					</nav>
 				</header>

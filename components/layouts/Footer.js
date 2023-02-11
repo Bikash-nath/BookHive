@@ -7,8 +7,8 @@ function Footer() {
 		Company: ['Terms', 'Privacy', 'FAQ'],
 	}
 	return (
-		<footer className='bg-slate-900 w-full'>
-			<div className='container mx-auto px-5 pt-12 pb-10'>
+		<footer className='relative bg-slate-900 w-full'>
+			<div className='container absolute bottom-8 mx-auto px-5 pt-12 pb-10'>
 				<div className='flex flex-col md:flex-row justify-center items-center space-y-8 md:space-x-12 w-full'>
 					{Object.keys(content).map((title, i) => (
 						<div

@@ -14,7 +14,7 @@ function SettingsPage(props) {
 				<title>Settings</title>
 				<meta name='description' content='Settings section' />
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account Settings'
@@ -24,11 +24,7 @@ function SettingsPage(props) {
 				) : (
 					<>
 						{user?.name ? (
-							<img
-								className='rounded-full p-1 w-8 h-8'
-								src={user?.image}
-								alt='user image'
-							/>
+							<img className='rounded-full p-1 w-8 h-8' src={user?.image} alt='user image' />
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}

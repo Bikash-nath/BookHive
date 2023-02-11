@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { colors } from '../../utils/constants/bgColors'
 
 function BgCover(props) {
 	const [color, setColor] = useState(null)
+	const router = useRouter()
+	const route = router.pathname
 
 	useEffect(() => {
-		if (!color) {
-			const bgColor = colors[Math.floor(Math.random() * colors.length)]
-			setColor(bgColor)
-			console.warn('bgColor', bgColor)
-		}
+		const id = router.pathname.split('-')
+		const index = id[id.length - 1].slice(-2)
+		const bgColor = colors[index]
+		setColor(bgColor)
+		console.warn('bgColor', bgColor)
 		console.error('useEffect color', color)
-	}, [color]) //router.pathname
+	}, [route]) //router.pathname
 
 	return (
 		<div className='flex-grow scrollbar-hide select-none relative'>
