@@ -5,7 +5,7 @@ export default function CloseIcon() {
 			className='w-8 h-8 text-black group-hover:text-gray-600'
 			viewBox='0 0 24 24'
 			strokeWidth='1.5'
-			stroke='currentColor'
+			stroke='black'
 			fill='none'
 			strokeLinecap='round'
 			strokeLinejoin='round'>

@@ -5,26 +5,23 @@ import { colors } from '../../utils/constants/bgColors'
 function BgCover(props) {
 	const [color, setColor] = useState(null)
 	const router = useRouter()
-	const route = router.pathname
 
 	useEffect(() => {
-		const id = router.pathname.split('-')
-		const index = id[id.length - 1].slice(-2)
+		const id = router.query.bookId || router.query.authorId
+		const index = Math.floor(id.slice(-2) / 5)
 		const bgColor = colors[index]
 		setColor(bgColor)
-		console.warn('bgColor', bgColor)
-		console.error('useEffect color', color)
-	}, [route]) //router.pathname
+	}, [])
 
 	return (
 		<div className='flex-grow scrollbar-hide select-none relative'>
-			{console.log('return', color)}
-			<div className={`bg-gradient-to-b to-black ${color}`}>
+			<div className={`bg-gradient-to-b ${color} to-black`}>
 				<section
 					className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around text-white space-y-2 md:space-y-0 space-x-6 md:space-x-10 h-auto md:px-4 pb-4`}>
 					{props.children}
 				</section>
 			</div>
+			{console.log('return dom:--', color)}
 		</div>
 	)
 }

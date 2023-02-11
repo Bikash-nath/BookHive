@@ -66,7 +66,7 @@ function NavbarLg() {
 									{libraryToggle ? (
 										<ChevronDownIcon dimensions='h-6 w-6' />
 									) : (
-										<ChevronRightIcon dimensions='h-6 w-6' />
+										<ChevronRightIcon dimensions='h-6 w-6' color='white' />
 									)}
 								</div>
 							</div>

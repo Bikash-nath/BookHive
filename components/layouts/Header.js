@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Router from 'next/router'
 import Link from 'next/link'
 
 import Logo from '../ui/Logo'
@@ -20,17 +21,21 @@ import LogoutIcon from '../../assets/icons/LogoutIcon'
 import SearchBar from '../SearchBar'
 
 function Header(props) {
-	const [searchBtn, setSearchBtn] = useState(false)
+	const [searchToggle, setSearchToggle] = useState(false)
 	const [showNavBtn, setShowNavBtn] = useState(false)
-	const user = 1
 	const [windowWidth, setWindowWidth] = useState()
+	let prevRoute = undefined
+	const user = 1
 	// const windowWidth = window.innerHeight
 	// const pageHeight = useState(props.pageRef.current.clientHeight)
 	const [opacity, setOpacity] = useState(70)
 
-	if (typeof window !== 'undefined') {
-		setWindowWidth(window.innerWidth)
-	}
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
+			prevRoute = window.history.forward()
+		}
+	}, [])
 
 	const router = useRouter()
 	const currentRoute = router.pathname
@@ -38,7 +43,7 @@ function Header(props) {
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
-		return `flex items-center space-x-4 m-2 lg:my-3 hover:text-white text-${
+		return `flex items-center space-x-4 m-2 lg:my-3 cursor-pointer hover:text-white text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route
 				? 'white'
 				: 'gray-400'
@@ -50,33 +55,44 @@ function Header(props) {
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
 					<nav className='container mx-auto p-1'>
-						{windowWidth > 720 ? (
+						{windowWidth < 640 && searchToggle ? (
+							<div className='flex cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2'>
+								<div className='flex items-center' onClick={() => setSearchToggle(false)}>
+									<ArrowBackIcon dimensions='h-7 w-7' />
+								</div>
+								<SearchBar />
+							</div>
+						) : (
 							<div className='flex items-center justify-between text-white'>
 								<div className='flex lg:hidden items-center space-x-20 w-full'>
 									<Logo size={50} />
 								</div>
 								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
 									<Link href={'/'}>
-										<button className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'>
+										<button
+											className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+											onClick={() => router.back()}>
 											<ChevronLeftIcon dimensions='h-6 w-6' />
 										</button>
 									</Link>
 									<Link href={'/'}>
-										<button className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'>
+										<button
+											className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+											onClick={() => router.push(prevRoute)}>
 											<ChevronRightIcon dimensions='h-6 w-6' />
 										</button>
 									</Link>
 								</div>
 
 								<header className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
-									{searchBtn ? (
+									{searchToggle ? (
 										<div className='w-[30rem]'>
 											<SearchBar />
 										</div>
 									) : (
 										<div
 											className='flex items-center cursor-pointer p-2'
-											onClick={() => setSearchBtn(!searchBtn)}>
+											onClick={() => setSearchToggle(!searchToggle)}>
 											<SearchIcon dimensions='h-7 w-7' />
 										</div>
 									)}
@@ -91,7 +107,9 @@ function Header(props) {
 													<div
 														className='grid grid-cols-2'
 														onClick={() => setShowNavBtn(!showNavBtn)}>
-														<HamburgerIcon className='h-7 w-7' />
+														<div className='w-6 h-6 lg:my-[0.1rem]'>
+															<HamburgerIcon className='h-7 w-7' />
+														</div>
 														{user?.image ? (
 															<img
 																className='rounded-full p-1 w-8 h-8'
@@ -161,11 +179,6 @@ function Header(props) {
 										)}
 									</div>
 								</header>
-							</div>
-						) : (
-							<div className='flex space-x-2 text-gray-300 hover:text-white px-2'>
-								<ArrowBackIcon dimensions='h-6 w-6' />
-								<SearchBar />
 							</div>
 						)}
 					</nav>

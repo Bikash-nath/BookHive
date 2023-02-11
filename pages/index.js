@@ -22,7 +22,7 @@ function HomePage(props) {
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Top new releases' listLink='/books'>
-					{<BookRow books={props.books.slice(3, 12)} />}
+					{<BookRow books={props.books.slice(2, 10)} />}
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Featured Audiobooks' listLink='/books'>

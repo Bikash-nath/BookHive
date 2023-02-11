@@ -21,7 +21,7 @@ function FavouritesPage(props) {
 				<title>Favourites</title>
 				<meta name='description' content='User favourites page' />
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Your favourite books'

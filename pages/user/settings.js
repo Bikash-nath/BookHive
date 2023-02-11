@@ -14,7 +14,7 @@ function SettingsPage(props) {
 				<title>Settings</title>
 				<meta name='description' content='Settings section' />
 			</Head>
-			<div className='bg-gradient h-full'>
+			<div className='bg-gradient h-[93vh]'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account Settings'

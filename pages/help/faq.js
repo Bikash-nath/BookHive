@@ -12,7 +12,7 @@ function HelpPage(props) {
 				<title>Help</title>
 				<meta name='description' content='Help section' />
 			</Head>
-			<div className='bg-gradient flex flex-col md:flex-row items-center justify-around'>
+			<div className='bg-gradient h-full flex flex-col md:flex-row items-center justify-around'>
 				<section id='faq' className=''>
 					<div className='container mx-auto'>
 						<h2 className='my-6 text-3xl font-semibold text-center md:text-4xl'>

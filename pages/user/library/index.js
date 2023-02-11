@@ -17,7 +17,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'
@@ -35,14 +35,14 @@ function LibraryPage(props) {
 							)}
 							<p className='text-xl md:text-2xl mx-2 md:mx-4 my-auto'>Your Library</p>
 						</div>
-						<div class='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
+						<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
 							<Link href='/user/library/collections'>
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CollectionIcon dimensions='h-7 w-7' />
-										<p class='text-lg md:text-xl text-left font-semibold'>Collections</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
 									</div>
-									<p class='text-base md:text-lg text-gray-400 text-left'>
+									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Book collections that you created.
 									</p>
 								</div>
@@ -51,9 +51,9 @@ function LibraryPage(props) {
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
-										<p class='text-lg md:text-xl text-left font-semibold'>History</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>History</p>
 									</div>
-									<p class='text-base md:text-lg text-gray-400 text-left'>
+									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Books that you have read or listened.
 									</p>
 								</div>
@@ -62,9 +62,9 @@ function LibraryPage(props) {
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
-										<p class='text-lg md:text-xl text-left font-semibold'>Read Later</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
 									</div>
-									<p class='text-base md:text-lg text-gray-400 text-left'>
+									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Books that you have saved for read later.
 									</p>
 								</div>
@@ -73,9 +73,9 @@ function LibraryPage(props) {
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HeartIcon dimensions='h-7 w-7' />
-										<p class='text-lg md:text-xl text-left font-semibold'>Favourites</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>Favourites</p>
 									</div>
-									<p class='text-base md:text-lg text-gray-400 text-left'>
+									<p className='text-base md:text-lg text-gray-400 text-left'>
 										List of your liked books.
 									</p>
 								</div>
@@ -84,9 +84,9 @@ function LibraryPage(props) {
 								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CompletedIcon dimensions='h-7 w-7' />
-										<p class='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
 									</div>
-									<p class='text-base md:text-lg text-gray-400 text-left'>
+									<p className='text-base md:text-lg text-gray-400 text-left'>
 										List of books that you have completed.
 									</p>
 								</div>
@@ -102,49 +102,49 @@ function LibraryPage(props) {
 export default LibraryPage
 
 /*
-<div class='flex flex-col items-start justify-between max-w-6xl w-full mx-auto gap-2 my-6 space-y-4 divide-y divide-gray-400'>
+<div className='flex flex-col items-start justify-between max-w-6xl w-full mx-auto gap-2 my-6 space-y-4 divide-y divide-gray-400'>
 	<Link href='/user/library/collections'>
 		<div className='flex w-full p-1 py-2 gap-2'>
 			<CollectionIcon dimensions='h-7 w-7' />
-			<p class='text-lg md:text-xl text-left font-semibold'>Collections</p>
+			<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
 		</div>
-		<p class='text-base md:text-lg text-gray-400 text-left'>
+		<p className='text-base md:text-lg text-gray-400 text-left'>
 			Book collections that you created.
 		</p>
 	</Link>
 	<Link href='/user/library/read-history'>
 		<div className='flex w-full p-1 py-2 gap-2'>
 			<HistoryIcon dimensions='h-7 w-7' />
-			<p class='text-lg md:text-xl text-left font-semibold'>History</p>
+			<p className='text-lg md:text-xl text-left font-semibold'>History</p>
 		</div>
-		<p class='text-base md:text-lg text-gray-400 text-left'>
+		<p className='text-base md:text-lg text-gray-400 text-left'>
 			Books that you have read or listened.
 		</p>
 	</Link>
 	<Link href='/user/library/read-later'>
 		<div className='flex w-full p-1 py-2 gap-2'>
 			<HistoryIcon dimensions='h-7 w-7' />
-			<p class='text-lg md:text-xl text-left font-semibold'>Read Later</p>
+			<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
 		</div>
-		<p class='text-base md:text-lg text-gray-400 text-left'>
+		<p className='text-base md:text-lg text-gray-400 text-left'>
 			Books that you have saved for read later.
 		</p>
 	</Link>
 	<Link href='/user/library/favourites'>
 		<div className='flex w-full p-1 py-2 gap-2'>
 			<HeartIcon dimensions='h-7 w-7' />
-			<p class='text-lg md:text-xl text-left font-semibold'>Favourite Books</p>
+			<p className='text-lg md:text-xl text-left font-semibold'>Favourite Books</p>
 		</div>
-		<p class='text-base md:text-lg text-gray-400 text-left'>
+		<p className='text-base md:text-lg text-gray-400 text-left'>
 			List of your liked books.
 		</p>
 	</Link>
 	<Link href='/user/library/favourites'>
 		<div className='flex w-full p-1 py-2 gap-2'>
 			<CompletedIcon dimensions='h-7 w-7' />
-			<p class='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
+			<p className='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
 		</div>
-		<p class='text-base md:text-lg text-gray-400 text-left'>
+		<p className='text-base md:text-lg text-gray-400 text-left'>
 			List of books that you have completed.
 		</p>
 	</Link>

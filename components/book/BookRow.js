@@ -8,7 +8,20 @@ import { settings } from '../../utils/constants/sliderSettings'
 function BooksRow({ books }) {
 	return (
 		<Fragment>
-			<div className='h-auto group p-1'>
+			<div className='md:hidden overflow-hidden overflow-x-scroll p-0 m-0 hide-scrollbar'>
+				<div className='flex items-center justify-start gap-0 xs:gap-2 m-1 w-full h-full'>
+					{books?.map((book) => (
+						<BookCard
+							key={book._id}
+							title={book.title}
+							image={book.image}
+							author={book.author}
+							slug={book.slug}
+						/>
+					))}
+				</div>
+			</div>
+			<div className='hidden h-auto group p-1'>
 				<Slider {...settings}>
 					{books?.map((book) => (
 						<BookCard
@@ -23,22 +36,6 @@ function BooksRow({ books }) {
 			</div>
 		</Fragment>
 	)
-}
-
-{
-	/* <div className='flex md:hidden items-center justify-between gap-2 p-1 w-auto h-auto'>
-	{books?.map((book) => (
-		<div className=''>
-			<BookCard
-				key={book._id}
-				title={book.title}
-				image={book.image}
-				author={book.author}
-				slug={book.slug}
-			/>
-		</div>
-	))}
-</div> */
 }
 
 export default BooksRow

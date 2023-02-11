@@ -14,7 +14,7 @@ function ProfilePage(props) {
 				<title>Profile</title>
 				<meta name='description' content='Profile section' />
 			</Head>
-			<div className='bg-gradient h-full'>
+			<div className='bg-gradient h-[93vh]'>
 				{!user ? (
 					<LoginBanner
 						title='Access Your Account'

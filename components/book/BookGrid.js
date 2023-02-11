@@ -6,8 +6,9 @@ function BookGrid({ books }) {
 	})
 	return (
 		<div className='list-grid animate-slideup'>
-			{books.map((book) => (
+			{books.map((book, index) => (
 				<BookCard
+					key={index}
 					title={book.title}
 					image={book.image}
 					author={book.author}
