@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 
+import { getAuthorDetails, getTopAuthors } from '../../API/authors'
 import BgCover from '../../components/modals/BgCover'
-import { getAuthors } from '../../data/getData'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 
 function AuthorDetailPage(props) {
@@ -56,8 +56,8 @@ function AuthorDetailPage(props) {
 export async function getStaticProps(context) {
 	const { params } = context
 	// const { authorId } = params.authorId
-	const authorList = await getAuthors()
-	const author = authorList.find((author) => author.slug.toString() === params.authorId)
+	const author = await getAuthorDetails()
+	// const author = authorList.find((author) => author.slug.toString() === params.authorId)
 
 	return {
 		props: {
@@ -68,7 +68,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const authorList = await getAuthors()
+	const authorList = await getTopAuthors()
 	const params = authorList.map((author) => ({
 		params: { authorId: author._id.toString() },
 	}))

@@ -2,11 +2,14 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Link from 'next/link'
 
+import { getUserProfile } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
-import InputField from '../../../components/ui/InputField'
 
 function SetupPasswordPage(props) {
+	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
+
 	return (
 		<Fragment>
 			<Head>
@@ -15,13 +18,19 @@ function SetupPasswordPage(props) {
 			</Head>
 			<LoginContainer>
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Set up password</h2>
-				<InputField
+				<input
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					placeholder='Enter your password'
 					inputType='password'
-					placeholderText='Enter your password'
+					className='input-field mb-4'
 				/>
-				<InputField
+				<input
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					placeholder='Confirm your password'
 					inputType='password'
-					placeholderText='Confirm your password'
+					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>
 					<Link href='/'>

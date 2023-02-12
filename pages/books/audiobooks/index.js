@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 
 import ListGridModal from '../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
+import { getBestSellerBooks } from '../../../API/books'
 
 function AudioBooksPage(props) {
 	return (
@@ -21,7 +22,7 @@ function AudioBooksPage(props) {
 }
 
 export async function getStaticProps() {
-	const bookList = getBooks()
+	const bookList = getBestSellerBooks()
 
 	if (!bookList) {
 		return {

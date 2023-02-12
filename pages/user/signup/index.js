@@ -2,11 +2,19 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Link from 'next/link'
 
+import { signup } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
-import InputField from '../../../components/ui/InputField'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function SignUpPage(props) {
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+
+	const submitHandler = (e) => {
+		e.preventDefault()
+		signup(email, password)
+	}
+
 	return (
 		<Fragment>
 			<Head>
@@ -15,19 +23,25 @@ function SignUpPage(props) {
 			</Head>
 			<LoginContainer>
 				<h2 className='font-mono mb-8 text-3xl font-bold'>Sign Up</h2>
-				<InputField
+				<input
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+					placeholder='Enter your name'
 					inputType='text'
-					placeholderText='Enter your name'
-					margin='mb-4'
+					className='input-field mb-4'
 				/>
-				<InputField
+				<input
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder='Enter email address or phone'
 					inputType='email'
-					placeholderText='Enter your email address'
-					margin='mb-4'
+					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>
-					<Link href='/'>
-						<button className='rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150'>
+					<Link href='setup-password'>
+						<button
+							onSubmit={submitHandler}
+							className='rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150'>
 							<span>Next</span>
 							<ArrowIcon />
 						</button>

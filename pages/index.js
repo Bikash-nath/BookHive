@@ -1,10 +1,12 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
+import { getBestSellerBooks } from '../API/books'
+import { getTopAuthors } from '../API/authors'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
-import { getBooks, getAuthors } from '../data/getData'
+// import { getBooks, getAuthors } from '../data/getData'
 
 function HomePage(props) {
 	return (
@@ -38,8 +40,8 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	const bookList = getBooks()
-	const authorList = getAuthors()
+	const bookList = getBestSellerBooks()
+	const authorList = getTopAuthors()
 
 	return {
 		props: {
@@ -51,47 +53,3 @@ export async function getStaticProps() {
 }
 
 export default HomePage
-
-/*
-<section className='mb-2 md:mb-4 p-2 md:p-4'>
-	<div className='container mx-auto my-2 md:px-6'>
-		<div className='flex justify-center my-2 md:justify-between'>
-			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-				Popular Books
-			</h3>
-			<Link href='/books'>
-				<button className='hidden btn md:block'>See All</button>
-			</Link>
-		</div>
-		{<BookRow books={props.books} />}
-	</div>
-</section>
-
-<section className='my-2 md:my-4 p-2 md:p-4'>
-	<div className='container mx-auto my-2 md:px-6'>
-		<div className='flex justify-center my-2 md:justify-between'>
-			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-				Trending Books
-			</h3>
-			<Link href='/books'>
-				<button className='hidden btn md:block'>See All</button>
-			</Link>
-		</div>
-		{<BookRow books={props.books} />}
-	</div>
-</section>
-
-<section className='my-2 md:my-4 p-4 md:p-4'>
-	<div className='container mx-auto my-2 md:px-6'>
-		<div className='flex justify-center my-2 md:justify-between'>
-			<h3 className='text-2xl text-center md:text-left lg:text-3xl'>
-				Popular Authors
-			</h3>
-			<Link href='/authors'>
-				<button className='hidden btn md:block'>See All</button>
-			</Link>
-		</div>
-	</div>
-	{<AuthorRow authors={props.authors} />}
-</section>
-*/

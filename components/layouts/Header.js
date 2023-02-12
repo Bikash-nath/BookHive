@@ -24,7 +24,8 @@ function Header(props) {
 	const [searchToggle, setSearchToggle] = useState(false)
 	const [showNavBtn, setShowNavBtn] = useState(false)
 	const [windowWidth, setWindowWidth] = useState()
-	let prevRoute = undefined
+	const [history, setHistory] = useState()
+
 	const user = 1
 	// const windowWidth = window.innerHeight
 	// const pageHeight = useState(props.pageRef.current.clientHeight)
@@ -33,7 +34,7 @@ function Header(props) {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			setWindowWidth(window.innerWidth)
-			prevRoute = window.history.forward()
+			setHistory(window.history)
 		}
 	}, [])
 
@@ -68,20 +69,19 @@ function Header(props) {
 									<Logo size={50} />
 								</div>
 								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
-									<Link href={'/'}>
-										<button
-											className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
-											onClick={() => router.back()}>
-											<ChevronLeftIcon dimensions='h-6 w-6' />
-										</button>
-									</Link>
-									<Link href={'/'}>
-										<button
-											className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
-											onClick={() => router.push(prevRoute)}>
-											<ChevronRightIcon dimensions='h-6 w-6' />
-										</button>
-									</Link>
+									<button
+										className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+										onClick={() => router.back()}>
+										<ChevronLeftIcon dimensions='h-6 w-6' />
+									</button>
+									<button
+										className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+										onClick={(e) => {
+											e.preventDefault()
+											history && history.forward()
+										}}>
+										<ChevronRightIcon dimensions='h-6 w-6' />
+									</button>
 								</div>
 
 								<header className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>

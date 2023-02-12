@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
+import { getGenreBooks } from '../../../API/genres'
+
 function GenreBooksPage(props) {
 	return (
 		<Fragment>
@@ -8,17 +10,28 @@ function GenreBooksPage(props) {
 				<title>Genre Books</title>
 				<meta name='description' content='Genre Books section' />
 			</Head>
-			<section className='my-8 mx-4'>
-				<div className='container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0'>
-					<div className='flex justify-center mb-20 md:justify-between'>
-						<h3 className='text-4xl text-center uppercase md:text-left md:text-5xl'>
-							Popular Genre Books
-						</h3>
-					</div>
-				</div>
-			</section>
+			<ListGridModal listTitle='All popular books'>
+				{<BookGrid books={props.books} />}
+			</ListGridModal>
 		</Fragment>
 	)
+}
+
+export async function getStaticProps(context) {
+	const { params } = context
+	const bookList = await getGenreBooks(params.genreId)
+	// const book = bookList.find((book) => book._id == bookId)
+
+	if (!book) {
+		return { notFound: true }
+	}
+
+	return {
+		props: {
+			books: bookList,
+		},
+		revalidate: 60,
+	}
 }
 
 export default GenreBooksPage

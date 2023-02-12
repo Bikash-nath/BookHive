@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
+import { getBookDetails, getBestSellerBooks } from '../../API/books'
 import BgCover from '../../components/modals/BgCover'
-import { getBooks } from '../../data/getData'
-
 import openInNewTab from '../../utils/helpers/openLink'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
+// import { getBooks } from '../../data/getData'
 
 function BookDetailPage(props) {
 	const { book } = props
@@ -90,8 +90,8 @@ function BookDetailPage(props) {
 export async function getStaticProps(context) {
 	const { params } = context
 	const bookId = params.bookId
-	const bookList = await getBooks()
-	const book = bookList.find((book) => book._id == bookId)
+	const bookList = await getBookDetails(bookId)
+	// const book = bookList.find((book) => book._id == bookId)
 
 	if (!book) {
 		return { notFound: true }
@@ -106,7 +106,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const bookList = await getBooks()
+	const bookList = await getBestSellerBooks()
 	const params = bookList.map((book) => ({
 		params: { bookId: book._id.toString() },
 	}))

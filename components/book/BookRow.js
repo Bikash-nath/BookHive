@@ -21,7 +21,7 @@ function BooksRow({ books }) {
 					))}
 				</div>
 			</div>
-			<div className='hidden h-auto group p-1'>
+			<div className='hidden md:block h-auto group p-1'>
 				<Slider {...settings}>
 					{books?.map((book) => (
 						<BookCard
