@@ -1,10 +1,9 @@
-import axios from 'axios'
+import axios from '../lib/axiosConfig'
 
-export const getBestSellerBooks = () => async () => {
+export const getTopBooks = async () => {
 	try {
-		const { data } = await axios.get('/api/books/bestseller/')
-
-		return data
+		const res = await axios.get('/books/')
+		return res.data
 	} catch (error) {
 		return error.response && error.response.data.error_message
 			? error.response.data.error_message
@@ -12,11 +11,10 @@ export const getBestSellerBooks = () => async () => {
 	}
 }
 
-export const getIndianBooks = () => async () => {
+export const getIndianBooks = async () => {
 	try {
-		const { data } = await axios.get('/api/books/indian/')
-
-		return data
+		const res = await axios.get('/books/indian/')
+		return res.data
 	} catch (error) {
 		return error.response && error.response.data.error_message
 			? error.response.data.error_message
@@ -24,11 +22,12 @@ export const getIndianBooks = () => async () => {
 	}
 }
 
-export const getGenreBooks = (genre) => async () => {
+export const getGenreBooks = async (genre) => {
 	try {
-		const { data } = await axios.get(`/api/books/genre/${genre}`)
+		const res = await axios.get(`/books/genre/${genre}`)
+
 		let bookList = []
-		bookList = bookList.concat(...data.map((obj) => obj.books))
+		// bookList = bookList.concat(...data.map((obj) => obj.books))
 
 		return bookList
 	} catch (error) {
@@ -36,39 +35,35 @@ export const getGenreBooks = (genre) => async () => {
 	}
 }
 
-export const searchBooks =
-	(keyword = '') =>
-	async () => {
-		try {
-			const { data } = await axios.get(`/api/books/search${keyword}`)
-
-			return data
-		} catch (error) {
-			return error.response?.data.error_message ? error.response.data.error_message : error.message
-		}
-	}
-
-export const getSimilarBooks = (id) => async () => {
+export const searchBooks = async (keyword = '') => {
 	try {
-		const { data } = await axios.get(`/api/books/${id}/similar/`)
-
-		return data
+		const res = await axios.get(`/books/search${keyword}`)
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const getBookDetails = (id) => async () => {
+export const getSimilarBooks = async (id) => {
 	try {
-		const { data } = await axios.get(`/api/books/${id}`)
+		const res = await axios.get(`/books/${id}/similar/`)
 
-		return data
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const createBookReview = (bookId, review) => async () => {
+export const getBookDetails = async (id) => {
+	try {
+		const res = await axios.get(`/books/${id}`)
+		return res.data
+	} catch (error) {
+		return error.response?.data.error_message ? error.response.data.error_message : error.message
+	}
+}
+
+export const createBookReview = async (bookId, review) => {
 	try {
 		const {
 			userLogin: { userInfo },
@@ -80,9 +75,8 @@ export const createBookReview = (bookId, review) => async () => {
 				Authorization: `Bearer ${userInfo.token}`,
 			},
 		}
-		const { data } = await axios.post(`/api/books/${bookId}/reviews/`, review, config)
-
-		return data
+		const res = await axios.post(`/books/${bookId}/reviews/`, review, config)
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}

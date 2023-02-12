@@ -12,10 +12,10 @@ function HelpPage(props) {
 				<title>Help</title>
 				<meta name='description' content='Help section' />
 			</Head>
-			<div className='bg-gradient h-full flex flex-col md:flex-row items-center justify-around'>
+			<div className='bg-gradient flex flex-col md:flex-row items-center justify-around'>
 				<section id='faq' className=''>
 					<div className='container mx-auto'>
-						<h2 className='my-6 text-3xl font-semibold text-center md:text-4xl'>
+						<h2 className='my-6 text-2xl md:text-3xl font-semibold text-center'>
 							Frequently Asked Questions
 						</h2>
 						<p className='max-w-lg px-6 mx-auto text-center text-graishBlue'>
@@ -35,15 +35,13 @@ function HelpPage(props) {
 								process of learning and reading via the efforts of a fantastic community of readers.
 							</Accordion>
 							<Accordion title='How can I find latest audiobooks?' tabIndex='2'>
-								<p className='py-2 text-justify text-gray-400 font-semibold'>
-									Visit{' '}
-									<a
-										href='https://bookhive.vercel.app/audiobooks/new-arrivals'
-										className='text-indigo-500'>
-										bookhive.vercel.app/audiobooks/new-arrivals
-									</a>{' '}
-									to find latest audiobooks.
-								</p>
+								Visit{' '}
+								<a
+									href='https://bookhive.vercel.app/audiobooks/new-arrivals'
+									className='text-indigo-500'>
+									bookhive.vercel.app/audiobooks/new-arrivals
+								</a>{' '}
+								to find latest audiobooks.
 							</Accordion>
 						</div>
 					</div>

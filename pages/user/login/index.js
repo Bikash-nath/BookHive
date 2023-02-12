@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,6 +15,7 @@ function LoginEmailPage(props) {
 	const [password, setPassword] = useState('')
 
 	// const { userInfo, loading, error } = userProfile
+	const userInfo = ''
 
 	const submitHandler = (e) => {
 		e.preventDefault()
@@ -39,14 +40,14 @@ function LoginEmailPage(props) {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					placeholder='Enter email address or phone'
-					inputType='email'
+					type='email'
 					className='input-field mb-4'
 				/>
 				<input
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder='Enter your password'
-					inputType='password'
+					type='password'
 					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-between my-3 md:my-6'>

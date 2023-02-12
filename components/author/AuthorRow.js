@@ -14,7 +14,7 @@ function AuthorsRow({ authors }) {
 						<AuthorCard
 							key={author._id}
 							name={author.name}
-							image={author.image_sm}
+							image={author.imageSm}
 							slug={author.slug}
 						/>
 					))}

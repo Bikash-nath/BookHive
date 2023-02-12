@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from '../lib/axiosConfig'
 
-export const getGenreBooks = (genre) => async () => {
+export const getGenreBooks = async (genre) => {
 	try {
-		const { data } = await axios.get(`/api/genre/${genre}/books`)
+		const { data } = await axios.get(`/genre/${genre}/books`)
 		// const bookList = bookList.map(genre => genre.books)
 		return bookList
 	} catch (error) {
@@ -10,9 +10,9 @@ export const getGenreBooks = (genre) => async () => {
 	}
 }
 
-export const getTopGenres = () => async () => {
+export const getTopGenres = async () => {
 	try {
-		const { data } = await axios.get('/api/genre/${genre}/')
+		const { data } = await axios.get('/genre/${genre}/')
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message

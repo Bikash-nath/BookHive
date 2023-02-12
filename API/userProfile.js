@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from '../lib/axiosConfig'
 
-export const login = (username, password) => async () => {
+export const login = async (username, password) => {
 	try {
 		const config = {
 			headers: {
@@ -8,7 +8,7 @@ export const login = (username, password) => async () => {
 			},
 		}
 		username = username.split('@')[0]
-		const { data } = await axios.post('/api/users/login/', { username, password }, config)
+		const { data } = await axios.post('/users/login/', { username, password }, config)
 		return data
 
 		localStorage.setItem('userInfo', JSON.stringify(data))
@@ -21,7 +21,7 @@ export const logout = () => () => {
 	localStorage.removeItem('userInfo')
 }
 
-export const signup = (name, email, password, confirmPassword) => async () => {
+export const signup = async (name, email, password, confirmPassword) => {
 	try {
 		const config = {
 			headers: {
@@ -30,7 +30,7 @@ export const signup = (name, email, password, confirmPassword) => async () => {
 		}
 
 		const { data } = await axios.post(
-			'/api/users/register/',
+			'/users/register/',
 			{ name, email, password, confirmPassword },
 			config
 		)
@@ -42,7 +42,7 @@ export const signup = (name, email, password, confirmPassword) => async () => {
 	}
 }
 //To get user profile based on :id or 'profile' passed as argument
-export const getUserProfile = () => async () => {
+export const getUserProfile = async () => {
 	try {
 		const {
 			userLogin: { userInfo },
@@ -55,7 +55,7 @@ export const getUserProfile = () => async () => {
 			},
 		}
 
-		const { data } = await axios.get(`/api/users/profile/`, config)
+		const { data } = await axios.get(`/users/profile/`, config)
 		return data
 
 		localStorage.setItem('userInfo', JSON.stringify(data))
@@ -65,7 +65,7 @@ export const getUserProfile = () => async () => {
 }
 
 //To update user profile based on user object
-export const updateUserProfile = (user) => async () => {
+export const updateUserProfile = async (user) => {
 	try {
 		const {
 			userLogin: { userInfo },
@@ -83,7 +83,7 @@ export const updateUserProfile = (user) => async () => {
 			},
 		}
 
-		const { data } = await axios.put(`/api/users/profile/update/`, formData, config)
+		const { data } = await axios.put(`/users/profile/update/`, formData, config)
 		return data
 
 		localStorage.setItem('userInfo', JSON.stringify(data))
@@ -93,7 +93,7 @@ export const updateUserProfile = (user) => async () => {
 }
 
 //To update user profile based on user object
-export const deleteUser = (id) => async () => {
+export const deleteUser = async (id) => {
 	try {
 		const {
 			userLogin: { userInfo },
@@ -106,7 +106,7 @@ export const deleteUser = (id) => async () => {
 			},
 		}
 
-		const { data } = await axios.delete(`/api/users/delete/${id}`, config)
+		const { data } = await axios.delete(`/users/delete/${id}`, config)
 		return data.message
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message

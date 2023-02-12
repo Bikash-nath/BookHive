@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import { getBestSellerBooks } from '../../API/books'
+import { getTopBooks } from '../../API/books'
 import ListGridModal from '../../components/modals/ListGridModal'
 import BookGrid from '../../components/book/BookGrid'
 // import { getBooks } from '../../data/getData'
@@ -21,9 +21,9 @@ function BookListPage(props) {
 }
 
 export async function getStaticProps() {
-	const bookList = getBestSellerBooks()
+	const { data } = await getTopBooks()
 
-	if (!bookList) {
+	if (!data) {
 		return {
 			notFound: true,
 		}
@@ -31,7 +31,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			books: bookList,
+			books: data,
 		},
 		revalidate: 60, //for production
 	}

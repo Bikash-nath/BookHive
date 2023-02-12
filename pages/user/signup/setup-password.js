@@ -22,14 +22,14 @@ function SetupPasswordPage(props) {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder='Enter your password'
-					inputType='password'
+					type='password'
 					className='input-field mb-4'
 				/>
 				<input
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					placeholder='Confirm your password'
-					inputType='password'
+					type='password'
 					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>

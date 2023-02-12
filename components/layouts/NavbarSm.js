@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
-import DownloadsIcon from '../../assets/icons/DownloadsIcon'
+import AccountIcon from '../../assets/icons/AccountIcon'
 
 function NavbarSm() {
 	const router = useRouter()
@@ -56,14 +56,14 @@ function NavbarSm() {
 								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Library</p>
 							</Link>
 						</div>
-						<div className={routeClassHandler('/downloads')}>
-							<Link href='/user/downloads'>
+						<div className={routeClassHandler('/account')}>
+							<Link href='/user/account'>
 								<div className='flex w-full'>
 									<div className='mx-auto'>
-										<DownloadsIcon dimensions='h-6 w-6' />
+										<AccountIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Downloads</p>
+								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Account</p>
 							</Link>
 						</div>
 					</div>

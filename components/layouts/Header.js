@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Router from 'next/router'
 import Link from 'next/link'
 
+import SearchBar from '../SearchBar'
 import Logo from '../ui/Logo'
 import LoginButton from '../ui/LoginButton'
 import HamburgerIcon from '../../assets/icons/HamburgerIcon'
@@ -11,14 +12,15 @@ import SearchIcon from '../../assets/icons/SearchIcon'
 import ArrowBackIcon from '../../assets/icons/ArrowBackIcon'
 import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
-// import LightmodeIcon from '../../assets/icons/LightmodeIcon'
-import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
+import BarArrowIcon from '../../assets/icons/BarArrowIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
+import ProfileIcon from '../../assets/icons/ProfileIcon'
+import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
 import SettingsIcon from '../../assets/icons/SettingsIcon'
 import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
-import SearchBar from '../SearchBar'
+// import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
 function Header(props) {
 	const [searchToggle, setSearchToggle] = useState(false)
@@ -27,8 +29,6 @@ function Header(props) {
 	const [history, setHistory] = useState()
 
 	const user = 1
-	// const windowWidth = window.innerHeight
-	// const pageHeight = useState(props.pageRef.current.clientHeight)
 	const [opacity, setOpacity] = useState(70)
 
 	useEffect(() => {
@@ -55,9 +55,9 @@ function Header(props) {
 		<>
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
-					<nav className='container mx-auto p-1'>
+					<nav className='container mx-auto md:p-1'>
 						{windowWidth < 640 && searchToggle ? (
-							<div className='flex cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2'>
+							<div className='flex cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2 p-[0.1875rem]'>
 								<div className='flex items-center' onClick={() => setSearchToggle(false)}>
 									<ArrowBackIcon dimensions='h-7 w-7' />
 								</div>
@@ -108,7 +108,11 @@ function Header(props) {
 														className='grid grid-cols-2'
 														onClick={() => setShowNavBtn(!showNavBtn)}>
 														<div className='w-6 h-6 lg:my-[0.1rem]'>
-															<HamburgerIcon className='h-7 w-7' />
+															{showNavBtn ? (
+																<BarArrowIcon className='h-7 w-7' />
+															) : (
+																<HamburgerIcon className='h-7 w-7' />
+															)}
 														</div>
 														{user?.image ? (
 															<img
@@ -128,7 +132,7 @@ function Header(props) {
 															}>
 															<Link href='/user/profile'>
 																<div className={routeClassHandler('/profile')}>
-																	<AccountIcon dimensions='h-7 w-7' />
+																	<ProfileIcon dimensions='h-7 w-7' />
 																	<p>Profile</p>
 																</div>
 															</Link>

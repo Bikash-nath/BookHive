@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 
 import { getAuthorDetails, getTopAuthors } from '../../API/authors'
 import BgCover from '../../components/modals/BgCover'
+import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 
 function AuthorDetailPage(props) {
@@ -16,12 +17,12 @@ function AuthorDetailPage(props) {
 				<title>{author.name}</title>
 				<meta name='description' content='Author detail page' />
 			</Head>
-			<div className='bg-[#121212] text-white min-h-full'>
+			<div className='bg-gradient text-white min-h-full'>
 				<div className='m-0'>
 					<BgCover>
 						<div className='p-2'>
 							<img
-								src={author.image_sm}
+								src={'/images' + author.imageSm}
 								alt={author.name}
 								className='object-contain rounded-md w-40 h-60 lg:w-52 lg:h-80'
 							/>
@@ -55,22 +56,22 @@ function AuthorDetailPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	// const { authorId } = params.authorId
-	const author = await getAuthorDetails()
-	// const author = authorList.find((author) => author.slug.toString() === params.authorId)
+	const { data } = await getAuthorDetails(params.authorId)
+	// const author = authors.find((author) => author.slug.toString() === params.authorId)
+	// const bgColor = pickBgColor(data)
 
 	return {
 		props: {
-			author: author,
+			author: data,
 		},
 		revalidate: 60,
 	}
 }
 
 export async function getStaticPaths() {
-	const authorList = await getTopAuthors()
-	const params = authorList.map((author) => ({
-		params: { authorId: author._id.toString() },
+	const authors = await getTopAuthors()
+	const params = authors.data.map((author) => ({
+		params: { authorId: author.slug.toString() },
 	}))
 	console.log('\n\n\n params', params)
 	return {

@@ -1,8 +1,8 @@
-export default function DropdownIcon({ dimensions }) {
+export default function DropdownIcon({ dimensions, color = 'none' }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			fill='white'
+			fill={color}
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'

@@ -11,12 +11,12 @@ function BookCard(props) {
 				<div className='relative flex flex-col w-32 h-64 lg:w-full lg:h-full rounded-md p-[0.3rem] lg:p-[0.4rem] bg-gray-800 bg-opacity-70 hover:bg-opacity-100 hover:scale-105 transform duration-100'>
 					<button
 						key='btn'
-						className='absolute top-2 right-2 lg:top-3 lg:right-3 z-10 rounded-full bg-slate-900 p-1'>
+						className='absolute top-1 right-1 lg:top-2 lg:right-2 z-10 rounded-full bg-slate-900 p-1'>
 						<HeadphoneIcon className='' dimensions='h-5 w-5' />
 					</button>
 					<img
 						key='img'
-						src={image}
+						src={'/images' + image}
 						alt={title}
 						className='object-contain rounded-md lg:w-40 lg:h-60 lg:py-1 min-w-full'
 					/>

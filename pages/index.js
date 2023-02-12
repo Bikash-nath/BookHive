@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
-import { getBestSellerBooks } from '../API/books'
+import { getTopBooks } from '../API/books'
 import { getTopAuthors } from '../API/authors'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
@@ -24,11 +24,11 @@ function HomePage(props) {
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Top new releases' listLink='/books'>
-					{<BookRow books={props.books.slice(2, 10)} />}
+					{<BookRow books={props.books.slice(5, 12)} />}
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Featured Audiobooks' listLink='/books'>
-					{<BookRow books={props.books.slice(7, 12)} />}
+					{<BookRow books={props.books.slice(1, 10)} />}
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Popular Authors' listLink='/authors'>
@@ -40,13 +40,12 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	const bookList = getBestSellerBooks()
-	const authorList = getTopAuthors()
-
+	const books = await getTopBooks()
+	const authors = await getTopAuthors()
 	return {
 		props: {
-			books: bookList,
-			authors: authorList.slice(0, 20),
+			books: books.data,
+			authors: authors.data,
 		},
 		// revalidate: 60,
 	}

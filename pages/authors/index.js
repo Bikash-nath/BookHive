@@ -22,9 +22,9 @@ function AuthorListPage(props) {
 }
 
 export async function getStaticProps() {
-	const authorList = getTopAuthors()
+	const authors = await getTopAuthors()
 
-	if (!authorList) {
+	if (!authors) {
 		return {
 			notFound: true,
 		}
@@ -32,7 +32,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			authors: authorList,
+			authors: authors.data,
 		},
 		revalidate: 60, //for production
 	}

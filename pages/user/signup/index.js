@@ -27,14 +27,14 @@ function SignUpPage(props) {
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 					placeholder='Enter your name'
-					inputType='text'
+					type='text'
 					className='input-field mb-4'
 				/>
 				<input
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					placeholder='Enter email address or phone'
-					inputType='email'
+					type='email'
 					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>

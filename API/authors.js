@@ -1,40 +1,36 @@
-import axios from 'axios'
+import axios from '../lib/axiosConfig'
 
-export const getTopAuthors = () => async () => {
+export const getTopAuthors = async () => {
 	try {
-		const { data } = await axios.get('/api/authors/top/')
-
-		return data
+		const res = await axios.get('/authors')
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const getAuthorDetails = (id) => async () => {
+export const getAuthorDetails = async (id) => {
 	try {
-		const { data } = await axios.get(`/api/authors/${id}/`)
-
-		return data
+		const res = await axios.get(`/authors/${id}/`)
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const getSimilarAuthors = (id) => async () => {
+export const getSimilarAuthors = async (id) => {
 	try {
-		const { data } = await axios.get(`/api/authors/${id}/similar/`)
-
-		return data
+		const res = await axios.get(`/authors/${id}/similar/`)
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const getAllAuthors = () => async () => {
+export const getAllAuthors = async () => {
 	try {
-		const { data } = await axios.get('/api/authors/all/')
-
-		return data
+		const res = await axios.get('/authors/all/')
+		return res.data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}

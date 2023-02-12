@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { colors } from '../../utils/constants/bgColors'
 
@@ -11,18 +11,24 @@ function BgCover(props) {
 		const index = Math.floor(id.slice(-2) / 5)
 		const bgColor = colors[index]
 		setColor(bgColor)
-	}, [])
+	}, [color])
 
 	return (
-		<div className='flex-grow scrollbar-hide select-none relative'>
-			<div className={`bg-gradient-to-b ${color} to-black`}>
-				<section
-					className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around text-white space-y-2 md:space-y-0 space-x-6 md:space-x-10 h-auto md:px-4 pb-4`}>
-					{props.children}
-				</section>
+		<Fragment>
+			{/* {color ? ( */}
+			<div className='flex-grow scrollbar-hide select-none relative'>
+				<div className={`bg-gradient-to-b ${color} to-black`}>
+					<section
+						className={`flex flex-col md:flex-row items-center md:items-end justify-center md:justify-around text-white space-y-2 md:space-y-0 space-x-6 md:space-x-10 h-auto md:px-4 pb-4`}>
+						{props.children}
+					</section>
+				</div>
+				{console.log('return dom:--', color)}
 			</div>
-			{console.log('return dom:--', color)}
-		</div>
+			{/* ) : (
+				<p className='text-2xl'>Loading..</p>
+			)} */}
+		</Fragment>
 	)
 }
 

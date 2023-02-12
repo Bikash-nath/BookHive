@@ -5,6 +5,7 @@ import Logo from '../ui/Logo'
 import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
+import AccountIcon from '../../assets/icons/AccountIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 import CollectionIcon from '../../assets/icons/CollectionIcon'
@@ -64,7 +65,7 @@ function NavbarLg() {
 									className={'flex items-center m-2'}
 									onClick={() => setLibraryToggle(!libraryToggle)}>
 									{libraryToggle ? (
-										<ChevronDownIcon dimensions='h-6 w-6' />
+										<ChevronDownIcon dimensions='h-6 w-6' color='white' />
 									) : (
 										<ChevronRightIcon dimensions='h-6 w-6' color='white' />
 									)}
@@ -85,7 +86,7 @@ function NavbarLg() {
 										</div>
 									</Link>
 									<Link href='/user/library/read-history'>
-										<div className={routeClassHandler('/history')}>
+										<div className={routeClassHandler('/read-history')}>
 											<HistoryIcon dimensions='h-7 w-7' />
 											<p className='font-mono text-base'>Read history</p>
 										</div>
@@ -94,10 +95,10 @@ function NavbarLg() {
 							)}
 						</div>
 
-						<Link href='/user/downloads'>
-							<div className={routeClassHandler('/downloads') + 'my-4'}>
-								<DownloadsIcon dimensions='h-7 w-7' />
-								<p className='font-mono text-base'>Downloads</p>
+						<Link href='/user/account'>
+							<div className={routeClassHandler('/account') + 'my-4'}>
+								<AccountIcon dimensions='h-7 w-7' />
+								<p className='font-mono text-base'>Account</p>
 							</div>
 						</Link>
 

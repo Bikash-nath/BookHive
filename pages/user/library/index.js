@@ -17,7 +17,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='bg-gradient h-full'>
+			<div className='bg-gradient'>
 				{!user ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'
@@ -37,7 +37,7 @@ function LibraryPage(props) {
 						</div>
 						<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
 							<Link href='/user/library/collections'>
-								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CollectionIcon dimensions='h-7 w-7' />
 										<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
@@ -48,7 +48,7 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/read-history'>
-								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
 										<p className='text-lg md:text-xl text-left font-semibold'>History</p>
@@ -59,7 +59,7 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/read-later'>
-								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
 										<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
@@ -70,7 +70,7 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HeartIcon dimensions='h-7 w-7' />
 										<p className='text-lg md:text-xl text-left font-semibold'>Favourites</p>
@@ -81,7 +81,7 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-80 md:w-120 p-2 bg-[#121212] border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CompletedIcon dimensions='h-7 w-7' />
 										<p className='text-lg md:text-xl text-left font-semibold'>Finished Books</p>

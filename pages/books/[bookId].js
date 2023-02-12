@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import { getBookDetails, getBestSellerBooks } from '../../API/books'
+import { getBookDetails, getTopBooks } from '../../API/books'
 import BgCover from '../../components/modals/BgCover'
+import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import openInNewTab from '../../utils/helpers/openLink'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
@@ -17,20 +18,20 @@ function BookDetailPage(props) {
 				<title>{book.title}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
-			<div className='bg-[#121212] text-white pb-20'>
+			<div className='bg-gradient text-white pb-20'>
 				<div className='m-0'>
-					<BgCover>
+					<BgCover color={props.color}>
 						<img
-							src={book.image}
+							src={'/images' + book.image}
 							alt={book.title}
 							className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1'
 						/>
 						<div className='px-2 md:px-4'>
 							<p className='text-xl md:text-2xl font-medium'>{book.title}</p>
-							<div className='text-md md:text-lg'>By: {book.author}</div>
+							<div className='text-md md:text-lg'>By: {book.author.name}</div>
 							<div className='text-md md:text-lg'>Language: {book.language}</div>
 
-							{book.formats.length && (
+							{book.formats?.length && (
 								<div className='flex'>
 									{book.formats?.map((ele, i) => (
 										<button
@@ -89,26 +90,27 @@ function BookDetailPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	const bookId = params.bookId
-	const bookList = await getBookDetails(bookId)
-	// const book = bookList.find((book) => book._id == bookId)
+	const { data } = await getBookDetails(params.bookId)
 
-	if (!book) {
+	if (!data) {
 		return { notFound: true }
 	}
 
+	const bgColor = pickBgColor(data.slug)
+
 	return {
 		props: {
-			book: book,
+			book: data,
+			color: bgColor,
 		},
 		revalidate: 60,
 	}
 }
 
 export async function getStaticPaths() {
-	const bookList = await getBestSellerBooks()
-	const params = bookList.map((book) => ({
-		params: { bookId: book._id.toString() },
+	const { data } = await getTopBooks()
+	const params = data.map((book) => ({
+		params: { bookId: book.slug.toString() },
 	}))
 
 	return {

@@ -8,7 +8,7 @@ function Logo({ size }) {
 				<Image
 					src='/images/audiobook.png'
 					alt='BookHive'
-					className='inline'
+					className='inline p-1'
 					height={size}
 					width={size}
 				/>
