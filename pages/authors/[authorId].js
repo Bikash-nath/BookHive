@@ -22,7 +22,7 @@ function AuthorDetailPage(props) {
 					<BgCover>
 						<div className='p-2'>
 							<img
-								src={'/images' + author.imageSm}
+								src={'/images' + author.imageLg}
 								alt={author.name}
 								className='object-contain rounded-md w-40 h-60 lg:w-52 lg:h-80'
 							/>

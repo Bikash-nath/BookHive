@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { signup } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
@@ -9,11 +10,20 @@ import ArrowIcon from '../../../assets/icons/ArrowIcon'
 function SignUpPage(props) {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
+	const [userInfo, setUserInfo] = useState()
+	const router = useRouter()
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault()
-		signup(email, password)
+		const user = await signup(name, email, password, confirmPassword)
+		setUserInfo(user)
 	}
+
+	useEffect(() => {
+		if (userInfo) router.push('/')
+	}, [router, userInfo])
 
 	return (
 		<Fragment>
@@ -35,6 +45,20 @@ function SignUpPage(props) {
 					onChange={(e) => setEmail(e.target.value)}
 					placeholder='Enter email address or phone'
 					type='email'
+					className='input-field mb-4'
+				/>
+				<input
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					placeholder='Enter your password'
+					type='password'
+					className='input-field mb-4'
+				/>
+				<input
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					placeholder='Confirm your password'
+					type='password'
 					className='input-field mb-4'
 				/>
 				<div className='flex items-center justify-end my-3 md:my-6'>

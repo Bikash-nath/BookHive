@@ -29,7 +29,7 @@ function BookCard(props) {
 						<p
 							key='author'
 							className='text-xs font-light lg:text-sm truncate text-gray-200 lg:py-1'>
-							{`By ${author}`}
+							{`By ${author.name}`}
 						</p>
 					</div>
 				</div>

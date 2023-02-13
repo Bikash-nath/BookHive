@@ -10,16 +10,16 @@ import ErrorAlert from '../../../components/widgets/ErrorAlert'
 import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
 
 function LoginEmailPage(props) {
-	const router = useRouter()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-
+	const [userInfo, setUserInfo] = useState()
 	// const { userInfo, loading, error } = userProfile
-	const userInfo = ''
+	const router = useRouter()
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault()
-		login(email, password)
+		const user = await login(email, password)
+		setUserInfo(user)
 	}
 
 	useEffect(() => {

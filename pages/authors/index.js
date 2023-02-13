@@ -4,7 +4,6 @@ import { Fragment } from 'react'
 import { getTopAuthors } from '../../API/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
 import AuthorGrid from '../../components/author/AuthorGrid'
-// import { getAuthors } from '../../data/getData'
 
 function AuthorListPage(props) {
 	return (

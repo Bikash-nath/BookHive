@@ -7,7 +7,6 @@ import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import openInNewTab from '../../utils/helpers/openLink'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
-// import { getBooks } from '../../data/getData'
 
 function BookDetailPage(props) {
 	const { book } = props

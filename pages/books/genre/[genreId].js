@@ -7,10 +7,10 @@ function GenreBooksPage(props) {
 	return (
 		<Fragment>
 			<Head>
-				<title>Genre Books</title>
-				<meta name='description' content='Genre Books section' />
+				<title>{props.genre}</title>
+				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
-			<ListGridModal listTitle='All popular books'>
+			<ListGridModal listTitle={`${props.genre} books`}>
 				{<BookGrid books={props.books} />}
 			</ListGridModal>
 		</Fragment>
@@ -19,16 +19,18 @@ function GenreBooksPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	const bookList = await getGenreBooks(params.genreId)
-	// const book = bookList.find((book) => book._id == bookId)
+	const { data } = await getGenreBooks(params.genreId)
+	// const book = data.find((book) => book._id == bookId)
 
-	if (!book) {
+	if (!data) {
 		return { notFound: true }
 	}
 
 	return {
 		props: {
-			books: bookList,
+			genre: data.title,
+			slug: data.slug,
+			books: data.books,
 		},
 		revalidate: 60,
 	}

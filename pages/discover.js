@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
-
 // import { useRouter } from 'next/router'
+
 import SearchBar from '../components/SearchBar'
 import GenreGrid from '../components/GenreGrid'
 

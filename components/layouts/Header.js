@@ -56,12 +56,18 @@ function Header(props) {
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
 					<nav className='container mx-auto md:p-1'>
-						{windowWidth < 640 && searchToggle ? (
-							<div className='flex cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2 p-[0.1875rem]'>
+						{searchToggle ? (
+							<div
+								className={
+									`flex items-center justify-center cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2 p-[0.1875rem] ` +
+										searchToggle && 'bg-opacity-50'
+								}>
 								<div className='flex items-center' onClick={() => setSearchToggle(false)}>
 									<ArrowBackIcon dimensions='h-7 w-7' />
 								</div>
-								<SearchBar />
+								<div className='sm:w-32 md:w-40 p-1'>
+									<SearchBar />
+								</div>
 							</div>
 						) : (
 							<div className='flex items-center justify-between text-white'>
@@ -85,17 +91,11 @@ function Header(props) {
 								</div>
 
 								<header className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
-									{searchToggle ? (
-										<div className='w-[30rem]'>
-											<SearchBar />
-										</div>
-									) : (
-										<div
-											className='flex items-center cursor-pointer p-2'
-											onClick={() => setSearchToggle(!searchToggle)}>
-											<SearchIcon dimensions='h-7 w-7' />
-										</div>
-									)}
+									<div
+										className='flex items-center cursor-pointer p-2'
+										onClick={() => setSearchToggle(!searchToggle)}>
+										<SearchIcon dimensions='h-7 w-7' />
+									</div>
 
 									<div className='flex items-center space-x-3 cursor-pointer rounded-full pr-2 md:pr-4'>
 										{user ? (

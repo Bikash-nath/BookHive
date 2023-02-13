@@ -22,9 +22,9 @@ function AudioBooksPage(props) {
 }
 
 export async function getStaticProps() {
-	const bookList = getTopBooks()
+	const books = getTopBooks()
 
-	if (!bookList) {
+	if (!books) {
 		return {
 			notFound: true,
 		}
@@ -32,9 +32,9 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			audiobooks: audiobookList,
+			audiobooks: books.data,
 		},
-		// revalidate: 60,
+		// revalidate: 1800,
 	}
 }
 

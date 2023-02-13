@@ -4,7 +4,6 @@ import { Fragment } from 'react'
 import { getTopBooks } from '../../API/books'
 import ListGridModal from '../../components/modals/ListGridModal'
 import BookGrid from '../../components/book/BookGrid'
-// import { getBooks } from '../../data/getData'
 
 function BookListPage(props) {
 	return (

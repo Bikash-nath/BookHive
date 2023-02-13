@@ -6,7 +6,6 @@ import { getTopAuthors } from '../API/authors'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
-// import { getBooks, getAuthors } from '../data/getData'
 
 function HomePage(props) {
 	return (

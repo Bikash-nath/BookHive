@@ -1,42 +1,29 @@
 import axios from '../lib/axiosConfig'
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
 	try {
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-			},
-		}
-		username = username.split('@')[0]
-		const { data } = await axios.post('/users/login/', { username, password }, config)
-		return data
-
+		const { data } = await axios.post('/users/login/', { email, password })
 		localStorage.setItem('userInfo', JSON.stringify(data))
+		return data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
 }
 
-export const logout = () => () => {
+export const logout = async () => {
 	localStorage.removeItem('userInfo')
 }
 
 export const signup = async (name, email, password, confirmPassword) => {
 	try {
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-			},
-		}
-
-		const { data } = await axios.post(
-			'/users/register/',
-			{ name, email, password, confirmPassword },
-			config
-		)
-		return data
-
+		const { data } = await axios.post('/users/register/', {
+			name,
+			email,
+			password,
+			confirmPassword,
+		})
 		localStorage.setItem('userInfo', JSON.stringify(data))
+		return data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
@@ -44,21 +31,16 @@ export const signup = async (name, email, password, confirmPassword) => {
 //To get user profile based on :id or 'profile' passed as argument
 export const getUserProfile = async () => {
 	try {
-		const {
-			userLogin: { userInfo },
-		} = getState()
-
+		// const  { userInfo } or cookie = getState()
 		const config = {
 			headers: {
-				'Content-type': 'application/json',
 				Authorization: `Bearer ${userInfo.token}`,
 			},
 		}
 
 		const { data } = await axios.get(`/users/profile/`, config)
-		return data
-
 		localStorage.setItem('userInfo', JSON.stringify(data))
+		return data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
@@ -67,10 +49,7 @@ export const getUserProfile = async () => {
 //To update user profile based on user object
 export const updateUserProfile = async (user) => {
 	try {
-		const {
-			userLogin: { userInfo },
-		} = getState()
-
+		// const  { userInfo } or cookie = getState()
 		var formData = new FormData()
 		for (var key in user) {
 			formData.append(key, user[key])
@@ -78,15 +57,13 @@ export const updateUserProfile = async (user) => {
 
 		const config = {
 			headers: {
-				'Content-type': 'application/json',
 				Authorization: `Bearer ${userInfo.token}`,
 			},
 		}
 
 		const { data } = await axios.put(`/users/profile/update/`, formData, config)
-		return data
-
 		localStorage.setItem('userInfo', JSON.stringify(data))
+		return data
 	} catch (error) {
 		return error.response?.data.error_message ? error.response.data.error_message : error.message
 	}
@@ -95,13 +72,10 @@ export const updateUserProfile = async (user) => {
 //To update user profile based on user object
 export const deleteUser = async (id) => {
 	try {
-		const {
-			userLogin: { userInfo },
-		} = getState()
+		// const  { userInfo } or cookie = getState()
 
 		const config = {
 			headers: {
-				'Content-type': 'application/json',
 				Authorization: `Bearer ${userInfo.token}`,
 			},
 		}
