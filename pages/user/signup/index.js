@@ -3,6 +3,8 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { useContext } from 'react'
+import UserContext from '../../store/userContext'
 import { signup } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
@@ -12,13 +14,14 @@ function SignUpPage(props) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
-	const [userInfo, setUserInfo] = useState()
+	const userCtx = useContext(UserContext)
+	const activeUser = userCtx.userInfo
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		const user = await signup(name, email, password, confirmPassword)
-		setUserInfo(user)
+		userCtx.addUserHandler(user.data)
 	}
 
 	useEffect(() => {

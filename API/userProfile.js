@@ -3,10 +3,11 @@ import axios from '../lib/axiosConfig'
 export const login = async (email, password) => {
 	try {
 		const { data } = await axios.post('/users/login/', { email, password })
-		localStorage.setItem('userInfo', JSON.stringify(data))
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -22,10 +23,11 @@ export const signup = async (name, email, password, confirmPassword) => {
 			password,
 			confirmPassword,
 		})
-		localStorage.setItem('userInfo', JSON.stringify(data))
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 //To get user profile based on :id or 'profile' passed as argument
@@ -34,15 +36,15 @@ export const getUserProfile = async () => {
 		// const  { userInfo } or cookie = getState()
 		const config = {
 			headers: {
-				Authorization: `Bearer ${userInfo.token}`,
+				Authorization: `Bearer ${cookie.token}`,
 			},
 		}
-
 		const { data } = await axios.get(`/users/profile/`, config)
-		localStorage.setItem('userInfo', JSON.stringify(data))
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -54,18 +56,17 @@ export const updateUserProfile = async (user) => {
 		for (var key in user) {
 			formData.append(key, user[key])
 		}
-
 		const config = {
 			headers: {
-				Authorization: `Bearer ${userInfo.token}`,
+				Authorization: `Bearer ${cookie.token}`,
 			},
 		}
-
 		const { data } = await axios.put(`/users/profile/update/`, formData, config)
-		localStorage.setItem('userInfo', JSON.stringify(data))
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -73,16 +74,16 @@ export const updateUserProfile = async (user) => {
 export const deleteUser = async (id) => {
 	try {
 		// const  { userInfo } or cookie = getState()
-
 		const config = {
 			headers: {
-				Authorization: `Bearer ${userInfo.token}`,
+				Authorization: `Bearer ${cookie.token}`,
 			},
 		}
-
 		const { data } = await axios.delete(`/users/delete/${id}`, config)
 		return data.message
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }

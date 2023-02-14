@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { useContext } from 'react'
+import UserContext from '../../store/userContext'
 import { login } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
@@ -12,19 +14,19 @@ import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
 function LoginEmailPage(props) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [userInfo, setUserInfo] = useState()
-	// const { userInfo, loading, error } = userProfile
+	const userCtx = useContext(UserContext)
+	const activeUser = userCtx.userInfo
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		const user = await login(email, password)
-		setUserInfo(user)
+		userCtx.addUserHandler(user.data)
 	}
 
 	useEffect(() => {
-		if (userInfo) router.push('/')
-	}, [router, userInfo])
+		if (activeUser) router.push('/')
+	}, [router, activeUser])
 
 	return (
 		<Fragment>

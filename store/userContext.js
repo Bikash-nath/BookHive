@@ -10,12 +10,12 @@ const UserContext = createContext({
 	removeUserHandler: function () {},
 })
 
-function UserContextProvider(props) {
+export function UserContextProvider(props) {
 	const [user, setUser] = useState(userInfoFromStorage)
 
 	function addUserHandler(userData) {
 		setUser(userData)
-		localStorage.setItem('userInfo', userData)
+		localStorage.setItem('userInfo', JSON.stringify(userData))
 	}
 
 	function removeUserHandler() {
@@ -32,4 +32,4 @@ function UserContextProvider(props) {
 	return <UserContext.Provider value={context}>{props.children}</UserContext.Provider>
 }
 
-export default UserContextProvider
+export default UserContext

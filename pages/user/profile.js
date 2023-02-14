@@ -1,11 +1,20 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
+import { useContext } from 'react'
+import UserContext from '../../store/userContext'
 import LoginBanner from '../../components/login/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
 
 function ProfilePage(props) {
-	const user = undefined
+	const userCtx = useContext(UserContext)
+	const activeUser = userCtx.userInfo
+
+	useEffect(() => {
+		if (!activeUser) {
+			getUserProfile()
+		}
+	}, [activeUser])
 
 	//<button className='flex items-center space-x-2 p-2 font-bold rounded-full justify-center lg:p-4 font-sans shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
 	return (
@@ -23,12 +32,16 @@ function ProfilePage(props) {
 					/>
 				) : (
 					<>
-						{user?.name ? (
-							<img className='rounded-full p-1 w-8 h-8' src={user?.image} alt='user image' />
+						{activeUser?.name ? (
+							<img
+								className='rounded-full p-1 w-8 h-8'
+								src={activeUser?.image}
+								alt={activeUser}
+							/>
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}
-						<h3 className='p-4'>{user.name}</h3>
+						<h3 className='p-4'>{activeUser.name}</h3>
 					</>
 				)}
 			</div>
