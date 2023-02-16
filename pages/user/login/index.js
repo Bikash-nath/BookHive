@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { useContext } from 'react'
-import UserContext from '../../store/userContext'
+import UserContext from '../../../store/userContext'
 import { login } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'

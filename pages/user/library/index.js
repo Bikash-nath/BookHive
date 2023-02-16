@@ -1,6 +1,7 @@
+import { Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import Image from 'next/image'
 
 import AccountIcon from '../../../assets/icons/AccountIcon'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
@@ -29,7 +30,13 @@ function LibraryPage(props) {
 					<div className='flex flex-col'>
 						<div className='flex p-2 md:p-4'>
 							{user?.image ? (
-								<img className='rounded-full p-2 w-10 h-10' src={user?.image} alt='user image' />
+								<Image
+									src={'http://127.0.0.1:5000' + user?.image}
+									alt={user.name}
+									height={32}
+									width={32}
+									className='rounded-full p-2 w-10 h-10'
+								/>
 							) : (
 								<AccountIcon dimensions='h-16 w-16' />
 							)}
@@ -37,10 +44,12 @@ function LibraryPage(props) {
 						</div>
 						<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
 							<Link href='/user/library/collections'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CollectionIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>
+											Collections
+										</p>
 									</div>
 									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Book collections that you created.
@@ -48,10 +57,12 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/read-history'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>History</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>
+											History
+										</p>
 									</div>
 									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Books that you have read or listened.
@@ -59,10 +70,12 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/read-later'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HistoryIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>
+											Read Later
+										</p>
 									</div>
 									<p className='text-base md:text-lg text-gray-400 text-left'>
 										Books that you have saved for read later.
@@ -70,10 +83,12 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<HeartIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>Favourites</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>
+											Favourites
+										</p>
 									</div>
 									<p className='text-base md:text-lg text-gray-400 text-left'>
 										List of your liked books.
@@ -81,10 +96,12 @@ function LibraryPage(props) {
 								</div>
 							</Link>
 							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
+								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
 									<div className='flex rounded-md py-2 gap-2'>
 										<CompletedIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
+										<p className='text-lg md:text-xl text-left font-semibold'>
+											Finished Books
+										</p>
 									</div>
 									<p className='text-base md:text-lg text-gray-400 text-left'>
 										List of books that you have completed.

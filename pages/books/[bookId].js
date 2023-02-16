@@ -1,5 +1,6 @@
-import Head from 'next/head'
 import { Fragment } from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
 
 import { getBookDetails, getTopBooks } from '../../API/books'
 import BgCover from '../../components/modals/BgCover'
@@ -20,9 +21,11 @@ function BookDetailPage(props) {
 			<div className='bg-gradient text-white pb-20'>
 				<div className='m-0'>
 					<BgCover color={props.color}>
-						<img
-							src={'/images' + book.image}
+						<Image
+							src={'http://127.0.0.1:5000' + book.image.path}
 							alt={book.title}
+							height={320}
+							width={240}
 							className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1'
 						/>
 						<div className='px-2 md:px-4'>
@@ -45,15 +48,15 @@ function BookDetailPage(props) {
 							)}
 						</div>
 						<div className='flex flex-col justify-center items-center space-y-2 md:space-y-4 text-white'>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<LibraryIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Add To Library</span>
 							</button>
@@ -73,7 +76,9 @@ function BookDetailPage(props) {
 				</div>
 				<div className='flex items-center justify-start space-x-4 p-2 md:p-4'>
 					{book.genres?.map((genre, i) => (
-						<button key={i} className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
+						<button
+							key={i}
+							className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
 							{genre}
 						</button>
 					))}
@@ -108,13 +113,15 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const { data } = await getTopBooks()
-	const params = data.map((book) => ({
+	const params = data?.map((book) => ({
 		params: { bookId: book.slug.toString() },
 	}))
+	console.log('params\n:', params)
+	console.log('\n⛔')
 
 	return {
 		paths: params,
-		fallback: false,
+		fallback: 'blocking',
 	}
 }
 

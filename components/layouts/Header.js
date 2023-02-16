@@ -61,26 +61,25 @@ function Header(props) {
 		<>
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
-					<nav className='container mx-auto md:p-1'>
+					<nav className='container mx-auto p-1 w-screen'>
 						{searchToggle ? (
 							<div
-								className={
-									`flex items-center justify-center cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2 p-[0.1875rem] ` +
-										searchToggle && 'bg-opacity-50'
-								}>
+								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2${
+									searchToggle && 'bg-opacity-50'
+								}`}>
 								<div
-									className='flex items-center'
+									className='flex items-center justify-center'
 									onClick={() => setSearchToggle(false)}>
 									<ArrowBackIcon dimensions='h-7 w-7' />
 								</div>
-								<div className='sm:w-32 md:w-40 p-1'>
+								<div className='w-full sm:w-60 md:w-1/2'>
 									<SearchBar />
 								</div>
 							</div>
 						) : (
 							<div className='flex items-center justify-between text-white'>
 								<div className='flex lg:hidden items-center space-x-20 w-full'>
-									<Logo size={50} />
+									<Logo size={44} />
 								</div>
 								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
 									<button
@@ -124,7 +123,7 @@ function Header(props) {
 														</div>
 														{activeUser?.image ? (
 															<img
-																className='rounded-full p-1 w-8 h-8'
+																className='rounded-full w-7 h-7'
 																src={activeUser?.image}
 																alt='user image'
 															/>
@@ -200,7 +199,7 @@ function Header(props) {
 												</div>
 											</>
 										) : (
-											<div className='transform scale-80'>
+											<div className='transform scale-95'>
 												<LoginButton />
 											</div>
 										)}

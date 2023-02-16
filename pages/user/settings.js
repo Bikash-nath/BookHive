@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 
 import LoginBanner from '../../components/login/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
@@ -24,7 +25,13 @@ function SettingsPage(props) {
 				) : (
 					<>
 						{user?.name ? (
-							<img className='rounded-full p-1 w-8 h-8' src={user?.image} alt='user image' />
+							<Image
+								src={'http://127.0.0.1:5000' + activeUser?.image}
+								alt={activeUser.name}
+								height={32}
+								width={32}
+								className='rounded-full p-1 w-8 h-8'
+							/>
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}

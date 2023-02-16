@@ -21,9 +21,11 @@ function AuthorDetailPage(props) {
 				<div className='m-0'>
 					<BgCover>
 						<div className='p-2'>
-							<img
-								src={'/images' + author.imageLg}
+							<Image
+								src={'http://127.0.0.1:5000' + author.image}
 								alt={author.name}
+								height={320}
+								width={240}
 								className='object-contain rounded-md w-40 h-60 lg:w-52 lg:h-80'
 							/>
 						</div>
@@ -40,7 +42,9 @@ function AuthorDetailPage(props) {
 				</div>
 				<div className='flex items-center justify-start space-x-4'>
 					{author.genres?.map((genre, i) => (
-						<button key={i} className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
+						<button
+							key={i}
+							className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
 							{genre}
 						</button>
 					))}
@@ -76,7 +80,7 @@ export async function getStaticPaths() {
 	console.log('\n\n\n params', params)
 	return {
 		paths: params,
-		fallback: false,
+		fallback: 'blocking',
 	}
 }
 

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import { getGenreBooks } from '../../../API/genres'
+import { getGenreBooks, getTopGenres } from '../../../API/genres'
 
 function GenreBooksPage(props) {
 	return (
@@ -33,6 +33,20 @@ export async function getStaticProps(context) {
 			books: data.books,
 		},
 		revalidate: 60,
+	}
+}
+
+export async function getStaticPaths() {
+	const { data } = await getTopGenres()
+	const params = data?.map((genre) => ({
+		params: { genreId: genre.slug.toString() },
+	}))
+	console.log('params\n:', params)
+	console.log('\n⛔')
+
+	return {
+		paths: params,
+		fallback: 'blocking',
 	}
 }
 

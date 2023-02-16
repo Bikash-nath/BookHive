@@ -1,8 +1,11 @@
 import { createContext, useState } from 'react'
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-	? JSON.parse(localStorage.getItem('userInfo'))
-	: null
+const userInfoFromStorage =
+	typeof window !== 'undefined'
+		? localStorage.getItem('userInfo')
+			? JSON.parse(localStorage.getItem('userInfo'))
+			: null
+		: null
 
 const UserContext = createContext({
 	userInfo: { userInfo: userInfoFromStorage },

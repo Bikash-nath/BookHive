@@ -11,7 +11,7 @@ function Container(props) {
 		<div className='overflow-hidden m-0'>
 			<div className='flex'>
 				<NavbarLg />
-				<main className='flex-grow h-screen relative bg-zinc-900 overflow-y-scroll select-none p-0 m-0'>
+				<main className='flex-grow h-screen relative bg-[#121212] overflow-y-scroll select-none p-0 m-0'>
 					<Header />
 					{props.children}
 				</main>

@@ -14,7 +14,7 @@ function BooksRow({ books }) {
 						<BookCard
 							key={book._id}
 							title={book.title}
-							image={book.image}
+							image={book.image.path}
 							author={book.author}
 							slug={book.slug}
 						/>
@@ -27,7 +27,7 @@ function BooksRow({ books }) {
 						<BookCard
 							key={book._id}
 							title={book.title}
-							image={book.image}
+							image={book.image.path}
 							author={book.author}
 							slug={book.slug}
 						/>

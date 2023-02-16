@@ -3,8 +3,8 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 
 function LoginContainer(props) {
 	return (
-		<div className='flex items-start justify-center h-screen bg-black text-white pt-8 p-0 m-0'>
-			<div className='relative flex flex-col h-full rounded-2xl md:flex-row md:space-y-0 m-0 md:h-screen md:flex justify-center items-center'>
+		<div className='flex items-start justify-center h-screen bg-black text-white p-0 m-0'>
+			<div className='relative flex flex-col md:flex-row md:space-y-0 m-0 h-full md:h-screen md:flex justify-center items-center bg-[#121212] rounded-2xl '>
 				<div className='px-4 md:p-4 w-screen md:w-1/2'>
 					<div className='md:flex md:items-center justify-center'>
 						<Logo className='absolute top-0 left-0 md:static w-full' size={50} />
@@ -15,8 +15,12 @@ function LoginContainer(props) {
 							<img src='/images/bookhive.webp' alt='Bookhive' className='w-9/12' />
 						</div>
 						<div className='absolute bottom-0 md:static'>
-							<p className='max-w-md mt-2 font-sans text-xl	font-bold'>Thousands of books.</p>
-							<p className='max-w-md font-sans text-xl font-bold'>Free on Bookhive.</p>
+							<p className='max-w-md mt-2 font-sans text-xl	font-bold'>
+								Thousands of books.
+							</p>
+							<p className='max-w-md font-sans text-xl font-bold'>
+								Free on Bookhive.
+							</p>
 						</div>
 					</div>
 					{props.children}

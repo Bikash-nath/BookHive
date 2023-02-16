@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 
 import { useContext } from 'react'
 import UserContext from '../../store/userContext'
@@ -33,10 +34,12 @@ function ProfilePage(props) {
 				) : (
 					<>
 						{activeUser?.name ? (
-							<img
+							<Image
+								src={'http://127.0.0.1:5000' + activeUser?.image}
+								alt={activeUser.name}
+								height={32}
+								width={32}
 								className='rounded-full p-1 w-8 h-8'
-								src={activeUser?.image}
-								alt={activeUser}
 							/>
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />

@@ -41,16 +41,20 @@ export const getGenreBooks = async (genre) => {
 		// bookList = bookList.concat(...data.map((obj) => obj.books))
 		return bookList
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
 export const searchBooks = async (keyword = '') => {
 	try {
-		const { data } = await axios.get(`/books/search${keyword}`)
+		const { data } = await axios.get(`/books/search?keyword=${keyword}`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -59,7 +63,9 @@ export const getSimilarBooks = async (bookId) => {
 		const { data } = await axios.get(`/books/${bookId}/similar/`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -68,7 +74,9 @@ export const getBookDetails = async (bookId) => {
 		const { data } = await axios.get(`/books/${bookId}`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -83,6 +91,8 @@ export const createBookReview = async (bookId, review) => {
 		const { data } = await axios.post(`/books/${bookId}/reviews/`, review, config)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }

@@ -10,7 +10,7 @@ function BookGrid({ books }) {
 				<BookCard
 					key={index}
 					title={book.title}
-					image={book.image}
+					image={book.image.path}
 					author={book.author}
 					slug={book.slug}
 				/>

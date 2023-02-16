@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import UserContextProvider from '../store/userContext'
+import { UserContextProvider } from '../store/userContext'
 import Container from '../components/layouts/Container'
 import '../assets/globals.css'
 
