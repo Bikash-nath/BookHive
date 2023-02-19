@@ -5,7 +5,7 @@ function LoginContainer(props) {
 	return (
 		<div className='flex items-start justify-center h-screen bg-black text-white p-0 m-0'>
 			<div className='relative flex flex-col md:flex-row md:space-y-0 m-0 h-full md:h-screen md:flex justify-center items-center bg-[#121212] rounded-2xl '>
-				<div className='px-4 md:p-4 w-screen md:w-1/2'>
+				<div className='px-4 md:p-4 w-screen md:w-1/2 lg:w-5/12'>
 					<div className='md:flex md:items-center justify-center'>
 						<Logo className='absolute top-0 left-0 md:static w-full' size={50} />
 					</div>
@@ -26,7 +26,7 @@ function LoginContainer(props) {
 					{props.children}
 				</div>
 				<div className='hidden md:w-1/2 md:h-full md:flex justify-center items-center'>
-					<img src='/images/bookhive.webp' alt='' className='w-full' />
+					<img src='/images/bookhive.webp' alt='' className='w-4/5 px-8 mt-4' />
 				</div>
 				<div className='group absolute top-3 right-4 md:top-8 md:right-8 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 					<CloseIcon />

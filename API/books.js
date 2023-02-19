@@ -1,8 +1,19 @@
 import axios from '../lib/axiosConfig'
 
-export const getTopBooks = async () => {
+export const getBestsellers = async () => {
 	try {
-		const { data } = await axios.get('/books/')
+		const { data } = await axios.get('/books/bestsellers')
+		return data
+	} catch (error) {
+		return error.response && error.response.data.error_message
+			? error.response.data.error_message
+			: error.message
+	}
+}
+
+export const getTopAudiobooks = async () => {
+	try {
+		const { data } = await axios.get('/books/audiobooks')
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message

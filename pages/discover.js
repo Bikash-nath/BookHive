@@ -4,11 +4,11 @@ import { Fragment } from 'react'
 
 import SearchBar from '../components/SearchBar'
 import GenreGrid from '../components/GenreGrid'
-
+import { getTopGenres } from '../api/genres'
 import { genreList } from '../utils/constants/genreConstants'
 import { images } from '../utils/constants/genrePics'
 
-function DiscoverPage() {
+function DiscoverPage(props) {
 	return (
 		<Fragment>
 			<Head>
@@ -19,10 +19,27 @@ function DiscoverPage() {
 				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
 					<SearchBar />
 				</div>
-				<GenreGrid genreList={genreList} images={images} />
+				<GenreGrid genreList={props.genreList} images={images} />
 			</div>
 		</Fragment>
 	)
+}
+
+export async function getStaticProps() {
+	const topGenres = await getTopGenres()
+
+	if (!topGenres) {
+		return {
+			notFound: true,
+		}
+	}
+
+	return {
+		props: {
+			genreList: topGenres.data,
+		},
+		revalidate: 60, //for production
+	}
 }
 
 export default DiscoverPage

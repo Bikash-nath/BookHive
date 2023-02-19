@@ -21,10 +21,9 @@ const colors = [
 	'from-slate-500',
 ]
 
-export function pickBgColor(id) {
-	console.log('\nslug:\n\n', id)
+export function pickBgColor(slug) {
+	const id = slug.split('.')[0]
 	const index = Math.floor(id.slice(-2) / 5)
-	console.log('\nindex\n\n', index)
 	const bgColor = colors[index]
 	return bgColor
 }

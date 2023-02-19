@@ -4,9 +4,11 @@ export const getGenreBooks = async (genre) => {
 	try {
 		const { data } = await axios.get(`/genres/${genre}/books`)
 		// const bookList = bookList.map(genre => genre.books)
-		return bookList
+		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 

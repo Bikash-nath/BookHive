@@ -2,10 +2,12 @@ import axios from '../lib/axiosConfig'
 
 export const getTopAuthors = async () => {
 	try {
-		const { data } = await axios.get('/authors')
+		const { data } = await axios.get('/authors/top')
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -14,7 +16,9 @@ export const getAuthorDetails = async (authorId) => {
 		const { data } = await axios.get(`/authors/${authorId}/`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 
@@ -23,7 +27,9 @@ export const getSimilarAuthors = async (authorId) => {
 		const { data } = await axios.get(`/authors/${authorId}/similar/`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message ? error.response.data.error_message : error.message
+		return error.response?.data.error_message
+			? error.response.data.error_message
+			: error.message
 	}
 }
 

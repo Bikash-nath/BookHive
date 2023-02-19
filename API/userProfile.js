@@ -2,7 +2,7 @@ import axios from '../lib/axiosConfig'
 
 export const login = async (email, password) => {
 	try {
-		const { data } = await axios.post('/users/login/', { email, password })
+		const { data } = await axios.post('/users/profile/login/', { email, password })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -15,16 +15,17 @@ export const logout = async () => {
 	localStorage.removeItem('userInfo')
 }
 
-export const signup = async (name, email, password, confirmPassword) => {
+export const signup = async (name, email, password, passwordConfirm) => {
 	try {
-		const { data } = await axios.post('/users/register/', {
+		const { data } = await axios.post('/users/profile/signup/', {
 			name,
 			email,
 			password,
-			confirmPassword,
+			passwordConfirm,
 		})
 		return data
 	} catch (error) {
+		console.log(error)
 		return error.response?.data.error_message
 			? error.response.data.error_message
 			: error.message
@@ -39,7 +40,7 @@ export const getUserProfile = async () => {
 				Authorization: `Bearer ${cookie.token}`,
 			},
 		}
-		const { data } = await axios.get(`/users/profile/`, config)
+		const { data } = await axios.get(`/users/profile/getMe`, config)
 		return data
 	} catch (error) {
 		return error.response?.data.error_message

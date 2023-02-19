@@ -8,26 +8,26 @@ const userInfoFromStorage =
 		: null
 
 const UserContext = createContext({
-	userInfo: { userInfo: userInfoFromStorage },
-	addUserHandler: function (userData) {},
-	removeUserHandler: function () {},
+	user: { userInfo: userInfoFromStorage },
+	addUser: function (userData) {},
+	removeUser: function () {},
 })
 
 export function UserContextProvider(props) {
-	const [user, setUser] = useState(userInfoFromStorage)
+	const [activeUser, setactiveUser] = useState(userInfoFromStorage)
 
 	function addUserHandler(userData) {
-		setUser(userData)
+		setactiveUser(userData)
 		localStorage.setItem('userInfo', JSON.stringify(userData))
 	}
 
 	function removeUserHandler() {
-		setUser(null)
+		setactiveUser(null)
 		localStorage.removeItem('userInfo', null)
 	}
 
 	const context = {
-		userInfo: user,
+		user: activeUser,
 		addUser: addUserHandler,
 		removeUser: removeUserHandler,
 	}

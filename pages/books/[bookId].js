@@ -1,8 +1,9 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { getBookDetails, getTopBooks } from '../../API/books'
+import { getBookDetails, getBestsellers } from '../../API/books'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import openInNewTab from '../../utils/helpers/openLink'
@@ -76,11 +77,11 @@ function BookDetailPage(props) {
 				</div>
 				<div className='flex items-center justify-start space-x-4 p-2 md:p-4'>
 					{book.genres?.map((genre, i) => (
-						<button
-							key={i}
-							className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
-							{genre}
-						</button>
+						<Link href={`/genre/${genre.slug}/books`} key={i}>
+							<button className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
+								{genre.title}
+							</button>
+						</Link>
 					))}
 				</div>
 				<div className='p-4 md:p-8'>
@@ -94,17 +95,17 @@ function BookDetailPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	const { data } = await getBookDetails(params.bookId)
+	const book = await getBookDetails(params.bookId)
 
-	if (!data) {
+	if (!book.data) {
 		return { notFound: true }
 	}
 
-	const bgColor = pickBgColor(data.slug)
+	const bgColor = pickBgColor(book.data.slug)
 
 	return {
 		props: {
-			book: data,
+			book: book.data,
 			color: bgColor,
 		},
 		revalidate: 60,
@@ -112,12 +113,12 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const { data } = await getTopBooks()
+	const { data } = await getBestsellers()
 	const params = data?.map((book) => ({
 		params: { bookId: book.slug.toString() },
 	}))
-	console.log('params\n:', params)
-	console.log('\n⛔')
+	// console.log('params\n:', params)
+	// console.log('\n⛔')
 
 	return {
 		paths: params,

@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 import { getAuthorDetails, getTopAuthors } from '../../API/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
+import ListSliderModal from '../..//components/modals/ListSliderModal'
+import BookRow from '../../components/book/BookRow'
 
 function AuthorDetailPage(props) {
 	const { author } = props
@@ -19,7 +22,7 @@ function AuthorDetailPage(props) {
 			</Head>
 			<div className='bg-gradient text-white min-h-full'>
 				<div className='m-0'>
-					<BgCover>
+					<BgCover color={props.color}>
 						<div className='p-2'>
 							<Image
 								src={'http://127.0.0.1:5000' + author.image}
@@ -45,7 +48,7 @@ function AuthorDetailPage(props) {
 						<button
 							key={i}
 							className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
-							{genre}
+							{genre.title}
 						</button>
 					))}
 				</div>
@@ -53,6 +56,9 @@ function AuthorDetailPage(props) {
 					<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
 					<p className='text-md font-normal text-gray-200'>{author.biography}</p>
 				</div>
+				<ListSliderModal listTitle='Author Books' listLink='/books'>
+					{<BookRow books={author.books} />}
+				</ListSliderModal>
 			</div>
 		</Fragment>
 	)
@@ -60,13 +66,18 @@ function AuthorDetailPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	const { data } = await getAuthorDetails(params.authorId)
-	// const author = authors.find((author) => author.slug.toString() === params.authorId)
-	// const bgColor = pickBgColor(data)
+	const author = await getAuthorDetails(params.authorId)
+
+	if (!author.data) {
+		return { notFound: true }
+	}
+
+	const bgColor = pickBgColor(author.data.slug)
 
 	return {
 		props: {
-			author: data,
+			author: author.data,
+			color: bgColor,
 		},
 		revalidate: 60,
 	}
@@ -77,7 +88,7 @@ export async function getStaticPaths() {
 	const params = authors.data.map((author) => ({
 		params: { authorId: author.slug.toString() },
 	}))
-	console.log('\n\n\n params', params)
+
 	return {
 		paths: params,
 		fallback: 'blocking',

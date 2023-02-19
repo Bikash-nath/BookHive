@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function GenresGrid(props) {
 	const { genreList, images } = props
@@ -6,7 +8,7 @@ export default function GenresGrid(props) {
 
 	useEffect(() => {
 		const imageList = genreList.map(
-			() => '/images/genreImages/' + images[Math.floor(Math.random() * images.length)]
+			() => 'genreImages/' + images[Math.round(Math.random() * images.length)]
 		)
 		setGenreImages(imageList)
 	}, [])
@@ -19,17 +21,19 @@ export default function GenresGrid(props) {
 				</h2>
 				<div className='item-container genre-grid'>
 					{genreList.map((genre, i) => (
-						<div key={genre} className='group item rounded-lg'>
-							<Image
-								src={genreImages[i]}
-								alt={genre}
-								height={120}
-								width={180}
-								className='rounded-lg'
-							/>
-							<div className='item-gradient'></div>
-							<h5 className='box-text'>{genre}</h5>
-						</div>
+						<Link href={`/books/genre/${genre.slug}`} key={i}>
+							<div key={i} className='group item rounded-lg'>
+								<Image
+									src={'http://127.0.0.1:5000/' + genreImages[i]}
+									alt={genre.title}
+									height={100}
+									width={272}
+									className='rounded-lg'
+								/>
+								<div className='item-gradient'></div>
+								<h5 className='box-text'>{genre.title}</h5>
+							</div>
+						</Link>
 					))}
 				</div>
 			</div>

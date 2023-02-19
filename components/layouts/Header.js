@@ -22,7 +22,7 @@ import SettingsIcon from '../../assets/icons/SettingsIcon'
 import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
-import { getUserProfile } from '../../api/userProfile'
+// import { getUserProfile } from '../../api/userProfile'
 // import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
 function Header(props) {
@@ -30,12 +30,19 @@ function Header(props) {
 	const [showNavBtn, setShowNavBtn] = useState(false)
 	const [windowWidth, setWindowWidth] = useState()
 	const [history, setHistory] = useState()
+	const [opacity, setOpacity] = useState(70)
+
+	const router = useRouter()
+	const currentRoute = router.pathname
+	const paths = ['login', 'signup', 'discover', 'search']
+	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.userInfo
-	// const user = 1
+	const activeUser = userCtx.user
 
-	const [opacity, setOpacity] = useState(70)
+	useEffect(() => {
+		// if (!activeUser?.data) getUserProfile()
+	}, [router, activeUser])
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -43,11 +50,6 @@ function Header(props) {
 			setHistory(window.history)
 		}
 	}, [])
-
-	const router = useRouter()
-	const currentRoute = router.pathname
-	const paths = ['login', 'signup', 'discover', 'search']
-	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
 		return `flex items-center space-x-4 m-2 lg:my-3 cursor-pointer hover:text-white text-${
@@ -105,7 +107,7 @@ function Header(props) {
 									</div>
 
 									<div className='flex items-center space-x-3 cursor-pointer rounded-full pr-2 md:pr-4'>
-										{activeUser ? (
+										{activeUser?.data ? (
 											<>
 												<div className='flex items-center cursor-pointer p-2 space-x-4 focus:bg-slate-800'>
 													<BellIcon dimensions='h-7 w-7' />
@@ -121,10 +123,10 @@ function Header(props) {
 																<HamburgerIcon className='h-7 w-7' />
 															)}
 														</div>
-														{activeUser?.image ? (
+														{activeUser?.data.image ? (
 															<img
 																className='rounded-full w-7 h-7'
-																src={activeUser?.image}
+																src={activeUser?.data.image}
 																alt='user image'
 															/>
 														) : (

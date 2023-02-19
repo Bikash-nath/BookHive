@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,17 +15,17 @@ function LoginEmailPage(props) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.userInfo
+	const activeUser = userCtx.user
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		const user = await login(email, password)
-		userCtx.addUserHandler(user.data)
+		userCtx.addUser(user)
 	}
 
 	useEffect(() => {
-		if (activeUser) router.push('/')
+		if (activeUser?.data) router.push('/')
 	}, [router, activeUser])
 
 	return (
@@ -56,9 +56,7 @@ function LoginEmailPage(props) {
 					<Link href='/user/forgotPassword'>
 						<div className='font-semibold text-purple-400'>Forgot password ?</div>
 					</Link>
-					<button
-						onSubmit={submitHandler}
-						className='rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150'>
+					<button onClick={submitHandler} className='btn-next'>
 						<span>Login</span>
 						<ArrowIcon />
 					</button>

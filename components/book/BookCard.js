@@ -5,7 +5,6 @@ import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 //overflow-hidden backdrop-blur-sm animate-slideup
 
 function BookCard({ title, image, author, slug }) {
-	console.log('BookCard\nn\n', title, image, author, slug)
 	return (
 		<div className='flex flex-row items-center justify-center mx-2 sm:mx-3 lg:w-40 lg:h-68 lg:py-2 rounded-md group-hover:flex'>
 			<Link href={`/books/${slug}`}>

@@ -37,6 +37,10 @@
 	@apply absolute px-1 md:px-2 w-full md:w-4/6 text-start left-1 bottom-1;
 }
 
+.btn-next {
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-200 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
+}
+
 .input-field {
 	@apply w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900;
 }

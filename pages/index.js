@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
-import { getTopBooks } from '../API/books'
+import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../API/books'
 import { getTopAuthors } from '../API/authors'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
@@ -18,16 +18,16 @@ function HomePage(props) {
 				/>
 			</Head>
 			<div className='bg-gradient'>
-				<ListSliderModal listTitle='Most Popular Books' listLink='/books'>
-					{<BookRow books={props.books.slice(0, 10)} />}
+				<ListSliderModal listTitle='Bestsellers' listLink='/books'>
+					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
 
-				<ListSliderModal listTitle='Top new releases' listLink='/books'>
-					{<BookRow books={props.books.slice(5, 12)} />}
+				<ListSliderModal listTitle='Latest releases' listLink='/books'>
+					{<BookRow books={props.audiobooks} />}
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Featured Audiobooks' listLink='/books'>
-					{<BookRow books={props.books.slice(1, 10)} />}
+					{<BookRow books={props.latestBooks} />}
 				</ListSliderModal>
 
 				<ListSliderModal listTitle='Popular Authors' listLink='/authors'>
@@ -39,14 +39,24 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	const books = await getTopBooks()
+	const bestsellers = await getBestsellers()
+	const audiobooks = await getTopAudiobooks()
+	const latestBooks = await getLatestBooks()
 	const authors = await getTopAuthors()
+
+	if (typeof bestsellers == 'string' && bestsellers.includes('ECONNREFUSED'))
+		return {
+			notFound: true,
+		}
+
 	return {
 		props: {
-			books: books.data,
+			bestsellers: bestsellers.data,
+			audiobooks: audiobooks.data,
+			latestBooks: latestBooks.data,
 			authors: authors.data,
 		},
-		// revalidate: 60,
+		revalidate: 60,
 	}
 }
 
