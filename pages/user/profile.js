@@ -1,42 +1,42 @@
-import { Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { useContext } from 'react'
 import UserContext from '../../store/userContext'
 import LoginBanner from '../../components/login/LoginBanner'
 import AccountIcon from '../../assets/icons/AccountIcon'
+import SettingsIcon from '../../assets/icons/SettingsIcon'
 
 function ProfilePage(props) {
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.userInfo
+	const [activeUser, setActiveUser] = useState(null)
 
 	useEffect(() => {
-		if (!activeUser) {
-			getUserProfile()
-		}
+		setActiveUser(userCtx.user)
+		// if (!activeUser?.data) getUserProfile()
 	}, [activeUser])
 
-	//<button className='flex items-center space-x-2 p-2 font-bold rounded-full justify-center lg:p-4 font-sans shadow-sm px-9 hover:bg-opacity-90 border-[0.5px] border-purple-500 border-1 hover:border-2 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
 	return (
 		<Fragment>
 			<Head>
-				<title>Profile</title>
-				<meta name='description' content='Profile section' />
+				<title>Settings</title>
+				<meta name='description' content='Settings section' />
 			</Head>
 			<div className='bg-gradient h-[93vh]'>
-				{!user ? (
+				{!activeUser?.data ? (
 					<LoginBanner
 						title='Access Your Profile'
 						message='Please login to access your personal account'
 						icon={<AccountIcon />}
 					/>
 				) : (
-					<>
-						{activeUser?.name ? (
+					<div
+						className='flex flex-col items-center justify-center w-full min-h-full
+					 gap-8'>
+						{activeUser?.data.image ? (
 							<Image
-								src={'http://127.0.0.1:5000' + activeUser?.image}
-								alt={activeUser.name}
+								src={process.env.BOOKS_URL + activeUser?.image}
+								alt={activeUser.data.name}
 								height={32}
 								width={32}
 								className='rounded-full p-1 w-8 h-8'
@@ -44,8 +44,31 @@ function ProfilePage(props) {
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}
-						<h3 className='p-4'>{activeUser.name}</h3>
-					</>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+							<div className='flex justify-between rounded-md py-2 gap-2'>
+								<p className='text-lg md:text-xl font-semibold px-4'>Name</p>
+								<p className='text-lg md:text-xl font-semibold px-4'>
+									{activeUser.data.name}
+								</p>
+							</div>
+						</div>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+							<div className='flex justify-between rounded-md py-2 gap-2'>
+								<p className='text-lg md:text-xl font-semibold px-4'>Email</p>
+								<p className='text-lg md:text-xl text-right font-semibold px-4'>
+									{activeUser.data.email}
+								</p>
+							</div>
+						</div>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+							<div className='flex justify-between rounded-md py-2 gap-2'>
+								<p className='text-lg md:text-xl font-semibold px-4'>Location</p>
+								<p className='text-lg md:text-xl text-right font-semibold px-4'>
+									{activeUser.data.address.country}
+								</p>
+							</div>
+						</div>
+					</div>
 				)}
 			</div>
 		</Fragment>

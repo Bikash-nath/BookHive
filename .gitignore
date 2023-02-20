@@ -6,7 +6,6 @@
 # testing
 /coverage
 /.components*
-/public
 /data
 pending.md
 

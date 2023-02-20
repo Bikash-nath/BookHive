@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, Fragment } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useRouter } from 'next/router'
 
 import { searchBooks } from '../api/books'
@@ -9,12 +9,14 @@ import BookGrid from '../components/book/BookGrid'
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
 	const router = useRouter()
-	const keyword = router.pathname.split('?keyword=')[1]
+	const keyword = router.query.keyword
 
 	useEffect(() => {
 		if (keyword) {
-			const { data } = searchBooks(query)
-			setSearchResult(data)
+			;(async () => {
+				const { data } = await searchBooks(keyword)
+				setSearchResult(data)
+			})()
 		}
 	}, [keyword])
 
@@ -24,14 +26,20 @@ function SearchPage() {
 				<title>Search</title>
 				<meta name='description' content='Search section' />
 			</Head>
-			<div className='bg-gradient pb-24'>
+			<div className='bg-gradient min-h-full pb-24'>
 				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
 					<SearchBar />
 				</div>
-				{!searchResult.length ? (
-					<div className='text-2xl'>No results for {keyword}</div>
+
+				{!searchResult?.length ? (
+					<div className='text-2xl p-4'>No results for "{keyword}"</div>
 				) : (
-					<BookGrid books={searchResult} />
+					<>
+						<div className='text-2xl p-4'>
+							{searchResult?.length} results for "{keyword}"
+						</div>
+						<BookGrid books={searchResult} />
+					</>
 				)}
 			</div>
 		</Fragment>

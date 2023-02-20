@@ -30,15 +30,3 @@ export const settings = {
 		},
 	],
 }
-
-function DarkDots(props) {
-	console.log('\n\nBookrow Darkdot:\n', props)
-	const { className, style, onClick } = props
-	return (
-		<div
-			className={className}
-			style={{ ...style, background: 'green', color: 'white' }}
-			onClick={onClick}
-		/>
-	)
-}

@@ -11,7 +11,7 @@ function BookCardList({ title, image, author }) {
 
 				<div>
 					<Image
-						src={'http://127.0.0.1:5000' + image.path}
+						src={process.env.BOOKS_URL + image.path}
 						alt={title}
 						height={144}
 						width={100}

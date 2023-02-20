@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import { getTopAuthors } from '../../API/authors'
+import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
 import AuthorGrid from '../../components/author/AuthorGrid'
 

@@ -7,9 +7,7 @@ export default function GenresGrid(props) {
 	const [genreImages, setGenreImages] = useState([])
 
 	useEffect(() => {
-		const imageList = genreList.map(
-			() => 'genreImages/' + images[Math.round(Math.random() * images.length)]
-		)
+		const imageList = genreList.map((genre, i) => images[i % 6])
 		setGenreImages(imageList)
 	}, [])
 
@@ -24,7 +22,7 @@ export default function GenresGrid(props) {
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<div key={i} className='group item rounded-lg'>
 								<Image
-									src={'http://127.0.0.1:5000/' + genreImages[i]}
+									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}
 									height={100}
 									width={272}

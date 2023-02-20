@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 > ### Packages & dependencies
 
-- [<em>BookHive backend<em>](https://github.com/Bikash-nath/BookHive-backend)
+-   [<em>BookHive backend<em>](https://github.com/Bikash-nath/BookHive-backend)
 
 <br>
 
@@ -38,5 +38,5 @@ In case of more serious matters, like bug reports and other unexpected behavior,
 <br>
 
 <h3 align="center">
-Loved this project?? If yes, don't forget to show your love ❤️ by putting a ⭐ on this project ✌️
+Liked this project?? If yes, don't forget to show your love ❤️ by putting a ⭐ on this project ✌️
 </h3>

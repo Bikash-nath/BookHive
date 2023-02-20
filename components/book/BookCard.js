@@ -13,7 +13,7 @@ function BookCard({ title, image, author, slug }) {
 						<HeadphoneIcon className='' dimensions='h-5 w-5' />
 					</button>
 					<Image
-						src={'http://127.0.0.1:5000' + image}
+						src={process.env.BOOKS_URL + image}
 						alt={title}
 						height={240}
 						width={160}

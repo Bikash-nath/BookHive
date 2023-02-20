@@ -1,16 +1,25 @@
-import { Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import UserContext from '../../../store/userContext'
+import LoginBanner from '../../../components/login/LoginBanner'
 import AccountIcon from '../../../assets/icons/AccountIcon'
+import LibraryIcon from '../../../assets/icons/LibraryIcon'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 import CollectionIcon from '../../../assets/icons/CollectionIcon'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 import CompletedIcon from '../../../assets/icons/CompletedIcon'
 
 function LibraryPage(props) {
-	const user = '21'
+	const userCtx = useContext(UserContext)
+	const [activeUser, setActiveUser] = useState(null)
+
+	useEffect(() => {
+		setActiveUser(userCtx.user)
+		// if (!activeUser?.data) getUserProfile()
+	}, [activeUser])
 
 	return (
 		<Fragment>
@@ -18,8 +27,8 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			<div className='bg-gradient'>
-				{!user ? (
+			<div className='bg-gradient h-[93vh]'>
+				{!activeUser?.data ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'
 						message='Log in to see saved books, podcasts, authors,
@@ -29,10 +38,10 @@ function LibraryPage(props) {
 				) : (
 					<div className='flex flex-col'>
 						<div className='flex p-2 md:p-4'>
-							{user?.image ? (
+							{activeUser.data?.image ? (
 								<Image
-									src={'http://127.0.0.1:5000' + user?.image}
-									alt={user.name}
+									src={process.env.USERS_URL + activeUser.data.image}
+									alt={activeUser?.data.name}
 									height={32}
 									width={32}
 									className='rounded-full p-2 w-10 h-10'

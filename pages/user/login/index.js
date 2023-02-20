@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { useContext } from 'react'
 import UserContext from '../../../store/userContext'
-import { login } from '../../../API/userProfile'
+import { login } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import ErrorAlert from '../../../components/widgets/ErrorAlert'

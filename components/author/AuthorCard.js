@@ -7,7 +7,7 @@ function AuthorCard({ name, image, slug }) {
 			<Link href={`/authors/${slug}`}>
 				<div className='flex flex-col w-full h-full rounded-xl p-0.5 bg-gray-800 bg-opacity-70 hover:bg-opacity-100 hover:scale-105 transform duration-100'>
 					<Image
-						src={'http://127.0.0.1:5000' + image}
+						src={process.env.AUTHORS_URL + image}
 						alt={name}
 						height={240}
 						width={160}

@@ -11,7 +11,6 @@ function NavbarSm() {
 	const currentRoute = router.pathname
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
-	// console.log('NavbarSm', route)
 
 	const routeClassHandler = (route) => {
 		return `group text-${
@@ -43,7 +42,9 @@ function NavbarSm() {
 										<DiscoverIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Discover</p>
+								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
+									Discover
+								</p>
 							</Link>
 						</div>
 						<div className={routeClassHandler('/library')}>
@@ -53,7 +54,9 @@ function NavbarSm() {
 										<LibraryIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Library</p>
+								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
+									Library
+								</p>
 							</Link>
 						</div>
 						<div className={routeClassHandler('/account')}>
@@ -63,7 +66,9 @@ function NavbarSm() {
 										<AccountIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Account</p>
+								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
+									Account
+								</p>
 							</Link>
 						</div>
 					</div>

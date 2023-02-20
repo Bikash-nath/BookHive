@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 export default function SearchBar() {
 	const router = useRouter()
+	const inputRef = useRef(null)
 
 	const searchHandler = (keyword) => {
-		const searchPath = `/search/?keyword=${keyword}`
-		router.push(searchPath)
+		router.push({
+			pathname: '/search',
+			query: { keyword: keyword },
+		})
 	}
 
 	const [keyword, setKeyword] = useState('')
@@ -16,6 +19,8 @@ export default function SearchBar() {
 		const timerId = setTimeout(() => {
 			setDebouncedTerm(keyword)
 		}, 1000)
+
+		inputRef.current.focus()
 
 		return () => {
 			clearTimeout(timerId)
@@ -37,6 +42,7 @@ export default function SearchBar() {
 					e.preventDefault()
 					setKeyword(e.target.value)
 				}}
+				ref={inputRef}
 				className='mx-2 w-full h-9 lg:h-10 p-4 pr-0 mr-0 text-white text-lg rounded-full focus:outline-none bg-gray-700'
 				placeholder='Search books, authors or series'></input>
 			<button className='rounded-md p-2 pl-0 ml-0'>

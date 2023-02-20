@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import Link from 'next/link'
 
-import { getUserProfile } from '../../../API/userProfile'
+// import { getUserProfile } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 

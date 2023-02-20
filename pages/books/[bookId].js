@@ -3,11 +3,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { getBookDetails, getBestsellers } from '../../API/books'
+import { getBookDetails, getBestsellers } from '../../api/books'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import openInNewTab from '../../utils/helpers/openLink'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
+import BookReadIcon from '../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 
 function BookDetailPage(props) {
@@ -22,71 +23,92 @@ function BookDetailPage(props) {
 			<div className='bg-gradient text-white pb-20'>
 				<div className='m-0'>
 					<BgCover color={props.color}>
-						<Image
-							src={'http://127.0.0.1:5000' + book.image.path}
-							alt={book.title}
-							height={320}
-							width={240}
-							className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1'
-						/>
-						<div className='px-2 md:px-4'>
-							<p className='text-xl md:text-2xl font-medium'>{book.title}</p>
-							<div className='text-md md:text-lg'>By: {book.author.name}</div>
-							<div className='text-md md:text-lg'>Language: {book.language}</div>
-
-							{book.formats?.length && (
-								<div className='flex'>
-									{book.formats?.map((ele, i) => (
-										<button
-											key={i}
-											onClick={() => openInNewTab(ele.link)}
-											className='mx-2 p-2 my-1'
-											variant='btn btn-warning'>
-											<strong>{ele.format}</strong>
-										</button>
-									))}
+						<div className='flex items-center justify-between gap-1 md:gap-2'>
+							<Image
+								src={process.env.BOOKS_URL + book.image.path}
+								alt={book.title}
+								height={300}
+								width={200}
+								className='object-contain rounded-lg w-40 h-60 lg:w-52 lg:h-80 m-1'
+							/>
+							<div className='flex flex-col px-2 md:px-4 space-y-1 lg:space-y-2'>
+								<p className='text-xl md:text-2xl lg:text-3xl font-medium'>
+									{book.title}
+								</p>
+								<Link href={`/authors/${book.author.slug}`}>
+									<div className='text-md md:text-lg'>
+										By{' '}
+										<p className='font-medium inline-block underline decoration-1 decoration-slate-300 underline-offset-2'>
+											{book.author.name}
+										</p>
+									</div>
+								</Link>
+								<div className='text-md md:text-lg italic'>
+									Language:{' '}
+									<p className='font-medium inline-block mx-2'>{book.language}</p>
 								</div>
-							)}
+								{book.ratingsAvg ? (
+									<div className='text-md md:text-lg font-semibold'>
+										{book.ratingsAvg} ⭐
+									</div>
+								) : (
+									<></>
+								)}
+							</div>
 						</div>
 						<div className='flex flex-col justify-center items-center space-y-2 md:space-y-4 text-white'>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
-								<HeadphoneIcon dimensions='h-7 w-7' />
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-900 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+								<BookReadIcon dimensions='h-7 w-7' color='gray' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-900 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-900 border border-black rounded-lg shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<LibraryIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Add To Library</span>
 							</button>
 						</div>
 					</BgCover>
 				</div>
-				<div>
-					<h4 className='text-xl md:text-2xl px-4 md:px-8 pt-4'>Book Details</h4>
-					<div className='grid grid-cols-2 items center justify-center p-4 md:px-8'>
-						<div className=''>Publisher:</div>
-						<div className=''>{book.publisher}</div>
-						<div className=''>Publication date:</div>
-						<div className=''>{book.publication_date}</div>
-						<div className=''>Pages:</div>
-						<div className=''>{book.pages}</div>
-					</div>
+				<div className='flex flex-col items-start justify-center gap-4 rounded-lg w-[90vw] md:w-[50vw] lg:w-[40vw] px-4 md:px-8 py-4'>
+					<h4 className='text-xl text-left md:text-2xl p-2'>Book Details</h4>
+					{book.publisher !== null && (
+						<div className='flex justify-between rounded-md py-2 gap-2 bg-stone-900 border border-black w-full'>
+							<p className='text-md md:text-lg px-4'>Publisher:</p>
+							<p className='text-md md:text-lg text-right px-4'>{book.publisher}</p>
+						</div>
+					)}
+					{book.publicationDate !== null && (
+						<div className='flex justify-between rounded-md py-2 gap-2 bg-stone-900 border border-black w-full'>
+							<p className='text-md md:text-lg px-4'>Publication date:</p>
+							<p className='text-md md:text-lg text-right px-4'>
+								{book.publicationDate}
+							</p>
+						</div>
+					)}
+					{book.format?.ebook.pagesCount && book.format.ebook.pagesCount !== 0 && (
+						<div className='flex justify-between rounded-md py-2 gap-2 bg-stone-900 border border-black w-full'>
+							<p className='text-md md:text-lg px-4'>Pages:</p>
+							<p className='text-md md:text-lg text-right px-4'>
+								{book.format.ebook.pagesCount}
+							</p>
+						</div>
+					)}
 				</div>
 				<div className='flex items-center justify-start space-x-4 p-2 md:p-4'>
 					{book.genres?.map((genre, i) => (
-						<Link href={`/genre/${genre.slug}/books`} key={i}>
-							<button className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
+						<Link href={`/books/genre/${genre.slug}`} key={i}>
+							<button className='rounded-md p-2 m-4 font-medium bg-gray-700 border-r-zinc-400'>
 								{genre.title}
 							</button>
 						</Link>
 					))}
 				</div>
 				<div className='p-4 md:p-8'>
-					<h4 className='text-xl md:text-2xl py-2'>Book description</h4>
-					<p className='text-md text-gray-200'>{book.description}</p>
+					<h4 className='text-xl md:text-2xl font-medium py-2'>Book description</h4>
+					<p className='text-md text-gray-200 font-medium'>{book.description}</p>
 				</div>
 			</div>
 		</Fragment>
@@ -114,11 +136,10 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const { data } = await getBestsellers()
+
 	const params = data?.map((book) => ({
 		params: { bookId: book.slug.toString() },
 	}))
-	// console.log('params\n:', params)
-	// console.log('\n⛔')
 
 	return {
 		paths: params,

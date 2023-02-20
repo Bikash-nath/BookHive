@@ -13,7 +13,7 @@ function ReadLaterPage() {
 				<title>Read later</title>
 				<meta name='description' content='Read later section' />
 			</Head>
-			<div className='bg-gradient h-full'>
+			<div className='bg-gradient min-h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Save books to read later❗'

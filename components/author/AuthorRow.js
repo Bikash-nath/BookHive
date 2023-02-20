@@ -21,7 +21,7 @@ function AuthorsRow({ authors }) {
 				</div>
 			</div>
 			{/* sm:px-4 md:px-6 */}
-			<div className='hidden md:block h-auto group p-1'>
+			<div className='hidden md:block h-auto group p-2'>
 				<Slider {...settings}>
 					{authors?.map((author) => (
 						<AuthorCard

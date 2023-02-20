@@ -21,7 +21,7 @@ function FavouritesPage(props) {
 				<title>Favourites</title>
 				<meta name='description' content='User favourites page' />
 			</Head>
-			<div className='bg-gradient h-full'>
+			<div className='bg-gradient min-h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Your favourite books'
@@ -47,7 +47,8 @@ function FavouritesPage(props) {
 										</div>
 									</div>
 								) : (
-									<div className='flex h-full justify-center items-center'>
+									<div className='flex min-h-full
+									 justify-center items-center'>
 										<div className='text-xl md:text-2xl font-semibold text-center my-32'>
 											{`You do not have any favourite ${tabs[currentTab]}`}
 										</div>

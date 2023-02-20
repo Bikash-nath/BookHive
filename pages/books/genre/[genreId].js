@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import { getGenreBooks, getTopGenres } from '../../../API/genres'
+import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
 
@@ -13,7 +13,15 @@ function GenreBooksPage(props) {
 				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
 			<ListGridModal listTitle={`${props.genre} books`}>
-				{<BookGrid books={props.books} />}
+				{props.books.length ? (
+					<BookGrid books={props.books} />
+				) : (
+					<>
+						<h3 className='text-lg md:text-xl p-6 text-center md:text-left'>
+							No books found
+						</h3>
+					</>
+				)}
 			</ListGridModal>
 		</Fragment>
 	)
@@ -22,13 +30,6 @@ function GenreBooksPage(props) {
 export async function getStaticProps(context) {
 	const { params } = context
 	const genre = await getGenreBooks(params.genreId)
-	// const book = genre.data.find((book) => book._id == bookId)
-	console.log('genre', genre)
-	console.log({
-		genre: genre.data.title,
-		slug: genre.data.slug,
-		books: genre.data.books,
-	})
 
 	if (!genre.data) {
 		return { notFound: true }
@@ -46,11 +47,10 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const { data } = await getTopGenres()
+
 	const params = data?.map((genre) => ({
 		params: { genreId: genre.slug.toString() },
 	}))
-	console.log('params\n:', params)
-	console.log('\n⛔')
 
 	return {
 		paths: params,

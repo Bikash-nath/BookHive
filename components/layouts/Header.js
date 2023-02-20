@@ -38,9 +38,10 @@ function Header(props) {
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.user
+	const [activeUser, setActiveUser] = useState(null)
 
 	useEffect(() => {
+		setActiveUser(userCtx.user)
 		// if (!activeUser?.data) getUserProfile()
 	}, [router, activeUser])
 
@@ -57,6 +58,12 @@ function Header(props) {
 				? 'white'
 				: 'gray-400'
 		}`
+	}
+
+	const logOutHandler = (e) => {
+		e.preventDefault()
+		userCtx.removeUser()
+		router.push('/')
 	}
 
 	return (
@@ -102,7 +109,9 @@ function Header(props) {
 								<header className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
 									<div
 										className='flex items-center cursor-pointer p-2'
-										onClick={() => setSearchToggle(!searchToggle)}>
+										onClick={() => {
+											setSearchToggle(!searchToggle)
+										}}>
 										<SearchIcon dimensions='h-7 w-7' />
 									</div>
 
@@ -187,21 +196,20 @@ function Header(props) {
 																	<hr className='border-t-[0.1px] border-gray-800' />
 																</>
 															)}
-															<Link href='/user/log-out'>
-																<div
-																	className={routeClassHandler(
-																		'/log-out'
-																	)}>
-																	<LogoutIcon dimensions='h-7 w-7' />
-																	<p>Log out</p>
-																</div>
-															</Link>
+															<div
+																onClick={logOutHandler}
+																className={routeClassHandler(
+																	'/log-out'
+																)}>
+																<LogoutIcon dimensions='h-7 w-7' />
+																<p>Log out</p>
+															</div>
 														</div>
 													)}
 												</div>
 											</>
 										) : (
-											<div className='transform scale-95'>
+											<div className='transform scale-90'>
 												<LoginButton />
 											</div>
 										)}
