@@ -1,18 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
-export default function SearchBar() {
+import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
+
+export default function SearchBar(props) {
 	const router = useRouter()
 	const inputRef = useRef(null)
+	console.log(props)
+	const { inputToggle, setInputToggle } = props
 
 	const searchHandler = (keyword) => {
 		router.push({
 			pathname: '/search',
 			query: { keyword: keyword },
 		})
+		if (router.pathname !== '/search') setInputToggle(false)
 	}
 
-	const [keyword, setKeyword] = useState('')
+	const [keyword, setKeyword] = useState(router.query.keyword)
 	const [debouncedTerm, setDebouncedTerm] = useState(keyword)
 
 	useEffect(() => {
@@ -20,21 +25,36 @@ export default function SearchBar() {
 			setDebouncedTerm(keyword)
 		}, 1000)
 
-		inputRef.current.focus()
+		if (inputToggle) inputRef.current.focus()
 
 		return () => {
 			clearTimeout(timerId)
 		}
-	}, [keyword])
+	}, [keyword, inputToggle])
 
 	useEffect(() => {
 		if (debouncedTerm) {
 			searchHandler(keyword)
 		}
-	}, [debouncedTerm]) //don't add setPath as dependency of useEffect; CallBack hell
+	}, [debouncedTerm]) //don't add other dependency; CallBack hell
+
+	// useEffect(() => { //router on change	-> setInputToggle(false)
+	// }, [router.pathname])
 
 	return (
 		<div className='flex items-center justify-center w-full gap-4'>
+			{inputToggle ? (
+				<div
+					className='flex items-center justify-center cursor-pointer'
+					onClick={() => {
+						setInputToggle(false)
+						setKeyword(null)
+					}}>
+					<ArrowBackIcon dimensions='h-7 w-7' />
+				</div>
+			) : (
+				<></>
+			)}
 			<input
 				type='text'
 				value={keyword}

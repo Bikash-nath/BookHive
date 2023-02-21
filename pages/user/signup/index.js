@@ -9,10 +9,10 @@ import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function SignUpPage(props) {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [passwordConfirm, setPasswordConfirm] = useState('')
+	const [name, setName] = useState(null)
+	const [email, setEmail] = useState(null)
+	const [password, setPassword] = useState(null)
+	const [passwordConfirm, setPasswordConfirm] = useState(null)
 
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user

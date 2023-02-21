@@ -28,11 +28,11 @@ function HomePage(props) {
 					{<BookRow books={props.audiobooks} />}
 				</ListSliderModal>
 
-				<ListSliderModal listTitle='Latest releases' listLink='/books/category/latest'>
+				<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
 					{<BookRow books={props.latestBooks} />}
 				</ListSliderModal>
 
-				<ListSliderModal listTitle='Popular Authors' listLink='/authors'>
+				<ListSliderModal listTitle='Popular authors' listLink='/authors'>
 					{<AuthorRow authors={props.authors} />}
 				</ListSliderModal>
 			</div>
@@ -46,7 +46,7 @@ export async function getStaticProps() {
 	const latestBooks = await getLatestBooks()
 	const authors = await getTopAuthors()
 
-	if (typeof bestsellers == 'string' && bestsellers.includes('EHOSTUNREACH'))
+	if (!bestsellers.data)
 		return {
 			notFound: true,
 		}

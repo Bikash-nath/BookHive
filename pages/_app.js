@@ -8,7 +8,11 @@ function App({ Component, pageProps }) {
 		<UserContextProvider>
 			<Container>
 				<Head>
-					<meta name='viewport' content='width=device-width, initial-scale=1' />
+					<meta
+						name='viewport'
+						httpEquiv='Content-Security-Policy'
+						content='width=device-width, initial-scale=1 upgrade-insecure-requests'
+					/>
 				</Head>
 				<Component {...pageProps} />
 			</Container>

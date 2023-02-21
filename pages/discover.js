@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import { Fragment } from 'react'
+import { useState, Fragment } from 'react'
 // import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import SearchBar from '../components/SearchBar'
 import GenreGrid from '../components/GenreGrid'
@@ -9,6 +10,8 @@ import { genreList } from '../utils/constants/genreConstants'
 import { images } from '../utils/constants/genrePics'
 
 function DiscoverPage(props) {
+	const [searchToggle, setSearchToggle] = useState(false)
+
 	return (
 		<Fragment>
 			<Head>
@@ -17,9 +20,47 @@ function DiscoverPage(props) {
 			</Head>
 			<div className='bg-gradient pb-24'>
 				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
-					<SearchBar />
+					<SearchBar inputToggle={searchToggle} setInputToggle={setSearchToggle} />
 				</div>
-				<GenreGrid genreList={props.genreList} images={images} />
+				<div className={searchToggle && 'opacity-25'}>
+					<div className='container hidden mx-auto p-2 md:p-6 text-white'>
+						<div className='item-container discover-grid xs:grid-cols-2'>
+							<Link href={'/books/category/bestsellers'}>
+								<div className='group item rounded-lg'>
+									<div className='bg-sky-700 w-272 h-100'>
+										<h5 className='box-text'>Bestsellers</h5>
+									</div>
+									<div className='item-gradient'></div>
+								</div>
+							</Link>
+							<Link href={'/books/category/audiobooks'}>
+								<div className='group item rounded-lg'>
+									<div className='bg-purple-700 w-272 h-100'>
+										<h5 className='box-text'>Featured Audiobooks</h5>
+									</div>
+									<div className='item-gradient'></div>
+								</div>
+							</Link>
+							<Link href={'/books/category/latest'}>
+								<div className='group item rounded-lg'>
+									<div className='bg-emerald-700 w-272 h-100'>
+										<h5 className='box-text'>Latest arrivals</h5>
+									</div>
+									<div className='item-gradient'></div>
+								</div>
+							</Link>
+							<Link href={'/authors'}>
+								<div className='group item rounded-lg'>
+									<div className='bg-rose-700 w-272 h-100'>
+										<h5 className='box-text'>Popular authors</h5>
+									</div>
+									<div className='item-gradient'></div>
+								</div>
+							</Link>
+						</div>
+					</div>
+					<GenreGrid genreList={props.genreList} images={images} />
+				</div>
 			</div>
 		</Fragment>
 	)
@@ -28,7 +69,7 @@ function DiscoverPage(props) {
 export async function getStaticProps() {
 	const topGenres = await getTopGenres()
 
-	if (!topGenres) {
+	if (!topGenres.data) {
 		return {
 			notFound: true,
 		}
@@ -38,7 +79,7 @@ export async function getStaticProps() {
 		props: {
 			genreList: topGenres.data,
 		},
-		revalidate: 60, //for production
+		revalidate: 600, //for production
 	}
 }
 

@@ -129,32 +129,24 @@ export default LibraryPage
 
 /*
 <div className='flex flex-col items-start justify-between max-w-6xl w-full mx-auto gap-2 my-6 space-y-4 divide-y divide-gray-400'>
-	<Link href='/user/library/collections'>
 		<div className='flex w-full p-1 py-2 gap-2'>
-			<CollectionIcon dimensions='h-7 w-7' />
 			<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
-		</div>
-		<p className='text-base md:text-lg text-gray-400 text-left'>
+			<p className='text-base md:text-lg text-gray-400 text-left'>
 			Book collections that you created.
-		</p>
-	</Link>
-	<Link href='/user/library/read-history'>
+			</p>
+			</div>
 		<div className='flex w-full p-1 py-2 gap-2'>
-			<HistoryIcon dimensions='h-7 w-7' />
 			<p className='text-lg md:text-xl text-left font-semibold'>History</p>
-		</div>
-		<p className='text-base md:text-lg text-gray-400 text-left'>
+			<p className='text-base md:text-lg text-gray-400 text-left'>
 			Books that you have read or listened.
-		</p>
-	</Link>
-	<Link href='/user/library/read-later'>
+			</p>
+			</div>
 		<div className='flex w-full p-1 py-2 gap-2'>
-			<HistoryIcon dimensions='h-7 w-7' />
 			<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
-		</div>
-		<p className='text-base md:text-lg text-gray-400 text-left'>
+			<p className='text-base md:text-lg text-gray-400 text-left'>
 			Books that you have saved for read later.
-		</p>
+			</p>
+			</div>
 	</Link>
 	<Link href='/user/library/favourites'>
 		<div className='flex w-full p-1 py-2 gap-2'>

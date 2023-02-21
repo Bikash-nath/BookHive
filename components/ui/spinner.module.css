@@ -1,0 +1,61 @@
+.container {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.loadContainer {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	letter-spacing: normal;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.linespinner {
+	width: 6.5px;
+	height: 20px;
+	background: #74a4ff;
+	position: relative;
+	animation: linespinner 0.8s ease-in-out infinite;
+	animation-delay: 0.4s;
+	border-radius: 16px;
+}
+.linespinner:after,
+.linespinner:before {
+	border-radius: 16px;
+	content: '';
+	position: absolute;
+	width: 6.5px;
+	height: 20px;
+	background: #74a4ff;
+	animation: linespinner 0.8s ease-in-out infinite;
+}
+.linespinner:before {
+	right: 14px;
+	animation-delay: 0.15s;
+}
+.linespinner:after {
+	left: 14px;
+	animation-delay: 0.6s;
+}
+
+@keyframes linespinner {
+	0%,
+	100% {
+		background-color: #74a4ff;
+		box-shadow: 0 0 0 #74a4ff, 0 0 0 #74a4ff;
+	}
+	50% {
+		background-color: #0052ec;
+		box-shadow: 0 -15px 0 #0052ec, 0 15px 0 #0052ec;
+	}
+}

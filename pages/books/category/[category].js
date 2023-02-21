@@ -29,7 +29,7 @@ export async function getStaticProps(context) {
 	} else {
 		books = await getLatestBooks()
 	}
-	console.log('books\n\n', books)
+
 	if (!books.data || (typeof books == 'string' && books.includes('ECONNREFUSED')))
 		return {
 			notFound: true,
@@ -40,7 +40,7 @@ export async function getStaticProps(context) {
 			books: books.data,
 			category: params.category,
 		},
-		revalidate: 60,
+		revalidate: 600,
 	}
 }
 

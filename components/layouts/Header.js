@@ -11,7 +11,6 @@ import LoginButton from '../ui/LoginButton'
 import HamburgerIcon from '../../assets/icons/HamburgerIcon'
 import BellIcon from '../../assets/icons/BellIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
-import ArrowBackIcon from '../../assets/icons/ArrowBackIcon'
 import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 import BarArrowIcon from '../../assets/icons/BarArrowIcon'
@@ -26,11 +25,11 @@ import LogoutIcon from '../../assets/icons/LogoutIcon'
 // import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
 function Header(props) {
-	const [searchToggle, setSearchToggle] = useState(false)
 	const [showNavBtn, setShowNavBtn] = useState(false)
-	const [windowWidth, setWindowWidth] = useState()
-	const [history, setHistory] = useState()
-	const [opacity, setOpacity] = useState(70)
+	const [windowWidth, setWindowWidth] = useState(null)
+	const [history, setHistory] = useState(null)
+	const { searchToggle, setSearchToggle } = props
+	// const [opacity, setOpacity] = useState(70)
 
 	const router = useRouter()
 	const currentRoute = router.pathname
@@ -76,13 +75,12 @@ function Header(props) {
 								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2${
 									searchToggle && 'bg-opacity-50'
 								}`}>
-								<div
-									className='flex items-center justify-center'
-									onClick={() => setSearchToggle(false)}>
-									<ArrowBackIcon dimensions='h-7 w-7' />
-								</div>
 								<div className='w-full sm:w-60 md:w-1/2'>
-									<SearchBar />
+									{console.log('Header', searchToggle, setSearchToggle)}
+									<SearchBar
+										inputToggle={searchToggle}
+										setInputToggle={setSearchToggle}
+									/>
 								</div>
 							</div>
 						) : (

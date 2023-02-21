@@ -17,7 +17,7 @@ export default function GenresGrid(props) {
 				<h2 className='text-2xl md:text-3xl text-center md:text-left p-4 md:p-6'>
 					Popular Genres
 				</h2>
-				<div className='item-container genre-grid'>
+				<div className='item-container discover-grid'>
 					{genreList.map((genre, i) => (
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<div key={i} className='group item rounded-lg'>

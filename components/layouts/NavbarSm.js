@@ -13,7 +13,7 @@ function NavbarSm() {
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
-		return `group text-${
+		return `font-medium text-xs md:sm-md mt-[0.1rem]  group text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route
 				? 'white'
 				: 'gray-400'
@@ -23,7 +23,7 @@ function NavbarSm() {
 	return (
 		<>
 			{showRoute && (
-				<div className='absolute bottom-0 z-20 w-screen lg:hidden md:scale-100 p-[0.4rem] md:p-2 my-0 rounded-md text-white bg-black bg-opacity-90 shadow-inner shadow-gray-700'>
+				<div className='absolute bottom-0 z-20 w-screen lg:hidden scale-100 p-[0.45rem] md:p-2 m-0 rounded-md text-white bg-black shadow-inner shadow-gray-700'>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className={routeClassHandler('/')}>
 							<Link href='/'>
@@ -32,7 +32,7 @@ function NavbarSm() {
 										<HomeIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>Home</p>
+								<p className=''>Home</p>
 							</Link>
 						</div>
 						<div className={routeClassHandler('/discover')}>
@@ -42,9 +42,7 @@ function NavbarSm() {
 										<DiscoverIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
-									Discover
-								</p>
+								<p className=''>Discover</p>
 							</Link>
 						</div>
 						<div className={routeClassHandler('/library')}>
@@ -54,9 +52,7 @@ function NavbarSm() {
 										<LibraryIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
-									Library
-								</p>
+								<p className=''>Library</p>
 							</Link>
 						</div>
 						<div className={routeClassHandler('/account')}>
@@ -66,9 +62,7 @@ function NavbarSm() {
 										<AccountIcon dimensions='h-6 w-6' />
 									</div>
 								</div>
-								<p className='font-mono text-xs leading-none mt-[0.1rem]'>
-									Account
-								</p>
+								<p className=''>Account</p>
 							</Link>
 						</div>
 					</div>

@@ -1,5 +1,6 @@
 import Logo from '../ui/Logo'
 import CloseIcon from '../../assets/icons/CloseIcon'
+import Link from 'next/link'
 
 function LoginContainer(props) {
 	return (
@@ -28,9 +29,11 @@ function LoginContainer(props) {
 				<div className='hidden md:w-1/2 md:h-full md:flex justify-center items-center'>
 					<img src='/images/bookhive.webp' alt='' className='w-4/5 px-8 mt-4' />
 				</div>
-				<div className='group absolute top-3 right-4 md:top-8 md:right-8 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
-					<CloseIcon />
-				</div>
+				<Link href='/'>
+					<div className='group absolute top-3 right-4 md:top-8 md:right-8 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+						<CloseIcon />
+					</div>
+				</Link>
 			</div>
 		</div>
 	)

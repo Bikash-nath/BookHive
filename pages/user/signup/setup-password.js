@@ -7,8 +7,8 @@ import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 
 function SetupPasswordPage(props) {
-	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
+	const [password, setPassword] = useState(null)
+	const [confirmPassword, setConfirmPassword] = useState(null)
 
 	return (
 		<Fragment>

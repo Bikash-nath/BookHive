@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,12 +13,14 @@ import BookRow from '../../components/book/BookRow'
 
 function AuthorDetailPage(props) {
 	const { author } = props
-	const router = useRouter()
+	const [readMoreBio, setReadMoreBio] = useState(false)
+	// const router = useRouter()
+
 	return (
 		<Fragment>
 			<Head>
 				<title>{author.name}</title>
-				<meta name='description' content='Author detail page' />
+				<meta name='Bioription' content='Author detail page' />
 			</Head>
 			<div className='bg-gradient text-white min-h-full'>
 				<div className='m-0'>
@@ -66,10 +68,32 @@ function AuthorDetailPage(props) {
 						</Link>
 					))}
 				</div>
-				<div className='p-2 py-4 md:p-6'>
-					<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
-					<p className='text-md font-medium text-gray-200'>{author.biography}</p>
-				</div>
+				{author.biography ? (
+					<div className='p-2 py-4 md:p-6'>
+						<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
+						<p
+							className={
+								'text-md text-gray-200 font-medium ' + readMoreBio
+									? 'line-clamp-4'
+									: ''
+							}>
+							{author.biography}
+						</p>
+						<button
+							onClick={(e) => {
+								setReadMoreBio(!readMoreBio)
+								e.preventDefault()
+							}}
+							className={
+								'cursor-pointer font-semibold text-blue-600 underline decoration-1 underline-offset-2 decoration-gray-300 ' +
+								(author.biography.length < 300 ? 'hidden' : '')
+							}>
+							{readMoreBio ? 'Read less' : 'Read more'}
+						</button>
+					</div>
+				) : (
+					<></>
+				)}
 				{author.books?.length ? (
 					<ListSliderModal listTitle='Author Books' listLink='/books'>
 						{<BookRow books={author.books} />}
@@ -97,7 +121,7 @@ export async function getStaticProps(context) {
 			author: author.data,
 			color: bgColor,
 		},
-		revalidate: 60,
+		revalidate: 30,
 	}
 }
 

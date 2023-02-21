@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
 			slug: genre.data.slug,
 			books: genre.data.books,
 		},
-		revalidate: 60,
+		revalidate: 600,
 	}
 }
 

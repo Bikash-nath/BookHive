@@ -12,8 +12,8 @@ import ErrorAlert from '../../../components/widgets/ErrorAlert'
 import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
 
 function LoginEmailPage(props) {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState(null)
+	const [password, setPassword] = useState(null)
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user
 	const router = useRouter()
