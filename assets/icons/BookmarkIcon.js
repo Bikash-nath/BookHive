@@ -1,13 +1,13 @@
-export default function BookmarkIcon({ dimensions }) {
+export default function BookmarkIcon({ dimensions, color }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			fill='none'
+			fill={color || 'none'}
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
 			className={dimensions}>
-			<title>Dark mode</title>
+			<title>Add to Library</title>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

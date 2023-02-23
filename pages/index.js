@@ -17,7 +17,7 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient pt-4 lg:pt-6'>
 				<ListSliderModal listTitle='Bestsellers' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>

@@ -10,7 +10,6 @@ function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
 	const router = useRouter()
 	const keyword = router.query.keyword
-	const [searchToggle, setSearchToggle] = useState(false)
 
 	useEffect(() => {
 		if (keyword) {
@@ -29,7 +28,7 @@ function SearchPage() {
 			</Head>
 			<div className='bg-gradient h-screen pb-24'>
 				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
-					<SearchBar inputToggle={searchToggle} setInputToggle={setSearchToggle} />
+					<SearchBar />
 				</div>
 
 				{!searchResult?.length ? (

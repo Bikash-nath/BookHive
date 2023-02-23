@@ -14,7 +14,7 @@ function CollectionPage() {
 				<title>Collections</title>
 				<meta name='description' content='Collections section' />
 			</Head>
-			<div className='bg-gradient'>
+			<div className='bg-gradient h-full'>
 				{!user ? (
 					<LoginBanner
 						title='Enjoy Your Books Collection'
@@ -37,7 +37,7 @@ function CollectionPage() {
 										</div>
 									</div>
 								) : (
-									<div className='flex flex-auto h-screen justify-center items-center'>
+									<div className='flex flex-auto h-[76vh] justify-center items-center'>
 										<h3 className='text-xl md:text-2xl font-semibold text-center'>
 											{'No collection found'}
 										</h3>

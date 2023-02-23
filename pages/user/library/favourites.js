@@ -21,7 +21,7 @@ function FavouritesPage(props) {
 				<title>Favourites</title>
 				<meta name='description' content='User favourites page' />
 			</Head>
-			<div className='bg-gradient min-h-full'>
+			<div className='bg-gradient h-[93vh]'>
 				{!user ? (
 					<LoginBanner
 						title='Your favourite books'
@@ -34,7 +34,11 @@ function FavouritesPage(props) {
 						<section id='tabs'>
 							<div className='container relative sm:text-left px-2'>
 								<div className='bg-tabs'></div>
-								<TabModal tabs={tabs} onTabChange={onTabChangeHandler} selectedTab={currentTab} />
+								<TabModal
+									tabs={tabs}
+									onTabChange={onTabChangeHandler}
+									selectedTab={currentTab}
+								/>
 
 								{list?.length ? (
 									<div id='panels' className='container mx-auto'>
@@ -47,7 +51,8 @@ function FavouritesPage(props) {
 										</div>
 									</div>
 								) : (
-									<div className='flex min-h-full
+									<div
+										className='flex min-h-full
 									 justify-center items-center'>
 										<div className='text-xl md:text-2xl font-semibold text-center my-32'>
 											{`You do not have any favourite ${tabs[currentTab]}`}

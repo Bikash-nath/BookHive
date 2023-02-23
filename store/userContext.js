@@ -14,15 +14,15 @@ const UserContext = createContext({
 })
 
 export function UserContextProvider(props) {
-	const [activeUser, setactiveUser] = useState(userInfoFromStorage)
+	const [activeUser, setActiveUser] = useState(userInfoFromStorage)
 
 	function addUserHandler(userData) {
-		setactiveUser(userData)
+		setActiveUser(userData)
 		localStorage.setItem('userInfo', JSON.stringify(userData))
 	}
 
 	function removeUserHandler() {
-		setactiveUser(null)
+		setActiveUser(null)
 		localStorage.removeItem('userInfo', null)
 	}
 

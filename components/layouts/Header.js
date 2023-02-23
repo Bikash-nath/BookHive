@@ -5,6 +5,7 @@ import Router from 'next/router'
 
 import { useContext } from 'react'
 import UserContext from '../../store/userContext'
+import SnackbarContext from '../../store/snackbarContext'
 import SearchBar from '../SearchBar'
 import Logo from '../ui/Logo'
 import LoginButton from '../ui/LoginButton'
@@ -38,6 +39,7 @@ function Header(props) {
 
 	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
+	const snackbarCtx = useContext(SnackbarContext)
 
 	useEffect(() => {
 		setActiveUser(userCtx.user)
@@ -63,6 +65,7 @@ function Header(props) {
 		e.preventDefault()
 		userCtx.removeUser()
 		router.push('/')
+		snackbarCtx.addMessage({ title: 'Log out successfull' })
 	}
 
 	return (
@@ -76,7 +79,6 @@ function Header(props) {
 									searchToggle && 'bg-opacity-50'
 								}`}>
 								<div className='w-full sm:w-60 md:w-1/2'>
-									{console.log('Header', searchToggle, setSearchToggle)}
 									<SearchBar
 										inputToggle={searchToggle}
 										setInputToggle={setSearchToggle}

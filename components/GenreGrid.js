@@ -24,7 +24,7 @@ export default function GenresGrid(props) {
 								<Image
 									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}
-									height={100}
+									height={160}
 									width={272}
 									className='rounded-lg'
 								/>

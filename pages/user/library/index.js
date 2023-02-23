@@ -31,8 +31,8 @@ function LibraryPage(props) {
 				{!activeUser?.data ? (
 					<LoginBanner
 						title='Enjoy Your Favourite Books'
-						message='Log in to see saved books, podcasts, authors,
-						and collections in Your Library.'
+						message='Log in to see saved books, authors,
+						and collections in your library.'
 						icon={<LibraryIcon />}
 					/>
 				) : (

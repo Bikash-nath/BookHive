@@ -6,7 +6,6 @@ import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
 export default function SearchBar(props) {
 	const router = useRouter()
 	const inputRef = useRef(null)
-	console.log(props)
 	const { inputToggle, setInputToggle } = props
 
 	const searchHandler = (keyword) => {
@@ -14,7 +13,7 @@ export default function SearchBar(props) {
 			pathname: '/search',
 			query: { keyword: keyword },
 		})
-		if (router.pathname !== '/search') setInputToggle(false)
+		if (router.pathname !== '/search') setInputToggle(false) //instead use router.pathOnChange
 	}
 
 	const [keyword, setKeyword] = useState(router.query.keyword)
@@ -22,7 +21,7 @@ export default function SearchBar(props) {
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
-			setDebouncedTerm(keyword)
+			if (keyword !== ' ') setDebouncedTerm(keyword)
 		}, 1000)
 
 		if (inputToggle) inputRef.current.focus()

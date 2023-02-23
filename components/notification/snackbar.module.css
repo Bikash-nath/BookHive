@@ -1,0 +1,39 @@
+.ui-snackbar {
+	display: inline-flex;
+	align-items: center;
+	background-color: #323232;
+	box-sizing: border-box;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.ui-snackbar-action {
+	margin-left: auto;
+	padding-left: 2rem;
+	border: none;
+	background: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.ui-snackbar-toggle-transition {
+	transition: transform 0.3s ease;
+}
+
+.ui-snackbar-toggle-transition .ui-snackbar-text,
+.ui-snackbar-toggle-transition .ui-snackbar-action {
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.ui-snackbar-toggle-enter,
+.ui-snackbar-toggle-leave {
+	transform: translateY(60px);
+}
+
+.ui-snackbar-toggle-enter .ui-snackbar-text,
+.ui-snackbar-toggle-leave .ui-snackbar-text,
+.ui-snackbar-toggle-enter .ui-snackbar-action,
+.ui-snackbar-toggle-leave .ui-snackbar-action {
+	opacity: 0;
+}

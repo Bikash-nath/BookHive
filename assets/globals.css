@@ -10,7 +10,7 @@
 
 .bg-gradient {
 	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky */
-	@apply bg-gradient-to-b from-[#202020] via-[#121212] to-[#202020] text-white pb-20 lg:pb-12;
+	@apply bg-gradient-to-b from-[#1a1a1a] via-[#101010] to-[#1a1a1a] text-white pb-16 lg:pb-12;
 }
 
 .list-grid {
@@ -34,7 +34,7 @@
 }
 
 .box-text {
-	@apply absolute px-1 md:px-2 w-full md:w-4/6 text-start left-1 bottom-1;
+	@apply absolute px-1 md:px-2 w-full md:w-5/6 text-start left-1 bottom-1;
 }
 
 .btn-next {

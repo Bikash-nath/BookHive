@@ -1,27 +1,39 @@
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { useContext } from 'react'
 import UserContext from '../../../store/userContext'
+import SnackbarContext from '../../../store/snackbarContext'
+import { setSpinnerState } from '../../../components/ui/Spinner'
 import { login } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
-import ErrorAlert from '../../../components/widgets/ErrorAlert'
-import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
+import EyeIcon from '../../../assets/icons/EyeIcon'
+import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
+// import ErrorAlert from '../../../components/widgets/ErrorAlert'
+// import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
 
 function LoginEmailPage(props) {
 	const [email, setEmail] = useState(null)
 	const [password, setPassword] = useState(null)
+
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user
+	const SnackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
+		setSpinnerState(true)
 		const user = await login(email, password)
-		userCtx.addUser(user)
+		if (user) {
+			userCtx.addUser(user)
+			SnackbarCtx.addMessage({ title: 'Log in successfull' })
+		} else {
+			SnackbarCtx.addMessage({ title: 'Log in unsuccessfull' })
+		}
+		setSpinnerState(false)
 	}
 
 	useEffect(() => {
@@ -43,15 +55,20 @@ function LoginEmailPage(props) {
 					onChange={(e) => setEmail(e.target.value)}
 					placeholder='Enter email address or phone'
 					type='email'
-					className='input-field mb-4'
+					className='input-field mb-4 focus:border focus:border-purple-600'
 				/>
-				<input
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					placeholder='Enter your password'
-					type='password'
-					className='input-field mb-4'
-				/>
+				<div className='relative'>
+					<input
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						placeholder='Enter your password'
+						type='password'
+						className='input-field mb-4 focus:border focus:border-purple-600 box-border'
+					/>
+					<div className='absolute top-6 right-2 box-border cursor-pointer'>
+						<EyeIcon />
+					</div>
+				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<Link href='/user/forgotPassword'>
 						<div className='font-semibold text-purple-400'>Forgot password ?</div>

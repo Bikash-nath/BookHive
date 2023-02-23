@@ -16,6 +16,11 @@ function AuthorDetailPage(props) {
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	// const router = useRouter()
 
+	const descClassHandler = () => {
+		if (readMoreBio) return 'text-md text-gray-200 font-medium inline-block'
+		else return 'text-md text-gray-200 font-medium inline-block line-clamp-4'
+	}
+
 	return (
 		<Fragment>
 			<Head>
@@ -51,18 +56,18 @@ function AuthorDetailPage(props) {
 							</div>
 						</div>
 
-						<div className='flex flex-col justify-center items-center text-white'>
-							<button className='flex items-center justify-center p-1 md:p-2 w-full space-x-2 bg-gray-800 border border-gray-700 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
+						<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2 text-white'>
+							<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-gray-900 border border-black rounded-3xl shadow-sm hover:bg-opacity-80 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 								<HeartIcon dimensions='h-7 w-7' />
-								<span className='font-semibold'>Follow Author</span>
+								<span className='font-semibold'>Follow</span>
 							</button>
 						</div>
 					</BgCover>
 				</div>
-				<div className='flex items-center justify-start space-x-4 md:p-4'>
+				<div className='flex items-center justify-start space-x-4 p-2 md:p-4'>
 					{author.genres?.map((genre, i) => (
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
-							<button className='rounded-md p-2 m-4 bg-gray-700 border-r-zinc-400'>
+							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-4 font-medium bg-yellow-500 text-black'>
 								{genre.title}
 							</button>
 						</Link>
@@ -71,14 +76,7 @@ function AuthorDetailPage(props) {
 				{author.biography ? (
 					<div className='p-2 py-4 md:p-6'>
 						<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
-						<p
-							className={
-								'text-md text-gray-200 font-medium ' + readMoreBio
-									? 'line-clamp-4'
-									: ''
-							}>
-							{author.biography}
-						</p>
+						<p className={descClassHandler()}>{author.biography}</p>
 						<button
 							onClick={(e) => {
 								setReadMoreBio(!readMoreBio)

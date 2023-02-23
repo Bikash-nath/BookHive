@@ -1,12 +1,3 @@
-.container {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
-	width: 100%;
-}
-
 .loadContainer {
 	position: relative;
 	display: inline-block;

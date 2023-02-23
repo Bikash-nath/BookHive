@@ -13,7 +13,7 @@ function ReadHistoryPage() {
 				<title>History</title>
 				<meta name='description' content='History section' />
 			</Head>
-			<div className='bg-gradient min-h-full'>
+			<div className='bg-gradient h-[93vh]'>
 				{!user ? (
 					<LoginBanner
 						title='Keep track of what you watch'
