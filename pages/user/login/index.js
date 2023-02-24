@@ -5,35 +5,33 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-import { setSpinnerState } from '../../../components/ui/Spinner'
 import { login } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
 // import ErrorAlert from '../../../components/widgets/ErrorAlert'
-// import LoadingSpinner from '../../../components/widgets/LoadingSpinner'
 
 function LoginEmailPage(props) {
-	const [email, setEmail] = useState(null)
-	const [password, setPassword] = useState(null)
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [showPassword, setShowPassword] = useState(false)
 
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user
-	const SnackbarCtx = useContext(SnackbarContext)
+	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
-		setSpinnerState(true)
+		snackbarCtx.addMessage({ title: 'Sending request', status: 'pending' })
 		const user = await login(email, password)
-		if (user) {
-			userCtx.addUser(user)
-			SnackbarCtx.addMessage({ title: 'Log in successfull' })
+		if (user.data) {
+			userCtx.addUser(user.data)
+			snackbarCtx.addMessage({ title: 'Log in successfull', status: 'sucess' })
 		} else {
-			SnackbarCtx.addMessage({ title: 'Log in unsuccessfull' })
+			snackbarCtx.addMessage({ title: user })
 		}
-		setSpinnerState(false)
 	}
 
 	useEffect(() => {
@@ -52,7 +50,10 @@ function LoginEmailPage(props) {
 				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>
 				<input
 					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={(e) => {
+						setEmail(e.target.value)
+						snackbarCtx.addMessage({ title: 'Email on change✅' })
+					}}
 					placeholder='Enter email address or phone'
 					type='email'
 					className='input-field mb-4 focus:border focus:border-purple-600'
@@ -62,12 +63,26 @@ function LoginEmailPage(props) {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder='Enter your password'
-						type='password'
+						type={!showPassword ? 'password' : 'text'}
 						className='input-field mb-4 focus:border focus:border-purple-600 box-border'
 					/>
-					<div className='absolute top-6 right-2 box-border cursor-pointer'>
-						<EyeIcon />
-					</div>
+					{password ? (
+						!showPassword ? (
+							<div
+								className='absolute top-6 right-2 box-border cursor-pointer'
+								onClick={() => setShowPassword(true)}>
+								<EyeIcon />
+							</div>
+						) : (
+							<div
+								className='absolute top-6 right-2 box-border cursor-pointer'
+								onClick={() => setShowPassword(false)}>
+								<EyeSlashIcon />
+							</div>
+						)
+					) : (
+						<></>
+					)}
 				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<Link href='/user/forgotPassword'>

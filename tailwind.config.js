@@ -36,6 +36,7 @@ module.exports = {
 		'from-stone-500',
 		'from-zinc-500',
 		'from-slate-500',
-		'line-clamp-4',
 	],
 }
+
+// 'line-clamp-4',

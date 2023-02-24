@@ -27,21 +27,21 @@ function DiscoverPage(props) {
 					<div className='item-container discover-grid grid-cols-2 md:grid-cols-4'>
 						<Link href={'/books/category/bestsellers'}>
 							<div className='group item rounded-lg'>
-								<div className='bg-sky-700 w-36 h-24 md:w-60 md:h-40'></div>
+								<div className='bg-sky-700 w-36 h-24 md:w-48 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>Bestsellers</h5>
 							</div>
 						</Link>
 						<Link href={'/books/category/audiobooks'}>
 							<div className='group item rounded-lg'>
-								<div className='bg-purple-700 w-36 h-24 md:w-60 md:h-40'></div>
+								<div className='bg-purple-700 w-36 h-24 md:w-48 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>Featured Audiobooks</h5>
 							</div>
 						</Link>
 						<Link href={'/books/category/latest'}>
 							<div className='group item rounded-lg'>
-								<div className='bg-emerald-700 w-36 h-24 md:w-60 md:h-40'></div>
+								<div className='bg-emerald-700 w-36 h-24 md:w-48 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>Latest arrivals</h5>
 							</div>

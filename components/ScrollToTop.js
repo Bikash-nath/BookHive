@@ -1,9 +1,27 @@
-const isBrowser = () => typeof window !== 'undefined'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-function scrollToTop() {
-	if (!isBrowser()) return
-	window.scrollTo(0, 0)
-	// window.scrollTo({ top: 0, behavior: 'smooth' });
+function ScrollToTop(props) {
+	const { searchToggle, setSearchToggle } = props
+	const router = useRouter()
+
+	useEffect(() => {
+		router.events.on('routeChangeComplete', (url) => {
+			if (typeof window !== 'undefined') {
+				window.scrollTo(0, 0)
+				// window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+			if (!searchToggle) setSearchToggle(false)
+		})
+
+		return () => {
+			router.events.off('routeChangeComplete', () => {
+				console.log('Unsuscribed routeChangeComplete')
+			})
+		}
+	}, [router.events]) //router.asPath
+
+	return <></>
 }
 
 // function ScrollToTop({ history }) {
@@ -17,4 +35,4 @@ function scrollToTop() {
 // 	return null
 // }
 
-export default withRouter(ScrollToTop)
+export default ScrollToTop

@@ -22,11 +22,11 @@ function HomePage(props) {
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
 
-				<ListSliderModal
+				{/* <ListSliderModal
 					listTitle='Featured Audiobooks'
 					listLink='/books/category/audiobooks'>
 					{<BookRow books={props.audiobooks} />}
-				</ListSliderModal>
+				</ListSliderModal> */}
 
 				<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
 					{<BookRow books={props.latestBooks} />}

@@ -44,7 +44,7 @@ function Header(props) {
 	useEffect(() => {
 		setActiveUser(userCtx.user)
 		// if (!activeUser?.data) getUserProfile()
-	}, [router, activeUser])
+	}, [activeUser])
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {

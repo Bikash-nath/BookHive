@@ -64,7 +64,7 @@ function AuthorDetailPage(props) {
 						</div>
 					</BgCover>
 				</div>
-				<div className='flex items-center justify-start space-x-4 p-2 md:p-4'>
+				<div className='flex flex-wrap items-center justify-start space-x-4 p-2 md:p-4'>
 					{author.genres?.map((genre, i) => (
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-4 font-medium bg-yellow-500 text-black'>
@@ -74,7 +74,7 @@ function AuthorDetailPage(props) {
 					))}
 				</div>
 				{author.biography ? (
-					<div className='p-2 py-4 md:p-6'>
+					<div className='p-4 md:p-6'>
 						<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
 						<p className={descClassHandler()}>{author.biography}</p>
 						<button
@@ -84,7 +84,7 @@ function AuthorDetailPage(props) {
 							}}
 							className={
 								'cursor-pointer font-semibold text-blue-600 underline decoration-1 underline-offset-2 decoration-gray-300 ' +
-								(author.biography.length < 300 ? 'hidden' : '')
+								(author.biography.length < 400 ? 'hidden' : '')
 							}>
 							{readMoreBio ? 'Read less' : 'Read more'}
 						</button>
@@ -125,6 +125,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const authors = await getTopAuthors()
+
 	const params = authors.data.map((author) => ({
 		params: { authorId: author.slug.toString() },
 	}))

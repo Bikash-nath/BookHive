@@ -10,7 +10,7 @@
 
 .bg-gradient {
 	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky */
-	@apply bg-gradient-to-b from-[#1a1a1a] via-[#101010] to-[#1a1a1a] text-white pb-16 lg:pb-12;
+	@apply bg-gradient-to-b from-[#1a1a1a] via-[#121212] to-[#1a1a1a] text-white pb-16 lg:pb-12;
 }
 
 .list-grid {

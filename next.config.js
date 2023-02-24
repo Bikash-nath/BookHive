@@ -39,7 +39,7 @@ const nextConfig = (phase) => {
 			})),
 		},
 		env: {
-			API_URL: 'https://35.174.136.97:3000/api',
+			API_URL: 'http://35.174.136.97:3000/api',
 			BOOKS_URL: 'https://bookhive-books.s3.amazonaws.com/',
 			AUTHORS_URL: 'https://bookhive-authors.s3.amazonaws.com/',
 			GENRES_URL: 'https://bookhive-genres.s3.amazonaws.com/',

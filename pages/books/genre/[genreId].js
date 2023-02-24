@@ -46,7 +46,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const { data } = await getTopGenres()
+	const genres = await getTopGenres()
 
 	const params = data?.map((genre) => ({
 		params: { genreId: genre.slug.toString() },

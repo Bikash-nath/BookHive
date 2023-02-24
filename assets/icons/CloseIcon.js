@@ -1,11 +1,11 @@
-export default function CloseIcon() {
+export default function CloseIcon({ dimensions, color }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			className='w-8 h-8 text-black group-hover:text-gray-600'
+			className={'text-black group-hover:text-gray-600 ' + dimensions}
 			viewBox='0 0 24 24'
 			strokeWidth='1.5'
-			stroke='black'
+			stroke={color || 'black'}
 			fill='none'
 			strokeLinecap='round'
 			strokeLinejoin='round'>

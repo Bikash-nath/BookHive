@@ -7,8 +7,8 @@ export default function GenresGrid(props) {
 	const [genreImages, setGenreImages] = useState([])
 
 	useEffect(() => {
-		const imageList = genreList.map((genre, i) => images[i % 6])
-		setGenreImages(imageList)
+		// const imageList = genreList.map((genre, i) => images[i % 6])
+		// setGenreImages(imageList)
 	}, [])
 
 	return (
@@ -21,13 +21,14 @@ export default function GenresGrid(props) {
 					{genreList.map((genre, i) => (
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<div key={i} className='group item rounded-lg'>
-								<Image
+								{/* <Image
 									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}
-									height={160}
-									width={272}
+									height={200}
+									width={300}
 									className='rounded-lg'
-								/>
+								/> */}
+								<div className='bg-green-600 w-36 h-24 md:w-48 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>{genre.title}</h5>
 							</div>

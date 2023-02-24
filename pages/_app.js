@@ -11,9 +11,10 @@ function App({ Component, pageProps }) {
 				<Head>
 					<meta
 						name='viewport'
-						// http-equiv='Content-Security-Policy'
+						http-equiv='Content-Security-Policy'
 						content='width=device-width, initial-scale=1, upgrade-insecure-requests'
 					/>
+					<link href='/images/logo.png' rel='icon' type='image/png' sizes='32x32'></link>
 				</Head>
 				<Component {...pageProps} />
 			</Container>

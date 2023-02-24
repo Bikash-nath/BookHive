@@ -6,7 +6,7 @@ function Logo({ size }) {
 		<Link href='/'>
 			<div className='lg:p-2'>
 				<Image
-					src='/images/audiobook.png'
+					src='/images/logo.png'
 					alt='BookHive'
 					className='inline p-[.1rem'
 					height={size}

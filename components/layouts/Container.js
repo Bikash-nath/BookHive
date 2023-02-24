@@ -6,7 +6,7 @@ import NavbarLg from './NavbarLg'
 import NavbarSm from './NavbarSm'
 import Spinner from '../ui/Spinner'
 import SnackBar from '../notification/SnackBar'
-// import ScrollToTop from '../ScrollToTop'
+import ScrollToTop from '../ScrollToTop'
 
 function Container(props) {
 	const [searchToggle, setSearchToggle] = useState(false)
@@ -19,7 +19,10 @@ function Container(props) {
 					<NavbarLg />
 					<main className='flex-grow h-screen relative bg-[#121212] overflow-y-scroll select-none p-0 m-0'>
 						<Header searchToggle={searchToggle} setSearchToggle={setSearchToggle} />
-						{/* <ScrollToTop /> */}
+						<ScrollToTop
+							searchToggle={searchToggle}
+							setSearchToggle={setSearchToggle}
+						/>
 						<Spinner />
 						<div className={searchToggle ? 'opacity-25' : ''}>{props.children}</div>
 						<SnackBar />
