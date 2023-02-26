@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
+import SpinnerContext from '../../../store/spinnerContext'
 import { signup } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
@@ -22,21 +23,22 @@ function SignUpPage(props) {
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user
 	const snackbarCtx = useContext(SnackbarContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		if (password === passwordConfirm) {
-			snackbarCtx.addMessage({ title: 'Sending request', status: 'pending' })
+			toggleSpinner(true)
 			const user = await signup(name, email, password, passwordConfirm)
-
 			if (user.data) {
 				userCtx.addUser(user.data)
 				snackbarCtx.addMessage({ title: 'Log in successfull' })
 			} else {
-				snackbarCtx.addMessage({ title: 'Log in unsuccessfull' })
+				snackbarCtx.addMessage({ title: user })
 			}
 		}
+		toggleSpinner(false)
 	}
 
 	useEffect(() => {

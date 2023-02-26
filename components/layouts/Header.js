@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Router from 'next/router'
 
-import { useContext } from 'react'
 import UserContext from '../../store/userContext'
 import SnackbarContext from '../../store/snackbarContext'
+import SearchToggleContext from '../../store/searchToggleContext'
 import SearchBar from '../SearchBar'
 import Logo from '../ui/Logo'
 import LoginButton from '../ui/LoginButton'
@@ -25,21 +24,15 @@ import LogoutIcon from '../../assets/icons/LogoutIcon'
 // import { getUserProfile } from '../../api/userProfile'
 // import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
-function Header(props) {
+function Header() {
 	const [showNavBtn, setShowNavBtn] = useState(false)
 	const [windowWidth, setWindowWidth] = useState(null)
 	const [history, setHistory] = useState(null)
-	const { searchToggle, setSearchToggle } = props
-	// const [opacity, setOpacity] = useState(70)
-
-	const router = useRouter()
-	const currentRoute = router.pathname
-	const paths = ['login', 'signup', 'discover', 'search']
-	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
 	const snackbarCtx = useContext(SnackbarContext)
+	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
 	useEffect(() => {
 		setActiveUser(userCtx.user)
@@ -52,6 +45,25 @@ function Header(props) {
 			setHistory(window.history)
 		}
 	}, [])
+
+	const router = useRouter()
+
+	useEffect(() => {
+		router.events.on('routeChangeComplete', (url) => {
+			if (!showNavBtn) setShowNavBtn(false)
+			if (!activeSearch) toggleSearch(false)
+		})
+
+		return () => {
+			router.events.off('routeChangeComplete', () => {
+				console.log('Unsuscribed routeChangeComplete')
+			})
+		}
+	}, [router.events]) //router.asPath
+
+	const currentRoute = router.pathname
+	const paths = ['login', 'signup', 'discover', 'search']
+	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
 		return `flex items-center space-x-4 m-2 lg:my-3 cursor-pointer hover:text-white text-${
@@ -72,32 +84,34 @@ function Header(props) {
 		<>
 			{showRoute && (
 				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
-					<nav className='container mx-auto p-1 w-screen'>
-						{searchToggle ? (
+					<nav className='mx-auto p-1 w-screen'>
+						{activeSearch ? (
 							<div
-								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 mx-2${
-									searchToggle && 'bg-opacity-50'
-								}`}>
+								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 px-1`}>
 								<div className='w-full sm:w-60 md:w-1/2'>
-									<SearchBar
-										inputToggle={searchToggle}
-										setInputToggle={setSearchToggle}
-									/>
+									<SearchBar />
 								</div>
 							</div>
 						) : (
 							<div className='flex items-center justify-between text-white'>
+								{/* {currentRoute !== '/' ? (
+									<button
+										className='rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 bg-gray-700'
+										onClick={() => router.back()}>
+										<ChevronLeftIcon dimensions='h-5 w-5' />
+									</button>
+								) : ( */}
 								<div className='flex lg:hidden items-center space-x-20 w-full'>
 									<Logo size={44} />
 								</div>
 								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
 									<button
-										className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+										className='rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
 										onClick={() => router.back()}>
 										<ChevronLeftIcon dimensions='h-6 w-6' />
 									</button>
 									<button
-										className='rounded-full p-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
+										className='rounded-full py-[0.1rem] pl-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
 										onClick={(e) => {
 											e.preventDefault()
 											history && history.forward()
@@ -106,11 +120,12 @@ function Header(props) {
 									</button>
 								</div>
 
-								<header className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
+								<div className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
 									<div
 										className='flex items-center cursor-pointer p-2'
 										onClick={() => {
-											setSearchToggle(!searchToggle)
+											toggleSearch(true)
+											console.log(activeSearch)
 										}}>
 										<SearchIcon dimensions='h-7 w-7' />
 									</div>
@@ -214,7 +229,7 @@ function Header(props) {
 											</div>
 										)}
 									</div>
-								</header>
+								</div>
 							</div>
 						)}
 					</nav>

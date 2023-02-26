@@ -3,6 +3,7 @@ import axios from '../lib/axiosConfig'
 export const login = async (email, password) => {
 	try {
 		const { data } = await axios.post('/users/profile/login/', { email, password })
+		console.log('data', data)
 		return data
 	} catch (error) {
 		return error.response?.data.error_message

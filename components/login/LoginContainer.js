@@ -1,6 +1,7 @@
+import Link from 'next/link'
+
 import Logo from '../ui/Logo'
 import CloseIcon from '../../assets/icons/CloseIcon'
-import Link from 'next/link'
 
 function LoginContainer(props) {
 	return (

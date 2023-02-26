@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import SnackbarContext from '../../store/snackbarContext'
 import classes from './snackbar.module.css'
@@ -7,13 +7,14 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 function SnackBar() {
 	const snackbarCtx = useContext(SnackbarContext)
 	const message = snackbarCtx.message
+	const [windowWidth, setWindowWidth] = useState(null)
+	// const router = useRouter()
 
 	useEffect(() => {
-		if (message) {
-			// && message.status !== 'pending'
+		if (message && message.status !== 'pending') {
 			const timer = setTimeout(() => {
 				snackbarCtx.removeMessage()
-			}, 3000)
+			}, 5000)
 			console.warn('snackbarCtx:-⛔', message)
 			return () => {
 				clearTimeout(timer)
@@ -21,22 +22,21 @@ function SnackBar() {
 		}
 	}, [message])
 
-	const containerClassHandler = () => {
-		if (message.title) {
-			//bottom-14 w/navbar
-			return 'absolute overflow-hidden m-2 lg:m-3 bottom-0 lg:bottom-0 lg:left-2'
-		} else {
-			return 'hidden'
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
 		}
-	}
+	}, [])
 
-	// const snackbarHideHandler = () => {
-	// 	snackbarCtx.removeMessage()
-	// }
 	// box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
 	return message ? (
-		<div className={containerClassHandler()}>
+		<div
+			className={
+				message.title
+					? 'absolute overflow-hidden m-2 lg:m-3 ' +
+					  (windowWidth >= 1024 ? 'left-52 bottom-0' : 'bottom-14')
+					: 'hidden'
+			}>
 			<div
 				className='flex items-center justify-between bg-[#323232] w-full rounded-md box-border'
 				vshow='show'

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
+import SpinnerContext from '../../../store/spinnerContext'
 import { login } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
@@ -20,11 +21,12 @@ function LoginEmailPage(props) {
 	const userCtx = useContext(UserContext)
 	const activeUser = userCtx.user
 	const snackbarCtx = useContext(SnackbarContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
-		snackbarCtx.addMessage({ title: 'Sending request', status: 'pending' })
+		toggleSpinner(true)
 		const user = await login(email, password)
 		if (user.data) {
 			userCtx.addUser(user.data)
@@ -32,6 +34,7 @@ function LoginEmailPage(props) {
 		} else {
 			snackbarCtx.addMessage({ title: user })
 		}
+		toggleSpinner(false)
 	}
 
 	useEffect(() => {
@@ -52,7 +55,6 @@ function LoginEmailPage(props) {
 					value={email}
 					onChange={(e) => {
 						setEmail(e.target.value)
-						snackbarCtx.addMessage({ title: 'Email on change✅' })
 					}}
 					placeholder='Enter email address or phone'
 					type='email'

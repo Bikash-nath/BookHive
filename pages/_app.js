@@ -9,12 +9,9 @@ function App({ Component, pageProps }) {
 		<UserContextProvider>
 			<Container>
 				<Head>
-					<meta
-						name='viewport'
-						http-equiv='Content-Security-Policy'
-						content='width=device-width, initial-scale=1, upgrade-insecure-requests'
-					/>
-					<link href='/images/logo.png' rel='icon' type='image/png' sizes='32x32'></link>
+					<meta name='viewport' content='width=device-width, initial-scale=1' />
+					<meta httpEquiv='Content-Security-Policy' content='upgrade-insecure-requests' />
+					<link href='/images/logo.png' rel='icon' type='image/png' sizes='64x64'></link>
 				</Head>
 				<Component {...pageProps} />
 			</Container>

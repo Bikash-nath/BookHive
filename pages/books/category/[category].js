@@ -12,6 +12,7 @@ function BookListPage(props) {
 				<title>{`Popular ${props.category}`}</title>
 				<meta name='description' content={`A list of all ${props.category}`} />
 			</Head>
+
 			<ListGridModal listTitle={`Popular ${props.category}`}>
 				{<BookGrid books={props.books} />}
 			</ListGridModal>

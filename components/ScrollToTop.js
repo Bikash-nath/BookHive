@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-function ScrollToTop(props) {
-	const { searchToggle, setSearchToggle } = props
+function ScrollToTop() {
 	const router = useRouter()
 
 	useEffect(() => {
@@ -11,7 +10,6 @@ function ScrollToTop(props) {
 				window.scrollTo(0, 0)
 				// window.scrollTo({ top: 0, behavior: 'smooth' });
 			}
-			if (!searchToggle) setSearchToggle(false)
 		})
 
 		return () => {

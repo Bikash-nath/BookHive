@@ -17,21 +17,18 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='bg-gradient pt-4 lg:pt-6'>
+			<div className='py-2 lg:py-4'>
 				<ListSliderModal listTitle='Bestsellers' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
-
 				{/* <ListSliderModal
 					listTitle='Featured Audiobooks'
 					listLink='/books/category/audiobooks'>
 					{<BookRow books={props.audiobooks} />}
 				</ListSliderModal> */}
-
 				<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
 					{<BookRow books={props.latestBooks} />}
 				</ListSliderModal>
-
 				<ListSliderModal listTitle='Popular authors' listLink='/authors'>
 					{<AuthorRow authors={props.authors} />}
 				</ListSliderModal>

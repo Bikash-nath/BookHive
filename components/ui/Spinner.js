@@ -1,25 +1,22 @@
 import { useEffect, useContext } from 'react'
 import classes from './spinner.module.css'
 
-import SnackbarContext from '../../store/snackbarContext'
+import SpinnerContext from '../../store/spinnerContext'
 
 function Spinner() {
-	const SnackbarCtx = useContext(SnackbarContext)
-	const status = SnackbarCtx.message?.status
+	const { activeSpinner } = useContext(SpinnerContext)
 
-	useEffect(() => {
-		console.warn('useEffect Spinner status:-🔃', status)
-	}, [status])
-
-	const containerClassHandler = () => {
-		// flex-auto
-		if (status === 'pending') {
-			return 'fixed flex w-full lg:w-4/5 justify-center items-center top-16 z-30'
-		} else return 'hidden'
-	}
+	// useEffect(() => {
+	// 	console.warn('useEffect Spinner status:-🔃', spinnerToggle)
+	// }, [spinnerToggle])
 
 	return (
-		<div className={containerClassHandler()}>
+		<div
+			className={
+				// activeSpinner
+				'fixed flex w-full justify-center items-center top-12 z-30'
+				// : 'hidden'
+			}>
 			<div className={classes.loadContainer}>
 				<div className={classes.linespinner} />
 			</div>

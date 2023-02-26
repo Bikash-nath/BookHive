@@ -26,11 +26,10 @@ function SearchPage() {
 				<title>Search</title>
 				<meta name='description' content='Search section' />
 			</Head>
-			<div className='bg-gradient h-screen pb-24'>
+			<div className='h-full'>
 				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
 					<SearchBar />
 				</div>
-
 				{!searchResult?.length ? (
 					<div className='text-2xl p-4'>No results for "{keyword}"</div>
 				) : (

@@ -12,10 +12,11 @@ function AuthorListPage(props) {
 				<title>Popular Authors</title>
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
-
-			<ListGridModal listTitle='All popular authors'>
-				{<AuthorGrid authors={props.authors} />}
-			</ListGridModal>
+			<div className='h-full m-0'>
+				<ListGridModal listTitle='All popular authors'>
+					{<AuthorGrid authors={props.authors} />}
+				</ListGridModal>
+			</div>
 		</Fragment>
 	)
 }

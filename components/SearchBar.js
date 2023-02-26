@@ -1,19 +1,20 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useRouter } from 'next/router'
 
+import SearchToggleContext from '../store/searchToggleContext'
 import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
 
 export default function SearchBar(props) {
 	const router = useRouter()
 	const inputRef = useRef(null)
-	const { inputToggle, setInputToggle } = props
+	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
 	const searchHandler = (keyword) => {
 		router.push({
 			pathname: '/search',
 			query: { keyword: keyword },
 		})
-		if (router.pathname !== '/search') setInputToggle(false) //instead use router.pathOnChange
+		if (router.pathname !== '/search') toggleSearch(false) //instead use router.pathOnChange
 	}
 
 	const [keyword, setKeyword] = useState(router.query.keyword)
@@ -24,12 +25,12 @@ export default function SearchBar(props) {
 			if (keyword !== ' ') setDebouncedTerm(keyword)
 		}, 1000)
 
-		if (inputToggle) inputRef.current.focus()
+		if (activeSearch) inputRef.current.focus()
 
 		return () => {
 			clearTimeout(timerId)
 		}
-	}, [keyword, inputToggle])
+	}, [keyword, activeSearch])
 
 	useEffect(() => {
 		if (debouncedTerm) {
@@ -37,16 +38,16 @@ export default function SearchBar(props) {
 		}
 	}, [debouncedTerm]) //don't add other dependency; CallBack hell
 
-	// useEffect(() => { //router on change	-> setInputToggle(false)
+	// useEffect(() => { //router on change	-> toggleSearch(false)
 	// }, [router.pathname])
 
 	return (
 		<div className='flex items-center justify-center w-full gap-4'>
-			{inputToggle ? (
+			{activeSearch ? (
 				<div
 					className='flex items-center justify-center cursor-pointer'
 					onClick={() => {
-						setInputToggle(false)
+						toggleSearch(false)
 						setKeyword(null)
 					}}>
 					<ArrowBackIcon dimensions='h-7 w-7' />
