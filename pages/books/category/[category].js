@@ -6,7 +6,7 @@ import ListGridModal from '../../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
 
 function BookListPage(props) {
-	return (
+	return props.category ? (
 		<Fragment>
 			<Head>
 				<title>{`Popular ${props.category}`}</title>
@@ -17,6 +17,8 @@ function BookListPage(props) {
 				{<BookGrid books={props.books} />}
 			</ListGridModal>
 		</Fragment>
+	) : (
+		<></>
 	)
 }
 
@@ -31,7 +33,7 @@ export async function getStaticProps(context) {
 		books = await getLatestBooks()
 	}
 
-	if (!books.data || (typeof books == 'string' && books.includes('ECONNREFUSED')))
+	if (!books.data)
 		return {
 			notFound: true,
 		}
@@ -46,17 +48,13 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const bestsellers = await getBestsellers()
-	const audiobooks = await getTopAudiobooks()
-	const latestBooks = await getLatestBooks()
-
-	const paths = ['bestsellers', 'audiobooks', 'latest']
-	const params = paths.map((category) => ({
+	// const paths = ['bestsellers', 'audiobooks', 'latest']
+	const categoryParams = ['bestsellers', 'audiobooks', 'latest'].map((category) => ({
 		params: { category },
 	}))
 
 	return {
-		paths: params,
+		paths: categoryParams,
 		fallback: 'blocking',
 	}
 }

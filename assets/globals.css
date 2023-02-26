@@ -8,7 +8,7 @@
 	}
 }
 
-.bg-gradient {
+.page-gradient {
 	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky */
 	@apply bg-gradient-to-b from-[#1a1a1a] via-[#121212] to-[#1a1a1a] text-white;
 }

@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getBookDetails, getBestsellers } from '../../api/books'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
-
+import SpinnerContext from '../../store/spinnerContext'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
@@ -18,19 +18,25 @@ function BookDetailPage(props) {
 	const { book } = props
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 
-	const descClassHandler = () => {
-		if (readMoreDesc) return 'text-md text-gray-200 font-medium inline-block'
-		else return 'text-md text-gray-200 font-medium inline-block line-clamp-4'
-	}
+	const { toggleSpinner } = useContext(SpinnerContext)
 
-	return (
+	useEffect(() => {
+		if (!book) toggleSpinner(true)
+		else toggleSpinner(false)
+	}, [])
+
+	// const descClassHandler = () => {
+	// 	if (readMoreDesc) return 'text-md text-gray-200 font-medium inline-block'
+	// 	else return 'text-md text-gray-200 font-medium inline-block line-clamp-4'
+	// }
+
+	return book ? (
 		<Fragment>
 			<Head>
 				<title>{book.title}</title>
 				<meta name='description' content='A ebook' />
 			</Head>
-
-			<div className='m-0'>
+			<div className='pb-16 lg:pb-12'>
 				<BgCover color={props.color}>
 					<div className='absolute lg:hidden top-4 right-4'>
 						<BookmarkIcon dimensions='h-7 w-7' color='' />
@@ -67,78 +73,86 @@ function BookDetailPage(props) {
 							)}
 						</div>
 					</div>
-					<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2 text-gray-400'>
-						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-900 rounded-3xl shadow-sm border-[0.5px] border-purple-600 border-1 hover:border-1 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
+					<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2'>
+						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-slate-900 rounded-3xl shadow-sm border-[0.5px] border-gray-800 shadow-gray-700 transition hover:-translate-y-0.5 duration-150'>
 							<BookReadIcon dimensions='h-7 w-7' color='gray' />
 							<span className='font-semibold'>Read</span>
 						</button>
-						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-900 rounded-3xl shadow-sm border-[0.5px] border-purple-600 border-1 hover:border-1 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
+						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-slate-900 rounded-3xl shadow-sm border-[0.5px] border-gray-800 shadow-gray-700 transition hover:-translate-y-0.5 duration-150'>
 							<HeadphoneIcon dimensions='h-7 w-7' />
 							<span className='font-semibold'>Listen</span>
 						</button>
-						<button className='hidden lg:flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-900 rounded-3xl shadow-sm border-[0.5px] border-purple-600 border-1 hover:border-1 shadow-purple-100 transition hover:-translate-y-0.5 duration-150'>
+						<button className='hidden lg:flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-slate-900 rounded-3xl shadow-sm border-[0.5px] border-gray-800 shadow-gray-700 transition hover:-translate-y-0.5 duration-150'>
 							<LibraryIcon dimensions='h-7 w-7' />
 							<span className='font-semibold'>Add To Library</span>
 						</button>
 					</div>
 				</BgCover>
-			</div>
 
-			{/* <div className='text-xl font-semibold w-full px-2 md:px-4'>Genres</div> */}
-			<div className='flex flex-wrap items-center justify-start space-x-4 p-2 md:p-4'>
-				{book.genres?.map((genre, i) => (
-					<Link href={`/books/genre/${genre.slug}`} key={i}>
-						<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-4 font-medium bg-yellow-500 text-black'>
-							{genre.title}
-						</button>
-					</Link>
-				))}
-			</div>
-
-			<div className='flex flex-col items-center justify-between bg-black space-y-1 md:space-y-2 divide-y divide-gray-700 rounded-md px-4 md:px-8 mx-4 w-[90vw] md:w-[50vw] lg:w-[40vw]'>
-				<h4 className='text-lg md:text-xl p-2 font-semibold underline decoration-1 underline-offset-4 decoration-gray-400'>
-					Book Details
-				</h4>
-				{book.publisher !== null && (
-					<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-						<p className='px-4'>Publisher:</p>
-						<p className='px-4'>{book.publisher}</p>
-					</div>
-				)}
-				{book.publicationDate !== null && (
-					<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-						<p className='px-4'>Publication date:</p>
-						<p className='px-4'>{book.publicationDate}</p>
-					</div>
-				)}
-				{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
-					<div className='flex justify-between items-center p-1 md:p-2 w-full text-md md:text-lg font-medium'>
-						<p className='px-4'>Pages:</p>
-						<p className='px-4'>{book.format.ebook.pagesCount}</p>
-					</div>
-				)}
-			</div>
-
-			{book.description ? (
-				<div className='p-4 md:p-8'>
-					<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
-					<p className={descClassHandler()}>{book.description}</p>
-					<button
-						onClick={(e) => {
-							setReadMoreDesc(!readMoreDesc)
-							e.preventDefault()
-						}}
-						className={
-							'cursor-pointer font-semibold text-blue-500 underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-							(book.description.length < 400 ? 'hidden' : '')
-						}>
-						{readMoreDesc ? 'Read less' : 'Read more'}
-					</button>
+				{/* <div className='text-xl font-semibold w-full px-2 md:px-4'>Genres</div> */}
+				<div className='flex flex-wrap items-center justify-start space-x-4 p-4 lg:p-8'>
+					{book.genres?.map((genre, i) => (
+						<Link href={`/books/genre/${genre.slug}`} key={i}>
+							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-3 font-medium bg-yellow-400 bg-opacity-90 text-black'>
+								{genre.title}
+							</button>
+						</Link>
+					))}
 				</div>
-			) : (
-				<></>
-			)}
+
+				<div className='flex flex-col items-center justify-between bg-black space-y-1 md:space-y-2 divide-y divide-gray-700 rounded-md px-4 lg:px-8 py-2 lg:py-4 mx-4 w-[90vw] md:w-[50vw] lg:w-[40vw]'>
+					<h4 className='text-lg md:text-xl font-semibold underline decoration-1 underline-offset-4 decoration-gray-400'>
+						Book Details
+					</h4>
+					{book.publisher !== null && (
+						<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
+							<p className='px-4'>Publisher:</p>
+							<p className='px-4'>{book.publisher}</p>
+						</div>
+					)}
+					{book.publicationDate !== null && (
+						<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
+							<p className='px-4'>Publication date:</p>
+							<p className='px-4'>{book.publicationDate}</p>
+						</div>
+					)}
+					{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
+						<div className='flex justify-between items-center p-1 md:p-2 w-full text-md md:text-lg font-medium'>
+							<p className='px-4'>Pages:</p>
+							<p className='px-4'>{book.format.ebook.pagesCount}</p>
+						</div>
+					)}
+				</div>
+
+				{book.description ? (
+					<div className='p-4 md:p-8'>
+						<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
+						<p
+							className={
+								'text-md text-gray-200 font-medium inline-block ' +
+								(!readMoreDesc ? 'line-clamp-4' : '')
+							}>
+							{book.description}
+						</p>
+						<button
+							onClick={(e) => {
+								setReadMoreDesc(!readMoreDesc)
+								e.preventDefault()
+							}}
+							className={
+								'cursor-pointer font-semibold text-blue-500 underline decoration-1 decoration-gray-300 underline-offset-4 ' +
+								(book.description.length < 400 ? 'hidden' : '')
+							}>
+							{readMoreDesc ? 'Read less' : 'Read more'}
+						</button>
+					</div>
+				) : (
+					<></>
+				)}
+			</div>
 		</Fragment>
+	) : (
+		<></>
 	)
 }
 
@@ -163,13 +177,14 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	const { data } = await getBestsellers()
-	const params = data.map((book) => ({
+
+	const bookParams = data.map((book) => ({
 		params: { bookId: book.slug.toString() },
 	}))
 
 	return {
-		paths: params,
-		fallback: 'blocking',
+		paths: bookParams,
+		fallback: true,
 	}
 }
 

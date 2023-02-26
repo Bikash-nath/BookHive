@@ -11,14 +11,10 @@ function PageContainer(props) {
 	//'pt-4 lg:pt-6' //home
 	//'h-[93vh]' //library
 
-	console.log('activeSearch-PageContainer', activeSearch)
 	return (
 		<SpinnerContextProvider>
-			<div
-				className={
-					'bg-gradient relative text-white h-full ' + (activeSearch ? 'opacity-25' : '')
-				}>
-				<Spinner />
+			<div className={'page-gradient relative ' + (activeSearch ? 'opacity-25' : '')}>
+				<Spinner headerRef={props.headerRef} />
 				{props.page}
 				<ScrollToTop />
 			</div>

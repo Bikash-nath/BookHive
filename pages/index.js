@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import Head from 'next/head'
 
 import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../api/books'
@@ -6,6 +6,7 @@ import { getTopAuthors } from '../api/authors'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
+// import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
 	return (
@@ -17,7 +18,7 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='py-2 lg:py-4'>
+			<div className='py-2 lg:py-4 pb-16 lg:pb-12'>
 				<ListSliderModal listTitle='Bestsellers' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
@@ -39,7 +40,7 @@ function HomePage(props) {
 
 export async function getStaticProps() {
 	const bestsellers = await getBestsellers()
-	const audiobooks = await getTopAudiobooks()
+	// const audiobooks = await getTopAudiobooks()
 	const latestBooks = await getLatestBooks()
 	const authors = await getTopAuthors()
 
@@ -51,7 +52,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			bestsellers: bestsellers.data,
-			audiobooks: audiobooks.data,
+			// audiobooks: audiobooks.data,
 			latestBooks: latestBooks.data,
 			authors: authors.data,
 		},

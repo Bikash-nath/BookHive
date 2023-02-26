@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+
 import { SnackbarContextProvider } from '../../store/snackbarContext'
 import { SearchToggleContextProvider } from '../../store/searchToggleContext'
 import SnackBar from '../notification/SnackBar'
@@ -7,7 +9,8 @@ import NavbarSm from './NavbarSm'
 import PageContainer from './PageContainer'
 
 function Container(props) {
-	// const pageRef = useRef()
+	const headerRef = useRef()
+	const navbarRef = useRef()
 
 	return (
 		<SnackbarContextProvider>
@@ -16,12 +19,16 @@ function Container(props) {
 					<NavbarLg />
 					<SearchToggleContextProvider>
 						<main className='flex-grow bg-[#121212] overflow-y-scroll select-none p-0 m-0 h-full'>
-							<Header />
-							<PageContainer page={props.children} />
+							<Header headerRef={headerRef} />
+							<PageContainer
+								page={props.children}
+								headerRef={headerRef}
+								navbarRef={navbarRef}
+							/>
 						</main>
 					</SearchToggleContextProvider>
-					<SnackBar />
-					<NavbarSm />
+					<SnackBar navbarRef={navbarRef} />
+					<NavbarSm navbarRef={navbarRef} />
 				</div>
 			</div>
 		</SnackbarContextProvider>

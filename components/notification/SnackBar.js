@@ -4,7 +4,7 @@ import SnackbarContext from '../../store/snackbarContext'
 import classes from './snackbar.module.css'
 import CloseIcon from '../../assets/icons/CloseIcon'
 
-function SnackBar() {
+function SnackBar(props) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const message = snackbarCtx.message
 	const [windowWidth, setWindowWidth] = useState(null)
@@ -14,27 +14,28 @@ function SnackBar() {
 		if (message && message.status !== 'pending') {
 			const timer = setTimeout(() => {
 				snackbarCtx.removeMessage()
-			}, 5000)
-			console.warn('snackbarCtx:-⛔', message)
+			}, 3000)
+			if (typeof window !== 'undefined') {
+				setWindowWidth(window.innerWidth)
+			}
+			// console.log('props.navbarRef', props.navbarRef)
 			return () => {
 				clearTimeout(timer)
 			}
 		}
 	}, [message])
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
-
 	// box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	return message ? (
 		<div
 			className={
 				message.title
-					? 'absolute overflow-hidden m-2 lg:m-3 ' +
-					  (windowWidth >= 1024 ? 'left-52 bottom-0' : 'bottom-14')
+					? 'absolute overflow-hidden m-2 lg:m-3 w-auto ' +
+					  (windowWidth < 1024
+							? props.navbarRef.current
+								? 'left-0 bottom-14'
+								: 'left-0 bottom-0'
+							: 'left-52 bottom-0')
 					: 'hidden'
 			}>
 			<div

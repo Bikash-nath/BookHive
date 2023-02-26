@@ -11,7 +11,15 @@ function App({ Component, pageProps }) {
 				<Head>
 					<meta name='viewport' content='width=device-width, initial-scale=1' />
 					<meta httpEquiv='Content-Security-Policy' content='upgrade-insecure-requests' />
-					<link href='/images/logo.png' rel='icon' type='image/png' sizes='64x64'></link>
+					<meta name='apple-mobile-web-app-title' content='CodePen' />
+					<link rel='icon' type='image/png' sizes='32x32' href='/images/logo.png' />
+					<link rel='apple-touch-icon' href='/images/logo.png' />
+					<link
+						rel='shortcut icon'
+						type='image/png'
+						sizes='192x192'
+						href='/images/logo.png'
+					/>
 				</Head>
 				<Component {...pageProps} />
 			</Container>

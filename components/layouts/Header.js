@@ -24,7 +24,7 @@ import LogoutIcon from '../../assets/icons/LogoutIcon'
 // import { getUserProfile } from '../../api/userProfile'
 // import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
-function Header() {
+function Header(props) {
 	const [showNavBtn, setShowNavBtn] = useState(false)
 	const [windowWidth, setWindowWidth] = useState(null)
 	const [history, setHistory] = useState(null)
@@ -37,7 +37,7 @@ function Header() {
 	useEffect(() => {
 		setActiveUser(userCtx.user)
 		// if (!activeUser?.data) getUserProfile()
-	}, [activeUser])
+	}, [userCtx.user])
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -49,17 +49,14 @@ function Header() {
 	const router = useRouter()
 
 	useEffect(() => {
-		router.events.on('routeChangeComplete', (url) => {
-			if (!showNavBtn) setShowNavBtn(false)
-			if (!activeSearch) toggleSearch(false)
+		router.events.on('routeChangeComplete', () => {
+			setShowNavBtn(false)
+			toggleSearch(false) //if (activeSearch)
 		})
-
 		return () => {
-			router.events.off('routeChangeComplete', () => {
-				console.log('Unsuscribed routeChangeComplete')
-			})
+			router.events.off('routeChangeComplete', () => {})
 		}
-	}, [router.events]) //router.asPath
+	}, [router.events]) //
 
 	const currentRoute = router.pathname
 	const paths = ['login', 'signup', 'discover', 'search']
@@ -83,7 +80,9 @@ function Header() {
 	return (
 		<>
 			{showRoute && (
-				<header className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
+				<header
+					ref={props.headerRef}
+					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
 					<nav className='mx-auto p-1 w-screen'>
 						{activeSearch ? (
 							<div
@@ -125,7 +124,6 @@ function Header() {
 										className='flex items-center cursor-pointer p-2'
 										onClick={() => {
 											toggleSearch(true)
-											console.log(activeSearch)
 										}}>
 										<SearchIcon dimensions='h-7 w-7' />
 									</div>

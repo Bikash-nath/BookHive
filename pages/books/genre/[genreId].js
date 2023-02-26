@@ -1,18 +1,26 @@
+import { useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
 
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
+import SpinnerContext from '../../../store/spinnerContext'
 
 function GenreBooksPage(props) {
-	return (
+	const { toggleSpinner } = useContext(SpinnerContext)
+
+	useEffect(() => {
+		if (!props.genre) toggleSpinner(true)
+		else toggleSpinner(false)
+	}, [])
+
+	return props.genre ? (
 		<Fragment>
 			<Head>
 				<title>{props.genre}</title>
 				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
-			<div className='h-full'>
+			<div className='p-1 lg:p-2 pb-16 lg:pb-12'>
 				<ListGridModal listTitle={`${props.genre} books`}>
 					{props.books.length ? (
 						<BookGrid books={props.books} />
@@ -24,6 +32,8 @@ function GenreBooksPage(props) {
 				</ListGridModal>
 			</div>
 		</Fragment>
+	) : (
+		<></>
 	)
 }
 
@@ -48,13 +58,13 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
 	const genres = await getTopGenres()
 
-	const params = data?.map((genre) => ({
+	const genreParams = genres.data.map((genre) => ({
 		params: { genreId: genre.slug.toString() },
 	}))
 
 	return {
-		paths: params,
-		fallback: 'blocking',
+		paths: genreParams,
+		fallback: true,
 	}
 }
 

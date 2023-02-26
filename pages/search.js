@@ -1,21 +1,29 @@
 import Head from 'next/head'
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import { useRouter } from 'next/router'
 
 import { searchBooks } from '../api/books'
 import SearchBar from '../components/SearchBar'
 import BookGrid from '../components/book/BookGrid'
+import SpinnerContext from '../store/spinnerContext'
+import SnackbarContext from '../store/snackbarContext'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
 	const router = useRouter()
 	const keyword = router.query.keyword
 
+	const { toggleSpinner } = useContext(SpinnerContext)
+	const snackbarCtx = useContext(SnackbarContext)
+
 	useEffect(() => {
 		if (keyword) {
 			;(async () => {
-				const { data } = await searchBooks(keyword)
-				setSearchResult(data)
+				toggleSpinner(true)
+				const result = await searchBooks(keyword)
+				setSearchResult(result.data)
+				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
+				toggleSpinner(false)
 			})()
 		}
 	}, [keyword])

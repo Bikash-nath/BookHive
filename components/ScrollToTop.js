@@ -14,7 +14,7 @@ function ScrollToTop() {
 
 		return () => {
 			router.events.off('routeChangeComplete', () => {
-				console.log('Unsuscribed routeChangeComplete')
+				// console.log('Unsuscribed routeChangeComplete')
 			})
 		}
 	}, [router.events]) //router.asPath

@@ -14,10 +14,10 @@ export default function SearchBar(props) {
 			pathname: '/search',
 			query: { keyword: keyword },
 		})
-		if (router.pathname !== '/search') toggleSearch(false) //instead use router.pathOnChange
+		// if (router.pathname !== '/search') toggleSearch(false)
 	}
 
-	const [keyword, setKeyword] = useState(router.query.keyword)
+	const [keyword, setKeyword] = useState(router.query.keyword || '')
 	const [debouncedTerm, setDebouncedTerm] = useState(keyword)
 
 	useEffect(() => {
