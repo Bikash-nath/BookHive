@@ -9,6 +9,7 @@ function ScrollToTop() {
 			if (typeof window !== 'undefined') {
 				window.scrollTo(0, 0)
 				// window.scrollTo({ top: 0, behavior: 'smooth' });
+				console.log('ScrollTop on routeChangeComplete⭐')
 			}
 		})
 

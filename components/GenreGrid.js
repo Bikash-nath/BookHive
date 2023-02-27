@@ -15,7 +15,7 @@ export default function GenresGrid(props) {
 
 	return (
 		<section>
-			<div className='container mx-auto p-1 md:p-4 text-white'>
+			<div className='container mx-auto p-1 md:p-2 lg:p-4 text-white'>
 				<h2 className='text-2xl md:text-3xl text-center md:text-left p-4 md:p-6'>
 					Popular Genres
 				</h2>
@@ -24,7 +24,7 @@ export default function GenresGrid(props) {
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<div
 								key={i}
-								className='group item rounded-lg m-1 lg:m-2 w-40 h-20 md:w-60 md:h-32'>
+								className='group item rounded-lg m-1 md:m-2 w-40 h-20 md:w-60 md:h-32'>
 								{/* <Image
 									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}

@@ -17,7 +17,7 @@ import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import { useState } from 'react'
 
-function NavbarLg() {
+function Sidebar() {
 	const [libraryToggle, setLibraryToggle] = useState(true)
 	const router = useRouter()
 	const currentRoute = router.pathname
@@ -142,4 +142,4 @@ function NavbarLg() {
 	)
 }
 
-export default NavbarLg
+export default Sidebar

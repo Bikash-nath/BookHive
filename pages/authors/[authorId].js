@@ -57,7 +57,7 @@ function AuthorDetailPage(props) {
 					</div>
 
 					<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2 text-white'>
-						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-800 rounded-3xl shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
+						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-800 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
 							<HeartIcon dimensions='h-7 w-7' />
 							<span className='font-semibold pr-2'>Follow</span>
 						</button>

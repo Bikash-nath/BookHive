@@ -6,7 +6,7 @@ import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 
-function NavbarSm(props) {
+function Navbar(props) {
 	const router = useRouter()
 	const currentRoute = router.pathname
 	const paths = ['login', 'signup']
@@ -24,7 +24,7 @@ function NavbarSm(props) {
 		<>
 			{showRoute && (
 				<div
-					className='absolute bottom-0 z-20 w-screen lg:hidden scale-100 p-[0.45rem] md:p-2 m-0 rounded-md text-white bg-black shadow-inner shadow-gray-700'
+					className='absolute bottom-0 z-20 w-screen lg:hidden scale-100 p-[.4rem] md:p-[.45rem] m-0 rounded-md text-white bg-black shadow-inner shadow-gray-700'
 					ref={props.navbarRef}>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className={routeClassHandler('/')}>
@@ -74,4 +74,4 @@ function NavbarSm(props) {
 	)
 }
 
-export default NavbarSm
+export default Navbar

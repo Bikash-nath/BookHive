@@ -18,7 +18,7 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='py-2 lg:py-4 pb-16 lg:pb-12'>
+			<div className='py-1 lg:py-4 pb-16 lg:pb-12'>
 				<ListSliderModal listTitle='Bestsellers' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
@@ -56,7 +56,7 @@ export async function getStaticProps() {
 			latestBooks: latestBooks.data,
 			authors: authors.data,
 		},
-		revalidate: 60,
+		revalidate: 600,
 	}
 }
 

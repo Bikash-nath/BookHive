@@ -27,11 +27,11 @@ function LoginContainer(props) {
 					</div>
 					{props.children}
 				</div>
-				<div className='hidden md:w-1/2 md:h-full md:flex justify-center items-center'>
+				<div className='hidden md:flex md:w-1/2 md:h-full justify-center items-center'>
 					<img src='/images/bookhive.webp' alt='' className='w-4/5 px-8 mt-4' />
 				</div>
 				<Link href='/'>
-					<div className='group absolute top-3 right-4 md:top-8 md:right-8 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+					<div className='group absolute top-3 right-4 lg:top-8 lg:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 						<CloseIcon />
 					</div>
 				</Link>

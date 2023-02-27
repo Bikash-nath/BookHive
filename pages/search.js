@@ -35,7 +35,7 @@ function SearchPage() {
 				<meta name='description' content='Search section' />
 			</Head>
 			<div className='h-full'>
-				<div className='p-2 lg:py-4 sm:w-4/6 md:w-1/2 lg:w-1/2'>
+				<div className='p-1 lg:p-2 sm:w-3/5 md:w-1/2'>
 					<SearchBar />
 				</div>
 				{!searchResult?.length ? (

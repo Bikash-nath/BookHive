@@ -59,6 +59,7 @@ function Header(props) {
 	}, [router.events]) //
 
 	const currentRoute = router.pathname
+	const navRoutes = ['/discover', '/library', '/account']
 	const paths = ['login', 'signup', 'discover', 'search']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
@@ -83,25 +84,29 @@ function Header(props) {
 				<header
 					ref={props.headerRef}
 					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
-					<nav className='mx-auto p-1 w-screen'>
+					<nav className='mx-auto p-[.15rem] lg:p-1 w-screen'>
 						{activeSearch ? (
 							<div
 								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 px-1`}>
-								<div className='w-full sm:w-60 md:w-1/2'>
+								<div className='w-full xs:w-4/5 sm:w-3/5 lg:w-1/2'>
 									<SearchBar />
 								</div>
 							</div>
 						) : (
 							<div className='flex items-center justify-between text-white'>
-								{/* {currentRoute !== '/' ? (
-									<button
-										className='rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 bg-gray-700'
-										onClick={() => router.back()}>
-										<ChevronLeftIcon dimensions='h-5 w-5' />
-									</button>
-								) : ( */}
-								<div className='flex lg:hidden items-center space-x-20 w-full'>
-									<Logo size={44} />
+								<div className='lg:hidden'>
+									{router.pathname === '/' ||
+									navRoutes.some((route) => router.pathname.includes(route)) ? (
+										<div className='flex items-center space-x-20 w-full'>
+											<Logo size={44} />
+										</div>
+									) : (
+										<button
+											className='rounded-full m-1 py-[0.1rem] pr-[0.2rem] text-gray-300 bg-gray-700'
+											onClick={() => router.back()}>
+											<ChevronLeftIcon dimensions='h-5 w-5' />
+										</button>
+									)}
 								</div>
 								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
 									<button
