@@ -9,7 +9,7 @@ export function SearchToggleContextProvider(props) {
 	const [searchState, setSearchState] = useState(false)
 
 	function toggleSearchHandler(searchStatus) {
-		// console.log('toggleSearchHandler⭐', searchStatus)
+		// console.log('toggleSearchHandler🔍', searchState, 'searchStatus', searchStatus)
 		setSearchState(searchStatus)
 	}
 

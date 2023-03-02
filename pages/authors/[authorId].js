@@ -10,6 +10,7 @@ import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListSliderModal from '../..//components/modals/ListSliderModal'
 import BookRow from '../../components/book/BookRow'
 import HeartIcon from '../../assets/icons/HeartIcon'
+import NavigateBackButtton from '../../components/ui/NavigateBackButtton'
 
 function AuthorDetailPage(props) {
 	const { author } = props
@@ -24,6 +25,7 @@ function AuthorDetailPage(props) {
 			</Head>
 
 			<div className='pb-16 lg:pb-12'>
+				<NavigateBackButtton />
 				<BgCover color={props.color}>
 					<div className='flex items-center justify-between p-2 gap-1 md:gap-2 xl:gap-4'>
 						<Image
@@ -57,7 +59,7 @@ function AuthorDetailPage(props) {
 					</div>
 
 					<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2 text-white'>
-						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-purple-800 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
+						<button className='flex items-center justify-center px-3 py-1 md:p-2 w-full space-x-2 bg-[#AA14F0] rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
 							<HeartIcon dimensions='h-7 w-7' />
 							<span className='font-semibold pr-2'>Follow</span>
 						</button>
@@ -88,7 +90,7 @@ function AuthorDetailPage(props) {
 								e.preventDefault()
 							}}
 							className={
-								'cursor-pointer font-semibold text-blue-600 underline decoration-1 underline-offset-2 decoration-gray-300 ' +
+								'cursor-pointer text-sm lg:text-base font-semibold text-blue-600 underline decoration-1 underline-offset-2 decoration-gray-300 ' +
 								(author.biography.length < 400 ? 'hidden' : '')
 							}>
 							{readMoreBio ? 'Read less' : 'Read more'}
@@ -98,7 +100,7 @@ function AuthorDetailPage(props) {
 					<></>
 				)}
 				{author.books?.length ? (
-					<ListSliderModal listTitle='Author Books' listLink='/books'>
+					<ListSliderModal listTitle='Author Books'>
 						{<BookRow books={author.books} />}
 					</ListSliderModal>
 				) : (

@@ -1,22 +1,25 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 
+import SearchToggleContext from '../../store/searchToggleContext'
+import SpinnerContext from '../../store/spinnerContext'
 import Spinner from '../ui/Spinner'
 import ScrollToTop from '../ScrollToTop'
-import SearchToggleContext from '../../store/searchToggleContext'
 import { SpinnerContextProvider } from '../../store/spinnerContext'
 
 function PageContainer(props) {
 	const { activeSearch } = useContext(SearchToggleContext)
-	//'pb-24' //book,discover
-	//'pt-4 lg:pt-6' //home
-	//'h-[93vh]' //library
+	const { activeSpinner } = useContext(SpinnerContext)
 
 	return (
 		<SpinnerContextProvider>
-			<div className={'page-gradient relative ' + (activeSearch ? 'opacity-25' : '')}>
-				<Spinner headerRef={props.headerRef} />
+			<Spinner headerRef={props.headerRef} />
+			<div
+				className={
+					'page-gradient relative h-screen ' +
+					(activeSearch || activeSpinner ? 'opacity-40' : '')
+				}>
 				{props.page}
-				<ScrollToTop />
+				{/* <ScrollToTop /> */}
 			</div>
 		</SpinnerContextProvider>
 	)

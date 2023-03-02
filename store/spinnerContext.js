@@ -9,6 +9,7 @@ export function SpinnerContextProvider(props) {
 	const [spinnerState, setSpinnerState] = useState(false)
 
 	function toggleSpinnerHandler(spinnerStatus) {
+		// console.log('toggleSpinnerHandler🧿:-', spinnerState, spinnerStatus)
 		setSpinnerState(spinnerStatus)
 	}
 

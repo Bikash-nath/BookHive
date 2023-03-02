@@ -1,14 +1,22 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useContext } from 'react'
 import Head from 'next/head'
 
-import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../api/books'
+import { getBestsellers, getLatestBooks } from '../api/books'
 import { getTopAuthors } from '../api/authors'
+import UserContext from '../store/userContext'
+import PageHeader from '../components/layouts/PageHeader'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookRow from '../components/book/BookRow'
 import AuthorRow from '../components/author/AuthorRow'
+import Logo from '../components/ui/Logo'
+import AccountIcon from '../assets/icons/AccountIcon'
+import HamburgerIcon from '../assets/icons/HamburgerIcon'
+import LoginButton from '../components/ui/LoginButton'
 // import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
+	const { user } = useContext(UserContext)
+
 	return (
 		<Fragment>
 			<Head>
@@ -18,8 +26,27 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
+			<PageHeader
+				pageTitle={<Logo size={32} />}
+				rightContainer={
+					<div className='grid grid-cols-2'>
+						<div className='w-6 h-6 my-[0.1rem]'>
+							<HamburgerIcon className='h-7 w-7' />
+						</div>
+						{user?.data?.image ? (
+							<img
+								className='rounded-full w-7 h-7'
+								src={user.data.image}
+								alt='user image'
+							/>
+						) : (
+							<AccountIcon dimensions='h-7 w-7' />
+						)}
+					</div>
+				}
+			/>
 			<div className='py-1 lg:py-4 pb-16 lg:pb-12'>
-				<ListSliderModal listTitle='Bestsellers' listLink='/books/category/bestsellers'>
+				<ListSliderModal listTitle='Popular books' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
 				</ListSliderModal>
 				{/* <ListSliderModal

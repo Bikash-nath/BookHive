@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import SearchToggleContext from '../store/searchToggleContext'
 import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
-import ChevronLeftIcon from '../assets/icons/ChevronLeftIcon'
+import NavigateBackButtton from './ui/NavigateBackButtton'
 
 export default function SearchBar(props) {
 	const router = useRouter()
@@ -54,14 +54,11 @@ export default function SearchBar(props) {
 					<ArrowBackIcon dimensions='h-7 w-7' />
 				</div>
 			) : router.pathname.includes('/search') ? (
-				<button
-					className='rounded-full m-1 py-[0.1rem] pr-[0.2rem] text-gray-300 bg-gray-700'
-					onClick={() => {
-						router.back()
+				<NavigateBackButtton
+					clickMethod={() => {
 						setKeyword(router.query.keyword)
-					}}>
-					<ChevronLeftIcon dimensions='h-5 w-5' />
-				</button>
+					}}
+				/>
 			) : (
 				<></>
 			)}

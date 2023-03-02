@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 
 import { SnackbarContextProvider } from '../../store/snackbarContext'
 import { SearchToggleContextProvider } from '../../store/searchToggleContext'
@@ -6,40 +6,33 @@ import SnackBar from '../notification/SnackBar'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
-import Spinner from '../ui/Spinner'
-import ScrollToTop from '../ScrollToTop'
-import SearchToggleContext from '../../store/searchToggleContext'
-import { SpinnerContextProvider } from '../../store/spinnerContext'
-// import PageContainer from './PageContainer'
+import PageContainer from './PageContainer'
 
 function Container(props) {
-	const { activeSearch } = useContext(SearchToggleContext)
+	const [windowWidth, setWindowWidth] = useState(null)
+
 	const headerRef = useRef()
 	const navbarRef = useRef()
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
+		}
+	}, [])
 
 	return (
 		<SnackbarContextProvider>
 			<div className='overflow-hidden'>
 				<div className='flex h-screen relative'>
-					<Sidebar />
+					{windowWidth > 1024 && <Sidebar />}
 					<SearchToggleContextProvider>
 						<main className='flex-grow bg-[#121212] overflow-y-scroll select-none h-full'>
-							<Header headerRef={headerRef} />
-							<SpinnerContextProvider>
-								<div
-									className={
-										'page-gradient relative ' +
-										(activeSearch ? 'opacity-25' : '')
-									}>
-									<Spinner headerRef={headerRef} />
-									{props.children}
-									<ScrollToTop />
-								</div>
-							</SpinnerContextProvider>
+							{windowWidth > 1024 && <Header headerRef={headerRef} />}
+							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
 					</SearchToggleContextProvider>
 					<SnackBar navbarRef={navbarRef} />
-					<Navbar navbarRef={navbarRef} />
+					{windowWidth < 1024 && <Navbar navbarRef={navbarRef} />}
 				</div>
 			</div>
 		</SnackbarContextProvider>

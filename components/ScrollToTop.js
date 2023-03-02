@@ -5,20 +5,20 @@ function ScrollToTop() {
 	const router = useRouter()
 
 	useEffect(() => {
-		router.events.on('routeChangeComplete', (url) => {
+		router.events.on('routeChangeStart', (url) => {
 			if (typeof window !== 'undefined') {
-				window.scrollTo(0, 0)
-				// window.scrollTo({ top: 0, behavior: 'smooth' });
-				console.log('ScrollTop on routeChangeComplete⭐')
+				// window.scrollTo(0, 0)
+				window.scrollTo({ top: 0, behavior: 'smooth' })
+				console.log('ScrollTop on routeChangeStart⭐')
 			}
 		})
 
 		return () => {
-			router.events.off('routeChangeComplete', () => {
-				// console.log('Unsuscribed routeChangeComplete')
+			router.events.off('routeChangeStart', () => {
+				console.log('Unsuscribed routeChangeComplete')
 			})
 		}
-	}, [router.events]) //router.asPath
+	}, [router.asPath]) //router.events
 
 	return <></>
 }

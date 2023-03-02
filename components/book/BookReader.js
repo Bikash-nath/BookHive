@@ -5,10 +5,6 @@ function BookReader({ ebookLink, closeReadBook }) {
 	const objectRef = useRef()
 	const embedRef = useRef()
 
-	useEffect(() => {
-		console.log('embedRef1', embedRef.current.getSVGDocument)
-	}, [embedRef.current])
-
 	return (
 		<div className='relative'>
 			<object

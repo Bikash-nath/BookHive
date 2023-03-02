@@ -8,7 +8,7 @@ import { settings } from '../../utils/constants/sliderSettings'
 function AuthorsRow({ authors }) {
 	return (
 		<Fragment>
-			<div className='md:hidden overflow-hidden overflow-x-scroll p-0 m-0 hide-scrollbar'>
+			<div className='lg:hidden overflow-hidden overflow-x-scroll hide-scrollbar'>
 				<div className='flex items-center justify-start gap-0 xs:gap-2 m-1 w-full h-full'>
 					{authors?.map((author) => (
 						<AuthorCard
@@ -20,8 +20,8 @@ function AuthorsRow({ authors }) {
 					))}
 				</div>
 			</div>
-			{/* sm:px-4 md:px-6 */}
-			<div className='hidden md:block h-auto group p-2'>
+			{/* sm:px-4 lg:px-6 */}
+			<div className='hidden lg:block h-auto group p-2 lg:px-4 xl:px-12'>
 				<Slider {...settings}>
 					{authors?.map((author) => (
 						<AuthorCard

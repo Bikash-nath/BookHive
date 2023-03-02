@@ -16,13 +16,13 @@ export default function Carousel() {
 			<h2>Carousel</h2>
 			<Slider {...settings}>
 				<div>
-					<h3>1</h3>
+					<h2>1</h2>
 				</div>
 				<div>
-					<h3>2</h3>
+					<h2>2</h2>
 				</div>
 				<div>
-					<h3>3</h3>
+					<h2>3</h2>
 				</div>
 			</Slider>
 		</div>

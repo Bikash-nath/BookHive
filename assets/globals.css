@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins&family=Roboto&display=swap');
 
 @layer components {
 	.btn {
@@ -10,15 +11,15 @@
 
 .page-gradient {
 	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky */
-	@apply bg-gradient-to-b from-[#1a1a1a] via-[#121212] to-[#1a1a1a] text-white;
+	@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#181818] text-white;
 }
 
 .list-grid {
-	@apply grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-6 md:gap-8 p-2 md:p-6;
+	@apply grid xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-6 md:gap-8 p-2 md:p-6;
 }
 
 .discover-grid {
-	@apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;
+	@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;
 }
 
 .item-container {
@@ -30,11 +31,15 @@
 }
 
 .item-gradient {
-	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-[#121212];
+	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-br from-transparent to-[#202020];
 }
 
 .box-text {
-	@apply absolute px-1 md:px-2 w-full md:w-5/6 text-start left-1 bottom-1;
+	@apply absolute text-base md:text-xl font-medium px-1 md:px-2 w-full md:w-5/6 text-start left-1 top-1;
+}
+
+.image-gradient {
+	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-[#121212];
 }
 
 .btn-next {
@@ -43,6 +48,21 @@
 
 .input-field {
 	@apply w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900;
+}
+
+h1 {
+	font-family: 'Merriweather', serif;
+	/* @apply 'font-poppins'; */
+}
+
+h2 h3 {
+	font-family: 'Poppins', sans-serif;
+	/* @apply 'font-poppins'; */
+}
+
+h5 p {
+	font-family: 'Roboto', sans-serif;
+	/* @apply 'font-roboto'; */
 }
 
 .line-clamp-2 {

@@ -13,7 +13,7 @@ function LoginContainer(props) {
 					</div>
 					<div className='flex flex-col items-center mb-8 relative'>
 						<div className='flex md:hidden justify-center items-center -mt-10'>
-							<div className='item-gradient'></div>
+							<div className='image-gradient'></div>
 							<img src='/images/bookhive.webp' alt='Bookhive' className='w-9/12' />
 						</div>
 						<div className='absolute bottom-0 md:static'>

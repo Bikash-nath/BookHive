@@ -5,10 +5,10 @@ import Link from 'next/link'
 
 import { getTopGenres } from '../api/genres'
 import SearchBar from '../components/SearchBar'
+import PageHeader from '../components/layouts/PageHeader'
 import GenreGrid from '../components/GenreGrid'
-
+// import { images } from '../utils/constants/genrePics'
 // import { genreList } from '../utils/constants/genreConstants'
-import { images } from '../utils/constants/genrePics'
 
 function DiscoverPage(props) {
 	return (
@@ -17,6 +17,7 @@ function DiscoverPage(props) {
 				<title>Discover</title>
 				<meta name='description' content='Discover section' />
 			</Head>
+			<PageHeader pageTitle={<p className='px-2'>Discover</p>} />
 			<div className='py-2 lg:py-4 pb-16 lg:pb-12'>
 				<div className='p-1 lg:p-2 sm:w-3/5 md:w-1/2'>
 					<SearchBar />
@@ -27,12 +28,12 @@ function DiscoverPage(props) {
 							<div className='group item rounded-lg w-40 h-20 md:w-60 md:h-32'>
 								<div className='bg-sky-600 w-40 h-20 md:w-60 md:h-32'></div>
 								<div className='item-gradient'></div>
-								<h5 className='box-text'>Bestsellers</h5>
+								<h5 className='box-text'>Popular books</h5>
 							</div>
 						</Link>
 						<Link href={'/books/category/audiobooks'}>
 							<div className='group item rounded-lg w-40 h-20 md:w-60 md:h-32'>
-								<div className='bg-purple-700 w-40 h-20 md:w-60 md:h-32'></div>
+								<div className='bg-purple-600 w-40 h-20 md:w-60 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>Featured Audiobooks</h5>
 							</div>
@@ -46,14 +47,14 @@ function DiscoverPage(props) {
 						</Link>
 						<Link href={'/authors'}>
 							<div className='group item rounded-lg w-40 h-20 md:w-60 md:h-32'>
-								<div className='bg-rose-700 w-40 h-20 md:w-60 md:h-32'></div>
+								<div className='bg-rose-600 w-40 h-20 md:w-60 md:h-32'></div>
 								<div className='item-gradient'></div>
 								<h5 className='box-text'>Popular authors</h5>
 							</div>
 						</Link>
 					</div>
 				</div>
-				<GenreGrid genreList={props.genreList} images={images} />
+				<GenreGrid genreList={props.genreList} />
 			</div>
 		</Fragment>
 	)

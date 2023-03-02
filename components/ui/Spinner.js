@@ -1,20 +1,18 @@
 import { useEffect, useContext } from 'react'
 
+import SearchToggleContext from '../../store/searchToggleContext'
 import SpinnerContext from '../../store/spinnerContext'
 import classes from './spinner.module.css'
 
 function Spinner(props) {
-	const { activeSpinner, toggleSpinner } = useContext(SpinnerContext)
+	const { toggleSearch } = useContext(SearchToggleContext)
+	const { activeSpinner } = useContext(SpinnerContext)
 
 	useEffect(() => {
 		if (activeSpinner) {
-			const timer = setTimeout(() => {
-				toggleSpinner(false)
-			}, 5000)
-
-			return () => {
-				clearTimeout(timer)
-			}
+			toggleSearch(true)
+		} else {
+			toggleSearch(false)
 		}
 	}, [activeSpinner])
 

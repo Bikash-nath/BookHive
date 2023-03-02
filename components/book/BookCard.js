@@ -6,7 +6,7 @@ import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 
 function BookCard({ title, image, author, slug }) {
 	return (
-		<div className='flex flex-row items-center justify-center mx-2 sm:mx-3 lg:w-40 lg:h-68 lg:py-2 rounded-md group-hover:flex'>
+		<div className='flex items-center justify-center mx-2 sm:mx-3 lg:w-40 lg:h-68 lg:py-2 rounded-md group-hover:flex'>
 			<Link href={`/books/${slug}`}>
 				<div className='relative flex flex-col w-32 h-64 lg:w-full lg:h-full rounded-md p-[0.3rem] lg:p-[0.4rem] bg-gray-800 bg-opacity-70 hover:bg-opacity-100 hover:scale-105 transform duration-100'>
 					{/* <button className='absolute top-1 right-1 lg:top-2 lg:right-2 z-10 rounded-full bg-slate-900 p-1'>

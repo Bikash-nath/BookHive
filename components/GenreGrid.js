@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import colors from '../utils/constants/bgColors'
+// import colors from '../utils/constants/bgColors'
+import colors from '../utils/constants/genreColors'
 
 export default function GenresGrid(props) {
 	const { genreList, images } = props
@@ -33,12 +34,7 @@ export default function GenresGrid(props) {
 									className='rounded-lg'
 								/> */}
 								<div
-									className={
-										'bg' +
-										colors[i % 20].split('from')[1] +
-										' w-44 h-24 md:w-60 md:h-32'
-									}></div>
-								<div className='item-gradient'></div>
+									className={colors[i % 20] + ' w-44 h-24 md:w-60 md:h-32'}></div>
 								<h5 className='box-text'>{genre.title}</h5>
 							</div>
 						</Link>

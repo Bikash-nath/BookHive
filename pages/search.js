@@ -4,16 +4,18 @@ import { useRouter } from 'next/router'
 
 import { searchBooks } from '../api/books'
 import SearchBar from '../components/SearchBar'
+import PageHeader from '../components/layouts/PageHeader'
 import BookGrid from '../components/book/BookGrid'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
+import NavigateBackButton from '../components/ui/NavigateBackButtton'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
 	const router = useRouter()
 	const keyword = router.query.keyword
 
-	const { toggleSpinner } = useContext(SpinnerContext)
+	const { activeSpinner, toggleSpinner } = useContext(SpinnerContext)
 	const snackbarCtx = useContext(SnackbarContext)
 
 	useEffect(() => {
@@ -34,19 +36,20 @@ function SearchPage() {
 				<title>Search</title>
 				<meta name='description' content='Search section' />
 			</Head>
+			<PageHeader leftContainer={<h2>Search</h2>} />
 			<div className='h-full'>
 				<div className='p-1 lg:p-2 sm:w-3/5 md:w-1/2'>
 					<SearchBar />
 				</div>
-				{!searchResult?.length ? (
-					<div className='text-2xl p-4'>No results for "{keyword}"</div>
-				) : (
+				{searchResult?.length ? (
 					<>
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
 						<BookGrid books={searchResult} />
 					</>
+				) : (
+					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>
 				)}
 			</div>
 		</Fragment>

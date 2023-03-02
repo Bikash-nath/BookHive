@@ -19,7 +19,6 @@ function SnackBar(props) {
 			if (typeof window !== 'undefined') {
 				setWindowWidth(window.innerWidth)
 			}
-			// console.log('props.navbarRef', props.navbarRef)
 			return () => {
 				clearTimeout(timer)
 			}

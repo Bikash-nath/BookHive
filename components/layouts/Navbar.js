@@ -8,7 +8,7 @@ import AccountIcon from '../../assets/icons/AccountIcon'
 
 function Navbar(props) {
 	const router = useRouter()
-	const currentRoute = router.pathname
+	const currentRoute = router.asPath
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
@@ -24,7 +24,7 @@ function Navbar(props) {
 		<>
 			{showRoute && (
 				<div
-					className='absolute bottom-0 z-20 w-screen lg:hidden scale-100 p-[.4rem] md:p-[.45rem] m-0 rounded-md text-white bg-black shadow-inner shadow-gray-700'
+					className='absolute bottom-0 z-20 w-screen lg:hidden scale-100 p-[.4rem] md:p-[.45rem] m-0 rounded-md text-white bg-[#080808] shadow-inner shadow-gray-700'
 					ref={props.navbarRef}>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className={routeClassHandler('/')}>

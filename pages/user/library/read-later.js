@@ -22,12 +22,16 @@ function ReadLaterPage() {
 					icon={<HistoryIcon />}
 				/>
 			) : (
-				<div className='flex flex-col items-center justify-center h-[93vh]'>
-					<HistoryIcon dimensions='h-20 w-20' />
-					<div className='flex text-center py-2 md:py-4 text-lg md:text-xl'>
-						<h3>No read later books found</h3>
+				<>
+					<NavigateBackButton />
+					<PageHeader pageTitle='Read Later' />
+					<div className='flex flex-col items-center justify-center h-[93vh]'>
+						<HistoryIcon dimensions='h-20 w-20' />
+						<div className='flex text-center py-2 md:py-4 text-lg md:text-xl'>
+							<h3>No read later books found</h3>
+						</div>
 					</div>
-				</div>
+				</>
 			)}
 		</Fragment>
 	)

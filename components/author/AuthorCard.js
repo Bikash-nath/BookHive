@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 function AuthorCard({ name, image, slug }) {
 	return (
-		<div className='flex flex-row items-center justify-center sm:mx-3 mx-2 w-36 h-60 lg:mx-4 lg:w-44 lg:h-80 rounded-xl group-hover:flex'>
+		<div className='flex items-center justify-center sm:mx-3 mx-2 w-36 h-60 lg:mx-4 lg:w-44 lg:h-80 rounded-xl group-hover:flex'>
 			<Link href={`/authors/${slug}`}>
 				<div className='flex flex-col w-full h-full rounded-xl p-0.5 bg-gray-800 bg-opacity-70 hover:bg-opacity-100 hover:scale-105 transform duration-100'>
 					<Image

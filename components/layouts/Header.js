@@ -6,13 +6,12 @@ import UserContext from '../../store/userContext'
 import SnackbarContext from '../../store/snackbarContext'
 import SearchToggleContext from '../../store/searchToggleContext'
 import SearchBar from '../SearchBar'
-import Logo from '../ui/Logo'
 import LoginButton from '../ui/LoginButton'
+import NavigateBackButtton from '../ui/NavigateBackButtton'
+import NavigateForwardButtton from '../ui/NavigateForwardButtton'
 import HamburgerIcon from '../../assets/icons/HamburgerIcon'
 import BellIcon from '../../assets/icons/BellIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
-import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
-import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 import BarArrowIcon from '../../assets/icons/BarArrowIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import ProfileIcon from '../../assets/icons/ProfileIcon'
@@ -22,12 +21,9 @@ import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
 // import { getUserProfile } from '../../api/userProfile'
-// import LightmodeIcon from '../../assets/icons/LightmodeIcon'
 
 function Header(props) {
 	const [showNavBtn, setShowNavBtn] = useState(false)
-	const [windowWidth, setWindowWidth] = useState(null)
-	const [history, setHistory] = useState(null)
 
 	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
@@ -39,13 +35,6 @@ function Header(props) {
 		// if (!activeUser?.data) getUserProfile()
 	}, [userCtx.user])
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-			setHistory(window.history)
-		}
-	}, [])
-
 	const router = useRouter()
 
 	useEffect(() => {
@@ -53,13 +42,14 @@ function Header(props) {
 			setShowNavBtn(false)
 			toggleSearch(false) //if (activeSearch)
 		})
+
 		return () => {
 			router.events.off('routeChangeComplete', () => {})
 		}
-	}, [router.events]) //
+	}, [router.events])
 
 	const currentRoute = router.pathname
-	const navRoutes = ['/discover', '/library', '/account']
+	// const navRoutes = ['/', '/discover', '/library', '/account']
 	const paths = ['login', 'signup', 'discover', 'search']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
@@ -83,45 +73,20 @@ function Header(props) {
 			{showRoute && (
 				<header
 					ref={props.headerRef}
-					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-black bg-opacity-95'>
-					<nav className='mx-auto p-[.15rem] lg:p-1 w-screen'>
+					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#090909] to-black bg-opacity-95'>
+					<nav className='mx-auto p-1 w-screen'>
 						{activeSearch ? (
 							<div
 								className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 px-1`}>
-								<div className='w-full xs:w-4/5 sm:w-3/5 lg:w-1/2'>
+								<div className='w-1/2'>
 									<SearchBar />
 								</div>
 							</div>
 						) : (
 							<div className='flex items-center justify-between text-white'>
-								<div className='lg:hidden'>
-									{router.pathname === '/' ||
-									navRoutes.some((route) => router.pathname.includes(route)) ? (
-										<div className='flex items-center space-x-20 w-full'>
-											<Logo size={44} />
-										</div>
-									) : (
-										<button
-											className='rounded-full m-1 py-[0.1rem] pr-[0.2rem] text-gray-300 bg-gray-700'
-											onClick={() => router.back()}>
-											<ChevronLeftIcon dimensions='h-5 w-5' />
-										</button>
-									)}
-								</div>
-								<div className='hidden lg:flex items-center mx-4 space-x-8 w-full'>
-									<button
-										className='rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
-										onClick={() => router.back()}>
-										<ChevronLeftIcon dimensions='h-6 w-6' />
-									</button>
-									<button
-										className='rounded-full py-[0.1rem] pl-[0.2rem] text-gray-300 hover:text-white bg-gray-700'
-										onClick={(e) => {
-											e.preventDefault()
-											history && history.forward()
-										}}>
-										<ChevronRightIcon dimensions='h-6 w-6' />
-									</button>
+								<div className='flex items-center mx-4 space-x-8 w-full'>
+									<NavigateBackButtton isHeader={true} />
+									<NavigateForwardButtton />
 								</div>
 
 								<div className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>
@@ -133,7 +98,7 @@ function Header(props) {
 										<SearchIcon dimensions='h-7 w-7' />
 									</div>
 
-									<div className='flex items-center space-x-3 cursor-pointer rounded-full pr-2 md:pr-4'>
+									<div className='flex items-center space-x-3 cursor-pointer rounded-full pr-2'>
 										{activeUser?.data ? (
 											<>
 												<div className='flex items-center cursor-pointer p-2 space-x-4 focus:bg-slate-800'>
@@ -143,7 +108,7 @@ function Header(props) {
 													<div
 														className='grid grid-cols-2'
 														onClick={() => setShowNavBtn(!showNavBtn)}>
-														<div className='w-6 h-6 lg:my-[0.1rem]'>
+														<div className='w-6 h-6 my-[0.1rem]'>
 															{showNavBtn ? (
 																<BarArrowIcon className='h-7 w-7' />
 															) : (
@@ -163,64 +128,37 @@ function Header(props) {
 													{showNavBtn && (
 														<div
 															className={
-																`absolute rounded-lg top-10 right-0 md:right-1 p-2 md:p-3 bg-[#121212] mt-2 border border-gray-900 bg-opacity-100 font-mono text-base lg:text-lg lg:w-24` +
+																`absolute rounded-lg top-10 right-1 p-1 bg-[#121212] mt-2 border border-gray-900 bg-opacity-100 font-mono text-md` +
 																(!showNavBtn && 'hidden')
 															}>
-															<Link href='/user/profile'>
+															<Link href='/user/account'>
 																<div
 																	className={routeClassHandler(
-																		'/profile'
+																		'/account'
 																	)}>
 																	<ProfileIcon dimensions='h-7 w-7' />
-																	<p>Profile</p>
+																	<p className='w-[4.9rem]'>
+																		Profile
+																	</p>
 																</div>
 															</Link>
 															<button
 																id='theme-toggle'
-																className='flex space-x-2 ml-2 w-full text-gray-500 dark:text-gray-400 hover:text-white'>
+																className='flex space-x-2 ml-2 w-full text-gray-500 hover:text-white'>
 																<DarkmodeIcon dimensions='h-7 w-7' />
-																<p>Dark mode</p>
+																<p className='w-[4.9rem]'>
+																	Dark mode
+																</p>
 															</button>
-															{windowWidth < 1024 && (
-																<>
-																	<Link href='/user/settings'>
-																		<div
-																			className={routeClassHandler(
-																				'/settings'
-																			)}>
-																			<SettingsIcon dimensions='h-7 w-7' />
-																			<p>Settings</p>
-																		</div>
-																	</Link>
-																	<hr className='border-t-[0.1px] border-gray-800' />
-																	<Link href='/help/faq'>
-																		<div
-																			className={routeClassHandler(
-																				'/faq'
-																			)}>
-																			<HelpIcon dimensions='h-7 w-7' />
-																			<p>Help</p>
-																		</div>
-																	</Link>
-																	<Link href='/help/donate'>
-																		<div
-																			className={routeClassHandler(
-																				'/donate'
-																			)}>
-																			<FeedbackIcon dimensions='h-7 w-7' />
-																			<p>Feedback</p>
-																		</div>
-																	</Link>
-																	<hr className='border-t-[0.1px] border-gray-800' />
-																</>
-															)}
 															<div
 																onClick={logOutHandler}
 																className={routeClassHandler(
 																	'/log-out'
 																)}>
 																<LogoutIcon dimensions='h-7 w-7' />
-																<p>Log out</p>
+																<p className='w-[4.9rem]'>
+																	Log out
+																</p>
 															</div>
 														</div>
 													)}

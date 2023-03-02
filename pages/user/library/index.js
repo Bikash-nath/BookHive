@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
-
+import PageHeader from '../../../components/layouts/PageHeader'
 import AccountIcon from '../../../assets/icons/AccountIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
@@ -28,7 +28,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-
+			<PageHeader pageTitle='Library' />
 			{!activeUser?.data ? (
 				<LoginBanner
 					title='Enjoy Your Favourite Books'
@@ -54,7 +54,7 @@ function LibraryPage(props) {
 					</div>
 					<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
 						<Link href='/user/library/collections'>
-							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
+							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 								<div className='flex rounded-md py-2 gap-2'>
 									<CollectionIcon dimensions='h-7 w-7' />
 									<p className='text-lg md:text-xl text-left font-semibold'>
@@ -67,7 +67,7 @@ function LibraryPage(props) {
 							</div>
 						</Link>
 						<Link href='/user/library/read-history'>
-							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
+							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 								<div className='flex rounded-md py-2 gap-2'>
 									<HistoryIcon dimensions='h-7 w-7' />
 									<p className='text-lg md:text-xl text-left font-semibold'>
@@ -80,7 +80,7 @@ function LibraryPage(props) {
 							</div>
 						</Link>
 						<Link href='/user/library/read-later'>
-							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
+							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 								<div className='flex rounded-md py-2 gap-2'>
 									<HistoryIcon dimensions='h-7 w-7' />
 									<p className='text-lg md:text-xl text-left font-semibold'>
@@ -93,7 +93,7 @@ function LibraryPage(props) {
 							</div>
 						</Link>
 						<Link href='/user/library/favourites'>
-							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
+							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 								<div className='flex rounded-md py-2 gap-2'>
 									<HeartIcon dimensions='h-7 w-7' />
 									<p className='text-lg md:text-xl text-left font-semibold'>
@@ -106,7 +106,7 @@ function LibraryPage(props) {
 							</div>
 						</Link>
 						<Link href='/user/library/favourites'>
-							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-stone-800 border border-black'>
+							<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
 								<div className='flex rounded-md py-2 gap-2'>
 									<CompletedIcon dimensions='h-7 w-7' />
 									<p className='text-lg md:text-xl text-left font-semibold'>
