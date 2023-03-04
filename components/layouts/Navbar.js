@@ -24,8 +24,7 @@ function Navbar(props) {
 		<>
 			{showRoute && (
 				<div
-					className='flex-grow fixed bottom-0 z-20 w-screen lg:hidden scale-100 p-[.45rem] md:p-2 m-0 text-white bg-[#030b17] shadow-inner shadow-gray-800'
-					/*absolute || fixed with bottom of web-page */
+					className='flex-grow lg:hidden fixed bottom-0 z-20 w-screen scale-100 p-[.45rem] md:p-2 m-0 text-white bg-[#030b17] shadow-inner shadow-gray-800'
 					ref={props.navbarRef}>
 					<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
 						<div className={routeClassHandler('/')}>

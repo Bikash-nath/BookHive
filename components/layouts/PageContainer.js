@@ -3,7 +3,7 @@ import { useState, useEffect, useContext, useRef } from 'react'
 import { SpinnerContextProvider } from '../../store/spinnerContext'
 import SpinnerContext from '../../store/spinnerContext'
 import SearchToggleContext from '../../store/searchToggleContext'
-import Spinner from '../ui/Spinner'
+import Spinner from '../widgets/Spinner'
 import SnackBar from '../notification/SnackBar'
 import Navbar from './Navbar'
 // import ScrollToTop from '../ScrollToTop'
@@ -11,13 +11,6 @@ import Navbar from './Navbar'
 function PageContainer(props) {
 	const { activeSearch } = useContext(SearchToggleContext)
 	const { activeSpinner } = useContext(SpinnerContext)
-	const [windowWidth, setWindowWidth] = useState(null)
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
 
 	const navbarRef = useRef()
 
@@ -26,14 +19,13 @@ function PageContainer(props) {
 			<Spinner headerRef={props.headerRef} />
 			<div
 				className={
-					'flex-grow page-gradient relative h-full ' +
-					(activeSearch || activeSpinner ? 'opacity-40' : '')
+					'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-40' : '')
 				}>
 				{props.page}
 				{/* <ScrollToTop /> */}
 			</div>
 			<SnackBar navbarRef={navbarRef} />
-			{windowWidth < 1024 && <Navbar navbarRef={navbarRef} />}
+			<Navbar navbarRef={navbarRef} />
 		</SpinnerContextProvider>
 	)
 }

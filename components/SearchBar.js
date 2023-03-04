@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import SearchToggleContext from '../store/searchToggleContext'
 import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
-import NavigateBackButtton from './ui/NavigateBackButtton'
+import NavigateBackButton from './ui/NavigateBackButton'
 
 export default function SearchBar(props) {
 	const router = useRouter()
@@ -54,7 +54,7 @@ export default function SearchBar(props) {
 					<ArrowBackIcon dimensions='h-7 w-7' />
 				</div>
 			) : router.pathname.includes('/search') ? (
-				<NavigateBackButtton
+				<NavigateBackButton
 					clickMethod={() => {
 						setKeyword(router.query.keyword)
 					}}

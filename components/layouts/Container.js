@@ -9,25 +9,24 @@ import PageContainer from './PageContainer'
 // import SnackBar from '../notification/SnackBar'
 
 function Container(props) {
-	const [windowWidth, setWindowWidth] = useState(null)
+	// const [windowWidth, setWindowWidth] = useState(null)
 
 	const headerRef = useRef()
-	// const navbarRef = useRef()
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		setWindowWidth(window.innerWidth)
+	// 	}
+	// }, [])
 
 	return (
 		<SnackbarContextProvider>
 			<div className='overflow-hidden'>
 				<div className='flex h-screen relative'>
-					{windowWidth > 1024 && <Sidebar />}
+					<Sidebar />
 					<SearchToggleContextProvider>
-						<main className='flex-grow bg-[#121212] overflow-y-scroll select-none h-full'>
-							{windowWidth > 1024 && <Header headerRef={headerRef} />}
+						<main className='flex-grow overflow-y-scroll select-none h-full page-gradient '>
+							<Header headerRef={headerRef} />
 							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
 					</SearchToggleContextProvider>

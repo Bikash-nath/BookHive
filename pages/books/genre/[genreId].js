@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
-import NavigateBackButtton from '../../../components/ui/NavigateBackButtton'
+import TopNavModal from '../../../components/modals/TopNavModal'
 import SpinnerContext from '../../../store/spinnerContext'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
@@ -23,7 +23,7 @@ function GenreBooksPage(props) {
 				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
 			<div className='p-1 lg:p-2 pb-16 lg:pb-12'>
-				<NavigateBackButtton rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />} />
+				<TopNavModal rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />} />
 				<ListGridModal listTitle={`${props.genre} books`}>
 					{props.books.length ? (
 						<BookGrid books={props.books} />

@@ -3,8 +3,6 @@ import BookCard from './BookCard'
 import BookGridCard from './BookGridCard'
 
 function BookGrid({ books }) {
-	const [windowWidth, setWindowWidth] = useState(null)
-
 	return (
 		<Fragment>
 			<div className='hidden xs:inline'>

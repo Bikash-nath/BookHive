@@ -32,7 +32,7 @@ function AccountPage(props) {
 					icon={<AccountIcon />}
 				/>
 			) : (
-				<>
+				<div className='page-gradient'>
 					<PageHeader
 						pageTitle='Your profile'
 						rightContainer={
@@ -55,7 +55,7 @@ function AccountPage(props) {
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
 							<div className='flex justify-between rounded-md py-2 gap-2'>
 								<p className='text-lg md:text-xl font-semibold px-4'>Name</p>
 								<p className='text-lg md:text-xl font-semibold px-4'>
@@ -63,7 +63,7 @@ function AccountPage(props) {
 								</p>
 							</div>
 						</div>
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
 							<div className='flex justify-between rounded-md py-2 gap-2'>
 								<p className='text-lg md:text-xl font-semibold px-4'>Email</p>
 								<p className='text-lg md:text-xl text-right font-semibold px-4'>
@@ -71,7 +71,7 @@ function AccountPage(props) {
 								</p>
 							</div>
 						</div>
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-stone-800 border border-black'>
+						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
 							<div className='flex justify-between rounded-md py-2 gap-2'>
 								<p className='text-lg md:text-xl font-semibold px-4'>Location</p>
 								<p className='text-lg md:text-xl text-right font-semibold px-4'>
@@ -80,7 +80,7 @@ function AccountPage(props) {
 							</div>
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 		</Fragment>
 	)

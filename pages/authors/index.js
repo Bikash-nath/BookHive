@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
 import AuthorGrid from '../../components/author/AuthorGrid'
-import NavigateBackButtton from '../../components/ui/NavigateBackButtton'
+import TopNavModal from '../../components/modals/TopNavModal'
 
 function AuthorListPage(props) {
 	return (
@@ -14,7 +14,7 @@ function AuthorListPage(props) {
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
 			<div className='p-1 lg:p-2 pb-16 lg:pb-12'>
-				<NavigateBackButtton />
+				<TopNavModal />
 				<div className='h-full mb-12'>
 					<ListGridModal listTitle='All popular authors'>
 						{<AuthorGrid authors={props.authors} />}

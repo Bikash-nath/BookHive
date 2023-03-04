@@ -4,7 +4,6 @@ import { Fragment, useState } from 'react'
 import TabModal from '../../../components/modals/TabModal'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
-import NavigateBackButton from '../../../components/ui/NavigateBackButtton'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function FavouritesPage(props) {
@@ -31,10 +30,8 @@ function FavouritesPage(props) {
 					icon={<HeartIcon />}
 				/>
 			) : (
-				<div className='h-full'>
-					<PageHeader pageTitle='Favourites' />
-					<NavigateBackButton />
-					<p className='text-2xl md:text-3xl p-2 md:p-6'>Your Favourites</p>
+				<div className='page-gradient h-full'>
+					<PageHeader pageTitle='Your Favourites' backBtn={true} />
 					<section id='tabs'>
 						<div className='container relative sm:text-left px-2'>
 							<div className='bg-tabs'></div>

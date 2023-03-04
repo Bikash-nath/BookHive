@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/books'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookGrid from '../../../components/book/BookGrid'
-import NavigateBackButtton from '../../../components/ui/NavigateBackButtton'
+import TopNavModal from '../../../components/modals/TopNavModal'
 import Paginate from '../../../components/ui/Paginate'
 
 function BookListPage(props) {
@@ -15,7 +15,7 @@ function BookListPage(props) {
 				<meta name='description' content={`A list of all ${props.category}`} />
 			</Head>
 			<div className='p-1 lg:p-2 pb-16 lg:pb-12'>
-				<NavigateBackButtton />
+				<TopNavModal />
 				<ListGridModal listTitle={`Popular ${props.category}`}>
 					{<BookGrid books={props.books} />}
 				</ListGridModal>

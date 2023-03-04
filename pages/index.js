@@ -15,7 +15,6 @@ import LoginButton from '../components/ui/LoginButton'
 // import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
-	const [windowWidth, setWindowWidth] = useState(null)
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
 
@@ -23,12 +22,6 @@ function HomePage(props) {
 		setActiveUser(user)
 		// if (!activeUser?.data) getUserProfile()
 	}, [user])
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
 
 	return (
 		<Fragment>
@@ -39,45 +32,49 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			{windowWidth < 1024 && (
-				<PageHeader
-					pageTitle={<Logo size={32} />}
-					rightContainer={
-						activeUser?.data ? (
-							<>
-								{activeUser?.data?.image ? (
-									<img
-										className='rounded-full w-7 h-7'
-										src={activeUser.data.image}
-										alt='user image'
-									/>
-								) : (
-									<AccountIcon dimensions='h-7 w-7' />
-								)}
-							</>
-						) : (
-							<div className='transform scale-90'>
-								<LoginButton />
-							</div>
-						)
-					}
-				/>
-			)}
-			<div className='py-1 lg:py-4 pb-16 lg:pb-12'>
-				<ListSliderModal listTitle='Popular books' listLink='/books/category/bestsellers'>
-					{<BookRow books={props.bestsellers} />}
-				</ListSliderModal>
-				{/* <ListSliderModal
+			<div className='page-gradient pb-16 lg:pb-12'>
+				<div className='block lg:hidden'>
+					<PageHeader
+						pageTitle={<Logo size={32} />}
+						rightContainer={
+							activeUser?.data ? (
+								<>
+									{activeUser?.data?.image ? (
+										<img
+											className='rounded-full w-7 h-7'
+											src={activeUser.data.image}
+											alt='user image'
+										/>
+									) : (
+										<AccountIcon dimensions='h-7 w-7' />
+									)}
+								</>
+							) : (
+								<div className='transform scale-90'>
+									<LoginButton />
+								</div>
+							)
+						}
+					/>
+				</div>
+				<div className='py-1 lg:py-4'>
+					<ListSliderModal
+						listTitle='Popular books'
+						listLink='/books/category/bestsellers'>
+						{<BookRow books={props.bestsellers} />}
+					</ListSliderModal>
+					{/* <ListSliderModal
 					listTitle='Featured Audiobooks'
 					listLink='/books/category/audiobooks'>
 					{<BookRow books={props.audiobooks} />}
 				</ListSliderModal> */}
-				<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
-					{<BookRow books={props.latestBooks} />}
-				</ListSliderModal>
-				<ListSliderModal listTitle='Popular authors' listLink='/authors'>
-					{<AuthorRow authors={props.authors} />}
-				</ListSliderModal>
+					<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
+						{<BookRow books={props.latestBooks} />}
+					</ListSliderModal>
+					<ListSliderModal listTitle='Popular authors' listLink='/authors'>
+						{<AuthorRow authors={props.authors} />}
+					</ListSliderModal>
+				</div>
 			</div>
 		</Fragment>
 	)

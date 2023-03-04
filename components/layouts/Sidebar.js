@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -26,6 +26,12 @@ function Sidebar() {
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const { user } = useContext(UserContext)
+	const [activeUser, setActiveUser] = useState(null)
+
+	useEffect(() => {
+		if (user?.data) setActiveUser(user.data)
+		// if (!activeUser?.data) getUserProfile()
+	}, [user])
 
 	const routeClassHandler = (route) => {
 		return `flex items-center space-x-2 m-2 hover:text-white text-${
@@ -64,8 +70,7 @@ function Sidebar() {
 										<p className='text-base'>Library</p>
 									</div>
 								</Link>
-								{console.log('userInfo\n', user?.userInfo)}
-								{user?.userInfo ? (
+								{activeUser ? (
 									<div
 										className={'flex items-center m-2'}
 										onClick={() => setLibraryToggle(!libraryToggle)}>
@@ -79,7 +84,7 @@ function Sidebar() {
 									<></>
 								)}
 							</div>
-							{libraryToggle && user?.userInfo && (
+							{activeUser && libraryToggle ? (
 								<div className='ml-2'>
 									<Link href='/user/library/collections'>
 										<div className={routeClassHandler('/collections')}>
@@ -100,6 +105,8 @@ function Sidebar() {
 										</div>
 									</Link>
 								</div>
+							) : (
+								<></>
 							)}
 						</div>
 

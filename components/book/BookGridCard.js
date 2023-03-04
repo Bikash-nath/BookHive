@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 function BookCard({ title, image, author, slug }) {
 	return (
-		<div className='flex items-center justify-center w-[6.7rem] h-[12.5rem] m-1 sm:m-3 rounded-md group-hover:flex'>
+		<div className='flex items-center justify-center m-1 sm:m-3 w-full h-full rounded-md group-hover:flex'>
 			<Link href={`/books/${slug}`}>
-				<div className='relative flex flex-col w-[6.5rem] h-full rounded-md p-[0.3rem] bg-gray-900'>
+				<div className='relative flex flex-col w-[6.6rem] h-[12.5rem] rounded-md p-[0.3rem] bg-[#192132]'>
 					<Image
 						src={process.env.BOOKS_URL + image}
 						alt={title}

@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Poppins&family=Roboto&display=swap');
 
 @layer components {
-	.more-btn {
-		@apply px-1 py-[.2rem] lg:px-2 lg:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm lg:text-base font-bold text-[#8C6AFF] rounded-lg bg-[#030b17] hover:bg-black opacity-80 border-2 border-gray-800;
+	.more-box-btn {
+		@apply px-1 py-[.2rem] lg:px-2 lg:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm lg:text-base font-bold text-[#8C6AFF] rounded-xl bg-[#030b17] hover:text-purple-400 opacity-80 border-2 border-gray-800;
 	}
 }
 
@@ -14,16 +14,16 @@
 	@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#181818] text-white;
 	/*@apply bg-gradient-to-b from-[#121212] via-[#0C111B] to-[#0C111B] text-white;
 	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;*/
-	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white;
+	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white pb-16 lg:pb-0;
 }
 
 .list-grid {
-	@apply grid grid-cols-2 ms:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
+	@apply grid grid-cols-2 ms:grid-cols-3 xs:grid-cols-4 md:grid-cols-5 gap-1 ms:gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
 }
 
 .discover-grid {
 	/*@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;*/
-	@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-1 space-y-3 sm:space-x-4 sm:space-y-4 xl:space-x-6 xl:space-y-6;
+	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 ms:gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
 }
 
 .item-container {
@@ -39,7 +39,7 @@
 }
 
 .box-text {
-	@apply absolute text-base md:text-xl font-medium px-1 md:px-2 w-full md:w-5/6 text-start left-1 top-1;
+	@apply absolute text-sm ms:text-base lg:text-xl font-medium px-1 lg:px-2 w-full lg:w-5/6 text-start left-1 top-1;
 }
 
 .image-gradient {
@@ -94,3 +94,16 @@ h5 p {
 .slick-dots button:before {
 	color: white !important;
 }
+
+/*
+html {
+	overflow: hidden;
+	width: 100%;
+}
+body {
+	height: 100%;
+	position: fixed;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+*/

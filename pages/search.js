@@ -8,7 +8,7 @@ import PageHeader from '../components/layouts/PageHeader'
 import BookGrid from '../components/book/BookGrid'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
-import NavigateBackButton from '../components/ui/NavigateBackButtton'
+import NavigateBackButton from '../components/ui/NavigateBackButton'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
@@ -36,7 +36,7 @@ function SearchPage() {
 				<title>Search</title>
 				<meta name='description' content='Search section' />
 			</Head>
-			<PageHeader leftContainer={<h2>Search</h2>} />
+			<PageHeader isHeader={false} />
 			<div className='h-full'>
 				<div className='p-1 lg:p-2 sm:w-3/5 md:w-1/2'>
 					<SearchBar />

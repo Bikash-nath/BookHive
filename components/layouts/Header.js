@@ -7,8 +7,7 @@ import SnackbarContext from '../../store/snackbarContext'
 import SearchToggleContext from '../../store/searchToggleContext'
 import SearchBar from '../SearchBar'
 import LoginButton from '../ui/LoginButton'
-import NavigateBackButtton from '../ui/NavigateBackButtton'
-import NavigateForwardButtton from '../ui/NavigateForwardButtton'
+import NavigateButtons from '../ui/NavigateButtons'
 import HamburgerIcon from '../../assets/icons/HamburgerIcon'
 import BellIcon from '../../assets/icons/BellIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
@@ -16,10 +15,8 @@ import ChevronDoubleDownIcon from '../../assets/icons/ChevronDoubleDownIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import ProfileIcon from '../../assets/icons/ProfileIcon'
 import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
-import SettingsIcon from '../../assets/icons/SettingsIcon'
-import HelpIcon from '../../assets/icons/HelpIcon'
-import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
+// 	import SettingsIcon from '../../assets/icons/SettingsIcon'
 // import { getUserProfile } from '../../api/userProfile'
 
 function Header(props) {
@@ -73,7 +70,7 @@ function Header(props) {
 			{showRoute && (
 				<header
 					ref={props.headerRef}
-					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
+					className='hidden lg:flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
 					<nav className='mx-auto p-1 w-screen'>
 						{activeSearch ? (
 							<div
@@ -85,8 +82,7 @@ function Header(props) {
 						) : (
 							<div className='flex items-center justify-between text-white'>
 								<div className='flex items-center mx-4 space-x-8 w-full'>
-									<NavigateBackButtton isHeader={true} />
-									<NavigateForwardButtton />
+									<NavigateButtons />
 								</div>
 
 								<div className='flex right-8 gap-[0.1rem] md:gap-2 justify-end w-full'>

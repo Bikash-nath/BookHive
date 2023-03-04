@@ -36,23 +36,9 @@ function LibraryPage(props) {
 					icon={<LibraryIcon />}
 				/>
 			) : (
-				<>
+				<div className='page-gradient'>
 					<PageHeader pageTitle='Library' />
 					<div className='flex flex-col'>
-						<div className='flex p-2 md:p-4'>
-							{activeUser.data?.image ? (
-								<Image
-									src={process.env.USERS_URL + activeUser.data.image}
-									alt={activeUser?.data.name}
-									height={32}
-									width={32}
-									className='rounded-full p-2 w-10 h-10'
-								/>
-							) : (
-								<AccountIcon dimensions='h-16 w-16' />
-							)}
-							<p className='text-xl md:text-2xl mx-2 md:mx-4 my-auto'>Your Library</p>
-						</div>
 						<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
 							<Link href='/user/library/collections'>
 								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
@@ -121,7 +107,7 @@ function LibraryPage(props) {
 							</Link>
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 		</Fragment>
 	)

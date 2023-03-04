@@ -5,8 +5,7 @@ import Image from 'next/image'
 import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
-import NavigateBackButton from '../../../components/ui/NavigateBackButtton'
-import AccountIcon from '../../../assets/icons/AccountIcon'
+import TopNavModal from '../../../components/modals/TopNavModal'
 import SettingsIcon from '../../../assets/icons/SettingsIcon'
 
 function SettingsPage(props) {
@@ -32,11 +31,10 @@ function SettingsPage(props) {
 					icon={<SettingsIcon />}
 				/>
 			) : (
-				<>
-					<NavigateBackButton />
-					<PageHeader pageTitle='Settings' />
+				<div className='page-gradient h-full'>
+					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex items-start justify-center w-full h-full lg:h-[93vh] gap-6 p-4'></div>
-				</>
+				</div>
 			)}
 		</Fragment>
 	)

@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { getBookDetails, getBestsellers } from '../../api/books'
-import BookReader from '../../components/book/BookReader'
+import BookPdfReader from '../../components/book/BookPdfReader'
+import BookEpubReader from '../../components/book/BookEpubReader'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
-import NavigateBackButtton from '../../components/ui/NavigateBackButtton'
+import TopNavModal from '../../components/modals/TopNavModal'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
@@ -22,6 +23,13 @@ function BookDetailPage(props) {
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const [readBook, setReadBook] = useState(false)
 
+	const descCountLines = () => {
+		const descEl = document.getElementById('book-desc')
+		const divHeight = descEl.offsetHeight
+		const lineHeight = parseInt(descEl.style.lineHeight)
+		return divHeight / lineHeight
+	}
+
 	return book ? (
 		<Fragment>
 			<Head>
@@ -29,10 +37,14 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 			{readBook ? (
-				<BookReader ebookLink={book.format.ebook?.link} closeReadBook={setReadBook} />
+				<BookEpubReader
+					title={book.title}
+					ebookLink={book.format.ebook?.link}
+					closeReadBook={setReadBook}
+				/>
 			) : (
-				<div className='relative flex-auto'>
-					<NavigateBackButtton />
+				<div className='page-gradient relative flex-auto'>
+					<TopNavModal />
 					<div className='pb-16 lg:pb-12'>
 						<BgCover color={props.color}>
 							<div className='absolute lg:hidden top-4 right-4'>
@@ -168,8 +180,9 @@ function BookDetailPage(props) {
 									Book description
 								</h4>
 								<p
+									id='book-desc'
 									className={
-										'text-md text-gray-200 font-medium inline-block ' +
+										'text-md text-gray-200 font-medium inline-block sm:leading-snug leading-normal ' +
 										(!readMoreDesc ? 'line-clamp-4' : '')
 									}>
 									{book.description}
@@ -180,8 +193,8 @@ function BookDetailPage(props) {
 										e.preventDefault()
 									}}
 									className={
-										'cursor-pointer text-sm lg:text-base font-semibold text-blue-500 underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-										(book.description.length < 400 ? 'hidden' : '')
+										'cursor-pointer text-sm lg:text-base font-semibold text-[#AA14F0] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
+										(descCountLines() < 4 ? 'hidden' : '')
 									}>
 									{readMoreDesc ? (
 										<div className='flex'>

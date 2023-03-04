@@ -42,7 +42,7 @@ function LoginContainer(props) {
 					</div>
 				)}
 				<Link href='/'>
-					<div className='group absolute top-3 right-4 lg:top-8 lg:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+					<div className='group absolute top-3 right-4 lg:top-8 lg:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 						<CloseIcon />
 					</div>
 				</Link>
