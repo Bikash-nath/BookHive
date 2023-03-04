@@ -50,7 +50,7 @@ function LoginEmailPage(props) {
 			{/* {loading && <LoadingSpinner />} */}
 			{/* {error && <ErrorAlert variant='danger'>{error}</ErrorAlert>} */}
 			<LoginContainer>
-				<h2 className='font-mono mb-4 text-3xl font-bold'>Log In</h2>
+				<h2 className='mb-4 text-3xl font-bold'>Log In</h2>
 				<input
 					value={email}
 					onChange={(e) => {

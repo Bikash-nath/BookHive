@@ -12,7 +12,7 @@ import NavigateForwardButtton from '../ui/NavigateForwardButtton'
 import HamburgerIcon from '../../assets/icons/HamburgerIcon'
 import BellIcon from '../../assets/icons/BellIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
-import BarArrowIcon from '../../assets/icons/BarArrowIcon'
+import ChevronDoubleDownIcon from '../../assets/icons/ChevronDoubleDownIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import ProfileIcon from '../../assets/icons/ProfileIcon'
 import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
@@ -67,13 +67,13 @@ function Header(props) {
 		router.push('/')
 		snackbarCtx.addMessage({ title: 'Log out successfull' })
 	}
-
+	// from-[#131a27] via-[#121927] to-[#111724]
 	return (
 		<>
 			{showRoute && (
 				<header
 					ref={props.headerRef}
-					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#090909] to-black bg-opacity-95'>
+					className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
 					<nav className='mx-auto p-1 w-screen'>
 						{activeSearch ? (
 							<div
@@ -110,7 +110,7 @@ function Header(props) {
 														onClick={() => setShowNavBtn(!showNavBtn)}>
 														<div className='w-6 h-6 my-[0.1rem]'>
 															{showNavBtn ? (
-																<BarArrowIcon className='h-7 w-7' />
+																<ChevronDoubleDownIcon className='h-7 w-7' />
 															) : (
 																<HamburgerIcon className='h-7 w-7' />
 															)}
@@ -128,7 +128,7 @@ function Header(props) {
 													{showNavBtn && (
 														<div
 															className={
-																`absolute rounded-lg top-10 right-1 p-1 bg-[#121212] mt-2 border border-gray-900 bg-opacity-100 font-mono text-md` +
+																`absolute rounded-lg top-10 right-1 p-1 bg-[#192132] mt-2 border border-gray-900 bg-opacity-100 text-md` +
 																(!showNavBtn && 'hidden')
 															}>
 															<Link href='/user/account'>

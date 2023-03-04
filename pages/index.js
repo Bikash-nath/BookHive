@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 
 import { getBestsellers, getLatestBooks } from '../api/books'
@@ -15,7 +15,20 @@ import LoginButton from '../components/ui/LoginButton'
 // import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
+	const [windowWidth, setWindowWidth] = useState(null)
 	const { user } = useContext(UserContext)
+	const [activeUser, setActiveUser] = useState(null)
+
+	useEffect(() => {
+		setActiveUser(user)
+		// if (!activeUser?.data) getUserProfile()
+	}, [user])
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
+		}
+	}, [])
 
 	return (
 		<Fragment>
@@ -26,25 +39,30 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<PageHeader
-				pageTitle={<Logo size={32} />}
-				rightContainer={
-					<div className='grid grid-cols-2'>
-						<div className='w-6 h-6 my-[0.1rem]'>
-							<HamburgerIcon className='h-7 w-7' />
-						</div>
-						{user?.data?.image ? (
-							<img
-								className='rounded-full w-7 h-7'
-								src={user.data.image}
-								alt='user image'
-							/>
+			{windowWidth < 1024 && (
+				<PageHeader
+					pageTitle={<Logo size={32} />}
+					rightContainer={
+						activeUser?.data ? (
+							<>
+								{activeUser?.data?.image ? (
+									<img
+										className='rounded-full w-7 h-7'
+										src={activeUser.data.image}
+										alt='user image'
+									/>
+								) : (
+									<AccountIcon dimensions='h-7 w-7' />
+								)}
+							</>
 						) : (
-							<AccountIcon dimensions='h-7 w-7' />
-						)}
-					</div>
-				}
-			/>
+							<div className='transform scale-90'>
+								<LoginButton />
+							</div>
+						)
+					}
+				/>
+			)}
 			<div className='py-1 lg:py-4 pb-16 lg:pb-12'>
 				<ListSliderModal listTitle='Popular books' listLink='/books/category/bestsellers'>
 					{<BookRow books={props.bestsellers} />}
@@ -66,10 +84,10 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	const bestsellers = await getBestsellers()
+	const bestsellers = await getBestsellers(15)
 	// const audiobooks = await getTopAudiobooks()
-	const latestBooks = await getLatestBooks()
-	const authors = await getTopAuthors()
+	const latestBooks = await getLatestBooks(15)
+	const authors = await getTopAuthors(15)
 
 	if (!bestsellers.data)
 		return {

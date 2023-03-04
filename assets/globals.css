@@ -1,25 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Poppins&family=Roboto&display=swap');
 
 @layer components {
-	.btn {
-		@apply px-4 py-2 my-0 font-bold border-2 border-black hover:bg-black hover:text-white bg-gray-800 rounded-lg;
+	.more-btn {
+		@apply px-1 py-[.2rem] lg:px-2 lg:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm lg:text-base font-bold text-[#8C6AFF] rounded-lg bg-[#030b17] hover:bg-black opacity-80 border-2 border-gray-800;
 	}
 }
 
 .page-gradient {
-	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky */
+	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky
 	@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#181818] text-white;
+	/*@apply bg-gradient-to-b from-[#121212] via-[#0C111B] to-[#0C111B] text-white;
+	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;*/
+	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white;
 }
 
 .list-grid {
-	@apply grid xs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-6 md:gap-8 p-2 md:p-6;
+	@apply grid grid-cols-2 ms:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
 }
 
 .discover-grid {
-	@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;
+	/*@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;*/
+	@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-1 space-y-3 sm:space-x-4 sm:space-y-4 xl:space-x-6 xl:space-y-6;
 }
 
 .item-container {
@@ -31,7 +35,7 @@
 }
 
 .item-gradient {
-	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-br from-transparent to-[#202020];
+	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-br from-transparent to-inherit;
 }
 
 .box-text {
@@ -39,7 +43,7 @@
 }
 
 .image-gradient {
-	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-[#121212];
+	@apply absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-[#0C111B];
 }
 
 .btn-next {
@@ -51,7 +55,7 @@
 }
 
 h1 {
-	font-family: 'Merriweather', serif;
+	font-family: 'Merriweather Sans', sans-serif;
 	/* @apply 'font-poppins'; */
 }
 

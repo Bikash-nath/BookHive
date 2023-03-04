@@ -9,7 +9,7 @@ function BooksRow({ books }) {
 	return (
 		<Fragment>
 			<div className='lg:hidden overflow-hidden overflow-x-scroll hide-scrollbar'>
-				<div className='flex items-center justify-start gap-0 xs:gap-2 p-1 w-full h-full'>
+				<div className='flex items-center justify-start gap-0 xs:gap-2 w-full h-full'>
 					{books?.map((book) => (
 						<BookCard
 							key={book._id}
@@ -21,7 +21,7 @@ function BooksRow({ books }) {
 					))}
 				</div>
 			</div>
-			<div className='hidden lg:block h-auto group p-3 lg:px-4 xl:px-12'>
+			<div className='hidden lg:block h-auto group'>
 				<Slider {...settings}>
 					{books?.map((book) => (
 						<BookCard

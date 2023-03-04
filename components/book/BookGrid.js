@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import BookCard from './BookCard'
-import BookListCard from './BookListCard'
+import BookGridCard from './BookGridCard'
 
 function BookGrid({ books }) {
 	const [windowWidth, setWindowWidth] = useState(null)
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
-
 	return (
-		<div className='list-grid animate-slideup'>
-			{windowWidth > 640
-				? books.map((book, index) => (
+		<Fragment>
+			<div className='hidden xs:inline'>
+				<div className='list-grid animate-slideup'>
+					{books.map((book, index) => (
 						<BookCard
 							key={index}
 							title={book.title}
@@ -22,17 +17,21 @@ function BookGrid({ books }) {
 							author={book.author}
 							slug={book.slug}
 						/>
-				  ))
-				: books.map((book, index) => (
-						<BookListCard
-							key={index}
-							title={book.title}
-							image={book.image.path}
-							author={book.author}
-							slug={book.slug}
-						/>
-				  ))}
-		</div>
+					))}
+				</div>
+			</div>
+			<div className='xs:hidden list-grid animate-slideup'>
+				{books.map((book, index) => (
+					<BookGridCard
+						key={index}
+						title={book.title}
+						image={book.image.path}
+						author={book.author}
+						slug={book.slug}
+					/>
+				))}
+			</div>
+		</Fragment>
 	)
 }
 

@@ -2,7 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginBanner from '../../../components/login/LoginBanner'
-
+import PageHeader from '../../../components/layouts/PageHeader'
+import NavigateBackButton from '../../../components/ui/NavigateBackButtton'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 
 function ReadLaterPage() {
@@ -22,7 +23,8 @@ function ReadLaterPage() {
 					icon={<HistoryIcon />}
 				/>
 			) : (
-				<>
+				<div className='h-full'>
+					<PageHeader pageTitle='Collections' />
 					<NavigateBackButton />
 					<PageHeader pageTitle='Read Later' />
 					<div className='flex flex-col items-center justify-center h-[93vh]'>
@@ -31,7 +33,7 @@ function ReadLaterPage() {
 							<h3>No read later books found</h3>
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 		</Fragment>
 	)

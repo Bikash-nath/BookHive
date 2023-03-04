@@ -15,7 +15,7 @@ function PageHeader(props) {
 			<header className='flex flex-grow justify-between items-center'>
 				<nav className='mx-auto p-1 w-screen'>
 					<div className='flex items-center justify-between text-white'>
-						<div className='items-center mx-1 sm:mx-2 w-full font-semibold text-2xl leading-loose'>
+						<div className='items-center text-2xl lg:text-3xl font-semibold w-full mx-1 sm:mx-2 leading-loose'>
 							{props.pageTitle}
 						</div>
 

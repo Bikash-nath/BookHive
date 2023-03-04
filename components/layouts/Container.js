@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { SnackbarContextProvider } from '../../store/snackbarContext'
 import { SearchToggleContextProvider } from '../../store/searchToggleContext'
-import SnackBar from '../notification/SnackBar'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import Navbar from './Navbar'
 import PageContainer from './PageContainer'
+// import Navbar from './Navbar'
+// import SnackBar from '../notification/SnackBar'
 
 function Container(props) {
 	const [windowWidth, setWindowWidth] = useState(null)
 
 	const headerRef = useRef()
-	const navbarRef = useRef()
+	// const navbarRef = useRef()
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -31,8 +31,8 @@ function Container(props) {
 							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
 					</SearchToggleContextProvider>
-					<SnackBar navbarRef={navbarRef} />
-					{windowWidth < 1024 && <Navbar navbarRef={navbarRef} />}
+					{/* <SnackBar navbarRef={navbarRef} />
+					{windowWidth < 1024 && <Navbar navbarRef={navbarRef} />} */}
 				</div>
 			</div>
 		</SnackbarContextProvider>

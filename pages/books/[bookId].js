@@ -13,6 +13,8 @@ import BookReadIcon from '../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import BookmarkIcon from '../../assets/icons/BookmarkIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
+import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
+import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 // import openInNewTab from '../../utils/helpers/openLink'
 
 function BookDetailPage(props) {
@@ -29,7 +31,7 @@ function BookDetailPage(props) {
 			{readBook ? (
 				<BookReader ebookLink={book.format.ebook?.link} closeReadBook={setReadBook} />
 			) : (
-				<div className='relative'>
+				<div className='relative flex-auto'>
 					<NavigateBackButtton />
 					<div className='pb-16 lg:pb-12'>
 						<BgCover color={props.color}>
@@ -39,9 +41,9 @@ function BookDetailPage(props) {
 							<Image
 								src={process.env.BOOKS_URL + book.image.path}
 								alt={book.title}
-								height={320}
-								width={210}
-								className='object-contain rounded-lg w-40 h-60 lg:w-48 lg:h-72'
+								height={360}
+								width={220}
+								className='object-contain rounded-lg w-40 h-60 lg:w-48 lg:h-72 lg:m-2'
 							/>
 							<div className='flex flex-col px-2 md:px-4 space-y-1 lg:space-y-2'>
 								<p className='text-xl md:text-2xl lg:text-3xl text-center lg:text-left font-medium'>
@@ -85,11 +87,11 @@ function BookDetailPage(props) {
 									<BookReadIcon dimensions='h-7 w-7' />
 									<span className='font-semibold'>Read</span>
 								</button>
-								<button className='flex items-center justify-center px-3 py-1 lg:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-sans font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
+								<button className='flex items-center justify-center px-3 py-1 lg:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
 									<HeadphoneIcon dimensions='h-7 w-7' />
 									<span className='font-semibold'>Listen</span>
 								</button>
-								<button className='lg:flex hidden items-center justify-center px-3 py-1 lg:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-sans font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
+								<button className='lg:flex hidden items-center justify-center px-3 py-1 lg:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
 									<LibraryIcon dimensions='h-7 w-7' />
 									<span className='font-semibold'>Add To Library</span>
 								</button>
@@ -100,14 +102,14 @@ function BookDetailPage(props) {
 						<div className='flex flex-wrap items-center justify-start space-x-4 p-4 lg:p-8'>
 							{book.genres?.map((genre, i) => (
 								<Link href={`/books/genre/${genre.slug}`} key={i}>
-									<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-3 font-medium bg-yellow-400 bg-opacity-90 text-black'>
+									<button className='rounded-full py-1 px-2 lg:p-2 lg:px-3 m-2 lg:m-3 font-medium bg-[#334366] text-white'>
 										{genre.title}
 									</button>
 								</Link>
 							))}
 						</div>
 
-						<div className='flex lg:hidden items-center lg:items-start justify-between bg-[#0a0a0a] space-x-2 divide-x divide-gray-400 rounded-md lg:px-8 py-2 lg:py-4 mx-2 sm:w-[80vw] md:w-[60vw] lg:w-[40vw]'>
+						<div className='flex lg:hidden items-center lg:items-start justify-between bg-[#030b17] space-x-2 divide-x divide-gray-400 rounded-md lg:px-8 py-2 lg:py-4 mx-2 sm:w-[80vw] md:w-[60vw] lg:w-[40vw]'>
 							{book.publisher !== null && (
 								<div className='flex justify-center items-center p-1 px-2 sm:p-2 w-full'>
 									<BookReadIcon dimensions='h-7 w-7' color='#e1e1e1' />
@@ -135,7 +137,7 @@ function BookDetailPage(props) {
 								)}
 						</div>
 
-						<div className='hidden lg:flex lg:flex-col items-center justify-between bg-black space-y-1 md:space-y-2 divide-y divide-gray-700 rounded-md px-4 lg:px-8 py-2 lg:py-4 mx-4 w-[90vw] md:w-[50vw] lg:w-[40vw]'>
+						<div className='hidden lg:flex lg:flex-col items-center justify-between bg-[#030b17] space-y-1 md:space-y-2 divide-y divide-gray-700 rounded-md px-4 lg:px-8 py-2 lg:py-4 mx-4 w-[90vw] md:w-[50vw] lg:w-[40vw]'>
 							<h4 className='text-lg md:text-xl font-semibold underline decoration-1 underline-offset-4 decoration-gray-400'>
 								Book Details
 							</h4>
@@ -181,7 +183,18 @@ function BookDetailPage(props) {
 										'cursor-pointer text-sm lg:text-base font-semibold text-blue-500 underline decoration-1 decoration-gray-300 underline-offset-4 ' +
 										(book.description.length < 400 ? 'hidden' : '')
 									}>
-									{readMoreDesc ? 'Read less' : 'Read more'}
+									{readMoreDesc ? (
+										<div className='flex'>
+											Read less <ChevronUpIcon dimensions='h-5 w-5' />
+										</div>
+									) : (
+										<div className='flex'>
+											Read more{' '}
+											<div className='py-[.1rem]'>
+												<ChevronDownIcon dimensions='h-5 w-5' />
+											</div>
+										</div>
+									)}
 								</button>
 							</div>
 						) : (

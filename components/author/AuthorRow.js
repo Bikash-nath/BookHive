@@ -9,7 +9,7 @@ function AuthorsRow({ authors }) {
 	return (
 		<Fragment>
 			<div className='lg:hidden overflow-hidden overflow-x-scroll hide-scrollbar'>
-				<div className='flex items-center justify-start gap-0 xs:gap-2 m-1 w-full h-full'>
+				<div className='flex items-center justify-start gap-0 xs:gap-2 w-full h-full'>
 					{authors?.map((author) => (
 						<AuthorCard
 							key={author._id}
@@ -20,8 +20,7 @@ function AuthorsRow({ authors }) {
 					))}
 				</div>
 			</div>
-			{/* sm:px-4 lg:px-6 */}
-			<div className='hidden lg:block h-auto group p-2 lg:px-4 xl:px-12'>
+			<div className='hidden lg:block h-auto group'>
 				<Slider {...settings}>
 					{authors?.map((author) => (
 						<AuthorCard

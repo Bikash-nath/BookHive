@@ -25,7 +25,7 @@ export default function GenresGrid(props) {
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
 							<div
 								key={i}
-								className='group item rounded-lg m-1 md:m-2 w-40 h-20 md:w-60 md:h-32'>
+								className='group item rounded-lg w-40 h-20 md:w-60 md:h-32'>
 								{/* <Image
 									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}
@@ -34,7 +34,7 @@ export default function GenresGrid(props) {
 									className='rounded-lg'
 								/> */}
 								<div
-									className={colors[i % 20] + ' w-44 h-24 md:w-60 md:h-32'}></div>
+									className={colors[i % 20] + ' w-40 h-20 md:w-60 md:h-32'}></div>
 								<h5 className='box-text'>{genre.title}</h5>
 							</div>
 						</Link>

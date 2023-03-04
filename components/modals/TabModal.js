@@ -8,7 +8,7 @@ export default function (props) {
 						key={tabIndex}
 						className={`py-1 ${
 							props.selectedTab === tabIndex
-								? 'border-b-2 md:border-b-3 border-violet-700 text-lg md:text-2xl'
+								? 'border-b-2 md:border-b-3 border-[#8C6AFF] text-lg md:text-2xl'
 								: 'text-gray-600 hover:text-gray-200 text-base md:text-xl cursor-pointer'
 						}`}
 						onClick={() => props.onTabChange(tabIndex)}>

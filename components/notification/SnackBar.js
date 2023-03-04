@@ -25,7 +25,7 @@ function SnackBar(props) {
 		}
 	}, [message, router.asPath])
 
-	// box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	// box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); bg-[#323232]
 	return message ? (
 		<div
 			className={
@@ -39,7 +39,7 @@ function SnackBar(props) {
 					: 'hidden'
 			}>
 			<div
-				className='flex items-center justify-between bg-[#323232] w-full rounded-md box-border'
+				className='flex items-center justify-between bg-[#192132] w-full rounded-md box-border'
 				vshow='show'
 				transition={classes.uiSnackbarToggle}>
 				<div className='p-2 lg:p-3 text-lg lg:text-xl leading-relaxed  text-white'>

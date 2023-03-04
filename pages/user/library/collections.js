@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginBanner from '../../../components/login/LoginBanner'
+import PageHeader from '../../../components/layouts/PageHeader'
+import NavigateBackButton from '../../../components/ui/NavigateBackButtton'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 function CollectionPage() {
@@ -23,6 +25,8 @@ function CollectionPage() {
 				/>
 			) : (
 				<div className='h-full'>
+					<PageHeader pageTitle='Collections' />
+					<NavigateBackButton />
 					<p className='text-2xl md:text-3xl p-2 md:p-4'>Your Collections</p>
 					<section id='tabs'>
 						<div className='container relative sm:text-left px-4'>

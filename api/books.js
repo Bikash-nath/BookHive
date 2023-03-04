@@ -1,8 +1,8 @@
 import axios from '../lib/axiosConfig'
 
-export const getBestsellers = async () => {
+export const getBestsellers = async (limit = 30) => {
 	try {
-		const { data } = await axios.get('/books/bestsellers')
+		const { data } = await axios.get(`/books/bestsellers?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -11,9 +11,9 @@ export const getBestsellers = async () => {
 	}
 }
 
-export const getTopAudiobooks = async () => {
+export const getTopAudiobooks = async (limit) => {
 	try {
-		const { data } = await axios.get('/books/audiobooks')
+		const { data } = await axios.get(`/books/audiobooks?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -22,9 +22,9 @@ export const getTopAudiobooks = async () => {
 	}
 }
 
-export const getLatestBooks = async () => {
+export const getLatestBooks = async (limit) => {
 	try {
-		const { data } = await axios.get('/books/latest/')
+		const { data } = await axios.get(`/books/latest/?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -33,9 +33,9 @@ export const getLatestBooks = async () => {
 	}
 }
 
-export const getIndianBooks = async () => {
+export const getIndianBooks = async (limit) => {
 	try {
-		const { data } = await axios.get('/books/indian/')
+		const { data } = await axios.get(`/books/indian/?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -46,7 +46,7 @@ export const getIndianBooks = async () => {
 
 export const searchBooks = async (keyword = '') => {
 	try {
-		const { data } = await axios.get(`/books/search?keyword=${keyword}`)
+		const { data } = await axios.get(`/books/search?keyword=${keyword}?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -57,7 +57,7 @@ export const searchBooks = async (keyword = '') => {
 
 export const getSimilarBooks = async (bookId) => {
 	try {
-		const { data } = await axios.get(`/books/${bookId}/similar/`)
+		const { data } = await axios.get(`/books/${bookId}/similar/?limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response?.data.error_message

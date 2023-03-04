@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
 
-export default function NavigateBackButtton({ clickMethod, isHeader }) {
+export default function NavigateBackButtton({ rightIcon, clickMethod, isHeader }) {
 	const router = useRouter()
 	const [windowWidth, setWindowWidth] = useState(null)
 
@@ -15,7 +15,7 @@ export default function NavigateBackButtton({ clickMethod, isHeader }) {
 	const backBtn = (
 		<button
 			className={
-				'rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 hover:text-white bg-gray-800'
+				'rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 hover:text-white bg-gray-900 bg-opacity-50 z-10'
 			}
 			onClick={() => {
 				router.back()
@@ -28,7 +28,10 @@ export default function NavigateBackButtton({ clickMethod, isHeader }) {
 	return isHeader && windowWidth > 1024 ? (
 		backBtn
 	) : !isHeader && windowWidth < 1024 ? (
-		<div className='absoulte top-2 left-2 p-2 inline-block'>{backBtn}</div>
+		<div className='absolute flex flex-grow lg:hidden w-full items-center justify-between bg-transparent p-2'>
+			{backBtn}
+			{rightIcon}
+		</div>
 	) : (
 		<></>
 	)

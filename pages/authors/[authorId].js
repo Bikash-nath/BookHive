@@ -9,8 +9,10 @@ import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListSliderModal from '../..//components/modals/ListSliderModal'
 import BookRow from '../../components/book/BookRow'
-import HeartIcon from '../../assets/icons/HeartIcon'
 import NavigateBackButtton from '../../components/ui/NavigateBackButtton'
+import HeartIcon from '../../assets/icons/HeartIcon'
+import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
+import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 
 function AuthorDetailPage(props) {
 	const { author } = props
@@ -31,9 +33,9 @@ function AuthorDetailPage(props) {
 						<Image
 							src={process.env.AUTHORS_URL + author.image}
 							alt={author.name}
-							height={320}
+							height={240}
 							width={240}
-							className='object-contain rounded-md w-36 h-52 lg:w-44 lg:h-64'
+							className='object-contain rounded-md w-36 h-36 lg:w-52 lg:h-52'
 						/>
 						<div className='p-1 space-y-4'>
 							<div>
@@ -68,7 +70,7 @@ function AuthorDetailPage(props) {
 				<div className='flex flex-wrap items-center justify-start space-x-4 p-2 md:p-4'>
 					{author.genres?.map((genre, i) => (
 						<Link href={`/books/genre/${genre.slug}`} key={i}>
-							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-3 font-medium bg-yellow-400 bg-opacity-90 text-black'>
+							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-3 font-medium bg-[#334366] text-white bg-opacity-90'>
 								{genre.title}
 							</button>
 						</Link>
@@ -93,7 +95,18 @@ function AuthorDetailPage(props) {
 								'cursor-pointer text-sm lg:text-base font-semibold text-blue-600 underline decoration-1 underline-offset-2 decoration-gray-300 ' +
 								(author.biography.length < 400 ? 'hidden' : '')
 							}>
-							{readMoreBio ? 'Read less' : 'Read more'}
+							{readMoreBio ? (
+								<div className='flex'>
+									Read less <ChevronUpIcon dimensions='h-5 w-5' />
+								</div>
+							) : (
+								<div className='flex'>
+									Read more{' '}
+									<div className='py-1'>
+										<ChevronDownIcon dimensions='h-5 w-5' />
+									</div>
+								</div>
+							)}
 						</button>
 					</div>
 				) : (

@@ -3,9 +3,9 @@ import Image from 'next/image'
 
 function BookListCard({ title, image, author, slug }) {
 	return (
-		<div className='flex flex-row items-start rounded-md group-hover:flex'>
+		<div className='flex flex-row items-start w-screen p-1 rounded-md group-hover:flex'>
 			<Link href={`/books/${slug}`}>
-				<div className='flex h-[8.5rem] relative rounded-md mx-2 my-[.1rem] bg-gray-800 bg-opacity-70 hover:bg-opacity-100 hover:scale-105 transform duration-100'>
+				<div className='flex h-[8.5rem] relative rounded-md mx-1 my-[.1rem] bg-gray-900'>
 					<Image
 						src={process.env.BOOKS_URL + image}
 						alt={title}

@@ -52,7 +52,7 @@ function SignUpPage(props) {
 				<meta name='description' content='BookHive SignUp page' />
 			</Head>
 			<LoginContainer>
-				<h2 className='font-mono mb-8 text-3xl font-bold'>Sign Up</h2>
+				<h2 className='mb-8 text-3xl font-bold'>Sign Up</h2>
 				<input
 					value={name}
 					onChange={(e) => setName(e.target.value)}

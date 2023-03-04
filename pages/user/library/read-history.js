@@ -2,7 +2,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 
 import LoginBanner from '../../../components/login/LoginBanner'
-
+import PageHeader from '../../../components/layouts/PageHeader'
+import NavigateBackButton from '../../../components/ui/NavigateBackButtton'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 
 function ReadHistoryPage() {
@@ -22,10 +23,14 @@ function ReadHistoryPage() {
 					icon={<HistoryIcon />}
 				/>
 			) : (
-				<div className='flex flex-col items-center justify-center h-[93vh]'>
-					<HistoryIcon dimensions='h-20 w-20' />
-					<div className='flex text-center py-2 md:py-4 text-lg md:text-xl'>
-						<h3>No read history found</h3>
+				<div className='h-full'>
+					<PageHeader pageTitle='Collections' />
+					<NavigateBackButton />
+					<div className='flex flex-col items-center justify-center h-[93vh]'>
+						<HistoryIcon dimensions='h-20 w-20' />
+						<div className='flex text-center py-2 md:py-4 text-lg md:text-xl'>
+							<h3>No read history found</h3>
+						</div>
 					</div>
 				</div>
 			)}
