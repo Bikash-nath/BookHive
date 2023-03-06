@@ -4,11 +4,9 @@ import { useRouter } from 'next/router'
 
 import { searchBooks } from '../api/books'
 import SearchBar from '../components/SearchBar'
-import PageHeader from '../components/layouts/PageHeader'
-import BookGrid from '../components/book/BookGrid'
+import BooksGrid from '../components/book/BooksGrid'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
-import NavigateBackButton from '../components/ui/NavigateBackButton'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
@@ -23,6 +21,7 @@ function SearchPage() {
 			;(async () => {
 				toggleSpinner(true)
 				const result = await searchBooks(keyword)
+				console.log('result Search:', result)
 				setSearchResult(result.data)
 				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
 				toggleSpinner(false)
@@ -36,9 +35,8 @@ function SearchPage() {
 				<title>Search</title>
 				<meta name='description' content='Search section' />
 			</Head>
-			<PageHeader isHeader={false} />
 			<div className='h-full'>
-				<div className='p-1 lg:p-2 sm:w-3/5 md:w-1/2'>
+				<div className='p-1 xl:p-2 sm:w-3/5 md:w-1/2'>
 					<SearchBar />
 				</div>
 				{searchResult?.length ? (
@@ -46,7 +44,7 @@ function SearchPage() {
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
-						<BookGrid books={searchResult} />
+						<BooksGrid books={searchResult} />
 					</>
 				) : (
 					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>

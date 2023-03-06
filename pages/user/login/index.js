@@ -29,8 +29,8 @@ function LoginEmailPage(props) {
 		toggleSpinner(true)
 		const user = await login(email, password)
 		if (user.data) {
-			userCtx.addUser(user.data)
-			snackbarCtx.addMessage({ title: 'Log in successfull', status: 'sucess' })
+			userCtx.addUser(user)
+			snackbarCtx.addMessage({ title: 'Log in successfull', status: 'success' })
 		} else {
 			snackbarCtx.addMessage({ title: user })
 		}

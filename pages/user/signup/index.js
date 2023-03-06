@@ -32,7 +32,7 @@ function SignUpPage(props) {
 			toggleSpinner(true)
 			const user = await signup(name, email, password, passwordConfirm)
 			if (user.data) {
-				userCtx.addUser(user.data)
+				userCtx.addUser(user)
 				snackbarCtx.addMessage({ title: 'Log in successfull' })
 			} else {
 				snackbarCtx.addMessage({ title: user })

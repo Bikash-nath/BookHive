@@ -5,13 +5,13 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 
 function LoginContainer(props) {
 	return (
-		<div className='flex items-start justify-center w-screen h-screen bg-[#0C111B] text-white p-0 m-0'>
+		<div className='flex items-start justify-center w-full h-full bg-[#0C111B] text-white p-0 m-0'>
 			<div className='relative flex flex-col w-full md:flex-row md:space-y-0 m-0 h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
 				<div className='px-4 md:p-4 w-full sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3'>
 					<div
 						className={
 							'md:flex md:items-center justify-center ' + props.splashScreen
-								? 'py-4 lg:py-6'
+								? 'py-4 xl:py-6'
 								: ''
 						}>
 						<Logo className='absolute top-0 left-0 md:static w-full' size={50} />
@@ -42,7 +42,7 @@ function LoginContainer(props) {
 					</div>
 				)}
 				<Link href='/'>
-					<div className='group absolute top-3 right-4 lg:top-8 lg:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+					<div className='group absolute top-3 right-4 xl:top-8 xl:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 						<CloseIcon />
 					</div>
 				</Link>

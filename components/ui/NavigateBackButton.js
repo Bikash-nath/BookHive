@@ -6,10 +6,10 @@ export default function NavigateBackButton({ clickMethod }) {
 
 	return (
 		<div
-			className='m-4 cursor-pointer text-white'
+			className='m-3 md:m-4 cursor-pointer text-white'
 			onClick={() => {
 				router.back()
-				clickMethod && clickMethod()
+				if (clickMethod) clickMethod()
 			}}>
 			<ArrowBackIcon dimensions='h-6 w-6' />
 		</div>

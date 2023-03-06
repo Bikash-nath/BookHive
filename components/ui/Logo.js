@@ -9,12 +9,12 @@ function Logo({ size }) {
 				<Image
 					src='/images/logo.png'
 					alt='BookHive'
-					className='inline lg:p-[.1rem]'
+					className='inline xl:p-[.1rem]'
 					width={size}
 					height={size}
 				/>
 				<div className='flex flex-col items-center justify-center'>
-					<h1 className='font-merriweather text-xl lg:text-2xl inline text-white px-1 font-medium'>
+					<h1 className='font-merriweather text-xl xl:text-2xl inline text-white px-1 font-medium'>
 						BookHive
 					</h1>
 				</div>

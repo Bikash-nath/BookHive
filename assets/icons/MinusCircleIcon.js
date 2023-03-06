@@ -1,16 +1,18 @@
-export default function ArrowBackIcon({ dimensions }) {
+import React from 'react'
+
+export default function MinusCircleIcon({ dimensions }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			fill='none'
+			fill='#0C111B'
 			viewBox='0 0 24 24'
-			strokeWidth={2}
+			strokeWidth={1.5}
 			stroke='currentColor'
 			className={dimensions}>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'
-				d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
+				d='M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
 			/>
 		</svg>
 	)

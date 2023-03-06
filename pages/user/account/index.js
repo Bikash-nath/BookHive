@@ -43,7 +43,7 @@ function AccountPage(props) {
 							</Link>
 						}
 					/>
-					<div className='flex flex-col items-center justify-center py-6 lg:py-12 w-full gap-8'>
+					<div className='flex flex-col items-center justify-center py-6 xl:py-12 w-full gap-6 xl:gap-8'>
 						{activeUser?.data.image ? (
 							<Image
 								src={process.env.BOOKS_URL + activeUser?.image}
@@ -55,26 +55,38 @@ function AccountPage(props) {
 						) : (
 							<AccountIcon dimensions='h-20 w-20' />
 						)}
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
-							<div className='flex justify-between rounded-md py-2 gap-2'>
-								<p className='text-lg md:text-xl font-semibold px-4'>Name</p>
-								<p className='text-lg md:text-xl font-semibold px-4'>
+						<div>
+							<div className='flex items-start justify-start w-full p-2'>
+								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+									Name
+								</p>
+							</div>
+							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
+								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
 									{activeUser.data.name}
 								</p>
 							</div>
 						</div>
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
-							<div className='flex justify-between rounded-md py-2 gap-2'>
-								<p className='text-lg md:text-xl font-semibold px-4'>Email</p>
-								<p className='text-lg md:text-xl text-right font-semibold px-4'>
+						<div>
+							<div className='flex items-start justify-start w-full p-2'>
+								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+									Email
+								</p>
+							</div>
+							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
+								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
 									{activeUser.data.email}
 								</p>
 							</div>
 						</div>
-						<div className='rounded-lg w-[90vw] md:w-[50vw] lg:w-[30vw] p-2 bg-[#192132]'>
-							<div className='flex justify-between rounded-md py-2 gap-2'>
-								<p className='text-lg md:text-xl font-semibold px-4'>Location</p>
-								<p className='text-lg md:text-xl text-right font-semibold px-4'>
+						<div>
+							<div className='flex items-start justify-start w-full p-2'>
+								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+									Location
+								</p>
+							</div>
+							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
+								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
 									{activeUser.data.address.country}
 								</p>
 							</div>

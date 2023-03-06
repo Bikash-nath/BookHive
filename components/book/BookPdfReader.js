@@ -16,7 +16,7 @@ function BookReader({ ebookLink, closeReadBook }) {
 				<embed src={ebookLink} className='w-full h-screen' ref={embedRef} />
 			</object>
 			<div
-				className='group absolute top-4 left-4 lg:top-6 lg:left-6 p-1 scale-110 lg:scale-125 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+				className='group absolute top-4 left-4 xl:top-6 xl:left-6 p-1 scale-110 xl:scale-125 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 				onClick={() => closeReadBook(false)}>
 				<CloseIcon />
 			</div>

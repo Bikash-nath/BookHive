@@ -7,7 +7,7 @@ function BgCover(props) {
 			<div className='flex-grow scrollbar-hide select-none'>
 				<div className={`bg-gradient-to-b ${props.color} to-[#0C111B]`}>
 					<section
-						className={`flex flex-col lg:flex-row items-center justify-center relative text-white space-y-2 lg:space-x-4 h-auto md:px-4 pb-2 lg:pb-4`}>
+						className={`flex flex-col xl:flex-row items-center justify-center relative text-white space-y-2 xl:space-x-4 h-auto p-2 md:p-3 xl:pb-4`}>
 						{props.children}
 					</section>
 				</div>

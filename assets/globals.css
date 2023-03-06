@@ -4,8 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Poppins&family=Roboto&display=swap');
 
 @layer components {
+	/*AA14F0*/
 	.more-box-btn {
-		@apply px-1 py-[.2rem] lg:px-2 lg:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm lg:text-base font-bold text-[#8C6AFF] rounded-xl bg-[#030b17] hover:text-purple-400 opacity-80 border-2 border-gray-800;
+		@apply px-1 py-[.2rem] xl:px-2 xl:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm xl:text-base font-bold text-[#8C6AFF] rounded-xl bg-[#030b17] hover:text-purple-400 opacity-80 border-2 border-gray-800;
+	}
+	.login-btn {
+		@apply w-full rounded-full flex justify-center items-center p-2 xl:p-4 space-x-4 font-bold shadow-sm px-9 hover:bg-opacity-90 border-purple-500 border-2 shadow-purple-200 transition hover:-translate-y-0.5 duration-150;
 	}
 }
 
@@ -14,16 +18,16 @@
 	@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#181818] text-white;
 	/*@apply bg-gradient-to-b from-[#121212] via-[#0C111B] to-[#0C111B] text-white;
 	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;*/
-	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white pb-16 lg:pb-0;
+	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white pb-16 xl:pb-0;
 }
 
 .list-grid {
-	@apply grid grid-cols-2 ms:grid-cols-3 xs:grid-cols-4 md:grid-cols-5 gap-1 ms:gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
+	@apply grid grid-cols-2 ms:grid-cols-3 xs:grid-cols-4 md:grid-cols-5 gap-1 ms:gap-2 xs:gap-3 sm:gap-4 xl:gap-5;
 }
 
 .discover-grid {
 	/*@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;*/
-	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 ms:gap-2 xs:gap-3 sm:gap-4 lg:gap-5;
+	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-2 ms:gap-3 xs:gap-3 sm:gap-4 xl:gap-5;
 }
 
 .item-container {
@@ -39,7 +43,7 @@
 }
 
 .box-text {
-	@apply absolute text-sm ms:text-base lg:text-xl font-medium px-1 lg:px-2 w-full lg:w-5/6 text-start left-1 top-1;
+	@apply absolute text-sm ms:text-base xl:text-xl font-medium px-1 xl:px-2 w-full xl:w-5/6 text-start left-1 top-1;
 }
 
 .image-gradient {
@@ -97,13 +101,11 @@ h5 p {
 
 /*
 html {
-	overflow: hidden;
 	width: 100%;
 }
 body {
 	height: 100%;
 	position: fixed;
 	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
 }
 */

@@ -44,9 +44,9 @@ export const getIndianBooks = async (limit) => {
 	}
 }
 
-export const searchBooks = async (keyword = '') => {
+export const searchBooks = async (keyword = '', limit = 30) => {
 	try {
-		const { data } = await axios.get(`/books/search?keyword=${keyword}?limit=${limit}`)
+		const { data } = await axios.get(`/books/search?keyword=${keyword}&limit=${limit}`)
 		return data
 	} catch (error) {
 		return error.response?.data.error_message

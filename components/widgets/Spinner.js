@@ -20,7 +20,7 @@ function Spinner(props) {
 		<div
 			className={
 				activeSpinner
-					? 'fixed flex w-full lg:w-[83.5%] justify-center items-center z-30 ' +
+					? 'fixed flex w-full xl:w-[83.5%] justify-center items-center z-30 ' +
 					  (props.headerRef.current ? 'top-16' : 'top-8')
 					: 'hidden'
 			}>

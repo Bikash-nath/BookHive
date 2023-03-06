@@ -43,7 +43,7 @@ export default function SearchBar(props) {
 	// }, [router.pathname])
 
 	return (
-		<div className='flex items-center justify-center w-full gap-2 lg:gap-3'>
+		<div className='flex items-center justify-center w-full gap-1 md:gap-2 xl:gap-3'>
 			{activeSearch ? (
 				<div
 					className='flex items-center justify-center cursor-pointer'
@@ -62,7 +62,7 @@ export default function SearchBar(props) {
 			) : (
 				<></>
 			)}
-			<div className='relative w-full p-1 lg:p-[.125rem] mx-2'>
+			<div className='relative w-full p-1 xl:p-[.125rem] mx-2'>
 				<input
 					type='text'
 					value={keyword}
@@ -71,9 +71,9 @@ export default function SearchBar(props) {
 						setKeyword(e.target.value)
 					}}
 					ref={inputRef}
-					className='w-full box-border h-9 lg:h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
+					className='w-full box-border h-9 xl:h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
 					placeholder='Search books'></input>
-				<button className='absolute top-[.2rem] lg:top-[.3rem] right-2 box-border cursor-pointer rounded-full p-1'>
+				<button className='absolute top-[.1rem] xl:top-1 right-2 box-border cursor-pointer rounded-full p-1'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'

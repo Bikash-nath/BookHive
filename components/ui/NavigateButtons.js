@@ -19,7 +19,6 @@ export default function NavigateBackButton() {
 			<button
 				onClick={() => {
 					router.back()
-					clickMethod && clickMethod()
 				}}
 				className={
 					'rounded-full py-[0.1rem] pr-[0.2rem] text-gray-300 hover:text-white bg-gray-800'

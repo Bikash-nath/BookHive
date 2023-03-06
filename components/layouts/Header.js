@@ -47,11 +47,11 @@ function Header(props) {
 
 	const currentRoute = router.pathname
 	// const navRoutes = ['/', '/discover', '/library', '/account']
-	const paths = ['login', 'signup', 'discover', 'search']
+	const paths = ['login', 'signup', 'discover', 'search', 'read']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
-		return `flex items-center space-x-4 m-2 lg:my-3 cursor-pointer hover:text-white text-${
+		return `flex items-center space-x-4 m-2 xl:my-3 cursor-pointer hover:text-white text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route
 				? 'white'
 				: 'gray-400'
@@ -70,7 +70,7 @@ function Header(props) {
 			{showRoute && (
 				<header
 					ref={props.headerRef}
-					className='hidden lg:flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
+					className='hidden xl:flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
 					<nav className='mx-auto p-1 w-screen'>
 						{activeSearch ? (
 							<div

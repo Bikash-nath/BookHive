@@ -1,13 +1,15 @@
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 import AccountIcon from '../../assets/icons/AccountIcon'
 
 export default function LoginButton() {
+	const router = useRouter()
+
 	return (
-		<Link href='/user/login/splash'>
-			<button className='flex items-center space-x-1 md:space-x-2 p-1 lg:p-[.4rem] bg-gray-700 rounded-full'>
-				<AccountIcon dimensions='h-7 w-7' color='white' />
-				<div className='text-white font-bold mx-0 pr-[.2rem] lg:pr-[.3rem'>Login</div>
-			</button>
-		</Link>
+		<button
+			className='flex items-center space-x-1 md:space-x-2 p-1 xl:p-[.4rem] bg-gray-700 rounded-full'
+			onClick={() => router.replace('/user/login/splash')}>
+			<AccountIcon dimensions='h-7 w-7' color='white' />
+			<div className='text-white font-bold mx-0 pr-[.2rem] xl:pr-[.3rem'>Login</div>
+		</button>
 	)
 }

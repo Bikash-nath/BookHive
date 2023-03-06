@@ -1,6 +1,6 @@
 import AuthorCard from './AuthorCard'
 
-function AuthorGrid({ authors }) {
+function AuthorsGrid({ authors }) {
 	return (
 		<div className='list-grid animate-slideup'>
 			{authors.map((author, index) => (
@@ -15,4 +15,4 @@ function AuthorGrid({ authors }) {
 	)
 }
 
-export default AuthorGrid
+export default AuthorsGrid

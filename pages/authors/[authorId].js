@@ -1,14 +1,14 @@
 import { useState, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListSliderModal from '../..//components/modals/ListSliderModal'
-import BookRow from '../../components/book/BookRow'
+import BooksRow from '../../components/book/BooksRow'
+import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
@@ -20,10 +20,12 @@ function AuthorDetailPage(props) {
 	// const router = useRouter()
 
 	const bioCountLines = () => {
-		const descEl = document.getElementById('author-bio')
-		const divHeight = descEl.offsetHeight
-		const lineHeight = parseInt(descEl.style.lineHeight)
-		return divHeight / lineHeight
+		if (typeof window !== 'undefined') {
+			const descEl = document.getElementById('author-bio')
+			const divHeight = descEl.offsetHeight
+			const lineHeight = parseInt(descEl.style.lineHeight)
+			return divHeight / lineHeight
+		} else return 0
 	}
 
 	return author ? (
@@ -33,25 +35,25 @@ function AuthorDetailPage(props) {
 				<meta name='description' content='Author detail page' />
 			</Head>
 
-			<div className='page-gradient pb-16 lg:pb-12'>
+			<div className='bg-[#0C111B] pb-16 xl:pb-12'>
 				<TopNavModal />
 				<BgCover color={props.color}>
-					<div className='flex items-center justify-between p-2 gap-1 md:gap-2 xl:gap-4'>
+					<div className='flex items-center justify-between p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
 						<Image
 							src={process.env.AUTHORS_URL + author.image}
 							alt={author.name}
 							height={240}
 							width={240}
-							className='object-center rounded-full w-36 h-36 lg:w-48 lg:h-48'
+							className='object-center rounded-full w-36 h-36 xl:w-48 xl:h-48'
 						/>
 						<div className='p-1 space-y-4'>
 							<div>
-								<h2 className='text-2xl md:text-3xl xl:text-4xl font-bold'>
+								<h2 className='text-xl md:text-3xl xl:text-4xl font-bold'>
 									{author.name}
 								</h2>
 							</div>
 							{author.ratingsAvg ? (
-								<div className='text-md md:text-lg font-semibold'>
+								<div className='text-md md:text-xl font-semibold'>
 									{author.ratingsAvg} ⭐
 								</div>
 							) : (
@@ -67,22 +69,16 @@ function AuthorDetailPage(props) {
 						</div>
 					</div>
 
-					<div className='flex lg:flex-col items-end lg:px-20 space-x-8 lg:space-y-4 right-2 text-white'>
-						<button className='flex items-center justify-center px-3 py-1 lg:p-2 w-full space-x-2 bg-[#AA14F0] rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
+					<div className='flex xl:flex-col items-end xl:px-20 space-x-8 xl:space-y-4 right-2 text-white'>
+						<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
 							<HeartIcon dimensions='h-7 w-7' />
 							<span className='font-semibold pr-2'>Follow</span>
 						</button>
 					</div>
 				</BgCover>
-				<div className='flex flex-wrap items-center justify-start space-x-4 p-2 md:p-4'>
-					{author.genres?.map((genre, i) => (
-						<Link href={`/books/genre/${genre.slug}`} key={i}>
-							<button className='rounded-full py-1 px-2 lg:p-2 m-2 lg:m-3 font-medium bg-[#334366] text-white bg-opacity-90'>
-								{genre.title}
-							</button>
-						</Link>
-					))}
-				</div>
+
+				<GenreListModal genres={author.genres} />
+
 				{author.biography ? (
 					<div className='p-4 md:p-6'>
 						<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
@@ -100,8 +96,8 @@ function AuthorDetailPage(props) {
 								e.preventDefault()
 							}}
 							className={
-								'cursor-pointer text-sm lg:text-base font-semibold text-[#AA14F0] underline decoration-1 underline-offset-2 decoration-gray-300 ' +
-								(bioCountLines() < 4 ? 'hidden' : '')
+								'cursor-pointer text-sm xl:text-base font-semibold text-[#AA14F0] underline decoration-1 underline-offset-2 decoration-gray-300 ' +
+								(author.biography.length < 300 ? 'hidden' : '')
 							}>
 							{readMoreBio ? (
 								<div className='flex'>
@@ -122,7 +118,7 @@ function AuthorDetailPage(props) {
 				)}
 				{author.books?.length ? (
 					<ListSliderModal listTitle='Author Books'>
-						{<BookRow books={author.books} />}
+						{<BooksRow books={author.books} />}
 					</ListSliderModal>
 				) : (
 					<></>

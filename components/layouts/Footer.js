@@ -7,7 +7,7 @@ function Footer() {
 		Company: ['Terms', 'Privacy', 'FAQ'],
 	}
 	return (
-		<footer className='w-full pb-20 lg:pb-12'>
+		<footer className='w-full pb-20 xl:pb-12'>
 			<div className='container bottom-8 mx-auto px-4 pt-12'>
 				<div className='flex flex-col md:flex-row justify-center items-center space-y-8 md:space-x-12 w-full'>
 					{Object.keys(content).map((title, i) => (

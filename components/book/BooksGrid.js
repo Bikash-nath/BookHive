@@ -2,10 +2,10 @@ import { useState, useEffect, Fragment } from 'react'
 import BookCard from './BookCard'
 import BookGridCard from './BookGridCard'
 
-function BookGrid({ books }) {
+function BooksGrid({ books }) {
 	return (
 		<Fragment>
-			<div className='hidden xs:inline'>
+			<div className='hidden sm:inline'>
 				<div className='list-grid animate-slideup'>
 					{books.map((book, index) => (
 						<BookCard
@@ -18,7 +18,7 @@ function BookGrid({ books }) {
 					))}
 				</div>
 			</div>
-			<div className='xs:hidden list-grid animate-slideup'>
+			<div className='sm:hidden list-grid animate-slideup'>
 				{books.map((book, index) => (
 					<BookGridCard
 						key={index}
@@ -33,4 +33,4 @@ function BookGrid({ books }) {
 	)
 }
 
-export default BookGrid
+export default BooksGrid

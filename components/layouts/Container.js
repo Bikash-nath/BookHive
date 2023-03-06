@@ -21,7 +21,8 @@ function Container(props) {
 
 	return (
 		<SnackbarContextProvider>
-			<div className='overflow-hidden'>
+			{/* xl:overflow-hidden || overflow-auto*/}
+			<div className='overflow-auto xl:overflow-hidden'>
 				<div className='flex h-screen relative'>
 					<Sidebar />
 					<SearchToggleContextProvider>
@@ -31,7 +32,7 @@ function Container(props) {
 						</main>
 					</SearchToggleContextProvider>
 					{/* <SnackBar navbarRef={navbarRef} />
-					{windowWidth < 1024 && <Navbar navbarRef={navbarRef} />} */}
+					{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />} */}
 				</div>
 			</div>
 		</SnackbarContextProvider>

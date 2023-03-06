@@ -6,12 +6,13 @@ import { getTopAuthors } from '../api/authors'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
 import ListSliderModal from '../components/modals/ListSliderModal'
-import BookRow from '../components/book/BookRow'
-import AuthorRow from '../components/author/AuthorRow'
+import BooksRow from '../components/book/BooksRow'
+import AuthorsRow from '../components/author/AuthorsRow'
 import Logo from '../components/ui/Logo'
 import AccountIcon from '../assets/icons/AccountIcon'
 import HamburgerIcon from '../assets/icons/HamburgerIcon'
 import LoginButton from '../components/ui/LoginButton'
+import Link from 'next/link'
 // import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
@@ -32,13 +33,13 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='page-gradient pb-16 lg:pb-12'>
-				<div className='block lg:hidden'>
+			<div className='page-gradient pb-16 xl:pb-12'>
+				<div className='block xl:hidden'>
 					<PageHeader
 						pageTitle={<Logo size={32} />}
 						rightContainer={
 							activeUser?.data ? (
-								<>
+								<Link href={'/user/account'}>
 									{activeUser?.data?.image ? (
 										<img
 											className='rounded-full w-7 h-7'
@@ -48,7 +49,7 @@ function HomePage(props) {
 									) : (
 										<AccountIcon dimensions='h-7 w-7' />
 									)}
-								</>
+								</Link>
 							) : (
 								<div className='transform scale-90'>
 									<LoginButton />
@@ -57,22 +58,22 @@ function HomePage(props) {
 						}
 					/>
 				</div>
-				<div className='py-1 lg:py-4'>
+				<div className='py-1 xl:py-4'>
 					<ListSliderModal
 						listTitle='Popular books'
 						listLink='/books/category/bestsellers'>
-						{<BookRow books={props.bestsellers} />}
+						{<BooksRow books={props.bestsellers} />}
 					</ListSliderModal>
 					{/* <ListSliderModal
 					listTitle='Featured Audiobooks'
 					listLink='/books/category/audiobooks'>
-					{<BookRow books={props.audiobooks} />}
+					{<BooksRow books={props.audiobooks} />}
 				</ListSliderModal> */}
 					<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
-						{<BookRow books={props.latestBooks} />}
+						{<BooksRow books={props.latestBooks} />}
 					</ListSliderModal>
 					<ListSliderModal listTitle='Popular authors' listLink='/authors'>
-						{<AuthorRow authors={props.authors} />}
+						{<AuthorsRow authors={props.authors} />}
 					</ListSliderModal>
 				</div>
 			</div>

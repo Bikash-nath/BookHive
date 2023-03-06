@@ -2,23 +2,19 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import NavigateBackButton from '../ui/NavigateBackButton'
 
-export default function TopNavModal({ rightIcon, isHeader }) {
-	const [windowWidth, setWindowWidth] = useState(null)
+export default function TopNavModal({ rightIcon, color }) {
+	// const [windowWidth, setWindowWidth] = useState(null)
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
-
-	return windowWidth < 1024 ? (
-		<div className='flex flex-grow lg:hidden w-full items-center justify-between bg-transparent p-3 sm:p-4'>
-			<div className='bg-opacity-25 z-10'>
+	return (
+		<div
+			className={
+				`fixed top-0 flex flex-grow xl:hidden w-full items-center justify-between bg-opacity-30 px-1 sm:px-2 z-20 ` +
+				(color ? `bg-${color.split('from-')[1]}` : `bg-[#030b17]`)
+			}>
+			<div className='bg-opacity-50'>
 				<NavigateBackButton />
 			</div>
-			{rightIcon}
+			<div className='m-2'>{rightIcon}</div>
 		</div>
-	) : (
-		<></>
 	)
 }
