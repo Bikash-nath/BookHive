@@ -6,6 +6,7 @@ import { ReactReader, ReactReaderStyle } from 'react-reader'
 import CloseIcon from '../../../assets/icons/CloseIcon'
 import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import MinusCircleIcon from '../../../assets/icons/MinusCircleIcon'
+import readerStyles from '../../../utils/constants/readerStyles'
 function BookEpubReader() {
 	const router = useRouter()
 	const { title, ebookLink, author } = router.query
@@ -35,14 +36,6 @@ function BookEpubReader() {
 		}
 	}, [size])
 
-	const customStyles = {
-		...ReactReaderStyle,
-		arrow: {
-			display: 'none',
-		},
-		background: '#030b17',
-	}
-
 	const changeSize = (newSize) => {
 		setSize(newSize)
 	}
@@ -60,7 +53,7 @@ function BookEpubReader() {
 					location={location}
 					locationChanged={locationChanged}
 					url={ebookLink}
-					readerStyles={customStyles}
+					readerStyles={{ ...ReactReaderStyle, ...readerStyles }}
 					tocChanged={(toc) => (tocRef.current = toc)}
 					epubOptions={{
 						flow: 'scrolled',
@@ -83,8 +76,8 @@ function BookEpubReader() {
 					<div className='flex h-full w-56 z-10 rounded-md bg-[#0C111B] bg-opacity-90'>
 						<div className='absolute bottom-0 right-0  flex items-center justify-center '>
 							<button
-								className={'mx-3 my-1 ' + (size <= 80 && 'opacity-60')}
-								onClick={() => changeSize(Math.max(80, size - 10))}>
+								className={'mx-3 my-1 ' + (size <= 70 && 'opacity-60')}
+								onClick={() => changeSize(Math.max(70, size - 10))}>
 								<MinusCircleIcon dimensions='w-7 h-7' />
 							</button>
 							<span className='text-lg xl:text-xl font-medium'>{size}%</span>
@@ -97,7 +90,7 @@ function BookEpubReader() {
 					</div>
 				</div>
 				<div
-					className='group absolute top-4 right-4 z-10 xl:top-6 xl:right-6 p-1 xl:scale-110 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+					className='group absolute top-2 right-2 z-10 xl:top-6 xl:right-6 p-1 xl:scale-110 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 					onClick={() => router.back()}>
 					<CloseIcon />
 				</div>

@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import ListGridModal from '../../../components/modals/ListGridModal'
-import BooksGrid from '../../../components/book/BooksGrid'
+import BookCards from '../../../components/cards/BookCards'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import SpinnerContext from '../../../store/spinnerContext'
 import HeartIcon from '../../../assets/icons/HeartIcon'
@@ -19,14 +19,16 @@ function GenreBooksPage(props) {
 	return props.genre ? (
 		<Fragment>
 			<Head>
-				<title>{props.genre + 'books'}</title>
+				<title>{props.genre + ' books'}</title>
 				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
 			<div className='px-1 xl:p-2 pb-16 xl:pb-12'>
-				<TopNavModal rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />} />
+				<TopNavModal
+					rightIcon={<HeartIcon dimensions='h-7 w-7' color='' pageTitle={props.genre} />}
+				/>
 				<ListGridModal listTitle={`${props.genre} books`}>
 					{props.books.length ? (
-						<BooksGrid books={props.books} />
+						<BookCards books={props.books} />
 					) : (
 						<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
 					)}

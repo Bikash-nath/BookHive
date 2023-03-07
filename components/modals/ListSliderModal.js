@@ -1,8 +1,12 @@
-// import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { settings } from '../../utils/constants/sliderSettings'
+
 export default function ListSliderModal(props) {
-	const { listTitle, listLink } = props
+	const { listTitle, listLink, books } = props
 	// const router = useRouter()
 	// router.pathname
 
@@ -21,7 +25,15 @@ export default function ListSliderModal(props) {
 						<></>
 					)}
 				</div>
-				<div className='mr-1'>{props.children}</div>
+				<div className='xl:hidden overflow-hidden overflow-x-scroll hide-scrollbar mr-1'>
+					<div className='flex items-start justify-start gap-0 xs:gap-2 w-full h-full'>
+						{props.children}
+					</div>
+				</div>
+				{console.log('settings', settings)}
+				<div className='hidden xl:block h-auto group lg:px-8 xl:px-12 mr-1'>
+					<Slider {...settings}>{props.children}</Slider>
+				</div>
 			</div>
 		</section>
 	)

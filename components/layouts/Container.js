@@ -5,24 +5,25 @@ import { SearchToggleContextProvider } from '../../store/searchToggleContext'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import PageContainer from './PageContainer'
-// import Navbar from './Navbar'
-// import SnackBar from '../notification/SnackBar'
 
 function Container(props) {
 	// const [windowWidth, setWindowWidth] = useState(null)
 
 	const headerRef = useRef()
 
-	// useEffect(() => {
-	// 	if (typeof window !== 'undefined') {
-	// 		setWindowWidth(window.innerWidth)
-	// 	}
-	// }, [])
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			window.addEventListener('load', () => {
+				setTimeout(() => window.scrollTo(0, 1), 0)
+			})
+			// 	setWindowWidth(window.innerWidth)
+		}
+	}, []) //router.asPath
 
 	return (
 		<SnackbarContextProvider>
-			{/* xl:overflow-hidden || overflow-auto*/}
-			<div className='overflow-auto xl:overflow-hidden'>
+			{/*overflow-scroll overflow-x-hidden overflow-y-scroll || xl:overflow-hidden || overflow-auto*/}
+			<div className='overflow-scroll xl:overflow-hidden hide-scrollbar'>
 				<div className='flex h-screen relative'>
 					<Sidebar />
 					<SearchToggleContextProvider>
@@ -31,8 +32,6 @@ function Container(props) {
 							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
 					</SearchToggleContextProvider>
-					{/* <SnackBar navbarRef={navbarRef} />
-					{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />} */}
 				</div>
 			</div>
 		</SnackbarContextProvider>

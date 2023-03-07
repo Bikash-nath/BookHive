@@ -1,13 +1,13 @@
-import { useState, Fragment } from 'react'
+import { useState, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListSliderModal from '../..//components/modals/ListSliderModal'
-import BooksRow from '../../components/book/BooksRow'
+import BookCards from '../../components/cards/BookCards'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
 import HeartIcon from '../../assets/icons/HeartIcon'
@@ -18,14 +18,20 @@ function AuthorDetailPage(props) {
 	const { author } = props
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	// const router = useRouter()
+	const bioRef = useRef(null)
+	const coverRef = useRef(null)
 
 	const bioCountLines = () => {
 		if (typeof window !== 'undefined') {
-			const descEl = document.getElementById('author-bio')
-			const divHeight = descEl.offsetHeight
-			const lineHeight = parseInt(descEl.style.lineHeight)
-			return divHeight / lineHeight
-		} else return 0
+			const bioEl = bioRef.current
+			console.log('bioEl', bioEl)
+			if (bioRef.current) {
+				const divHeight = bioEl.offsetHeight
+				const lineHeight = parseInt(bioEl.style.lineHeight)
+				return divHeight / lineHeight
+			}
+		}
+		return 0
 	}
 
 	return author ? (
@@ -36,15 +42,15 @@ function AuthorDetailPage(props) {
 			</Head>
 
 			<div className='bg-[#0C111B] pb-16 xl:pb-12'>
-				<TopNavModal />
-				<BgCover color={props.color}>
+				<TopNavModal pageTitle={author.name} coverRef={coverRef} />
+				<BgCover color={props.color} coverRef={coverRef}>
 					<div className='flex items-center justify-between p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
 						<Image
 							src={process.env.AUTHORS_URL + author.image}
 							alt={author.name}
 							height={240}
 							width={240}
-							className='object-center rounded-full w-36 h-36 xl:w-48 xl:h-48'
+							className='object-cover rounded-full w-36 h-36 xl:w-48 xl:h-48'
 						/>
 						<div className='p-1 space-y-4'>
 							<div>
@@ -83,7 +89,7 @@ function AuthorDetailPage(props) {
 					<div className='p-4 md:p-6'>
 						<h4 className='text-xl md:text-2xl py-2 font-semibold'>About the author</h4>
 						<p
-							id='author-bio'
+							ref={bioRef}
 							className={
 								'text-md text-gray-200 font-medium inline-block sm:leading-snug leading-normal ' +
 								(!readMoreBio ? 'line-clamp-4' : '')
@@ -97,7 +103,7 @@ function AuthorDetailPage(props) {
 							}}
 							className={
 								'cursor-pointer text-sm xl:text-base font-semibold text-[#AA14F0] underline decoration-1 underline-offset-2 decoration-gray-300 ' +
-								(author.biography.length < 300 ? 'hidden' : '')
+								(bioCountLines() < 4 ? 'hidden' : '')
 							}>
 							{readMoreBio ? (
 								<div className='flex'>
@@ -118,7 +124,7 @@ function AuthorDetailPage(props) {
 				)}
 				{author.books?.length ? (
 					<ListSliderModal listTitle='Author Books'>
-						{<BooksRow books={author.books} />}
+						{<BookCards books={author.books} />}
 					</ListSliderModal>
 				) : (
 					<></>

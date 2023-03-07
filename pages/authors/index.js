@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 
 import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
-import AuthorsGrid from '../../components/author/AuthorsGrid'
+import AuthorCards from '../../components/cards/AuthorCards'
 import TopNavModal from '../../components/modals/TopNavModal'
 
 function AuthorListPage(props) {
@@ -17,7 +17,7 @@ function AuthorListPage(props) {
 				<TopNavModal />
 				<div className='h-full mb-12'>
 					<ListGridModal listTitle='All popular authors'>
-						{<AuthorsGrid authors={props.authors} />}
+						<AuthorCards authors={props.authors} />
 					</ListGridModal>
 				</div>
 			</div>

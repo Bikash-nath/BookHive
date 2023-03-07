@@ -19,6 +19,10 @@ const colors = [
 	'bg-gradient-to-br from-stone-800 to bg-stone-400',
 	'bg-gradient-to-br from-zinc-800 to bg-zinc-400',
 	'bg-gradient-to-br from-slate-800 to bg-slate-400',
+	'bg-gradient-to-b from-sky-900 to bg-sky-400',
+	'bg-gradient-to-b from-purple-900 to bg-purple-400',
+	'bg-gradient-to-b from-emerald-900 to bg-emerald-400',
+	'bg-gradient-to-b from-rose-900 to bg-rose-400',
 ]
 
 export default colors

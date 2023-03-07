@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
+// import Link from 'next/link'
+// import Image from 'next/image'
 
 import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import ListSliderModal from '../../../components/modals/ListGridModal'
-import BooksRow from '../../../components/book/BooksRow'
+import BookCards from '../../../components/cards/BookCards'
 import GenreListModal from '../../../components/modals/GenreListModal'
-import AuthorsRow from '../../../components/author/AuthorsRow'
+import AuthorCards from '../../../components/cards/AuthorCards'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 function LibraryPage(props) {
@@ -43,7 +43,7 @@ function LibraryPage(props) {
 								listTitle='Saved books'
 								listLink={activeUser.books?.length && '/user/library/collections'}>
 								{activeUser.books?.length ? (
-									<BooksRow books={author.books} />
+									<BookCards books={author.books} />
 								) : (
 									<p className='text-base md:text-lg xl:text-lg text-gray-300 xl:px-6'>
 										You do not have any saved books.
@@ -71,7 +71,7 @@ function LibraryPage(props) {
 								listTitle='Favourites genres'
 								listLink={activeUser.genres?.length && '/user/library/collections'}>
 								{activeUser.genres?.length ? (
-									<AuthorsRow authors={props.authors} />
+									<AuthorCards authors={props.authors} />
 								) : (
 									<p className='text-base md:text-lg text-gray-300 xl:px-6'>
 										You did not follow any authors yet.
