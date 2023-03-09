@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import SnackbarContext from '../../../store/snackbarContext'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
+import GenreListModal from '../../../components/modals/GenreListModal'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -16,8 +17,10 @@ import BookmarkIcon from '../../../assets/icons/BookmarkIcon'
 import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon'
 import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
-import GenreListModal from '../../../components/modals/GenreListModal'
 import StarIcon from '../../../assets/icons/StarIcon'
+import ShareIcon from '../../../assets/icons/ShareIcon'
+import ScrollToTop from '../../../components/ScrollToTop'
+
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
 // import BookEpubReader from '../../../components/book/BookEpubReader'
@@ -25,43 +28,55 @@ import StarIcon from '../../../assets/icons/StarIcon'
 function BookDetailPage(props) {
 	const { book } = props
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
+	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
-	const snackbarCtx = useContext(SnackbarContext)
-
 	const coverRef = useRef(null)
+	const pageRef = useRef(null)
 	const descRef = useRef(null)
 
 	const readBookHandler = () => {
-		if (book.format.ebook?.link) {
-			// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
-			// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
+		// if (book.format.ebook?.link) {
+		// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
+		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 
-			router.push({
-				pathname: `/books/${book.slug}/read`,
-				query: {
-					title: book.title,
-					ebookLink: '/ebooks/The-Psychology-of Money.epub',
-					author: book.author.name,
-				},
-			})
-		} else {
-			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
-		}
+		router.push({
+			pathname: `/books/${book.slug}/read`,
+			query: {
+				title: book.title,
+				ebookLink: '/ebooks/The-Psychology-of Money.epub',
+				author: book.author.name,
+			},
+		})
+		// } else {
+		// 	snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
+		// }
 	}
 
-	const descCountLines = () => {
+	const [descLines, setDescLines] = useState(false)
+
+	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const descEl = descRef.current
-			console.log('descEl', descEl)
-			if (descRef.current) {
+			if (descEl) {
 				const divHeight = descEl.offsetHeight
 				const lineHeight = parseInt(descEl.style.lineHeight)
-				return divHeight / lineHeight
+				console.log('descEl', divHeight, lineHeight)
+				console.log('getClientRects', descEl.getClientRects())
+				// setDescLines(divHeight / lineHeight)
+				setDescLines(descEl.getClientRects().length)
 			}
 		}
-		return 0
-	}
+	}, [])
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			console.log('window.height\n', window.pageYOffset)
+			console.log('body.clientHeight\n', document.body.clientHeight)
+			console.log('body.offsetHeight\n', document.body.offsetHeight)
+			console.log('body.scrollHeight\n', document.body.scrollHeight)
+		}
+	}, [])
 
 	return book ? (
 		<Fragment>
@@ -70,12 +85,15 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 
-			<div className='bg-[#0C111B] relative'>
+			<div className='bg-[#0C111B] relative' ref={pageRef}>
+				<ScrollToTop pageRef={pageRef} />
 				<div className='pb-16 xl:pb-12'>
 					<TopNavModal
-						rightIcon={<BookmarkIcon dimensions='h-7 w-7' color='' />}
+						rightIcon={<ShareIcon dimensions='h-6 w-6' color='' />}
+						lastIcon={<BookmarkIcon dimensions='h-7 w-7' color='' />}
 						pageTitle={book.title}
 						coverRef={coverRef}
+						pageRef={pageRef}
 					/>
 					<BgCover color={props.color} coverRef={coverRef}>
 						<Image
@@ -86,7 +104,7 @@ function BookDetailPage(props) {
 							className='object-contain rounded-lg w-36 h-[13.5rem] xl:w-44 xl:h-64 m-1'
 						/>
 						<div className='flex flex-col px-2 md:px-4 space-y-1 xl:space-y-2'>
-							<div className='flex xl:items-start xl:justify-start max-w-[30rem]'>
+							<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-[30rem] min-w-[20rem]'>
 								<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>
 									{book.title}
 								</p>
@@ -102,8 +120,8 @@ function BookDetailPage(props) {
 							</Link>
 							<div className='text-center xl:text-left'>
 								{book.ratingsAvg ? (
-									<div className='flex items-center justify-center xl:justify-start text-md md:text-lg text-xl xl:text-2xl w-full font-medium'>
-										<div className='mx-1 xl:mr-2'>
+									<div className='flex items-center justify-center xl:justify-start text-md md:text-lg text-xl w-full font-medium'>
+										<div className='mr-1 xl:mr-2'>
 											<StarIcon dimensions='h-6 w-6' />
 										</div>
 										{book.ratingsAvg}
@@ -116,7 +134,7 @@ function BookDetailPage(props) {
 						{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
 						<div
 							className={
-								'flex xl:flex-col items-end xl:px-20 space-x-8 xl:space-y-4 right-2'
+								'flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'
 							}>
 							<button
 								className={
@@ -127,11 +145,11 @@ function BookDetailPage(props) {
 								<BookReadIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
+							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
-							<button className='xl:flex hidden items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-2 shadow-purple-400'>
+							<button className='xl:flex hidden items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
 								<LibraryIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Add To Library</span>
 							</button>
@@ -140,70 +158,50 @@ function BookDetailPage(props) {
 
 					<GenreListModal genres={book.genres} />
 
-					<div className='flex justify-center w-full'>
-						<div className='flex xl:hidden items-center justify-center bg-[#030b17] space-x-2 divide-x divide-gray-400 rounded-md p-1 xs:p-2 xs:w-[60vw] md:w-[50vw] lg:w-[40vw]'>
-							{book.publicationDate !== null && (
-								<div className='flex flex-col justify-center items-cent2 p-1 px-2 xs:p-2 xl:p-3 w-full'>
-									<p className='px-4 text-sm md:text-base font-medium'>
-										{book.publicationDate.split('-')[0]}
-									</p>
-									<p className='text-xs font-light xl:text-sm text-gray-200 py-1'>
-										published
-									</p>
-								</div>
-							)}
+					<div className='flex justify-center items-center w-full p-1 md:p-2 rounded-mdx'>
+						<div className='flex items-center justify-center space-x-2 divide-x divide-gray-600 bg-[#030b17]'>
 							{book.language && (
-								<div className='flex flex-col justify-center items-center p-1 px-2 xs:p-2 xl:p-3 w-full'>
-									<p className='text-md md:text-lg italic font-medium'>
+								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+									<p className='text-md md:text-base font-medium'>
 										{book.language}
 									</p>
-									<p className='text-xs font-light xl:text-sm text-gray-200 py-1'>
+									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
 										language
 									</p>
 								</div>
 							)}
 							{book.format?.ebook.pagesCount !== 0 &&
 								book.format?.ebook.pagesCount && (
-									<div className='flex flex-col justify-center items-center p-1 px-2 xs:p-2 xl:p-3 w-full'>
+									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
 										<p className='px-4 text-sm md:text-base font-medium'>
 											{book.format.ebook.pagesCount}
 										</p>
-										<p className='text-xs font-light xl:text-sm text-gray-200 py-1'>
+										<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
 											pages
 										</p>
 									</div>
 								)}
+							{book.publicationDate !== null && (
+								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+									<p className='px-4 text-sm md:text-base font-medium'>
+										{book.publicationDate.split('-')[0]}
+									</p>
+									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+										published
+									</p>
+								</div>
+							)}
+							{book.publisher !== null && (
+								<div className='hidden xl:flex flex-col justify-center items-center py-1 px-2'>
+									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max'>
+										{book.publisher}
+									</p>
+									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+										publisher
+									</p>
+								</div>
+							)}
 						</div>
-					</div>
-
-					<div className='hidden xl:flex xl:flex-col items-center justify-between bg-[#030b17] space-y-1 md:space-y-2 divide-y divide-gray-700 rounded-md px-4 xl:px-8 py-2 xl:py-4 mx-4 w-[90vw] md:w-[50vw] xl:w-[40vw]'>
-						<h4 className='text-lg md:text-xl font-semibold underline decoration-1 underline-offset-4 decoration-gray-400'>
-							Book Details
-						</h4>
-						{book.publisher !== null && (
-							<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-								<p className='px-4'>Publisher:</p>
-								<p className='px-4'>{book.publisher}</p>
-							</div>
-						)}
-						{book.publicationDate !== null && (
-							<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-								<p className='px-4'>Publication date:</p>
-								<p className='px-4'>{book.publicationDate}</p>
-							</div>
-						)}
-						{book.language && (
-							<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-								<p className='px-4'>Language:</p>
-								<p className='px-4'>{book.language}</p>
-							</div>
-						)}
-						{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
-							<div className='flex justify-between items-center p-1 md:p-2 w-full text-sm md:text-base font-medium'>
-								<p className='px-4'>Pages:</p>
-								<p className='px-4'>{book.format.ebook.pagesCount}</p>
-							</div>
-						)}
 					</div>
 
 					{book.description ? (
@@ -211,22 +209,31 @@ function BookDetailPage(props) {
 							<h4 className='text-xl md:text-2xl font-semibold py-2'>
 								Book description
 							</h4>
-							<p
+							{console.log('readMoreDesc', readMoreDesc)}
+							<div
 								ref={descRef}
+								style={{ lineHeight: 1.5, display: 'inline' }}
 								className={
-									'text-md text-gray-200 font-medium inline-block sm:leading-snug leading-normal ' +
-									(!readMoreDesc ? 'line-clamp-4' : '')
+									'text-md text-gray-200 font-medium ' +
+									(!readMoreDesc ? 'truncate' : '')
 								}>
 								{book.description}
-							</p>
+							</div>
+							{console.log('descLines', descLines)}
+							{console.log(
+								'descRef?.current',
+								descRef?.current?.divHeight,
+								descRef?.current?.lineHeight
+							)}
+							{console.log('getClientRects??', descRef?.current?.getClientRects())}
 							<button
 								onClick={(e) => {
 									setReadMoreDesc(!readMoreDesc)
 									e.preventDefault()
 								}}
 								className={
-									'cursor-pointer text-sm xl:text-base font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-									(descCountLines() < 4 ? 'hidden' : '')
+									'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
+									(descLines < 4 ? 'hidden' : '')
 								}>
 								{readMoreDesc ? (
 									<div className='flex'>

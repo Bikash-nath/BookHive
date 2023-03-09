@@ -1,5 +1,5 @@
+import { useRef, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
 
 import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/books'
 import ListGridModal from '../../../components/modals/ListGridModal'
@@ -8,6 +8,7 @@ import TopNavModal from '../../../components/modals/TopNavModal'
 import Paginate from '../../../components/ui/Paginate'
 
 function BookListPage(props) {
+	const coverRef = useRef()
 	console.log('props.category', props.category)
 	const categoryTitle = props.category && props.category.substr(0, 1) + props.category.substr(1)
 	console.log('categoryTitle', categoryTitle)
@@ -19,11 +20,11 @@ function BookListPage(props) {
 				<meta name='description' content={`A list of all ${categoryTitle}`} />
 			</Head>
 			<div className='p-1 xl:p-2 pb-16 xl:pb-12'>
-				<TopNavModal pageTitle={categoryTitle} />
-				<ListGridModal listTitle={`${categoryTitle}`}>
+				<TopNavModal pageTitle={categoryTitle} coverRef={coverRef} />
+				<ListGridModal listTitle={`${categoryTitle}`} coverRef={coverRef}>
 					{<BookCards books={props.books} />}
 				</ListGridModal>
-				{/* <Paginate pages={pages} page={page} /> */}
+				<Paginate totalPages={5} page={1} />
 			</div>
 		</Fragment>
 	) : (

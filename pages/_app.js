@@ -11,7 +11,7 @@ function App({ Component, pageProps }) {
 				<Head>
 					<meta
 						name='viewport'
-						content='width=device-width, initial-scale=1.0, maxiumum-scale=1.0, user-scalable=no, shrink-to-fit=no'
+						content='width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no'
 					/>
 					<meta name='apple-mobile-web-app-title' content='BookHive' />
 					<link rel='icon' type='image/png' sizes='32x32' href='/images/logo.png' />

@@ -11,11 +11,11 @@ export default function SearchBar(props) {
 	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
 	const searchHandler = (keyword) => {
+		inputRef.current.blur()
 		router.push({
 			pathname: '/search',
 			query: { keyword: keyword },
 		})
-		inputRef.current.blur()
 	}
 
 	const [keyword, setKeyword] = useState(router.query.keyword || '')

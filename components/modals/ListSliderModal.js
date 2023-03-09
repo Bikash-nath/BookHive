@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 import Slider from 'react-slick'
@@ -7,8 +8,15 @@ import { settings } from '../../utils/constants/sliderSettings'
 
 export default function ListSliderModal(props) {
 	const { listTitle, listLink, books } = props
+	const [windowWidth, setWindowWidth] = useState(null)
 	// const router = useRouter()
 	// router.pathname
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
+		}
+	}, [])
 
 	return (
 		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent'>
@@ -25,15 +33,17 @@ export default function ListSliderModal(props) {
 						<></>
 					)}
 				</div>
-				<div className='xl:hidden overflow-hidden overflow-x-scroll hide-scrollbar mr-1'>
-					<div className='flex items-start justify-start gap-0 xs:gap-2 w-full h-full'>
-						{props.children}
+				{windowWidth < 1280 ? (
+					<div className='overflow-hidden overflow-x-scroll hide-scrollbar mr-1'>
+						<div className='flex items-start justify-start gap-0 xs:gap-2 w-full h-full'>
+							{props.children}
+						</div>
 					</div>
-				</div>
-				{console.log('settings', settings)}
-				<div className='hidden xl:block h-auto group lg:px-8 xl:px-12 mr-1'>
-					<Slider {...settings}>{props.children}</Slider>
-				</div>
+				) : (
+					<div className='h-auto group lg:px-8 xl:px-12 mr-1'>
+						<Slider {...settings}>{props.children}</Slider>
+					</div>
+				)}
 			</div>
 		</section>
 	)

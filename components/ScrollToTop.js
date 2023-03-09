@@ -1,14 +1,25 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-function ScrollToTop() {
+function ScrollToTop({ pageRef }) {
 	const router = useRouter()
 
 	useEffect(() => {
 		router.events.on('routeChangeStart', (url) => {
 			if (typeof window !== 'undefined') {
+				setTimeout(function () {
+					window.scrollTo(0, 0)
+					// window.scrollY(0)
+				}, 200)
+				// pageRef.current.scrollTo(0, 0)
+
+				// window.focus();
 				// window.scrollTo(0, 0)
-				window.scrollTo({ top: 0, behavior: 'smooth' })
+
+				// document.body.scrollTop(0)
+				// document.getElementById('root').scrollTo(0, 0)
+				// document.querySelector('#dummy_element').scrollIntoView()
+				// window.scrollTo({ top: 0, behavior: 'smooth' })
 				console.log('ScrollTop on routeChangeStart⭐')
 			}
 		})

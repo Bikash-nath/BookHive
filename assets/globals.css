@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Poppins&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Poppins&family=Roboto&display=swap'); */
 
 @layer components {
 	/*AA14F0*/
@@ -56,6 +57,21 @@
 
 .input-field {
 	@apply w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900;
+}
+
+html {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	width: 100%;
+	height: auto;
 }
 
 h1 {

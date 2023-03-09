@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 function BgCover(props) {
 	return (
 		<Fragment>
-			<div className='flex-grow scrollbar-hide select-none'>
+			<div className='flex-grow scrollbar-hide select-none -z-10'>
 				<div
 					className={`bg-gradient-to-b ${props.color} to-[#0C111B]`}
 					ref={props.coverRef}>

@@ -1,13 +1,15 @@
+import { useContext, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
 
+import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
 
 function ReadLaterPage() {
-	const user = ''
+	const userCtx = useContext(UserContext)
+	const [activeUser, setActiveUser] = useState(null)
 
 	return (
 		<Fragment>
@@ -16,7 +18,7 @@ function ReadLaterPage() {
 				<meta name='description' content='Read later section' />
 			</Head>
 
-			{!user ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Save books to read later❗'
 					message='Login to save books to read them later'

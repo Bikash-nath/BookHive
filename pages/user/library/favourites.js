@@ -1,13 +1,15 @@
+import { useState, useContext, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment, useState } from 'react'
 
+import UserContext from '../../../store/userContext'
 import TabModal from '../../../components/modals/TabModal'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function FavouritesPage(props) {
-	const user = '1'
+	const userCtx = useContext(UserContext)
+	const [activeUser, setActiveUser] = useState(null)
 	const list = ''
 	const tabs = ['Ebooks', 'Audiobooks', 'Podcasts', 'Authors']
 	const [currentTab, setCurrentTab] = useState(0)
@@ -23,7 +25,7 @@ function FavouritesPage(props) {
 				<meta name='description' content='User favourites page' />
 			</Head>
 
-			{!user ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Your favourite books'
 					message='Login to save books as favourites'

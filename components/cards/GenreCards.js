@@ -17,7 +17,7 @@ function GenreCards({ genreList, colors }) {
 			{genreList.map((genre, i) => (
 				<Link href={`/books/genre/${genre.slug}`} key={i}>
 					<div className='flex justify-center w-full h-full'>
-						<div key={i} className='group item rounded-lg w-40 h-20 xl:w-60 xl:h-28'>
+						<div key={i} className='group item rounded-lg w-44 h-20 xl:w-60 xl:h-28'>
 							{/* <Image
 									src={process.env.GENRES_URL + genreImages[i]}
 									alt={genre.title}

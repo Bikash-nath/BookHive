@@ -1,14 +1,14 @@
+import { useContext, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
 
+import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
-import TopNavModal from '../../../components/modals/TopNavModal'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
+// import TopNavModal from '../../../components/modals/TopNavModal'
 
 function CollectionPage() {
 	const list = ''
-	const user = '21'
 
 	return (
 		<Fragment>

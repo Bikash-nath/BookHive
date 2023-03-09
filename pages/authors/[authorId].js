@@ -1,4 +1,4 @@
-import { useState, useRef, Fragment } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 // import { useRouter } from 'next/router'
@@ -21,24 +21,26 @@ function AuthorDetailPage(props) {
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
 
-	const bioCountLines = () => {
+	const [bioLines, setDescLines] = useState(false)
+
+	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const bioEl = bioRef.current
 			console.log('bioEl', bioEl)
-			if (bioRef.current) {
-				const divHeight = bioEl.offsetHeight
-				const lineHeight = parseInt(bioEl.style.lineHeight)
-				return divHeight / lineHeight
+			if (bioEl) {
+				// const divHeight = bioEl.offsetHeight
+				// const lineHeight = parseInt(bioEl.style.lineHeight)
+				// setDescLines(divHeight / lineHeight)
+				setDescLines(bioEl.getClientRects().length)
 			}
 		}
-		return 0
-	}
+	}, [])
 
 	return author ? (
 		<Fragment>
 			<Head>
 				<title>{author.name}</title>
-				<meta name='description' content='Author detail page' />
+				<meta name='bioription' content='Author detail page' />
 			</Head>
 
 			<div className='bg-[#0C111B] pb-16 xl:pb-12'>
@@ -66,7 +68,7 @@ function AuthorDetailPage(props) {
 								<></>
 							)}
 							{author.origin ? (
-								<div className='text-sm md:text-md italic'>
+								<div className='text-sm md:text-md xl:text-lg italic'>
 									Born {author.origin}
 								</div>
 							) : (
@@ -76,7 +78,7 @@ function AuthorDetailPage(props) {
 					</div>
 
 					<div className='flex xl:flex-col items-end xl:px-20 space-x-8 xl:space-y-4 right-2 text-white'>
-						<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
+						<button className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
 							<HeartIcon dimensions='h-7 w-7' />
 							<span className='font-semibold pr-2'>Follow</span>
 						</button>
@@ -98,12 +100,12 @@ function AuthorDetailPage(props) {
 						</p>
 						<button
 							onClick={(e) => {
-								setReadMoreBio(!readMoreBio)
+								bioLines(!readMoreBio)
 								e.preventDefault()
 							}}
 							className={
 								'cursor-pointer text-sm xl:text-base font-semibold text-[#AA14F0] underline decoration-1 underline-offset-2 decoration-gray-300 ' +
-								(bioCountLines() < 4 ? 'hidden' : '')
+								(bioLines < 3 ? 'hidden' : '')
 							}>
 							{readMoreBio ? (
 								<div className='flex'>

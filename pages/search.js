@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { searchBooks } from '../api/books'
 import SearchBar from '../components/SearchBar'
-import BooksGrid from '../components/book/BooksGrid'
+import ListGridModel from '../components/modals/ListGridModal'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
 
@@ -44,7 +44,7 @@ function SearchPage() {
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
-						<BooksGrid books={searchResult} />
+						<ListGridModel books={searchResult} />
 					</>
 				) : (
 					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>

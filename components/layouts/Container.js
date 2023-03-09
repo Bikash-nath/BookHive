@@ -7,7 +7,7 @@ import Sidebar from './Sidebar'
 import PageContainer from './PageContainer'
 
 function Container(props) {
-	// const [windowWidth, setWindowWidth] = useState(null)
+	const [windowWidth, setWindowWidth] = useState(null)
 
 	const headerRef = useRef()
 
@@ -15,8 +15,10 @@ function Container(props) {
 		if (typeof window !== 'undefined') {
 			window.addEventListener('load', () => {
 				setTimeout(() => window.scrollTo(0, 1), 0)
+				console.log('Container scrollToTop..')
 			})
-			// 	setWindowWidth(window.innerWidth)
+			// window.scrollTo(0, 1)
+			setWindowWidth(window.innerWidth)
 		}
 	}, []) //router.asPath
 
@@ -25,10 +27,10 @@ function Container(props) {
 			{/*overflow-scroll overflow-x-hidden overflow-y-scroll || xl:overflow-hidden || overflow-auto*/}
 			<div className='overflow-scroll xl:overflow-hidden hide-scrollbar'>
 				<div className='flex h-screen relative'>
-					<Sidebar />
+					{windowWidth > 1280 && <Sidebar />}
 					<SearchToggleContextProvider>
 						<main className='flex-grow overflow-y-scroll select-none h-full page-gradient '>
-							<Header headerRef={headerRef} />
+							{windowWidth > 1280 && <Header headerRef={headerRef} />}
 							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
 					</SearchToggleContextProvider>

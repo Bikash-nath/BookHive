@@ -23,6 +23,7 @@ module.exports = {
 	},
 	plugins: [],
 	safelist: [
+		'from-[#101621]',
 		'from-red-600',
 		'from-orange-600',
 		'from-amber-600',

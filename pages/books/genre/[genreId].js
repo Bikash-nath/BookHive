@@ -1,15 +1,17 @@
-import { useEffect, useContext, Fragment } from 'react'
+import { useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
+import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookCards from '../../../components/cards/BookCards'
 import TopNavModal from '../../../components/modals/TopNavModal'
-import SpinnerContext from '../../../store/spinnerContext'
+import Paginate from '../../../components/ui/Paginate'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function GenreBooksPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
+	const coverRef = useRef()
 
 	useEffect(() => {
 		if (!props.genre) toggleSpinner(true)
@@ -24,15 +26,18 @@ function GenreBooksPage(props) {
 			</Head>
 			<div className='px-1 xl:p-2 pb-16 xl:pb-12'>
 				<TopNavModal
-					rightIcon={<HeartIcon dimensions='h-7 w-7' color='' pageTitle={props.genre} />}
+					rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />}
+					pageTitle={props.genre}
+					coverRef={coverRef}
 				/>
-				<ListGridModal listTitle={`${props.genre} books`}>
+				<ListGridModal listTitle={`${props.genre} books`} coverRef={coverRef}>
 					{props.books.length ? (
 						<BookCards books={props.books} />
 					) : (
 						<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
 					)}
 				</ListGridModal>
+				<Paginate totalPages={5} page={1} />
 			</div>
 		</Fragment>
 	) : (

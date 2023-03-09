@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 
-//overflow-hidden backdrop-blur-sm animate-slideup
+//backdrop-blur-sm animate-slideup
 function BookCards({ books }) {
 	return books?.map((book) => (
 		<div
