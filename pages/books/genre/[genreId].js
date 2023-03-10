@@ -6,7 +6,7 @@ import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookCards from '../../../components/cards/BookCards'
 import TopNavModal from '../../../components/modals/TopNavModal'
-import Paginate from '../../../components/ui/Paginate'
+// import Paginate from '../../../components/ui/Paginate'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function GenreBooksPage(props) {
@@ -37,7 +37,7 @@ function GenreBooksPage(props) {
 						<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
 					)}
 				</ListGridModal>
-				<Paginate totalPages={5} page={1} />
+				{/* <Paginate totalPages={5} page={1} /> */}
 			</div>
 		</Fragment>
 	) : (

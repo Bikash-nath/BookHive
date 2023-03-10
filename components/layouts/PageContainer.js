@@ -31,7 +31,7 @@ function PageContainer(props) {
 				<ScrollToTop />
 			</div>
 			<SnackBar navbarRef={navbarRef} />
-			{windowWidth > 1280 && <Navbar navbarRef={navbarRef} />}
+			{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 		</SpinnerContextProvider>
 	)
 }

@@ -7,11 +7,13 @@ function ScrollToTop({ pageRef }) {
 	useEffect(() => {
 		router.events.on('routeChangeStart', (url) => {
 			if (typeof window !== 'undefined') {
-				setTimeout(function () {
-					window.scrollTo(0, 0)
-					// window.scrollY(0)
-				}, 200)
-				// pageRef.current.scrollTo(0, 0)
+				// setTimeout(function () {
+				// 	window.scrollTo(0, 0)
+				// }, 200)
+				if (pageRef?.current) {
+					pageRef.current.scrollTo(0, 0)
+					console.log('pageRef.current', pageRef.current.scrollTo(0, 0))
+				}
 
 				// window.focus();
 				// window.scrollTo(0, 0)
@@ -29,7 +31,7 @@ function ScrollToTop({ pageRef }) {
 				console.log('Unsuscribed routeChangeComplete')
 			})
 		}
-	}, [router.asPath]) //router.events
+	}, []) //router.events
 
 	return <></>
 }

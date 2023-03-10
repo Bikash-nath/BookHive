@@ -12,12 +12,19 @@ import AuthorCards from '../components/cards/AuthorCards'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
 import AccountIcon from '../assets/icons/AccountIcon'
-import HamburgerIcon from '../assets/icons/HamburgerIcon'
+// import HamburgerIcon from '../assets/icons/HamburgerIcon'
 // import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
+	const [windowWidth, setWindowWidth] = useState(null)
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setWindowWidth(window.innerWidth)
+		}
+	}, []) //router.asPath
 
 	useEffect(() => {
 		setActiveUser(user)
@@ -34,30 +41,32 @@ function HomePage(props) {
 				/>
 			</Head>
 			<div className='page-gradient pb-16 xl:pb-12'>
-				<div className='block xl:hidden'>
-					<PageHeader
-						pageTitle={<Logo size={32} />}
-						rightContainer={
-							activeUser?.data ? (
-								<Link href={'/user/account'}>
-									{activeUser?.data?.image ? (
-										<img
-											className='rounded-full w-7 h-7'
-											src={activeUser.data.image}
-											alt='user image'
-										/>
-									) : (
-										<AccountIcon dimensions='h-7 w-7' />
-									)}
-								</Link>
-							) : (
-								<div className='transform scale-90'>
-									<LoginButton />
-								</div>
-							)
-						}
-					/>
-				</div>
+				{windowWidth < 1280 && (
+					<div className='block'>
+						<PageHeader
+							pageTitle={<Logo size={32} />}
+							rightContainer={
+								activeUser?.name ? (
+									<Link href={'/user/account'}>
+										{activeUser?.image ? (
+											<img
+												className='rounded-full w-7 h-7'
+												src={activeUser.image}
+												alt='user image'
+											/>
+										) : (
+											<AccountIcon dimensions='h-7 w-7' />
+										)}
+									</Link>
+								) : (
+									<div className='transform scale-90'>
+										<LoginButton />
+									</div>
+								)
+							}
+						/>
+					</div>
+				)}
 				<div className='py-1 xl:py-4'>
 					<ListSliderModal
 						listTitle='Popular books'

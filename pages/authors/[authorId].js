@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
-import ListSliderModal from '../..//components/modals/ListSliderModal'
+import ListGridModal from '../..//components/modals/ListGridModal'
 import BookCards from '../../components/cards/BookCards'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
@@ -17,24 +17,27 @@ import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 function AuthorDetailPage(props) {
 	const { author } = props
 	const [readMoreBio, setReadMoreBio] = useState(false)
-	// const router = useRouter()
+	const [bioLines, setBioLines] = useState(0)
+
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
+	// const router = useRouter()
 
-	const [bioLines, setDescLines] = useState(false)
+	const readMoreBioHandler = () => {
+		const bioEl = bioRef.current
+		if (bioEl) {
+			bioEl.style.display = 'inline'
+			setBioLines(bioEl.getClientRects().length)
+			bioEl.style.display = '-webkit-box'
+		}
+	}
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const bioEl = bioRef.current
-			console.log('bioEl', bioEl)
-			if (bioEl) {
-				// const divHeight = bioEl.offsetHeight
-				// const lineHeight = parseInt(bioEl.style.lineHeight)
-				// setDescLines(divHeight / lineHeight)
-				setDescLines(bioEl.getClientRects().length)
-			}
+		if (typeof window !== 'undefined' && bioRef) {
+			readMoreBioHandler()
+			window.addEventListener('orientationchange', readMoreBioHandler, false) // bioLines incorrect value
 		}
-	}, [])
+	}, [bioRef?.current, author?.biography]) //remove author?.biography later
 
 	return author ? (
 		<Fragment>
@@ -50,9 +53,9 @@ function AuthorDetailPage(props) {
 						<Image
 							src={process.env.AUTHORS_URL + author.image}
 							alt={author.name}
-							height={240}
-							width={240}
-							className='object-cover rounded-full w-36 h-36 xl:w-48 xl:h-48'
+							height={320}
+							width={320}
+							className='object-cover rounded-full w-40 h-40 xl:w-48 xl:h-48'
 						/>
 						<div className='p-1 space-y-4'>
 							<div>
@@ -93,19 +96,19 @@ function AuthorDetailPage(props) {
 						<p
 							ref={bioRef}
 							className={
-								'text-md text-gray-200 font-medium inline-block sm:leading-snug leading-normal ' +
-								(!readMoreBio ? 'line-clamp-4' : '')
+								'text-md text-gray-200 font-medium sm:leading-snug leading-normal' +
+								(!readMoreBio ? ' line-clamp-4' : '')
 							}>
 							{author.biography}
 						</p>
 						<button
 							onClick={(e) => {
-								bioLines(!readMoreBio)
+								setReadMoreBio(!readMoreBio)
 								e.preventDefault()
 							}}
 							className={
 								'cursor-pointer text-sm xl:text-base font-semibold text-[#AA14F0] underline decoration-1 underline-offset-2 decoration-gray-300 ' +
-								(bioLines < 3 ? 'hidden' : '')
+								(bioLines <= 4 ? 'hidden' : '')
 							}>
 							{readMoreBio ? (
 								<div className='flex'>
@@ -125,9 +128,9 @@ function AuthorDetailPage(props) {
 					<></>
 				)}
 				{author.books?.length ? (
-					<ListSliderModal listTitle='Author Books'>
+					<ListGridModal listTitle='Author Books'>
 						{<BookCards books={author.books} />}
-					</ListSliderModal>
+					</ListGridModal>
 				) : (
 					<></>
 				)}

@@ -28,7 +28,7 @@ function GenreCards({ genreList, colors }) {
 							<div
 								className={
 									colors[i % 20] +
-									' w-40 h-20 xl:w-60 xl:h-28 items-center bg-opacity-95'
+									' w-44 h-20 xl:w-60 xl:h-28 items-center bg-opacity-95'
 								}></div>
 							<h5 className='box-text'>{genre.title}</h5>
 						</div>

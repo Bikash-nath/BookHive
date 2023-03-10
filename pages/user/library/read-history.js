@@ -1,4 +1,4 @@
-import { useContext, Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 
 import UserContext from '../../../store/userContext'
@@ -11,6 +11,11 @@ function ReadHistoryPage() {
 	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
 
+	useEffect(() => {
+		setActiveUser(userCtx.user)
+		// if (!activeUser?.data) getUserProfile()
+	}, [activeUser])
+
 	return (
 		<Fragment>
 			<Head>
@@ -18,7 +23,7 @@ function ReadHistoryPage() {
 				<meta name='description' content='History section' />
 			</Head>
 
-			{!user ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Keep track of what you watch'
 					message="Read history isn't viewable when logged out"
@@ -27,7 +32,6 @@ function ReadHistoryPage() {
 			) : (
 				<div className='page-gradient h-full'>
 					<PageHeader pageTitle='Collections' />
-					<TopNavModal />
 					<div className='flex flex-col items-center justify-center h-[93vh]'>
 						<HistoryIcon dimensions='h-20 w-20' />
 						<div className='flex text-center py-2 md:py-4 text-lg md:text-xl'>

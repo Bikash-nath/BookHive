@@ -9,29 +9,31 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, coverRef, 
 
 	const titleRef = useRef()
 
-	const handleScroll = () => {
-		const coverHeight = coverRef.current.offsetHeight
-		console.log('coverRef.current.height\n', coverHeight, window.pageYOffset)
-		const scrollPos = Math.min(coverHeight - window.pageYOffset, coverHeight)
-		setOpacity(((scrollPos / coverHeight + Number.EPSILON) * 100) / 100)
-	}
-
 	useEffect(() => {
 		titleRef.current.style.opacity = opacity
 		if (coverRef?.current) coverRef.current.style.opacity = 1 - opacity
 	}, [opacity])
 
-	useEffect(() => {
-		if (typeof window !== 'undefined' && coverRef) {
-			window.addEventListener('scroll', handleScroll, false)
-			//pageRef.current.addEventListener('scroll', handleScroll, { passive: true })
-			// coverRef.current.addEventListener('scroll', handleScroll, { passive: true })
-			//document.body.addEventListener
-			console.log('EventListener add')
+	const handleScroll = () => {
+		console.log('coverRef.height\n', coverRef.current.offsetHeight)
+		console.log('coverRef🧿\n', coverRef.current.getBoundingClientRect())
+		console.log('coverRef.top🧿\n', coverRef.current.getBoundingClientRect().top)
+		console.log('pageRef.pageYOffset\n', pageRef.current.offsetHeight)
+		console.log('pageRef.current🧿\n', pageRef.current.getBoundingClientRect())
+		const coverHeight = coverRef.current.offsetHeight
+		console.log('coverRef.current.height\n', coverHeight)
+		const scrollPos = Math.min(coverHeight - pageRef.current.pageYOffset, coverHeight)
+		const scrollOpacity = ((scrollPos / coverHeight + Number.EPSILON) * 100) / 100
+		setOpacity(scrollOpacity)
+	}
 
-			setBgColor(coverRef?.current.className.split('from-')[1].split(' ')[0])
+	useEffect(() => {
+		if (pageRef.current) {
+			pageRef.current.addEventListener('wheel', handleScroll)
+			if (coverRef.current.className.includes('from-'))
+				setBgColor(coverRef.current.className.split('from-')[1].split(' ')[0])
 			return () => {
-				window.removeEventListener('scroll', handleScroll)
+				pageRef.current?.removeEventListener('scroll', handleScroll)
 			}
 		}
 	}, [])

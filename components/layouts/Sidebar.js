@@ -29,12 +29,13 @@ function Sidebar() {
 	const [activeUser, setActiveUser] = useState(null)
 
 	useEffect(() => {
-		if (user?.data) setActiveUser(user.data)
+		console.log(user)
+		if (user) setActiveUser(user)
 		// if (!activeUser?.data) getUserProfile()
 	}, [user])
 
 	const routeClassHandler = (route) => {
-		return `flex items-center space-x-2 m-2 hover:text-white text-${
+		return `flex items-center w-5/6 space-x-2 m-2 hover:text-white text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route
 				? 'white '
 				: 'gray-400 '
@@ -47,7 +48,7 @@ function Sidebar() {
 			<div className='overflow-y-hidden hide-scrollbar inline-block relative p-2 min-w-[13rem] bg-[#030b17] border-r border-gray-900'>
 				<div className='space-y-5 cursor-pointer'>
 					<div className='flex items-center space-x-20'>
-						<Logo size={48} />
+						<Logo size={46} />
 					</div>
 					<Link href='/'>
 						<div className={routeClassHandler('/') + 'my-4'}>
@@ -63,16 +64,16 @@ function Sidebar() {
 					</Link>
 					<hr className='border-t-[0.1px] border-gray-700' />
 					<div className='flex flex-col'>
-						<div className='flex'>
+						<div className='flex w-full'>
 							<Link href='/user/library'>
-								<div className={routeClassHandler('/library')}>
+								<div className={routeClassHandler('/library') + ' pr-2'}>
 									<LibraryIcon dimensions='h-7 w-7' />
 									<p className='text-base'>Library</p>
 								</div>
 							</Link>
 							{activeUser ? (
 								<div
-									className={'flex items-center m-2'}
+									className={'flex items-center mr-2'}
 									onClick={() => setLibraryToggle(!libraryToggle)}>
 									{libraryToggle ? (
 										<ChevronDownIcon dimensions='h-6 w-6' color='white' />
@@ -118,7 +119,7 @@ function Sidebar() {
 					</Link>
 
 					<hr className='border-t-[0.1px] border-gray-900' />
-					<div className='absolute bottom-28'>
+					<div className='absolute bottom-28 w-full'>
 						<Link href='/user/account/settings'>
 							<div className={routeClassHandler('/account/settings')}>
 								<SettingsIcon dimensions='h-7 w-7' />
@@ -126,7 +127,7 @@ function Sidebar() {
 							</div>
 						</Link>
 					</div>
-					<div className='absolute bottom-16'>
+					<div className='absolute bottom-16 w-full'>
 						<Link href='/help/faq'>
 							<div className={routeClassHandler('/faq')}>
 								<HelpIcon dimensions='h-7 w-7' />
@@ -134,7 +135,7 @@ function Sidebar() {
 							</div>
 						</Link>
 					</div>
-					<div className='absolute bottom-4'>
+					<div className='absolute bottom-4 w-full'>
 						<Link href='/help/donate'>
 							<div className={routeClassHandler('/donate')}>
 								<FeedbackIcon dimensions='h-7 w-7' />

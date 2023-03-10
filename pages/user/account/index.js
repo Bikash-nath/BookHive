@@ -85,9 +85,10 @@ function AccountPage(props) {
 									Location
 								</p>
 							</div>
+							{console.log(activeUser)}
 							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
 								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
-									{activeUser.data.address.country}
+									{activeUser.data.address?.country}
 								</p>
 							</div>
 						</div>

@@ -5,7 +5,7 @@ import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/b
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookCards from '../../../components/cards/BookCards'
 import TopNavModal from '../../../components/modals/TopNavModal'
-import Paginate from '../../../components/ui/Paginate'
+// import Paginate from '../../../components/ui/Paginate'
 
 function BookListPage(props) {
 	const coverRef = useRef()
@@ -24,7 +24,7 @@ function BookListPage(props) {
 				<ListGridModal listTitle={`${categoryTitle}`} coverRef={coverRef}>
 					{<BookCards books={props.books} />}
 				</ListGridModal>
-				<Paginate totalPages={5} page={1} />
+				{/* <Paginate totalPages={5} page={1} /> */}
 			</div>
 		</Fragment>
 	) : (

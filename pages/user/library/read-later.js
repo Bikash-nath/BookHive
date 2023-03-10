@@ -1,11 +1,11 @@
 import { useContext, Fragment } from 'react'
 import Head from 'next/head'
 
-import UserContext from '../../../store/userContext'
-import LoginBanner from '../../../components/login/LoginBanner'
-import PageHeader from '../../../components/layouts/PageHeader'
-import TopNavModal from '../../../components/modals/TopNavModal'
-import HistoryIcon from '../../../assets/icons/HistoryIcon'
+import UserContext from '../../../../store/userContext'
+import LoginBanner from '../../../../components/login/LoginBanner'
+import PageHeader from '../../../../components/layouts/PageHeader'
+import TopNavModal from '../../../../components/modals/TopNavModal'
+import HistoryIcon from '../../../../assets/icons/HistoryIcon'
 
 function ReadLaterPage() {
 	const userCtx = useContext(UserContext)

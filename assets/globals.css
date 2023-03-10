@@ -44,7 +44,7 @@
 }
 
 .box-text {
-	@apply absolute left-2 top-2 text-base ms:text-lg xl:text-xl font-medium px-1 xl:px-2 w-full h-full xl:w-5/6 text-start;
+	@apply absolute left-0 top-0 flex items-center justify-center text-center text-base ms:text-lg xl:text-xl font-medium p-1 xl:p-2 w-full h-full xl:w-5/6;
 }
 
 .image-gradient {

@@ -1,5 +1,5 @@
+import { useRef, Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
 
 import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
@@ -7,6 +7,8 @@ import AuthorCards from '../../components/cards/AuthorCards'
 import TopNavModal from '../../components/modals/TopNavModal'
 
 function AuthorListPage(props) {
+	const coverRef = useRef()
+
 	return (
 		<Fragment>
 			<Head>
@@ -14,9 +16,9 @@ function AuthorListPage(props) {
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
 			<div className='p-1 xl:p-2 pb-16 xl:pb-12'>
-				<TopNavModal />
+				<TopNavModal pageTitle='Popular Authors' coverRef={coverRef} />
 				<div className='h-full mb-12'>
-					<ListGridModal listTitle='All popular authors'>
+					<ListGridModal listTitle='All popular authors' coverRef={coverRef}>
 						<AuthorCards authors={props.authors} />
 					</ListGridModal>
 				</div>

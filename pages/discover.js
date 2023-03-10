@@ -28,32 +28,32 @@ function DiscoverPage(props) {
 						<div className='item-container discover-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6'>
 							<Link href={'/books/category/bestsellers'}>
 								<div className='flex justify-center w-full h-full'>
-									<div className='group item rounded-lg w-40 h-20 xl:w-60 xl:h-28'>
-										<div className='bg-gradient-to-b from-sky-900 to bg-sky-400 bg-opacity-95 w-40 h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-sky-900 to bg-sky-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 										<h5 className='box-text'>Popular books</h5>
 									</div>
 								</div>
 							</Link>
 							<Link href={'/books/category/audiobooks'}>
 								<div className='flex justify-center w-full h-full'>
-									<div className='group item rounded-lg w-40 h-20 xl:w-60 xl:h-28'>
-										<div className='bg-gradient-to-b from-purple-900 to bg-purple-400 bg-opacity-95 w-40 h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-purple-900 to bg-purple-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 										<h5 className='box-text'>Featured Audiobooks</h5>
 									</div>
 								</div>
 							</Link>
 							<Link href={'/books/category/latest'}>
 								<div className='flex justify-center w-full h-full'>
-									<div className='group item rounded-lg w-40 h-20 xl:w-60 xl:h-28'>
-										<div className='bg-gradient-to-b from-emerald-900 to bg-emerald-400 bg-opacity-95 w-40 h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-emerald-900 to bg-emerald-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 										<h5 className='box-text'>Latest arrivals</h5>
 									</div>
 								</div>
 							</Link>
 							<Link href={'/authors'}>
 								<div className='flex justify-center w-full h-full'>
-									<div className='group item rounded-lg w-40 h-20 xl:w-60 xl:h-28'>
-										<div className='bg-gradient-to-b from-rose-900 to bg-rose-400 bg-opacity-95 w-40 h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-rose-900 to bg-rose-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 										<h5 className='box-text'>Popular authors</h5>
 									</div>
 								</div>

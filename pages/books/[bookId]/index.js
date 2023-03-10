@@ -27,13 +27,16 @@ import ScrollToTop from '../../../components/ScrollToTop'
 
 function BookDetailPage(props) {
 	const { book } = props
-	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const snackbarCtx = useContext(SnackbarContext)
-	const router = useRouter()
 
+	const [readMoreDesc, setReadMoreDesc] = useState(false)
+	const [descLines, setDescLines] = useState(0)
+
+	const descRef = useRef(null)
 	const coverRef = useRef(null)
 	const pageRef = useRef(null)
-	const descRef = useRef(null)
+
+	const router = useRouter()
 
 	const readBookHandler = () => {
 		// if (book.format.ebook?.link) {
@@ -53,30 +56,21 @@ function BookDetailPage(props) {
 		// }
 	}
 
-	const [descLines, setDescLines] = useState(false)
+	const readMoreDescHandler = () => {
+		const descEl = descRef.current
+		if (descEl) {
+			descEl.style.display = 'inline'
+			setDescLines(descEl.getClientRects().length)
+			descEl.style.display = '-webkit-box'
+		}
+	}
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const descEl = descRef.current
-			if (descEl) {
-				const divHeight = descEl.offsetHeight
-				const lineHeight = parseInt(descEl.style.lineHeight)
-				console.log('descEl', divHeight, lineHeight)
-				console.log('getClientRects', descEl.getClientRects())
-				// setDescLines(divHeight / lineHeight)
-				setDescLines(descEl.getClientRects().length)
-			}
+		if (typeof window !== 'undefined' && descRef) {
+			readMoreDescHandler()
+			window.addEventListener('orientationchange', readMoreDescHandler, false) // descLines incorrect value
 		}
-	}, [])
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			console.log('window.height\n', window.pageYOffset)
-			console.log('body.clientHeight\n', document.body.clientHeight)
-			console.log('body.offsetHeight\n', document.body.offsetHeight)
-			console.log('body.scrollHeight\n', document.body.scrollHeight)
-		}
-	}, [])
+	}, [descRef?.current])
 
 	return book ? (
 		<Fragment>
@@ -113,7 +107,7 @@ function BookDetailPage(props) {
 								<div className='text-md md:text-lg text-center xl:text-left '>
 									By{' '}
 									<p className='font-medium inline-block'>{book.author.name}</p>
-									<div className='inline-block px-[2px]'>
+									<div className='inline-block px-[2px] py-[1px]'>
 										<ChevronRightIcon dimensions='h-4 w-4' />
 									</div>
 								</div>
@@ -134,7 +128,7 @@ function BookDetailPage(props) {
 						{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
 						<div
 							className={
-								'flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'
+								'flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2 opacity-100 z-10 xl:z-0'
 							}>
 							<button
 								className={
@@ -158,14 +152,14 @@ function BookDetailPage(props) {
 
 					<GenreListModal genres={book.genres} />
 
-					<div className='flex justify-center items-center w-full p-1 md:p-2 rounded-mdx'>
-						<div className='flex items-center justify-center space-x-2 divide-x divide-gray-600 bg-[#030b17]'>
+					<div className='flex justify-center items-center w-full'>
+						<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
 							{book.language && (
 								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
 									<p className='text-md md:text-base font-medium'>
 										{book.language}
 									</p>
-									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
 										language
 									</p>
 								</div>
@@ -176,7 +170,7 @@ function BookDetailPage(props) {
 										<p className='px-4 text-sm md:text-base font-medium'>
 											{book.format.ebook.pagesCount}
 										</p>
-										<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
 											pages
 										</p>
 									</div>
@@ -186,17 +180,17 @@ function BookDetailPage(props) {
 									<p className='px-4 text-sm md:text-base font-medium'>
 										{book.publicationDate.split('-')[0]}
 									</p>
-									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
 										published
 									</p>
 								</div>
 							)}
 							{book.publisher !== null && (
 								<div className='hidden xl:flex flex-col justify-center items-center py-1 px-2'>
-									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max'>
+									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-fit'>
 										{book.publisher}
 									</p>
-									<p className='text-sm font-light xl:text-md text-gray-200 italic py-1'>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
 										publisher
 									</p>
 								</div>
@@ -209,23 +203,14 @@ function BookDetailPage(props) {
 							<h4 className='text-xl md:text-2xl font-semibold py-2'>
 								Book description
 							</h4>
-							{console.log('readMoreDesc', readMoreDesc)}
-							<div
+							<p
 								ref={descRef}
-								style={{ lineHeight: 1.5, display: 'inline' }}
 								className={
-									'text-md text-gray-200 font-medium ' +
-									(!readMoreDesc ? 'truncate' : '')
+									'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
+									(!readMoreDesc ? 'line-clamp-4' : '')
 								}>
 								{book.description}
-							</div>
-							{console.log('descLines', descLines)}
-							{console.log(
-								'descRef?.current',
-								descRef?.current?.divHeight,
-								descRef?.current?.lineHeight
-							)}
-							{console.log('getClientRects??', descRef?.current?.getClientRects())}
+							</p>
 							<button
 								onClick={(e) => {
 									setReadMoreDesc(!readMoreDesc)
@@ -233,7 +218,7 @@ function BookDetailPage(props) {
 								}}
 								className={
 									'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-									(descLines < 4 ? 'hidden' : '')
+									(descLines <= 4 ? 'hidden' : '')
 								}>
 								{readMoreDesc ? (
 									<div className='flex'>

@@ -9,6 +9,7 @@ import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 function CollectionPage() {
 	const list = ''
+	const user = 21
 
 	return (
 		<Fragment>
