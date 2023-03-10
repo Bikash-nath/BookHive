@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import Link from 'next/link'
-
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -8,16 +8,8 @@ import { settings } from '../../utils/constants/sliderSettings'
 
 export default function ListSliderModal(props) {
 	const { listTitle, listLink, books } = props
-	const [windowWidth, setWindowWidth] = useState(null)
-	// const router = useRouter()
-	// router.pathname
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, [])
-
+	const windowWidth = useWindowDimensions()
 	return (
 		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent'>
 			<div className='mx-auto md:px-2'>

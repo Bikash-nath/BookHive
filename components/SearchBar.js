@@ -19,11 +19,12 @@ export default function SearchBar(props) {
 	}
 
 	const [keyword, setKeyword] = useState(router.query.keyword || '')
-	const [debouncedTerm, setDebouncedTerm] = useState(keyword)
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
-			if (keyword !== ' ') setDebouncedTerm(keyword)
+			if (keyword && keyword !== ' ') {
+				searchHandler(keyword)
+			}
 		}, 1000)
 
 		if (activeSearch) inputRef.current.focus()
@@ -32,15 +33,6 @@ export default function SearchBar(props) {
 			clearTimeout(timerId)
 		}
 	}, [keyword, activeSearch])
-
-	useEffect(() => {
-		if (debouncedTerm) {
-			searchHandler(keyword)
-		}
-	}, [debouncedTerm]) //don't add other dependency; CallBack hell
-
-	// useEffect(() => { //router on change	-> toggleSearch(false)
-	// }, [router.pathname])
 
 	return (
 		<div className='flex items-center justify-center w-full gap-1 md:gap-2 xl:gap-3'>

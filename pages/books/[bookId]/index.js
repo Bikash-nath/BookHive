@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import { getBookDetails, getBestsellers } from '../../../api/books'
 import SnackbarContext from '../../../store/snackbarContext'
 import BgCover from '../../../components/modals/BgCover'
@@ -31,6 +32,7 @@ function BookDetailPage(props) {
 
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const [descLines, setDescLines] = useState(0)
+	const windowWidth = useWindowDimensions()
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
@@ -82,13 +84,15 @@ function BookDetailPage(props) {
 			<div className='bg-[#0C111B] relative' ref={pageRef}>
 				<ScrollToTop pageRef={pageRef} />
 				<div className='pb-16 xl:pb-12'>
-					<TopNavModal
-						rightIcon={<ShareIcon dimensions='h-6 w-6' color='' />}
-						lastIcon={<BookmarkIcon dimensions='h-7 w-7' color='' />}
-						pageTitle={book.title}
-						coverRef={coverRef}
-						pageRef={pageRef}
-					/>
+					{windowWidth < 1280 && (
+						<TopNavModal
+							rightIcon={<ShareIcon dimensions='h-6 w-6' color='' />}
+							lastIcon={<BookmarkIcon dimensions='h-7 w-7' color='' />}
+							pageTitle={book.title}
+							pageRef={pageRef}
+							coverRef={coverRef}
+						/>
+					)}
 					<BgCover color={props.color} coverRef={coverRef}>
 						<Image
 							src={process.env.BOOKS_URL + book.image.path}
@@ -126,10 +130,7 @@ function BookDetailPage(props) {
 							</div>
 						</div>
 						{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
-						<div
-							className={
-								'flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2 opacity-100 z-10 xl:z-0'
-							}>
+						<div className='flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'>
 							<button
 								className={
 									'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150 ' +

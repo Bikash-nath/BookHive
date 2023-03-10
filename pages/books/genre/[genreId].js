@@ -1,6 +1,7 @@
 import { useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 
+import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
@@ -12,6 +13,8 @@ import HeartIcon from '../../../assets/icons/HeartIcon'
 function GenreBooksPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const coverRef = useRef()
+	const pageRef = useRef(null)
+	const windowWidth = useWindowDimensions()
 
 	useEffect(() => {
 		if (!props.genre) toggleSpinner(true)
@@ -24,12 +27,15 @@ function GenreBooksPage(props) {
 				<title>{props.genre + ' books'}</title>
 				<meta name='description' content={`${props.genre} books section`} />
 			</Head>
-			<div className='px-1 xl:p-2 pb-16 xl:pb-12'>
-				<TopNavModal
-					rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />}
-					pageTitle={props.genre}
-					coverRef={coverRef}
-				/>
+			<div className='pb-16 xl:pb-12' ref={pageRef}>
+				{windowWidth < 1280 && (
+					<TopNavModal
+						rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />}
+						pageTitle={props.genre}
+						coverRef={coverRef}
+						pageRef={pageRef}
+					/>
+				)}
 				<ListGridModal listTitle={`${props.genre} books`} coverRef={coverRef}>
 					{props.books.length ? (
 						<BookCards books={props.books} />

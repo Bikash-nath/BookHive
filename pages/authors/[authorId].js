@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import { useRouter } from 'next/router'
 
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
@@ -18,10 +19,11 @@ function AuthorDetailPage(props) {
 	const { author } = props
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	const [bioLines, setBioLines] = useState(0)
+	const windowWidth = useWindowDimensions()
 
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
-	// const router = useRouter()
+	const pageRef = useRef(null)
 
 	const readMoreBioHandler = () => {
 		const bioEl = bioRef.current
@@ -46,8 +48,10 @@ function AuthorDetailPage(props) {
 				<meta name='bioription' content='Author detail page' />
 			</Head>
 
-			<div className='bg-[#0C111B] pb-16 xl:pb-12'>
-				<TopNavModal pageTitle={author.name} coverRef={coverRef} />
+			<div className='bg-[#0C111B] pb-16 xl:pb-12' ref={pageRef}>
+				{windowWidth < 1280 && (
+					<TopNavModal pageTitle={author.name} pageRef={pageRef} coverRef={coverRef} />
+				)}
 				<BgCover color={props.color} coverRef={coverRef}>
 					<div className='flex items-center justify-between p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
 						<Image

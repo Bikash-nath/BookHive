@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 import { SnackbarContextProvider } from '../../store/snackbarContext'
 import { SearchToggleContextProvider } from '../../store/searchToggleContext'
 import Header from './Header'
@@ -7,20 +8,8 @@ import Sidebar from './Sidebar'
 import PageContainer from './PageContainer'
 
 function Container(props) {
-	const [windowWidth, setWindowWidth] = useState(null)
-
 	const headerRef = useRef()
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			window.addEventListener('load', () => {
-				setTimeout(() => window.scrollTo(0, 1), 0)
-				console.log('Container scrollToTop..')
-			})
-			// window.scrollTo(0, 1)
-			setWindowWidth(window.innerWidth)
-		}
-	}, []) //router.asPath
+	const windowWidth = useWindowDimensions()
 
 	return (
 		<SnackbarContextProvider>

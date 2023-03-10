@@ -5,33 +5,35 @@ function ScrollToTop({ pageRef }) {
 	const router = useRouter()
 
 	useEffect(() => {
-		router.events.on('routeChangeStart', (url) => {
-			if (typeof window !== 'undefined') {
-				// setTimeout(function () {
-				// 	window.scrollTo(0, 0)
-				// }, 200)
-				if (pageRef?.current) {
-					pageRef.current.scrollTo(0, 0)
-					console.log('pageRef.current', pageRef.current.scrollTo(0, 0))
-				}
+		// router.events.on('routeChangeStart', (url) => {
+		// 	if (typeof window !== 'undefined') {
+		// 		// setTimeout(function () {
+		// 		// 	window.scrollTo(0, 0)
+		// 		// }, 200)
+		console.log(pageRef)
 
-				// window.focus();
-				// window.scrollTo(0, 0)
-
-				// document.body.scrollTop(0)
-				// document.getElementById('root').scrollTo(0, 0)
-				// document.querySelector('#dummy_element').scrollIntoView()
-				// window.scrollTo({ top: 0, behavior: 'smooth' })
-				console.log('ScrollTop on routeChangeStart⭐')
-			}
-		})
-
-		return () => {
-			router.events.off('routeChangeStart', () => {
-				console.log('Unsuscribed routeChangeComplete')
-			})
+		if (pageRef?.current) {
+			pageRef.current.scrollTo(0, 0)
+			console.log('pageRef.current', pageRef.current.scrollTo)
 		}
-	}, []) //router.events
+
+		// window.focus();
+		// window.scrollTo(0, 0)
+
+		// document.body.scrollTop(0)
+		// document.getElementById('root').scrollTo(0, 0)
+		// document.querySelector('#dummy_element').scrollIntoView()
+		// window.scrollTo({ top: 0, behavior: 'smooth' })
+		// 		console.log('ScrollTop on routeChangeStart⭐')
+		// 	}
+		// })
+
+		// return () => {
+		// 	router.events.off('routeChangeStart', () => {
+		// 		console.log('Unsuscribed routeChangeComplete')
+		// 	})
+		// }
+	}, [pageRef?.current]) //router.events
 
 	return <></>
 }

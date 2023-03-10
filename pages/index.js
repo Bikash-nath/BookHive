@@ -1,11 +1,13 @@
-import { useState, useEffect, useContext, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
+import useWindowDimensions from '../hooks/useWindowDimensions'
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../api/books'
 import { getTopAuthors } from '../api/authors'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
+import ScrollToTop from '../components/ScrollToTop'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import BookCards from '../components/cards/BookCards'
 import AuthorCards from '../components/cards/AuthorCards'
@@ -18,18 +20,14 @@ import AccountIcon from '../assets/icons/AccountIcon'
 function HomePage(props) {
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
-	const [windowWidth, setWindowWidth] = useState(null)
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
-		}
-	}, []) //router.asPath
+	const windowWidth = useWindowDimensions()
 
 	useEffect(() => {
 		setActiveUser(user)
 		// if (!activeUser?.data) getUserProfile()
 	}, [user])
+
+	const pageRef = useRef(null)
 
 	return (
 		<Fragment>
@@ -40,7 +38,8 @@ function HomePage(props) {
 					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
 				/>
 			</Head>
-			<div className='page-gradient pb-16 xl:pb-12'>
+			<div className='page-gradient pb-16 xl:pb-12' ref={pageRef}>
+				<ScrollToTop pageRef={pageRef} />
 				{windowWidth < 1280 && (
 					<div className='block'>
 						<PageHeader

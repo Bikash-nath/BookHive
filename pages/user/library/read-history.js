@@ -4,8 +4,9 @@ import Head from 'next/head'
 import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
-import TopNavModal from '../../../components/modals/TopNavModal'
 import HistoryIcon from '../../../assets/icons/HistoryIcon'
+// import useWindowDimensions from '../../../hooks/useWindowDimensions'
+// import TopNavModal from '../../../components/modals/TopNavModal'
 
 function ReadHistoryPage() {
 	const userCtx = useContext(UserContext)
