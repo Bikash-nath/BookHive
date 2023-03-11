@@ -4,7 +4,7 @@ import Head from 'next/head'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/books'
 import ListGridModal from '../../../components/modals/ListGridModal'
-import BookCards from '../../../components/cards/BookCards'
+import BookCard from '../../../components/cards/BookCard'
 import TopNavModal from '../../../components/modals/TopNavModal'
 // import Paginate from '../../../components/ui/Paginate'
 
@@ -13,18 +13,22 @@ function BookListPage(props) {
 	const pageRef = useRef(null)
 	const windowWidth = useWindowDimensions()
 
-	return props.category ? (
+	const categoryTitle = props.category?.substr(0, 1).toUpperCase() + props.category?.substr(1)
+
+	return categoryTitle ? (
 		<Fragment>
 			<Head>
-				<title>{`${props.category}`}</title>
-				<meta name='description' content={`A list of all ${props.category}`} />
+				<title>{`${categoryTitle}`}</title>
+				<meta name='description' content={`A list of all ${categoryTitle}`} />
 			</Head>
 			<div className='pb-16 xl:pb-12' ref={pageRef}>
 				{windowWidth < 1280 && (
-					<TopNavModal pageTitle={props.category} pageRef={pageRef} coverRef={coverRef} />
+					<TopNavModal pageTitle={categoryTitle} pageRef={pageRef} coverRef={coverRef} />
 				)}
-				<ListGridModal listTitle={`${props.category}`} coverRef={coverRef}>
-					{<BookCards books={props.books} />}
+				<ListGridModal listTitle={`${categoryTitle}`} coverRef={coverRef}>
+					{props.books.map((book) => (
+						<BookCard book={book} />
+					))}
 				</ListGridModal>
 				{/* <Paginate totalPages={5} page={1} /> */}
 			</div>

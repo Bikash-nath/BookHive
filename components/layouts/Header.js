@@ -28,7 +28,7 @@ function Header(props) {
 	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
 	useEffect(() => {
-		setActiveUser(userCtx.user)
+		setActiveUser(userCtx.user?.data)
 		// if (!activeUser?.data) getUserProfile()
 	}, [userCtx.user])
 
@@ -66,11 +66,10 @@ function Header(props) {
 	}
 	// from-[#131a27] via-[#121927] to-[#111724]
 	return (
-		//hidden xl:
 		showRoute && (
 			<header
 				ref={props.headerRef}
-				className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
+				className='hidden xl:flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
 				<nav className='mx-auto p-1 w-screen'>
 					{activeSearch ? (
 						<div
@@ -95,7 +94,7 @@ function Header(props) {
 								</div>
 
 								<div className='flex items-center space-x-3 cursor-pointer rounded-full pr-2'>
-									{activeUser?.name ? (
+									{activeUser ? (
 										<>
 											<div className='flex items-center cursor-pointer p-2 space-x-4 focus:bg-slate-800'>
 												<BellIcon dimensions='h-7 w-7' />
@@ -114,7 +113,7 @@ function Header(props) {
 													{activeUser?.image ? (
 														<img
 															className='rounded-full w-7 h-7'
-															src={activeUser?.data.image}
+															src={activeUser?.image}
 															alt='user image'
 														/>
 													) : (

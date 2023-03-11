@@ -9,11 +9,12 @@ import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
 import ScrollToTop from '../components/ScrollToTop'
 import ListSliderModal from '../components/modals/ListSliderModal'
-import BookCards from '../components/cards/BookCards'
-import AuthorCards from '../components/cards/AuthorCards'
+import BookCard from '../components/cards/BookCard'
+import AuthorCard from '../components/cards/AuthorCard'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
 import AccountIcon from '../assets/icons/AccountIcon'
+
 // import HamburgerIcon from '../assets/icons/HamburgerIcon'
 // import SpinnerContext from '../store/spinnerContext'
 
@@ -23,7 +24,7 @@ function HomePage(props) {
 	const windowWidth = useWindowDimensions()
 
 	useEffect(() => {
-		setActiveUser(user)
+		setActiveUser(user?.data)
 		// if (!activeUser?.data) getUserProfile()
 	}, [user])
 
@@ -70,18 +71,26 @@ function HomePage(props) {
 					<ListSliderModal
 						listTitle='Popular books'
 						listLink='/books/category/bestsellers'>
-						<BookCards books={props.bestsellers} />
+						{props.bestsellers?.map((book) => (
+							<BookCard book={book} />
+						))}
 					</ListSliderModal>
 					<ListSliderModal
 						listTitle='Featured Audiobooks'
 						listLink='/books/category/audiobooks'>
-						<BookCards books={props.audiobooks} />
+						{props.audiobooks?.map((book) => (
+							<BookCard book={book} />
+						))}
 					</ListSliderModal>
 					<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
-						<BookCards books={props.latestBooks} />
+						{props.latestBooks?.map((book) => (
+							<BookCard book={book} />
+						))}
 					</ListSliderModal>
 					<ListSliderModal listTitle='Popular authors' listLink='/authors'>
-						<AuthorCards authors={props.authors} />
+						{props.authors?.map((author) => (
+							<AuthorCard author={author} />
+						))}
 					</ListSliderModal>
 				</div>
 			</div>

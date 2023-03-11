@@ -14,7 +14,7 @@ export default function ListGridModal(props) {
 					}
 					ref={props.coverRef}>
 					<h3 className='text-xl xl:text-3xl font-semibold leading-relaxed text-center xl:text-left w-full'>
-						{props.listTitle.substr(0, 1).toUpperCase() + props.listTitle.substr(1)}
+						{props.listTitle}
 					</h3>
 				</div>
 			)}

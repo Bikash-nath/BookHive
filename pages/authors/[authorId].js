@@ -8,7 +8,7 @@ import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'
-import BookCards from '../../components/cards/BookCards'
+import BookCard from '../../components/cards/BookCard'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
 import HeartIcon from '../../assets/icons/HeartIcon'
@@ -133,7 +133,9 @@ function AuthorDetailPage(props) {
 				)}
 				{author.books?.length ? (
 					<ListGridModal listTitle='Author Books'>
-						{<BookCards books={author.books} />}
+						{author.books?.map((book) => (
+							<BookCard book={book} />
+						))}
 					</ListGridModal>
 				) : (
 					<></>

@@ -10,13 +10,13 @@ import SettingsIcon from '../../../assets/icons/SettingsIcon'
 import Link from 'next/link'
 
 function AccountPage(props) {
-	const userCtx = useContext(UserContext)
+	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
 
 	useEffect(() => {
-		setActiveUser(userCtx.user)
-		// if (!activeUser?.data) getUserAccount()
-	}, [activeUser])
+		setActiveUser(user?.data)
+		// if (!activeUser) getUserAccount()
+	}, [user])
 
 	return (
 		<Fragment>
@@ -25,7 +25,7 @@ function AccountPage(props) {
 				<meta name='description' content='Settings section' />
 			</Head>
 
-			{!activeUser?.data ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Access Your Account'
 					message='Please login to access your personal account'
@@ -44,10 +44,10 @@ function AccountPage(props) {
 						}
 					/>
 					<div className='flex flex-col items-center justify-center py-6 xl:py-12 w-full gap-6 xl:gap-8'>
-						{activeUser?.data.image ? (
+						{activeUser?.image ? (
 							<Image
 								src={process.env.BOOKS_URL + activeUser?.image}
-								alt={activeUser.data.name}
+								alt={activeUser.name}
 								height={32}
 								width={32}
 								className='rounded-full p-1 w-8 h-8'
@@ -57,38 +57,38 @@ function AccountPage(props) {
 						)}
 						<div>
 							<div className='flex items-start justify-start w-full p-2'>
-								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+								<p className='text-xl md:text-2xl font-medium text-white text-left px-4'>
 									Name
 								</p>
 							</div>
 							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
-								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
-									{activeUser.data.name}
+								<p className='text-lg md:text-xl rounded-md py-2 font-medium px-4'>
+									{activeUser.name}
 								</p>
 							</div>
 						</div>
 						<div>
 							<div className='flex items-start justify-start w-full p-2'>
-								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+								<p className='text-xl md:text-2xl font-medium text-white text-left px-4'>
 									Email
 								</p>
 							</div>
 							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
-								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
-									{activeUser.data.email}
+								<p className='text-lg md:text-xl rounded-md py-2 font-medium px-4'>
+									{activeUser.email}
 								</p>
 							</div>
 						</div>
 						<div>
 							<div className='flex items-start justify-start w-full p-2'>
-								<p className='text-xl md:text-2xl font-semibold text-white text-left px-4'>
+								<p className='text-xl md:text-2xl font-medium text-white text-left px-4'>
 									Location
 								</p>
 							</div>
 							{console.log(activeUser)}
 							<div className='rounded-lg w-[90vw] md:w-[50vw] xl:w-[30vw] px-2 bg-[#192132]'>
-								<p className='text-lg md:text-xl rounded-md py-2 font-semibold px-4'>
-									{activeUser.data.address?.country}
+								<p className='text-lg md:text-xl rounded-md py-2 font-medium px-4'>
+									{activeUser.address?.country}
 								</p>
 							</div>
 						</div>

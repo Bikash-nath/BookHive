@@ -7,9 +7,9 @@ import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import ListSliderModal from '../../../components/modals/ListGridModal'
-import BookCards from '../../../components/cards/BookCards'
+import BookCard from '../../../components/cards/BookCard'
 import GenreListModal from '../../../components/modals/GenreListModal'
-import AuthorCards from '../../../components/cards/AuthorCards'
+import AuthorCard from '../../../components/cards/AuthorCard'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 function LibraryPage(props) {
@@ -17,7 +17,7 @@ function LibraryPage(props) {
 	const [activeUser, setActiveUser] = useState(null)
 
 	useEffect(() => {
-		setActiveUser(userCtx.user)
+		setActiveUser(userCtx.user?.data)
 		// if (!activeUser?.data) getUserProfile()
 	}, [activeUser])
 
@@ -27,7 +27,7 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			{!activeUser?.data ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Enjoy Your Favourite Books'
 					message='Log in to see saved books, authors,
@@ -43,7 +43,7 @@ function LibraryPage(props) {
 								listTitle='Saved books'
 								listLink={activeUser.books?.length && '/user/library/collections'}>
 								{activeUser.books?.length ? (
-									<BookCards books={author.books} />
+									props.bestsellers?.map((book) => <BookCard book={book} />)
 								) : (
 									<p className='text-base md:text-lg xl:text-lg text-gray-300 xl:px-6'>
 										You do not have any saved books.
@@ -71,7 +71,7 @@ function LibraryPage(props) {
 								listTitle='Favourites genres'
 								listLink={activeUser.genres?.length && '/user/library/collections'}>
 								{activeUser.genres?.length ? (
-									<AuthorCards authors={props.authors} />
+									props.authors?.map((author) => <AuthorCard author={author} />)
 								) : (
 									<p className='text-base md:text-lg text-gray-300 xl:px-6'>
 										You did not follow any authors yet.

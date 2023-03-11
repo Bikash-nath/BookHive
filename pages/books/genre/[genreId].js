@@ -5,7 +5,7 @@ import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
-import BookCards from '../../../components/cards/BookCards'
+import BookCard from '../../../components/cards/BookCard'
 import TopNavModal from '../../../components/modals/TopNavModal'
 // import Paginate from '../../../components/ui/Paginate'
 import HeartIcon from '../../../assets/icons/HeartIcon'
@@ -38,7 +38,7 @@ function GenreBooksPage(props) {
 				)}
 				<ListGridModal listTitle={`${props.genre} books`} coverRef={coverRef}>
 					{props.books.length ? (
-						<BookCards books={props.books} />
+						props.books?.map((book) => <BookCard book={book} />)
 					) : (
 						<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
 					)}

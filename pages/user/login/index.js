@@ -19,7 +19,6 @@ function LoginEmailPage(props) {
 	const [showPassword, setShowPassword] = useState(false)
 
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.user
 	const snackbarCtx = useContext(SnackbarContext)
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
@@ -28,8 +27,8 @@ function LoginEmailPage(props) {
 		e.preventDefault()
 		toggleSpinner(true)
 		const user = await login(email, password)
-		if (user.data.user) {
-			userCtx.addUser(user.data.user)
+		if (user.data) {
+			userCtx.addUser(user)
 			snackbarCtx.addMessage({ title: 'Log in successfull', status: 'success' })
 		} else {
 			snackbarCtx.addMessage({ title: user })
@@ -38,8 +37,8 @@ function LoginEmailPage(props) {
 	}
 
 	useEffect(() => {
-		if (activeUser?.data) router.push('/')
-	}, [router, activeUser])
+		if (userCtx.user?.data) router.push('/')
+	}, [userCtx.user, router])
 
 	return (
 		<Fragment>

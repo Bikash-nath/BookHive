@@ -21,7 +21,6 @@ function SignUpPage(props) {
 	const [showPasswordConfirm, setShowPasswordConfirm] = useState(null)
 
 	const userCtx = useContext(UserContext)
-	const activeUser = userCtx.user
 	const snackbarCtx = useContext(SnackbarContext)
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
@@ -42,8 +41,8 @@ function SignUpPage(props) {
 	}
 
 	useEffect(() => {
-		if (activeUser?.data) router.push('/')
-	}, [router, activeUser])
+		if (userCtx.user?.data) router.push('/')
+	}, [userCtx.user, router])
 
 	return (
 		<Fragment>

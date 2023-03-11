@@ -8,7 +8,7 @@ const userInfoFromStorage =
 		: null
 
 const UserContext = createContext({
-	user: { userInfo: userInfoFromStorage },
+	user: userInfoFromStorage,
 	addUser: function (userData) {},
 	removeUser: function () {},
 })

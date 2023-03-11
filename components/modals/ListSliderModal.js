@@ -8,8 +8,8 @@ import { settings } from '../../utils/constants/sliderSettings'
 
 export default function ListSliderModal(props) {
 	const { listTitle, listLink, books } = props
-
 	const windowWidth = useWindowDimensions()
+
 	return (
 		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent'>
 			<div className='mx-auto md:px-2'>
@@ -27,7 +27,7 @@ export default function ListSliderModal(props) {
 				</div>
 				{windowWidth < 1280 ? (
 					<div className='overflow-hidden overflow-x-scroll hide-scrollbar mr-1'>
-						<div className='flex items-start justify-start gap-0 xs:gap-2 w-full h-full'>
+						<div className='flex items-start justify-start gap-2 sm:gap-3 w-full h-full'>
 							{props.children}
 						</div>
 					</div>

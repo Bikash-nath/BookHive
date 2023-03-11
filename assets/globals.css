@@ -59,6 +59,10 @@
 	@apply w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900;
 }
 
+.animate-slideup {
+	transition: all 0.2s ease-in-out;
+}
+
 html {
 	position: absolute;
 	left: 0;

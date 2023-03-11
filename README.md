@@ -38,5 +38,5 @@ In case of more serious matters, like bug reports and other unexpected behavior,
 <br>
 
 <h3 align="center">
-Liked this project?? If yes, don't forget to show your love ❤️ by putting a ⭐ on this project ✌️
+Liked this project?? If yes, don't forget to show your love by putting a ⭐ on this project ✌️
 </h3>
