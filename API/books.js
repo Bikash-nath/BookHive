@@ -1,8 +1,8 @@
 import axios from '../lib/axiosConfig'
 
-export const getBestsellers = async (limit = 30) => {
+export const getBestsellers = async (query) => {
 	try {
-		const { data } = await axios.get(`/books/bestsellers?limit=${limit}`)
+		const { data } = await axios.get('/books/bestsellers', { params: query })
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -11,9 +11,9 @@ export const getBestsellers = async (limit = 30) => {
 	}
 }
 
-export const getTopAudiobooks = async (limit) => {
+export const getTopAudiobooks = async (query) => {
 	try {
-		const { data } = await axios.get(`/books/audiobooks?limit=${limit}`)
+		const { data } = await axios.get('/books/audiobooks', { params: query })
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -22,9 +22,9 @@ export const getTopAudiobooks = async (limit) => {
 	}
 }
 
-export const getLatestBooks = async (limit) => {
+export const getLatestBooks = async (query) => {
 	try {
-		const { data } = await axios.get(`/books/latest/?limit=${limit}`)
+		const { data } = await axios.get('/books/latest/', { params: query })
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -33,9 +33,9 @@ export const getLatestBooks = async (limit) => {
 	}
 }
 
-export const getIndianBooks = async (limit) => {
+export const getIndianBooks = async (query) => {
 	try {
-		const { data } = await axios.get(`/books/indian/?limit=${limit}`)
+		const { data } = await axios.get('/books/indian/', { params: query })
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message
@@ -44,9 +44,9 @@ export const getIndianBooks = async (limit) => {
 	}
 }
 
-export const searchBooks = async (keyword = '', limit = 30) => {
+export const searchBooks = async (query) => {
 	try {
-		const { data } = await axios.get(`/books/search?keyword=${keyword}&limit=${limit}`)
+		const { data } = await axios.get('/books/search', { params: query })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -55,9 +55,9 @@ export const searchBooks = async (keyword = '', limit = 30) => {
 	}
 }
 
-export const getSimilarBooks = async (bookId) => {
+export const getSimilarBooks = async (bookId, query) => {
 	try {
-		const { data } = await axios.get(`/books/${bookId}/similar/?limit=${limit}`)
+		const { data } = await axios.get(`/books/${bookId}/similar/`, { params: query })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message

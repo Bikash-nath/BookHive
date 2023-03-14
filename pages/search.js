@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { searchBooks } from '../api/books'
 import SearchBar from '../components/SearchBar'
 import ListGridModel from '../components/modals/ListGridModal'
+import BookCard from '../components/cards/BookCard'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
 
@@ -20,7 +21,7 @@ function SearchPage() {
 		if (keyword) {
 			;(async () => {
 				toggleSpinner(true)
-				const result = await searchBooks(keyword)
+				const result = await searchBooks(router.query)
 				console.log('result Search:', result)
 				setSearchResult(result.data)
 				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
@@ -44,7 +45,11 @@ function SearchPage() {
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
-						<ListGridModel books={searchResult} />
+						<ListGridModel>
+							{searchResult?.map((book) => (
+								<BookCard book={book} />
+							))}
+						</ListGridModel>
 					</>
 				) : (
 					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>

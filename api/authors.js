@@ -1,8 +1,8 @@
 import axios from '../lib/axiosConfig'
 
-export const getTopAuthors = async (limit = 30) => {
+export const getTopAuthors = async (query) => {
 	try {
-		const { data } = await axios.get(`/authors/top?limit=${limit}`)
+		const { data } = await axios.get('/authors/top', { params: query })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -11,9 +11,9 @@ export const getTopAuthors = async (limit = 30) => {
 	}
 }
 
-export const getAuthorDetails = async (authorId) => {
+export const getAuthorDetails = async (authorId, query) => {
 	try {
-		const { data } = await axios.get(`/authors/${authorId}/`)
+		const { data } = await axios.get(`/authors/${authorId}/`, { params: query })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -22,9 +22,9 @@ export const getAuthorDetails = async (authorId) => {
 	}
 }
 
-export const getSimilarAuthors = async (authorId) => {
+export const getSimilarAuthors = async (authorId, query) => {
 	try {
-		const { data } = await axios.get(`/authors/${authorId}/similar/`)
+		const { data } = await axios.get(`/authors/${authorId}/similar/`, { params: query })
 		return data
 	} catch (error) {
 		return error.response?.data.error_message
@@ -33,7 +33,7 @@ export const getSimilarAuthors = async (authorId) => {
 	}
 }
 
-// export const getAllAuthors = async () => {
+// export const getAllAuthors = async (,query) => {
 // 	try {
 // 		const { data } = await axios.get('/authors/all/')
 // 		return data

@@ -57,7 +57,7 @@ function LoginEmailPage(props) {
 					}}
 					placeholder='Enter email address or phone'
 					type='email'
-					className='input-field mb-4 focus:border focus:border-purple-600'
+					className='input-field mb-4'
 				/>
 				<div className='relative'>
 					<input
@@ -65,7 +65,7 @@ function LoginEmailPage(props) {
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder='Enter your password'
 						type={!showPassword ? 'password' : 'text'}
-						className='input-field mb-4 focus:border focus:border-purple-600 box-border'
+						className='input-field mb-4 box-border'
 					/>
 					{password ? (
 						!showPassword ? (

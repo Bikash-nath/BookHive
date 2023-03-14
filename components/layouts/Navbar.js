@@ -21,7 +21,6 @@ function Navbar(props) {
 	}
 
 	return (
-		//flex-grow xl:
 		showRoute && (
 			<div
 				className='fixed bottom-0 z-20 w-screen scale-100 p-[.45rem] md:p-2 m-0 text-white bg-[#030b17] shadow-inner shadow-gray-800'

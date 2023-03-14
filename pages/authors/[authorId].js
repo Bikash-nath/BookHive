@@ -133,8 +133,8 @@ function AuthorDetailPage(props) {
 				)}
 				{author.books?.length ? (
 					<ListGridModal listTitle='Author Books'>
-						{author.books?.map((book) => (
-							<BookCard book={book} />
+						{author.books?.map((book, i) => (
+							<BookCard book={book} key={i} />
 						))}
 					</ListGridModal>
 				) : (

@@ -16,6 +16,7 @@ function Container(props) {
 			{/*overflow-scroll overflow-x-hidden overflow-y-scroll || xl:overflow-hidden || overflow-auto*/}
 			<div className='overflow-scroll xl:overflow-hidden hide-scrollbar'>
 				<div className='flex h-screen relative'>
+					{console.log('windowWidth', windowWidth)}
 					{windowWidth > 1280 && <Sidebar />}
 					<SearchToggleContextProvider>
 						<main className='flex-grow overflow-y-scroll select-none h-full page-gradient '>

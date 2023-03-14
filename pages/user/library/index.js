@@ -43,7 +43,9 @@ function LibraryPage(props) {
 								listTitle='Saved books'
 								listLink={activeUser.books?.length && '/user/library/collections'}>
 								{activeUser.books?.length ? (
-									props.bestsellers?.map((book) => <BookCard book={book} />)
+									props.bestsellers?.map((book, i) => (
+										<BookCard book={book} key={i} />
+									))
 								) : (
 									<p className='text-base md:text-lg xl:text-lg text-gray-300 xl:px-6'>
 										You do not have any saved books.

@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
@@ -49,6 +48,7 @@ function SettingsPage() {
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'>
+							<LogoutIcon dimensions='h-8 w-8' />
 							<p className='w-40 mx-auto'>Change password</p>
 						</button>
 					</div>

@@ -1,8 +1,8 @@
 import axios from '../lib/axiosConfig'
 
-export const getGenreBooks = async (genre, limit = 30) => {
+export const getGenreBooks = async (genre, query) => {
 	try {
-		const { data } = await axios.get(`/genres/${genre}/books?limit=${limit}`)
+		const { data } = await axios.get(`/genres/${genre}/books`, { params: query })
 		// const bookList = bookList.map(genre => genre.books)
 		return data
 	} catch (error) {
@@ -14,7 +14,7 @@ export const getGenreBooks = async (genre, limit = 30) => {
 
 export const getTopGenres = async () => {
 	try {
-		const { data } = await axios.get(`/genres/top/`)
+		const { data } = await axios.get('/genres/top/')
 		return data
 	} catch (error) {
 		return error.response && error.response.data.error_message

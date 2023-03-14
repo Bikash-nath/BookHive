@@ -56,7 +56,7 @@
 }
 
 .input-field {
-	@apply w-full my-2 p-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900;
+	@apply w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border focus:border-purple-600;
 }
 
 .animate-slideup {

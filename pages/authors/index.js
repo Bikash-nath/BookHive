@@ -6,6 +6,7 @@ import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
 import AuthorCard from '../../components/cards/AuthorCard'
 import TopNavModal from '../../components/modals/TopNavModal'
+// import Paginate from '../../components/widgets/Paginate'
 
 function AuthorListPage(props) {
 	const coverRef = useRef()
@@ -35,6 +36,7 @@ function AuthorListPage(props) {
 							<AuthorCard author={author} />
 						))}
 					</ListGridModal>
+					{/* <Paginate totalPages={5} page={1} /> */}
 				</div>
 			</div>
 		</Fragment>

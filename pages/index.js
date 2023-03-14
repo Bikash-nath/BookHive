@@ -71,25 +71,25 @@ function HomePage(props) {
 					<ListSliderModal
 						listTitle='Popular books'
 						listLink='/books/category/bestsellers'>
-						{props.bestsellers?.map((book) => (
-							<BookCard book={book} />
+						{props.bestsellers?.map((book, i) => (
+							<BookCard book={book} key={i} />
 						))}
 					</ListSliderModal>
 					<ListSliderModal
 						listTitle='Featured Audiobooks'
 						listLink='/books/category/audiobooks'>
-						{props.audiobooks?.map((book) => (
-							<BookCard book={book} />
+						{props.audiobooks?.map((book, i) => (
+							<BookCard book={book} key={i} />
 						))}
 					</ListSliderModal>
 					<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
-						{props.latestBooks?.map((book) => (
-							<BookCard book={book} />
+						{props.latestBooks?.map((book, i) => (
+							<BookCard book={book} key={i} />
 						))}
 					</ListSliderModal>
 					<ListSliderModal listTitle='Popular authors' listLink='/authors'>
-						{props.authors?.map((author) => (
-							<AuthorCard author={author} />
+						{props.authors?.map((author, i) => (
+							<AuthorCard author={author} key={i} />
 						))}
 					</ListSliderModal>
 				</div>
@@ -99,10 +99,10 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	const bestsellers = await getBestsellers(15)
-	const audiobooks = await getTopAudiobooks(15)
-	const latestBooks = await getLatestBooks(15)
-	const authors = await getTopAuthors(15)
+	const bestsellers = await getBestsellers({ limit: 15 })
+	const audiobooks = await getTopAudiobooks({ limit: 15 })
+	const latestBooks = await getLatestBooks({ limit: 15 })
+	const authors = await getTopAuthors({ limit: 15 })
 
 	if (!bestsellers.data)
 		return {

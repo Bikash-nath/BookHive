@@ -44,7 +44,7 @@ function Sidebar() {
 	return (
 		//hidden xl:
 		showRoute && (
-			<div className='overflow-y-hidden hide-scrollbar hidden xl:inline-block relative p-2 min-w-[13rem] bg-[#030b17] border-r border-gray-900'>
+			<div className='overflow-y-hidden hide-scrollbar inline-block relative p-2 min-w-[13rem] bg-[#030b17] border-r border-gray-900'>
 				<div className='space-y-5 cursor-pointer'>
 					<div className='flex items-center space-x-20'>
 						<Logo size={46} />

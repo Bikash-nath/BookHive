@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 
 import UserContext from '../../../store/userContext'
@@ -7,7 +8,6 @@ import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import AccountIcon from '../../../assets/icons/AccountIcon'
 import SettingsIcon from '../../../assets/icons/SettingsIcon'
-import Link from 'next/link'
 
 function AccountPage(props) {
 	const { user } = useContext(UserContext)

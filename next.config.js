@@ -26,8 +26,9 @@ const nextConfig = (phase) => {
 	const hostnames = [
 		'bookhive-books.s3.amazonaws.com',
 		'bookhive-authors.s3.amazonaws.com',
-		'bookhive-genres.s3.amazonaws.com',
+		'bookhive-genre.s3.ap-south-1.amazonaws.com',
 		'bookhive-users.s3.amazonaws.com',
+		'bookhive-epub.s3.ap-south-1.amazonaws.com',
 	]
 
 	return {
@@ -42,8 +43,9 @@ const nextConfig = (phase) => {
 			API_URL: 'http://44.213.188.30:3000/api',
 			BOOKS_URL: 'https://bookhive-books.s3.amazonaws.com/',
 			AUTHORS_URL: 'https://bookhive-authors.s3.amazonaws.com/',
-			GENRES_URL: 'https://bookhive-genres.s3.amazonaws.com/',
+			GENRES_URL: 'https://bookhive-genre.s3.ap-south-1.amazonaws.com/',
 			USERS_URL: 'https://bookhive-users.s3.amazonaws.com/',
+			EBOOK_URL: 'https://bookhive-epub.s3.ap-south-1.amazonaws.com/',
 		},
 	}
 }

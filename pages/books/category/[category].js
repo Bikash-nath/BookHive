@@ -6,7 +6,7 @@ import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/b
 import ListGridModal from '../../../components/modals/ListGridModal'
 import BookCard from '../../../components/cards/BookCard'
 import TopNavModal from '../../../components/modals/TopNavModal'
-// import Paginate from '../../../components/ui/Paginate'
+// import Paginate from '../../../components/widgets/Paginate'
 
 function BookListPage(props) {
 	const coverRef = useRef(null)

@@ -6,11 +6,9 @@ import HeadphoneIcon from '../../assets/icons/HeadphoneIcon'
 function BookCards({ book }) {
 	// return books?.map((book) => (
 	return (
-		<div
-			className='flex items-center justify-center my-auto xl:mx-2 xl:my-3 w-full h-full rounded-md group-hover:flex'
-			key={book._id}>
+		<div className='flex items-center justify-center w-full h-full rounded-md group-hover:flex'>
 			<Link href={`/books/${book.slug}`}>
-				<div className='relative flex flex-col w-28 h-52 xl:w-40 xl:h-72 rounded-md p-[0.1rem] xl:p-[0.2rem] bg-[#192132] hover:bg-slate-800 hover:scale-105 transform duration-100 backdrop-blur-3xl'>
+				<div className='relative flex flex-col w-28 h-52 xl:w-40 xl:h-72 rounded-md p-[0.1rem] xl:p-[0.2rem] bg-[#192132] xl:hover:bg-slate-800  xl:hover:scale-105 transform duration-100 backdrop-blur-xl'>
 					<button className='absolute top-1 right-1 xl:top-2 xl:right-2 z-10 rounded-full bg-slate-900 p-1'>
 						<HeadphoneIcon className='' dimensions='h-5 w-5' />
 					</button>
