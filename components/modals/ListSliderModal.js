@@ -1,14 +1,25 @@
 // import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
+import BookCard from '../cards/BookCard'
+import AuthorCard from '../cards/AuthorCard'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { settings } from '../../utils/constants/sliderSettings'
 
-export default function ListSliderModal(props) {
-	const { listTitle, listLink, books } = props
-	const windowWidth = useWindowDimensions()
+export default function ListSliderModal({ listTitle, listLink, books, authors }) {
+	const windowWidth = useWindowWidth()
+
+	const silderContent = books ? (
+		books.length ? (
+			books.map((book, i) => <BookCard book={book} key={i} />)
+		) : (
+			<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
+		)
+	) : (
+		authors?.map((author, i) => <AuthorCard author={author} key={i} />)
+	)
 
 	return (
 		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent'>
@@ -30,12 +41,12 @@ export default function ListSliderModal(props) {
 				{windowWidth < 1280 ? (
 					<div className='overflow-hidden overflow-x-scroll hide-scrollbar'>
 						<div className='flex items-start justify-start gap-2 sm:gap-3 w-full h-full'>
-							{props.children}
+							{silderContent}
 						</div>
 					</div>
 				) : (
 					<div className='h-auto group lg:px-8 xl:px-12'>
-						<Slider {...settings}>{props.children}</Slider>
+						<Slider {...settings}>{silderContent}</Slider>
 					</div>
 				)}
 			</div>

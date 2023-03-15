@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 import { SnackbarContextProvider } from '../../store/snackbarContext'
 import { SearchToggleContextProvider } from '../../store/searchToggleContext'
 import Header from './Header'
@@ -9,7 +9,7 @@ import PageContainer from './PageContainer'
 
 function Container(props) {
 	const headerRef = useRef()
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	return (
 		<SnackbarContextProvider>

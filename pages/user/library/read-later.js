@@ -5,13 +5,13 @@ import UserContext from '../../../../store/userContext'
 import LoginBanner from '../../../../components/login/LoginBanner'
 import PageHeader from '../../../../components/layouts/PageHeader'
 import HistoryIcon from '../../../../assets/icons/HistoryIcon'
-import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import useWindowWidth from '../../../hooks/useWindowWidth'
 import TopNavModal from '../../../components/modals/TopNavModal'
 
 function ReadLaterPage() {
 	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	return (
 		<Fragment>

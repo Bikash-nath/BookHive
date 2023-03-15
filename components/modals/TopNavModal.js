@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 // import { useRouter } from 'next/router'
 import NavigateBackButton from '../ui/NavigateBackButton'
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 
 export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, coverRef }) {
 	const [opacity, setOpacity] = useState(0)
@@ -10,7 +10,7 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 	const titleRef = useRef()
 	const navRef = useRef()
 
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	useEffect(() => {
 		navRef.current.style.backgroundOpacity = opacity

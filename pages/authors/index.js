@@ -1,17 +1,16 @@
 import { useRef, Fragment } from 'react'
 import Head from 'next/head'
 
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 import { getTopAuthors } from '../../api/authors'
 import ListGridModal from '../../components/modals/ListGridModal'
-import AuthorCard from '../../components/cards/AuthorCard'
 import TopNavModal from '../../components/modals/TopNavModal'
 // import Paginate from '../../components/widgets/Paginate'
 
 function AuthorListPage(props) {
 	const coverRef = useRef()
 	const pageRef = useRef(null)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	return (
 		<Fragment>
@@ -31,11 +30,11 @@ function AuthorListPage(props) {
 							coverRef={coverRef}
 						/>
 					)}
-					<ListGridModal listTitle='Popular authors' coverRef={coverRef}>
-						{props.authors?.map((author) => (
-							<AuthorCard author={author} />
-						))}
-					</ListGridModal>
+					<ListGridModal
+						listTitle='Popular authors'
+						coverRef={coverRef}
+						authors={props.authors}
+					/>
 					{/* <Paginate totalPages={5} page={1} /> */}
 				</div>
 			</div>

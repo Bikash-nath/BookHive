@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 import SnackbarContext from '../../store/snackbarContext'
 import classes from './snackbar.module.css'
 import CloseIcon from '../../assets/icons/CloseIcon'
@@ -10,7 +10,7 @@ function SnackBar(props) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const message = snackbarCtx.message
 
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 	const router = useRouter()
 
 	useEffect(() => {

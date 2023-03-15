@@ -1,5 +1,4 @@
 import { useState, useEffect, Fragment } from 'react'
-import { useRouter } from 'next/router'
 
 function BgCover(props) {
 	return (

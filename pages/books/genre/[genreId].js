@@ -1,11 +1,10 @@
 import { useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 
-import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
-import BookCard from '../../../components/cards/BookCard'
 import TopNavModal from '../../../components/modals/TopNavModal'
 // import Paginate from '../../../components/widgets/Paginate'
 import HeartIcon from '../../../assets/icons/HeartIcon'
@@ -14,7 +13,7 @@ function GenreBooksPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const coverRef = useRef()
 	const pageRef = useRef(null)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	useEffect(() => {
 		if (!props.genre) toggleSpinner(true)
@@ -36,13 +35,11 @@ function GenreBooksPage(props) {
 						pageRef={pageRef}
 					/>
 				)}
-				<ListGridModal listTitle={`${props.genre} books`} coverRef={coverRef}>
-					{props.books.length ? (
-						props.books?.map((book, i) => <BookCard book={book} key={i} />)
-					) : (
-						<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
-					)}
-				</ListGridModal>
+				<ListGridModal
+					listTitle={`${props.genre} books`}
+					books={props.books}
+					coverRef={coverRef}
+				/>
 				{/* <Paginate totalPages={3} page={1} /> */}
 			</div>
 		</Fragment>

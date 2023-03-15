@@ -65,11 +65,13 @@ function Header(props) {
 		snackbarCtx.addMessage({ title: 'Log out successfull' })
 	}
 	// from-[#131a27] via-[#121927] to-[#111724]
+	// bg-gradient-to-b from-[#111826] to-[#192132] text-white;
+
 	return (
 		showRoute && (
 			<header
 				ref={props.headerRef}
-				className='flex flex-grow sticky top-0 justify-between items-center z-30 bg-gradient-to-r from-[#0C111B] to-[#030b17] bg-opacity-95'>
+				className='flex flex-grow sticky top-0 justify-between items-center z-20 bg-gradient-to-r from-[#080e19] to-[#030b17] bg-opacity-95'>
 				<nav className='mx-auto p-1 w-screen'>
 					{activeSearch ? (
 						<div
@@ -123,7 +125,7 @@ function Header(props) {
 												{showNavBtn && (
 													<div
 														className={
-															`absolute rounded-lg top-10 right-1 p-1 bg-[#192132] mt-2 border border-gray-900 bg-opacity-100 text-md` +
+															'absolute rounded-lg top-10 right-1 p-1 bg-[#192132] mt-2 border border-gray-900 bg-opacity-100 text-md' +
 															(!showNavBtn && 'hidden')
 														}>
 														<Link href='/user/account'>

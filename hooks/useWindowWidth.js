@@ -5,9 +5,15 @@ export default function useWindowWidth() {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			setWindowWidth(window.innerWidth)
+			console.log('useEffect windowWidth()', windowWidth)
+
+			if (!windowWidth) {
+				setWindowWidth(window.innerWidth)
+				console.log('set windowWidth()', windowWidth)
+			}
 			function handleResize() {
 				setWindowWidth(window.innerWidth)
+				console.log('addEventListener handleResize()')
 			}
 			window.addEventListener('resize', handleResize)
 			return () => window.removeEventListener('resize', handleResize)

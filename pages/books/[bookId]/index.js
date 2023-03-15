@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getBookDetails, getBestsellers } from '../../../api/books'
 import SnackbarContext from '../../../store/snackbarContext'
 import BgCover from '../../../components/modals/BgCover'
@@ -32,7 +32,7 @@ function BookDetailPage(props) {
 
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const [descLines, setDescLines] = useState(0)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
@@ -81,7 +81,7 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 
-			<div className='bg-[#0C111B] relative' ref={pageRef}>
+			<div className='cover-page-bg relative' ref={pageRef}>
 				<ScrollToTop pageRef={pageRef} />
 				<div className='pb-16 xl:pb-12'>
 					{windowWidth < 1280 && (
@@ -157,7 +157,7 @@ function BookDetailPage(props) {
 						<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
 							{book.language && (
 								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-									<p className='text-md md:text-base font-medium'>
+									<p className='px-2 text-md md:text-base font-medium'>
 										{book.language}
 									</p>
 									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
@@ -187,8 +187,8 @@ function BookDetailPage(props) {
 								</div>
 							)}
 							{book.publisher !== null && (
-								<div className='hidden xl:flex flex-col justify-center items-center py-1 px-2'>
-									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-fit'>
+								<div className='hidden md:flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
+									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
 										{book.publisher}
 									</p>
 									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>

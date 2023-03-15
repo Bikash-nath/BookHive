@@ -5,7 +5,7 @@ import UserContext from '../../../store/userContext'
 import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
-// import useWindowDimensions from '../../../hooks/useWindowDimensions'
+// import useWindowWidth from '../../../hooks/useWindowWidth'
 // import TopNavModal from '../../../components/modals/TopNavModal'
 
 function CollectionPage() {

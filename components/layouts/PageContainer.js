@@ -1,5 +1,5 @@
 import { useContext, useRef } from 'react'
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 import { SpinnerContextProvider } from '../../store/spinnerContext'
 import SpinnerContext from '../../store/spinnerContext'
 import SearchToggleContext from '../../store/searchToggleContext'
@@ -11,7 +11,7 @@ import ScrollToTop from '../ScrollToTop'
 function PageContainer(props) {
 	const { activeSearch } = useContext(SearchToggleContext)
 	const { activeSpinner } = useContext(SpinnerContext)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 	const navbarRef = useRef()
 
 	return (

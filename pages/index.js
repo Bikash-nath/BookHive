@@ -2,15 +2,13 @@ import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import useWindowDimensions from '../hooks/useWindowDimensions'
+import useWindowWidth from '../hooks/useWindowWidth'
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../api/books'
 import { getTopAuthors } from '../api/authors'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
 import ScrollToTop from '../components/ScrollToTop'
 import ListSliderModal from '../components/modals/ListSliderModal'
-import BookCard from '../components/cards/BookCard'
-import AuthorCard from '../components/cards/AuthorCard'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
 import AccountIcon from '../assets/icons/AccountIcon'
@@ -21,7 +19,7 @@ import AccountIcon from '../assets/icons/AccountIcon'
 function HomePage(props) {
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	useEffect(() => {
 		setActiveUser(user?.data)
@@ -70,28 +68,24 @@ function HomePage(props) {
 				<div className='py-1 xl:py-4'>
 					<ListSliderModal
 						listTitle='Popular books'
-						listLink='/books/category/bestsellers'>
-						{props.bestsellers?.map((book, i) => (
-							<BookCard book={book} key={i} />
-						))}
-					</ListSliderModal>
+						listLink='/books/category/bestsellers'
+						books={props.bestsellers}
+					/>
 					<ListSliderModal
 						listTitle='Featured Audiobooks'
-						listLink='/books/category/audiobooks'>
-						{props.audiobooks?.map((book, i) => (
-							<BookCard book={book} key={i} />
-						))}
-					</ListSliderModal>
-					<ListSliderModal listTitle='Latest arrivals' listLink='/books/category/latest'>
-						{props.latestBooks?.map((book, i) => (
-							<BookCard book={book} key={i} />
-						))}
-					</ListSliderModal>
-					<ListSliderModal listTitle='Popular authors' listLink='/authors'>
-						{props.authors?.map((author, i) => (
-							<AuthorCard author={author} key={i} />
-						))}
-					</ListSliderModal>
+						listLink='/books/category/audiobooks'
+						books={props.audiobooks}
+					/>
+					<ListSliderModal
+						listTitle='Latest arrivals'
+						listLink='/books/category/latest'
+						books={props.latestBooks}
+					/>
+					<ListSliderModal
+						listTitle='Popular authors'
+						listLink='/authors'
+						authors={props.authors}
+					/>
 				</div>
 			</div>
 		</Fragment>

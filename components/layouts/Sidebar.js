@@ -44,7 +44,7 @@ function Sidebar() {
 	return (
 		//hidden xl:
 		showRoute && (
-			<div className='overflow-y-hidden hide-scrollbar inline-block relative p-2 min-w-[13rem] bg-[#030b17] border-r border-gray-900'>
+			<div className='overflow-y-hidden hide-scrollbar inline-block relative p-2 min-w-[13rem] bg-[#030b17]'>
 				<div className='space-y-5 cursor-pointer'>
 					<div className='flex items-center space-x-20'>
 						<Logo size={46} />
@@ -61,7 +61,7 @@ function Sidebar() {
 							<p className='text-base'>Discover</p>
 						</div>
 					</Link>
-					<hr className='border-t-[0.1px] border-gray-700' />
+					<hr className='border-t-[0.1px] border-gray-800' />
 					<div className='flex flex-col'>
 						<div className='flex w-full'>
 							<Link href='/user/library'>
@@ -117,7 +117,7 @@ function Sidebar() {
 						</div>
 					</Link>
 
-					<hr className='border-t-[0.1px] border-gray-900' />
+					<hr className='border-t-[0.1px] border-gray-800' />
 					<div className='absolute bottom-28 w-full'>
 						<Link href='/user/account/settings'>
 							<div className={routeClassHandler('/account/settings')}>

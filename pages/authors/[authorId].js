@@ -3,14 +3,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import { useRouter } from 'next/router'
 
-import useWindowDimensions from '../../hooks/useWindowDimensions'
+import useWindowWidth from '../../hooks/useWindowWidth'
 import { getAuthorDetails, getTopAuthors } from '../../api/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'
-import BookCard from '../../components/cards/BookCard'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
+import StarIcon from '../../assets/icons/StarIcon'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
@@ -19,7 +19,7 @@ function AuthorDetailPage(props) {
 	const { author } = props
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	const [bioLines, setBioLines] = useState(0)
-	const windowWidth = useWindowDimensions()
+	const windowWidth = useWindowWidth()
 
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
@@ -53,29 +53,34 @@ function AuthorDetailPage(props) {
 					<TopNavModal pageTitle={author.name} pageRef={pageRef} coverRef={coverRef} />
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
-					<div className='flex items-center justify-between p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
-						<Image
-							src={process.env.AUTHORS_URL + author.image}
-							alt={author.name}
-							height={320}
-							width={320}
-							className='object-cover rounded-full w-40 h-40 xl:w-48 xl:h-48'
-						/>
+					<div className='flex items-center justify-center w-full p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
+						<div className='flex justify-start h-full p-1 xl:p-1.5'>
+							<Image
+								src={process.env.AUTHORS_URL + author.image}
+								alt={author.name}
+								height={280}
+								width={280}
+								className='object-cover rounded-full w-40 h-40 xl:w-48 xl:h-48'
+							/>
+						</div>
 						<div className='p-1 space-y-4'>
 							<div>
-								<h2 className='text-xl md:text-3xl xl:text-4xl font-bold'>
+								<h2 className='text-xl md:text-3xl xl:text-4xl font-medium'>
 									{author.name}
 								</h2>
 							</div>
 							{author.ratingsAvg ? (
-								<div className='text-md md:text-xl font-semibold'>
-									{author.ratingsAvg} ⭐
+								<div className='flex items-center justify-start text-md md:text-lg text-xl w-full font-medium'>
+									<div className='mr-1 xl:mr-2'>
+										<StarIcon dimensions='h-6 w-6' />
+									</div>
+									{author.ratingsAvg}
 								</div>
 							) : (
 								<></>
 							)}
 							{author.origin ? (
-								<div className='text-sm md:text-md xl:text-lg italic'>
+								<div className='text-sm md:text-md xl:text-xl italic'>
 									Born {author.origin}
 								</div>
 							) : (
@@ -132,11 +137,7 @@ function AuthorDetailPage(props) {
 					<></>
 				)}
 				{author.books?.length ? (
-					<ListGridModal listTitle='Author Books'>
-						{author.books?.map((book, i) => (
-							<BookCard book={book} key={i} />
-						))}
-					</ListGridModal>
+					<ListGridModal listTitle='Author Books' books={author.books} />
 				) : (
 					<></>
 				)}

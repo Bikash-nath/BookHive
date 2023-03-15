@@ -48,7 +48,7 @@ function SettingsPage() {
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'>
-							<LogoutIcon dimensions='h-8 w-8' />
+							<LogoutIcon dimensions='h-7 w-7' />
 							<p className='w-40 mx-auto'>Change password</p>
 						</button>
 					</div>
@@ -57,7 +57,7 @@ function SettingsPage() {
 						<button
 							className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'
 							onClick={logOutHandler}>
-							<LogoutIcon dimensions='h-8 w-8' />
+							<LogoutIcon dimensions='h-7 w-7' />
 							<p className='w-40 mx-auto'>Log out</p>
 						</button>
 					</div>

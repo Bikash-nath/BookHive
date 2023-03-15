@@ -15,11 +15,14 @@
 }
 
 .page-gradient {
-	/* rgb(24 24 24)->rgb(12 12 12) absoulte + sticky
-	@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#181818] text-white;
-	/*@apply bg-gradient-to-b from-[#121212] via-[#0C111B] to-[#0C111B] text-white;
-	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;*/
-	@apply bg-gradient-to-b from-[#101621] via-[#0C111B] to-[#0C111B] text-white pb-16 xl:pb-0;
+	/*@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#0C0C0C] text-white;
+	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;
+	@apply bg-gradient-to-b from-[#101621] via-[#0f171e] to-[#0C111B] text-white pb-16 xl:pb-0;*/
+	@apply bg-gradient-to-b from-[#101621] via-[#0d131e] to-[#0C111B] text-white pb-16 xl:pb-0;
+}
+
+.cover-page-bg {
+	@apply bg-gradient-to-b from-[#0D1117] bg-[#0C111B];
 }
 
 .list-grid {
@@ -27,7 +30,6 @@
 }
 
 .discover-grid {
-	/*@apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 space-x-2 space-y-2 md:space-x-4 md:space-y-4;*/
 	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5;
 }
 
@@ -57,10 +59,6 @@
 
 .input-field {
 	@apply w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border focus:border-purple-600;
-}
-
-.animate-slideup {
-	transition: all 0.2s ease-in-out;
 }
 
 html {
