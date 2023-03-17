@@ -7,6 +7,7 @@ import CloseIcon from '../../../assets/icons/CloseIcon'
 import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import MinusCircleIcon from '../../../assets/icons/MinusCircleIcon'
 import readerStyles from '../../../utils/constants/readerStyles'
+
 function BookEpubReader() {
 	const router = useRouter()
 	const { title, ebookLink, author } = router.query
@@ -62,15 +63,15 @@ function BookEpubReader() {
 					getRendition={(rendition) => {
 						rendition.themes.register('custom', {
 							'*': {
-								color: 'black',
-								background: '#fbf0d9',
+								color: 'white',
+								background: '#080e19', //#fbf0d9
 							},
 						})
 						rendition.themes.select('custom')
 						renditionRef.current = rendition
 					}}
 				/>
-				<div className='absolute flex items-center justify-between bottom-0 w-full rounded-t-md z-20 text-[#8C6AFF] bg-[#192132]'>
+				<div className='absolute flex items-center justify-between bottom-0 w-full rounded-t-md z-20 text-[#8C6AFF] bg-[#111826]'>
 					<p className='mx-3 my-2 w-full z-50'>{pageDetails}</p>
 
 					<div className='flex h-full w-56 z-10 rounded-md bg-[#0C111B] bg-opacity-90'>
@@ -80,7 +81,7 @@ function BookEpubReader() {
 								onClick={() => changeSize(Math.max(70, size - 10))}>
 								<MinusCircleIcon dimensions='w-7 h-7' />
 							</button>
-							<span className='text-lg xl:text-xl font-medium'>{size}%</span>
+							<span className='text-lg xl:text-xl z-0 font-medium'>{size}%</span>
 							<button
 								className={'mx-3 my-1 ' + (size >= 150 && 'opacity-60')}
 								onClick={() => changeSize(Math.min(150, size + 10))}>
@@ -90,7 +91,7 @@ function BookEpubReader() {
 					</div>
 				</div>
 				<div
-					className='group absolute top-2 right-2 z-10 xl:top-6 xl:right-6 p-1 xl:scale-110 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+					className='group absolute top-0.5 right-0.5 z-10 xl:top-2 xl:right-5 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 					onClick={() => router.back()}>
 					<CloseIcon />
 				</div>

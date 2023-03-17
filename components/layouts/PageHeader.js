@@ -4,14 +4,14 @@ import NavigateBackButton from '../ui/NavigateBackButton'
 function PageHeader(props) {
 	return (
 		<header className='flex flex-grow justify-between items-center'>
-			<nav className='mx-auto p-1 w-screen'>
-				<div className='flex items-center justify-between gap-3 md:gap-4 m-1 sm:m-2 xl:m-6 text-white'>
+			<nav className='mx-auto px-1 w-screen'>
+				<div className='flex items-center justify-between gap-3 md:gap-4 m-1 sm:m-2 xl:m-4 text-white'>
 					{props.backBtn && (
 						<div className='block xl:hidden'>
 							<NavigateBackButton />
 						</div>
 					)}
-					<div className='items-center text-2xl xl:text-3xl font-semibold w-full mx-1 sm:mx-2 leading-loose'>
+					<div className='items-center text-2xl xl:text-3xl font-semibold w-full mx-2 leading-loose'>
 						{props.pageTitle}
 					</div>
 

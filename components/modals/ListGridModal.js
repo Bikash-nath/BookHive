@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 // import Link from 'next/link'
 import BookCard from '../cards/BookCard'
+import AuthorCard from '../cards/AuthorCard'
 
 export default function ListGridModal({ listTitle, books, authors, coverRef }) {
 	const router = useRouter()
@@ -25,7 +26,11 @@ export default function ListGridModal({ listTitle, books, authors, coverRef }) {
 						books.length ? (
 							books.map((book, i) => <BookCard book={book} key={i} />)
 						) : (
-							<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
+							<div className='flex justify-items-center w-screen xl:w-52'>
+								<h3 className='text-lg md:text-xl w-full p-6 text-center xl:text-left'>
+									No books found
+								</h3>
+							</div>
 						)
 					) : (
 						authors.map((author, i) => <AuthorCard author={author} key={i} />)

@@ -15,7 +15,11 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 		books.length ? (
 			books.map((book, i) => <BookCard book={book} key={i} />)
 		) : (
-			<h3 className='text-lg md:text-xl p-6 text-left'>No books found</h3>
+			<div className='flex justify-items-center w-screen xl:w-52'>
+				<h3 className='text-lg md:text-xl w-full p-6 text-center xl:text-left'>
+					No books found
+				</h3>
+			</div>
 		)
 	) : (
 		authors?.map((author, i) => <AuthorCard author={author} key={i} />)

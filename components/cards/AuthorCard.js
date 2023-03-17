@@ -4,7 +4,7 @@ import Image from 'next/image'
 function AuthorCard({ author }) {
 	return (
 		<div
-			className='flex items-center justify-center w-full h-full rounded-xl group-hover:flex'
+			className='flex items-center justify-center w-full h-full xl:my-2 rounded-xl group-hover:flex'
 			key={author._id}>
 			<Link href={`/authors/${author.slug}`}>
 				<div className='flex flex-col w-28 h-36 xl:w-40 xl:h-48 rounded-xl xl:p-0.5 bg-[#192132] hover:scale-105 transform duration-100 backdrop-blur-sm'>

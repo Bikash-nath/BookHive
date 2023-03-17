@@ -15,8 +15,8 @@ function GenreCards({ genreList, colors }) {
 	return (
 		<div className='item-container discover-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6 backdrop-blur-sm animate-slideup'>
 			{genreList.map((genre, i) => (
-				<Link href={`/books/genre/${genre.slug}`} key={i}>
-					<div className='flex justify-center w-full h-full animate-slideup'>
+				<div className='flex justify-center w-full h-full animate-slideup'>
+					<Link href={`/books/genre/${genre.slug}`} key={i}>
 						<div key={i} className='group item rounded-lg w-44 h-20 xl:w-60 xl:h-28'>
 							{/* <Image
 									src={process.env.GENRES_URL + genreImages[i]}
@@ -32,8 +32,8 @@ function GenreCards({ genreList, colors }) {
 								}></div>
 							<h5 className='box-text'>{genre.title}</h5>
 						</div>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			))}
 		</div>
 	)

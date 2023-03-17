@@ -49,7 +49,7 @@ function BookDetailPage(props) {
 			pathname: `/books/${book.slug}/read`,
 			query: {
 				title: book.title,
-				ebookLink: '/ebooks/The-Psychology-of Money.epub',
+				ebookLink: '/ebooks/92-Little-Tricks.epub',
 				author: book.author.name,
 			},
 		})

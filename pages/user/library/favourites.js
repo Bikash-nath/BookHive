@@ -1,4 +1,4 @@
-import { useState, useContext, Fragment } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 
 import UserContext from '../../../store/userContext'
@@ -13,6 +13,11 @@ function FavouritesPage(props) {
 	const list = ''
 	const tabs = ['Ebooks', 'Audiobooks', 'Podcasts', 'Authors']
 	const [currentTab, setCurrentTab] = useState(0)
+
+	useEffect(() => {
+		setActiveUser(userCtx.user?.data)
+		// if (!activeUser?.data) getUserProfile()
+	}, [activeUser])
 
 	const onTabChangeHandler = (tabIndex) => {
 		setCurrentTab(tabIndex)
