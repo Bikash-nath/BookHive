@@ -1,5 +1,6 @@
-import { useRef, Fragment } from 'react'
+import { useRef, Fragment, useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../api/books'
@@ -11,6 +12,13 @@ function BookListPage(props) {
 	const coverRef = useRef(null)
 	const pageRef = useRef(null)
 	const windowWidth = useWindowWidth()
+	const router = useRouter()
+
+	useEffect(() => {
+		if (props.category === 'bestsellers') {
+			const bestsellers = getBestsellers()
+		}
+	}, [router.pathname])
 
 	const categoryTitle = props.category?.substr(0, 1).toUpperCase() + props.category?.substr(1)
 
@@ -38,14 +46,16 @@ function BookListPage(props) {
 }
 
 export async function getStaticProps(context) {
+	console.log('context:🌟', context)
+
 	const { params } = context
 	let books
 	if (params.category == 'bestsellers') {
-		books = await getBestsellers()
+		books = await getBestsellers({ page: 2 })
 	} else if (params.category == 'audiobooks') {
-		books = await getTopAudiobooks()
+		books = await getTopAudiobooks({ page: 2 })
 	} else {
-		books = await getLatestBooks()
+		books = await getLatestBooks({ page: 2 })
 	}
 
 	if (!books.data)
@@ -64,7 +74,14 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 	// const paths = ['bestsellers', 'audiobooks', 'latest']
-	const categoryParams = ['bestsellers', 'audiobooks', 'latest'].map((category) => ({
+	const categoryParams = [
+		'bestsellers',
+		'audiobooks',
+		'latest',
+		'bestsellers?page=2',
+		'bestsellers?page=3',
+		'audiobooks?page=3',
+	].map((category) => ({
 		params: { category },
 	}))
 

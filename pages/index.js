@@ -23,7 +23,7 @@ function HomePage(props) {
 
 	useEffect(() => {
 		setActiveUser(user?.data)
-		// if (!activeUser?.data) getUserProfile()
+		// if (!activeUser) getUserProfile()
 	}, [user])
 
 	const pageRef = useRef(null)
@@ -34,7 +34,7 @@ function HomePage(props) {
 				<title>Bookhive</title>
 				<meta
 					name='description'
-					content='Bookhive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.'
+					content='Bookhive is an reading platform where you can access to thousands of free audiobooks, eBooks and magazines.'
 				/>
 			</Head>
 			<div className='page-gradient pb-16 xl:pb-12' ref={pageRef}>

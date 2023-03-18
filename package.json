@@ -1,6 +1,6 @@
 {
 	"name": "bookhive",
-	"description": "A app for accessing millions of free audiobooks, ePubs, PDFs, magazines and podcasts.",
+	"description": "Bookhive is an reading platform where you can access to thousands of free audiobooks, eBooks and magazines.",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {

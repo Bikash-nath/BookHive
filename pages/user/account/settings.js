@@ -10,6 +10,7 @@ import SettingsIcon from '../../../assets/icons/SettingsIcon'
 import LogoutIcon from '../../../assets/icons/LogoutIcon'
 import HelpIcon from '../../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../../assets/icons/FeedbackIcon'
+import KeyIcon from '../../../assets/icons/KeyIcon'
 
 function SettingsPage() {
 	const userCtx = useContext(UserContext)
@@ -48,7 +49,7 @@ function SettingsPage() {
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'>
-							<LogoutIcon dimensions='h-7 w-7' />
+							<KeyIcon dimensions='h-7 w-7' />
 							<p className='w-40 mx-auto'>Change password</p>
 						</button>
 					</div>
@@ -73,9 +74,9 @@ function SettingsPage() {
 					<div className='flex justify-start m-4'>
 						<button
 							className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'
-							onClick={() => router.push('/help/faq')}>
+							onClick={() => router.push('/help/support')}>
 							<FeedbackIcon dimensions='h-7 w-7' />
-							<p className='text-base mx-auto'>Send Feedback</p>
+							<p className='text-base mx-auto'>Support</p>
 						</button>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 import { useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getGenreBooks, getTopGenres } from '../../../api/genres'
@@ -14,6 +15,12 @@ function GenreBooksPage(props) {
 	const coverRef = useRef()
 	const pageRef = useRef(null)
 	const windowWidth = useWindowWidth()
+
+	const router = useRouter()
+
+	useEffect(() => {
+		const books = getGenreBooks(props.genreId)
+	}, [router.pathname])
 
 	useEffect(() => {
 		if (!props.genre) toggleSpinner(true)
@@ -49,8 +56,10 @@ function GenreBooksPage(props) {
 }
 
 export async function getStaticProps(context) {
+	console.log('context:🌟', context)
+
 	const { params } = context
-	const genre = await getGenreBooks(params.genreId)
+	const genre = await getGenreBooks(params.genreId, { page: 2 })
 
 	if (!genre.data) {
 		return { notFound: true }

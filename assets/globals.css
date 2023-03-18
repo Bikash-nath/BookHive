@@ -7,10 +7,10 @@
 @layer components {
 	/*AA14F0*/
 	.more-box-btn {
-		@apply px-1 py-[.2rem] xl:px-2 xl:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm xl:text-base font-bold text-[#8C6AFF] rounded-xl bg-[#030b17] hover:text-purple-400 opacity-80 border-2 border-gray-800;
+		@apply px-1 py-[.2rem] xl:px-2 xl:py-1 xs:mx-2 sm:mx-4 md:mx-6 my-0 text-sm xl:text-base font-bold text-[#8C6AFF] rounded-xl bg-[#030b17] hover:text-purple-400 opacity-80 border-[1px] border-gray-800;
 	}
 	.login-btn {
-		@apply w-full rounded-full flex justify-center items-center p-2 xl:p-4 space-x-4 font-bold shadow-sm px-9 hover:bg-opacity-90 border-purple-500 border-2 shadow-purple-200 transition hover:-translate-y-0.5 duration-150;
+		@apply w-full rounded-full flex justify-center items-center p-2 xl:p-4 space-x-4 font-bold shadow-sm px-9 hover:bg-opacity-90 border-[#8C6AFF] border-[1px] shadow-purple-400 transition hover:-translate-y-0.5 duration-150;
 	}
 }
 
@@ -54,11 +54,11 @@
 }
 
 .btn-next {
-	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-purple-800 shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-[#8C6AFF] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
 }
 
 .input-field {
-	@apply w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border focus:border-purple-600;
+	@apply w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border focus:border-[#8C6AFF];
 }
 
 html {

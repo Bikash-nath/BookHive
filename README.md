@@ -1,6 +1,6 @@
 # BookHive
 
-**_BookHive is an online platform for accessing thousands of free audiobooks, ePubs, PDFs, magazines and podcasts.<br>
+**_Bookhive is an reading platform where you can access to thousands of free audiobooks, eBooks and magazines.<br>
 Our Aim is to help people explore, discuss and share books they love and improve process of learning and reading via the efforts of a fantastic community of readers._**
 
 ### ![App](https://user-images.githubusercontent.com/5663078/161288344-33fa8e03-92ee-46ff-b490-38bf4dd8f379.png#gh-dark-mode-only) Visit app: [bookhive.vercel.app](https://bookhive.vercel.app//)

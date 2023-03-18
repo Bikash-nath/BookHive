@@ -1,5 +1,6 @@
-import { useRef, Fragment } from 'react'
+import { useEffect, useRef, Fragment } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { getTopAuthors } from '../../api/authors'
@@ -11,6 +12,12 @@ function AuthorListPage(props) {
 	const coverRef = useRef()
 	const pageRef = useRef(null)
 	const windowWidth = useWindowWidth()
+
+	const router = useRouter()
+
+	// useEffect(() => {
+	// const books = getGenreBooks(props.genreId,{page:router.query.page})
+	// }, [router.asPath])
 
 	return (
 		<Fragment>
@@ -43,7 +50,7 @@ function AuthorListPage(props) {
 }
 
 export async function getStaticProps() {
-	const authors = await getTopAuthors()
+	const authors = await getTopAuthors({ page: 2 })
 
 	if (!authors) {
 		return {

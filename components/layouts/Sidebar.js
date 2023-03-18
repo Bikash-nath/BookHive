@@ -135,10 +135,10 @@ function Sidebar() {
 						</Link>
 					</div>
 					<div className='absolute bottom-4 w-full'>
-						<Link href='/help/donate'>
-							<div className={routeClassHandler('/donate')}>
+						<Link href='/help/support'>
+							<div className={routeClassHandler('/support')}>
 								<FeedbackIcon dimensions='h-7 w-7' />
-								<p className='text-base'>Send Feedback</p>
+								<p className='text-base'>Feedback</p>
 							</div>
 						</Link>
 					</div>

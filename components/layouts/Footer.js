@@ -2,10 +2,15 @@ import Link from 'next/link'
 
 function Footer() {
 	const content = {
-		Resources: ['Blog', 'Events', 'Support'],
-		Team: ['About', 'Developers', 'Contact Us'],
-		Company: ['Terms', 'Privacy', 'FAQ'],
+		Resources: [{ Blog: '' }, { Events: '' }, { About: '' }],
+		Team: [
+			{ Support: '/help/support' },
+			{ Developers: 'https://github.com/Bikash-nath/BookHive' },
+			{ 'Contact Us': '' },
+		],
+		Company: [{ Terms: '' }, { Privacy: '' }, { FAQ: '/help/faq' }],
 	}
+
 	return (
 		<footer className='w-full pb-20 xl:pb-12'>
 			<div className='container bottom-8 mx-auto px-4 pt-12'>
@@ -19,9 +24,9 @@ function Footer() {
 								{content[title].map((term, i) => (
 									<Link
 										key={i}
-										href={term.toLowerCase()}
+										href={Object.values(term)[0]}
 										className='capitalize text-center text-gray-300 hover:font-semibold hover:text-purple-600'>
-										{term}
+										{Object.keys(term)[0]}
 									</Link>
 								))}
 							</div>

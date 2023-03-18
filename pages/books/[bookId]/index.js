@@ -261,7 +261,7 @@ export async function getStaticProps(context) {
 			book: book.data,
 			color: bgColor,
 		},
-		revalidate: 30,
+		revalidate: 100,
 	}
 }
 

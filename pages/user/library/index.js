@@ -37,7 +37,7 @@ function LibraryPage(props) {
 					{!activeUser.books?.length &&
 					!activeUser.genres?.length &&
 					!activeUser.authors?.length ? (
-						<div className='flex flex-col items-center justify-center h-full xl:h-[94vh] p-2'>
+						<div className='flex flex-col items-center justify-center h-screen xl:h-[94vh] p-2'>
 							<div className='flex py-4 text-white'>
 								<LibraryIcon dimensions='h-24 w-24' />
 							</div>

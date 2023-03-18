@@ -4,7 +4,6 @@ import { Fragment } from 'react'
 
 import Footer from '../../components/layouts/Footer'
 import Accordion from '../../components/ui/Accordion'
-import FAQs from '../../utils/constants/FAQs'
 
 function HelpPage(props) {
 	return (
@@ -29,8 +28,8 @@ function HelpPage(props) {
 					<div className='container mx-auto px-6 mb-auto'>
 						<div className='max-w-2xl m-8 mx-auto overflow-hidden'>
 							<Accordion title='What is BookHive?' tabIndex='1'>
-								BookHive is an online platform for accessing thousands of free
-								audiobooks, ePubs, PDFs, magazines and podcasts.
+								Bookhive is an reading platform where you can access to thousands of
+								free audiobooks, eBooks and magazines.
 								<br />
 								Our Aim is to help people explore, discuss and share books they love
 								and improve process of learning and reading via the efforts of a
@@ -44,6 +43,12 @@ function HelpPage(props) {
 									bookhive.vercel.app/audiobooks/new-arrivals
 								</Link>{' '}
 								to find latest audiobooks.
+							</Accordion>
+							<Accordion title='How can I contact BookHive team?' tabIndex='2'>
+								You can visit us directly at
+								<Link href='' className='text-indigo-500'>
+									LinkedIn.
+								</Link>
 							</Accordion>
 						</div>
 					</div>
