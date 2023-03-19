@@ -1,23 +1,33 @@
-import { useEffect, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { getTopAuthors } from '../../api/authors'
+import SpinnerContext from '../../store/spinnerContext'
 import ListGridModal from '../../components/modals/ListGridModal'
 import TopNavModal from '../../components/modals/TopNavModal'
-// import Paginate from '../../components/widgets/Paginate'
+import Paginate from '../../components/widgets/Paginate'
 
 function AuthorListPage(props) {
 	const coverRef = useRef()
 	const pageRef = useRef(null)
 	const windowWidth = useWindowWidth()
+	const [authors, setAuthors] = useState(props.authors)
+	const { toggleSpinner } = useContext(SpinnerContext)
 
 	const router = useRouter()
 
-	// useEffect(() => {
-	// const books = getGenreBooks(props.genreId,{page:router.query.page})
-	// }, [router.asPath])
+	useEffect(() => {
+		;(async () => {
+			if (router.query.page) {
+				toggleSpinner(true)
+				var res = await getTopAuthors(router.query)
+				setAuthors(res.data)
+				toggleSpinner(false)
+			}
+		})()
+	}, [router.asPath])
 
 	return (
 		<Fragment>
@@ -29,28 +39,15 @@ function AuthorListPage(props) {
 				{windowWidth < 1280 && (
 					<TopNavModal pageTitle='Popular Authors' coverRef={coverRef} />
 				)}
-				<div className='h-full mb-12' ref={pageRef}>
-					{windowWidth < 1280 && (
-						<TopNavModal
-							pageTitle={'Popular Authors'}
-							pageRef={pageRef}
-							coverRef={coverRef}
-						/>
-					)}
-					<ListGridModal
-						listTitle='Popular authors'
-						coverRef={coverRef}
-						authors={props.authors}
-					/>
-					{/* <Paginate totalPages={5} page={1} /> */}
-				</div>
+				<ListGridModal listTitle='Popular authors' coverRef={coverRef} authors={authors} />
+				<Paginate totalPages={4} page={1} />
 			</div>
 		</Fragment>
 	)
 }
 
 export async function getStaticProps() {
-	const authors = await getTopAuthors({ page: 2 })
+	const authors = await getTopAuthors()
 
 	if (!authors) {
 		return {

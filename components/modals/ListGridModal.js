@@ -33,7 +33,7 @@ export default function ListGridModal({ listTitle, books, authors, coverRef }) {
 							</div>
 						)
 					) : (
-						authors.map((author, i) => <AuthorCard author={author} key={i} />)
+						authors?.map((author, i) => <AuthorCard author={author} key={i} />)
 					)}
 				</div>
 			</div>

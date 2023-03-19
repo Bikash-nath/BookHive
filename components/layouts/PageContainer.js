@@ -6,7 +6,7 @@ import SearchToggleContext from '../../store/searchToggleContext'
 import Spinner from '../widgets/Spinner'
 import SnackBar from '../notification/SnackBar'
 import Navbar from './Navbar'
-import ScrollToTop from '../ScrollToTop'
+// import ScrollToTop from '../ScrollToTop'
 
 function PageContainer(props) {
 	const { activeSearch } = useContext(SearchToggleContext)
@@ -19,10 +19,10 @@ function PageContainer(props) {
 			<Spinner headerRef={props.headerRef} />
 			<div
 				className={
-					'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-40' : '')
+					'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-25' : '')
 				}>
 				{props.page}
-				<ScrollToTop />
+				{/* <ScrollToTop /> */}
 			</div>
 			<SnackBar navbarRef={navbarRef} />
 			{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}

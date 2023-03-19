@@ -28,11 +28,15 @@ function HelpPage(props) {
 					<div className='container mx-auto px-6 mb-auto'>
 						<div className='max-w-2xl m-8 mx-auto overflow-hidden'>
 							<Accordion title='What is BookHive?' tabIndex='1'>
-								Bookhive is an reading platform where you can access to thousands of
-								free audiobooks, eBooks and magazines.
+								Bookhive is an extensive reading library with thousands of free
+								audiobooks, eBooks and magazines.
+								<br />
+								Now a comprehensive, seamless and personalized reading experience is
+								at your fingertips, making reading more affordable and accessible
+								than ever.
 								<br />
 								Our Aim is to help people explore, discuss and share books they love
-								and improve process of learning and reading via the efforts of a
+								and improve the process of learning and reading via the efforts of a
 								fantastic community of readers.
 							</Accordion>
 							<Accordion title='How can I find latest audiobooks?' tabIndex='2'>
@@ -40,7 +44,7 @@ function HelpPage(props) {
 								<Link
 									href='https://bookhive.vercel.app/books/category/audiobooks'
 									className='text-indigo-500'>
-									bookhive.vercel.app/audiobooks/new-arrivals
+									bookhive.vercel.app/audiobooks
 								</Link>{' '}
 								to find latest audiobooks.
 							</Accordion>

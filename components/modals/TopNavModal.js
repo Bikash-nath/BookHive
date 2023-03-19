@@ -44,10 +44,6 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 			pageRef.current.addEventListener('wheel', setDebouncedScroll)
 
 			if (coverRef.current.className.includes('from-')) {
-				console.log(
-					'className',
-					coverRef.current.className.split('from-')[1].split('-')[0] + '-800'
-				)
 				setBgColor(coverRef.current.className.split('from-')[1].split('-')[0] + '-800')
 			}
 			return () => {

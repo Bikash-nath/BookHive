@@ -10,7 +10,8 @@ import readerStyles from '../../../utils/constants/readerStyles'
 
 function BookEpubReader() {
 	const router = useRouter()
-	const { title, ebookLink, author } = router.query
+	const { ebookLink, author } = router.query
+	const title = router.asPath.split('.')[1]?.split('/read')[0].split('-').join(' ')
 	const [size, setSize] = useState(100)
 
 	const [location, setLocation] = useState(null)
@@ -53,7 +54,7 @@ function BookEpubReader() {
 					title={title + ' by ' + author}
 					location={location}
 					locationChanged={locationChanged}
-					url={ebookLink}
+					url={process.env.EBOOK_URL + ebookLink}
 					readerStyles={{ ...ReactReaderStyle, ...readerStyles }}
 					tocChanged={(toc) => (tocRef.current = toc)}
 					epubOptions={{
@@ -91,7 +92,7 @@ function BookEpubReader() {
 					</div>
 				</div>
 				<div
-					className='group absolute top-0.5 right-0.5 z-10 xl:top-2 xl:right-5 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+					className='group absolute top-1 right-1 z-10 xl:top-2 xl:right-5 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 					onClick={() => router.back()}>
 					<CloseIcon />
 				</div>

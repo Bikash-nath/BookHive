@@ -1,10 +1,10 @@
-import { useContext, Fragment } from 'react'
+import { useState, useContext, Fragment } from 'react'
 import Head from 'next/head'
 
-import UserContext from '../../../../store/userContext'
-import LoginBanner from '../../../../components/login/LoginBanner'
-import PageHeader from '../../../../components/layouts/PageHeader'
-import HistoryIcon from '../../../../assets/icons/HistoryIcon'
+import UserContext from '../../../store/userContext'
+import LoginBanner from '../../../components/login/LoginBanner'
+import PageHeader from '../../../components/layouts/PageHeader'
+import HistoryIcon from '../../../assets/icons/HistoryIcon'
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import TopNavModal from '../../../components/modals/TopNavModal'
 

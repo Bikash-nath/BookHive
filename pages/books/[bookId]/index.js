@@ -20,7 +20,7 @@ import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
-import ScrollToTop from '../../../components/ScrollToTop'
+// import ScrollToTop from '../../../components/ScrollToTop'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
@@ -41,21 +41,20 @@ function BookDetailPage(props) {
 	const router = useRouter()
 
 	const readBookHandler = () => {
-		// if (book.format.ebook?.link) {
-		// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
-		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
+		if (book.format.ebook?.link) {
+			// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
+			// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 
-		router.push({
-			pathname: `/books/${book.slug}/read`,
-			query: {
-				title: book.title,
-				ebookLink: '/ebooks/92-Little-Tricks.epub',
-				author: book.author.name,
-			},
-		})
-		// } else {
-		// 	snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
-		// }
+			router.push({
+				pathname: `/books/${book.slug}/read`,
+				query: {
+					ebookLink: book.format.ebook?.link,
+					author: book.author.name,
+				},
+			})
+		} else {
+			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
+		}
 	}
 
 	const readMoreDescHandler = () => {
@@ -82,7 +81,7 @@ function BookDetailPage(props) {
 			</Head>
 
 			<div className='cover-page-bg relative' ref={pageRef}>
-				<ScrollToTop pageRef={pageRef} />
+				{/* <ScrollToTop pageRef={pageRef} /> */}
 				<div className='pb-16 xl:pb-12'>
 					{windowWidth < 1280 && (
 						<TopNavModal

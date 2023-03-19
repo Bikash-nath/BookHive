@@ -9,7 +9,7 @@ const readerStyles = {
 	},
 	titleArea: {
 		position: 'absolute',
-		top: 16,
+		top: 12,
 		left: 50,
 		right: 50,
 		textAlign: 'center',
@@ -17,7 +17,7 @@ const readerStyles = {
 	},
 	reader: {
 		position: 'absolute',
-		top: 0,
+		top: 40,
 		left: 0,
 		bottom: 30,
 		right: 0,

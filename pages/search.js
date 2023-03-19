@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar'
 import ListGridModal from '../components/modals/ListGridModal'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
+import Paginate from '../components/widgets/Paginate'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
@@ -21,7 +22,6 @@ function SearchPage() {
 			;(async () => {
 				toggleSpinner(true)
 				const result = await searchBooks(router.query)
-				console.log('result Search:', result)
 				setSearchResult(result.data)
 				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
 				toggleSpinner(false)
@@ -40,12 +40,13 @@ function SearchPage() {
 					<SearchBar />
 				</div>
 				{searchResult?.length ? (
-					<>
+					<div className='pb-16 xl:pb-10'>
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
 						<ListGridModal books={searchResult} />
-					</>
+						{searchResult.length >= 30 && <Paginate totalPages={3} page={1} />}
+					</div>
 				) : (
 					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>
 				)}

@@ -20,8 +20,8 @@ function DiscoverPage(props) {
 				<title>Discover</title>
 				<meta name='description' content='Discover section' />
 			</Head>
-			<div className='page-gradient h-full'>
-				<div className='fixed z-10 bg-[#0C111B]'>
+			<div className='bg-[#0C111B] h-full'>
+				<div className='fixed z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
 					<PageHeader pageTitle={<p className=''>Discover</p>} />
 					<div className='p-1 pb-2 xl:p-2 xl:pb-3 sm:w-3/5 md:w-1/2'>
 						<SearchBar />
@@ -64,7 +64,7 @@ function DiscoverPage(props) {
 					</div>
 				</div>
 				<section>
-					<div className='mx-auto p-1 md:p-2 xl:p-4 text-white'>
+					<div className='mx-auto p-1 md:p-2 xl:p-4 text-white pb-20 xl:pb-10'>
 						<h2 className='text-2xl xl:text-3xl text-center xl:text-left pt-4 pb-3 lg:pt-8 lg:pb-6'>
 							Popular Genres
 						</h2>

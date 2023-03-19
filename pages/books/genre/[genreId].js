@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -7,47 +7,48 @@ import { getGenreBooks, getTopGenres } from '../../../api/genres'
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
-// import Paginate from '../../../components/widgets/Paginate'
+import Paginate from '../../../components/widgets/Paginate'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function GenreBooksPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const coverRef = useRef()
 	const pageRef = useRef(null)
-	const windowWidth = useWindowWidth()
-
 	const router = useRouter()
+	const windowWidth = useWindowWidth()
+	const { genre, slug } = props
+	const [books, setBooks] = useState(props.books)
 
 	useEffect(() => {
-		const books = getGenreBooks(props.genreId)
-	}, [router.pathname])
+		;(async () => {
+			const page = router.query.page
+			if (page) {
+				toggleSpinner(true)
+				var res = await getGenreBooks(slug, { page })
+				console.log('res', res)
+				setBooks(res.data.books)
+				toggleSpinner(false)
+			}
+		})()
+	}, [router.asPath])
 
-	useEffect(() => {
-		if (!props.genre) toggleSpinner(true)
-		else toggleSpinner(false)
-	}, [])
-
-	return props.genre ? (
+	return genre ? (
 		<Fragment>
 			<Head>
-				<title>{props.genre + ' books'}</title>
-				<meta name='description' content={`${props.genre} books section`} />
+				<title>{genre + ' books'}</title>
+				<meta name='description' content={`${genre} books section`} />
 			</Head>
 			<div className='pb-16 xl:pb-12' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={<HeartIcon dimensions='h-7 w-7' color='' />}
-						pageTitle={props.genre}
+						pageTitle={genre}
 						coverRef={coverRef}
 						pageRef={pageRef}
 					/>
 				)}
-				<ListGridModal
-					listTitle={`${props.genre} books`}
-					books={props.books}
-					coverRef={coverRef}
-				/>
-				{/* <Paginate totalPages={3} page={1} /> */}
+				<ListGridModal listTitle={`${genre} books`} books={books} coverRef={coverRef} />
+				{books.length >= 30 && <Paginate totalPages={4} page={1} />}
 			</div>
 		</Fragment>
 	) : (
@@ -56,8 +57,6 @@ function GenreBooksPage(props) {
 }
 
 export async function getStaticProps(context) {
-	console.log('context:🌟', context)
-
 	const { params } = context
 	const genre = await getGenreBooks(params.genreId, { page: 2 })
 

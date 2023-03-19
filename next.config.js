@@ -40,12 +40,12 @@ const nextConfig = (phase) => {
 			})),
 		},
 		env: {
-			API_URL: 'http://44.213.188.30:3000/api',
+			API_URL: 'https://bookhive.up.railway.app/api',
 			BOOKS_URL: 'https://bookhive-books.s3.amazonaws.com/',
 			AUTHORS_URL: 'https://bookhive-authors.s3.amazonaws.com/',
 			GENRES_URL: 'https://bookhive-genre.s3.ap-south-1.amazonaws.com/',
 			USERS_URL: 'https://bookhive-users.s3.amazonaws.com/',
-			EBOOK_URL: 'https://bookhive-epub.s3.ap-south-1.amazonaws.com/',
+			EBOOK_URL: 'https://bookhive-ebook.s3.ap-south-1.amazonaws.com/',
 		},
 	}
 }

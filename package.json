@@ -1,6 +1,6 @@
 {
 	"name": "bookhive",
-	"description": "Bookhive is an reading platform where you can access to thousands of free audiobooks, eBooks and magazines.",
+	"description": "Bookhive is an extensive reading library where you can access thousands of free audiobooks, eBooks and magazines.",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -13,6 +13,7 @@
 	"dependencies": {
 		"autoprefixer": "^10.4.13",
 		"axios": "^1.3.2",
+		"dotenv": "^16.0.3",
 		"framer-motion": "^8.5.2",
 		"next": "13.1.1",
 		"react": "18.2.0",

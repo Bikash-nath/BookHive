@@ -7,7 +7,7 @@ import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../api/books'
 import { getTopAuthors } from '../api/authors'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
-import ScrollToTop from '../components/ScrollToTop'
+// import ScrollToTop from '../components/ScrollToTop'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
@@ -34,11 +34,12 @@ function HomePage(props) {
 				<title>Bookhive</title>
 				<meta
 					name='description'
-					content='Bookhive is an reading platform where you can access to thousands of free audiobooks, eBooks and magazines.'
+					content='Bookhive is an extensive reading library with thousands of free audiobooks, eBooks and magazines.
+					Now a comprehensive, seamless and personalized reading experience is at your fingertips, making reading more affordable and accessible than ever.'
 				/>
 			</Head>
 			<div className='page-gradient pb-16 xl:pb-12' ref={pageRef}>
-				<ScrollToTop pageRef={pageRef} />
+				{/* <ScrollToTop pageRef={pageRef} /> */}
 				{windowWidth < 1280 && (
 					<div className='block'>
 						<PageHeader
