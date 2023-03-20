@@ -25,7 +25,6 @@ function GenreBooksPage(props) {
 			if (page) {
 				toggleSpinner(true)
 				var res = await getGenreBooks(slug, { page })
-				console.log('res', res)
 				setBooks(res.data.books)
 				toggleSpinner(false)
 			}

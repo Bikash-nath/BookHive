@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { SnackbarContextProvider } from '../../store/snackbarContext'
@@ -11,11 +11,21 @@ function Container(props) {
 	const headerRef = useRef()
 	const windowWidth = useWindowWidth()
 
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			// window.addEventListener('load', function () {
+			setTimeout(function () {
+				window.scrollTo(0, 1)
+			}, 2)
+			// })
+		}
+	}, [])
+
 	return (
 		<SnackbarContextProvider>
 			{/*overflow-scroll overflow-x-hidden overflow-y-scroll || xl:overflow-hidden || overflow-auto*/}
-			<div className='overflow-scroll xl:overflow-hidden hide-scrollbar'>
-				<div className='flex h-screen relative'>
+			<div className='xl:overflow-hidden hide-scrollbar'>
+				<div className='flex h-screen'>
 					{windowWidth > 1280 && <Sidebar />}
 					<SearchToggleContextProvider>
 						<main className='flex-grow overflow-y-scroll select-none h-full page-gradient '>

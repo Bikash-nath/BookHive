@@ -7,13 +7,13 @@ import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 
 function Paginate({ totalPages, page, keyword = '' }) {
 	const router = useRouter()
-	// const sortType = keyword.split("&sortBy=")[1]?.split("&")[0];
 
 	const routeHandler = (n) => {
 		const path = router.asPath
 
+		// const sortType = keyword.split("&sortBy=")[1]?.split("&")[0];
 		if (keyword) {
-			router.push({ path: path, query: { keyword: keyword, page: n } })
+			router.push({ path: path, query: { keyword, page: n } })
 		} else {
 			if (path.includes('category')) {
 				const category = path.split('category/')[1]?.split('?')[0]

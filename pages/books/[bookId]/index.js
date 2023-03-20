@@ -20,11 +20,10 @@ import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
-// import ScrollToTop from '../../../components/ScrollToTop'
+// import ScrollToTop from '../../../hooks/useScrollToTop'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
-// import BookEpubReader from '../../../components/book/BookEpubReader'
 
 function BookDetailPage(props) {
 	const { book } = props
@@ -39,6 +38,22 @@ function BookDetailPage(props) {
 	const pageRef = useRef(null)
 
 	const router = useRouter()
+
+	useEffect(() => {
+		if (typeof window !== 'undefined' && descRef) {
+			readMoreDescHandler()
+			window.addEventListener('orientationchange', readMoreDescHandler, false) // descLines incorrect value
+		}
+	}, [descRef?.current])
+
+	const readMoreDescHandler = () => {
+		const descEl = descRef.current
+		if (descEl) {
+			descEl.style.display = 'inline'
+			setDescLines(descEl.getClientRects().length)
+			descEl.style.display = '-webkit-box'
+		}
+	}
 
 	const readBookHandler = () => {
 		if (book.format.ebook?.link) {
@@ -57,22 +72,6 @@ function BookDetailPage(props) {
 		}
 	}
 
-	const readMoreDescHandler = () => {
-		const descEl = descRef.current
-		if (descEl) {
-			descEl.style.display = 'inline'
-			setDescLines(descEl.getClientRects().length)
-			descEl.style.display = '-webkit-box'
-		}
-	}
-
-	useEffect(() => {
-		if (typeof window !== 'undefined' && descRef) {
-			readMoreDescHandler()
-			window.addEventListener('orientationchange', readMoreDescHandler, false) // descLines incorrect value
-		}
-	}, [descRef?.current])
-
 	return book ? (
 		<Fragment>
 			<Head>
@@ -81,7 +80,6 @@ function BookDetailPage(props) {
 			</Head>
 
 			<div className='cover-page-bg relative' ref={pageRef}>
-				{/* <ScrollToTop pageRef={pageRef} /> */}
 				<div className='pb-16 xl:pb-12'>
 					{windowWidth < 1280 && (
 						<TopNavModal
@@ -101,7 +99,7 @@ function BookDetailPage(props) {
 							className='object-contain rounded-lg w-36 h-[13.5rem] xl:w-44 xl:h-64 m-1'
 						/>
 						<div className='flex flex-col px-2 md:px-4 space-y-1 xl:space-y-2'>
-							<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-[30rem] min-w-[20rem]'>
+							<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-lg min-w-[20rem]'>
 								<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>
 									{book.title}
 								</p>

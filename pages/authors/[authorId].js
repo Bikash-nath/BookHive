@@ -54,16 +54,16 @@ function AuthorDetailPage(props) {
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
 					<div className='flex items-center justify-center w-full p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
-						<div className='flex justify-start h-full p-1 xl:p-1.5'>
+						<div className='flex justify-end min-w-max h-full'>
 							<Image
 								src={process.env.AUTHORS_URL + author.image}
 								alt={author.name}
 								height={280}
 								width={280}
-								className='object-cover rounded-full w-40 h-40 xl:w-48 xl:h-48'
+								className='object-cover rounded-full w-32 h-32 xl:w-48 xl:h-48'
 							/>
 						</div>
-						<div className='p-1 space-y-4'>
+						<div className='p-1 space-y-4 xl:max-w-sm xl:min-w-[18rem]'>
 							<div>
 								<h2 className='text-xl md:text-3xl xl:text-4xl font-medium'>
 									{author.name}
@@ -89,7 +89,7 @@ function AuthorDetailPage(props) {
 						</div>
 					</div>
 
-					<div className='flex xl:flex-col items-end xl:px-20 space-x-8 xl:space-y-4 right-2 text-white'>
+					<div className='flex xl:flex-col items-end xl:px-8 xl:space-y-4 right-2 text-white'>
 						<button className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
 							<HeartIcon dimensions='h-7 w-7' />
 							<span className='font-semibold pr-2'>Follow</span>

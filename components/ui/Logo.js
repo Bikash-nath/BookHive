@@ -4,7 +4,7 @@ import Image from 'next/image'
 function Logo({ size }) {
 	return (
 		<Link href='/'>
-			<div className='flex p-1'>
+			<div className='flex gap-[.1rem] py-1 xl:p-1.5'>
 				{/* <img src='/images/logo.png' alt='Logo' className='w-10 h-10' /> */}
 				<Image
 					src='/images/logo.png'

@@ -41,13 +41,15 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 
 	useEffect(() => {
 		if (pageRef?.current) {
+			pageRef.current.addEventListener('touchmove', setDebouncedScroll)
 			pageRef.current.addEventListener('wheel', setDebouncedScroll)
 
 			if (coverRef.current.className.includes('from-')) {
 				setBgColor(coverRef.current.className.split('from-')[1].split('-')[0] + '-800')
 			}
 			return () => {
-				pageRef.current?.removeEventListener('scroll', setDebouncedScroll)
+				pageRef.current?.removeEventListener('touchmove', setDebouncedScroll)
+				pageRef.current?.removeEventListener('wheel', setDebouncedScroll)
 			}
 		}
 	}, [])

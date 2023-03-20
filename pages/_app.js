@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { UserContextProvider } from '../store/userContext'
 import Container from '../components/layouts/Container'
 import '../assets/globals.css'
+import '../assets/scrollbar.css'
 
 function App({ Component, pageProps }) {
 	return (

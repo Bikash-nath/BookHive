@@ -27,7 +27,7 @@ function SearchPage() {
 				toggleSpinner(false)
 			})()
 		}
-	}, [keyword])
+	}, [keyword, router.asPath])
 
 	return (
 		<Fragment>
@@ -45,10 +45,14 @@ function SearchPage() {
 							{searchResult?.length} results for "{keyword}"
 						</div>
 						<ListGridModal books={searchResult} />
-						{searchResult.length >= 30 && <Paginate totalPages={3} page={1} />}
+						{searchResult.length >= 30 && (
+							<Paginate totalPages={3} page={1} keyword={keyword} />
+						)}
 					</div>
 				) : (
-					!activeSpinner && <div className='text-2xl p-4'>No results for "{keyword}"</div>
+					!activeSpinner && (
+						<div className='text-2xl p-4'>No books found with "{keyword}"</div>
+					)
 				)}
 			</div>
 		</Fragment>

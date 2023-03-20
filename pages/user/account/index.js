@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, Fragment } from 'react'
+import { useState, useEffect, useRef, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,21 +8,28 @@ import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
 import AccountIcon from '../../../assets/icons/AccountIcon'
 import SettingsIcon from '../../../assets/icons/SettingsIcon'
+// import ScrollToTop from '../../../components/ScrollToTop'
 
 function AccountPage(props) {
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
+	const pageRef = useRef(null)
 
 	useEffect(() => {
 		setActiveUser(user?.data)
 		// if (!activeUser) getUserAccount()
 	}, [user])
 
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined')
+	// 		window.addEventListener('scroll', (e) => console.log('scrollE', e))
+	// }, [])
+
 	return (
 		<Fragment>
 			<Head>
 				<title>Settings</title>
-				<meta name='description' content='Settings section' />
+				<meta name='description' content='User settings page' />
 			</Head>
 
 			{!activeUser ? (
@@ -33,6 +40,7 @@ function AccountPage(props) {
 				/>
 			) : (
 				<div className='page-gradient'>
+					{/* <ScrollToTop pageRef={pageRef} /> */}
 					<PageHeader
 						pageTitle='Your profile'
 						rightContainer={
@@ -91,6 +99,11 @@ function AccountPage(props) {
 								</p>
 							</div>
 						</div>
+					</div>
+					<div className='flex justify-center my-6'>
+						<button className='login-btn w-[90vw] md:w-[50vw] xl:w-[30vw]'>
+							<span>Edit profile</span>
+						</button>
 					</div>
 				</div>
 			)}

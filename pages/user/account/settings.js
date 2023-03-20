@@ -45,38 +45,38 @@ function SettingsPage() {
 					icon={<SettingsIcon />}
 				/>
 			) : (
-				<div className='page-gradient h-full'>
+				<div className='page-gradient h-full w-screen xl:w-full'>
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
-						<button className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'>
+						<button className='flex items-center rounded-lg w-full xl:w-60 p-4 gap-6 bg-[#192132]'>
 							<KeyIcon dimensions='h-7 w-7' />
-							<p className='w-40 mx-auto'>Change password</p>
+							<p className='text-base'>Change password</p>
 						</button>
 					</div>
 
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'
+							className='flex items-center rounded-lg w-full xl:w-60 p-4 gap-6 bg-[#192132]'
 							onClick={logOutHandler}>
 							<LogoutIcon dimensions='h-7 w-7' />
-							<p className='w-40 mx-auto'>Log out</p>
+							<p className='text-base'>Log out</p>
 						</button>
 					</div>
 					<hr className='border-t-[0.1px] w-screen xs:w-64 border-gray-700' />
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'
+							className='flex items-center rounded-lg w-full xl:w-60 p-4 gap-6 bg-[#192132]'
 							onClick={() => router.push('/help/faq')}>
 							<HelpIcon dimensions='h-7 w-7' />
-							<p className='text-base mx-auto'>Help</p>
+							<p className='text-base'>Help</p>
 						</button>
 					</div>
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-48 xl:w-60 p-4 gap-6 bg-[#192132]'
+							className='flex items-center rounded-lg w-full xl:w-60 p-4 gap-6 bg-[#192132]'
 							onClick={() => router.push('/help/support')}>
 							<FeedbackIcon dimensions='h-7 w-7' />
-							<p className='text-base mx-auto'>Support</p>
+							<p className='text-base'>Support</p>
 						</button>
 					</div>
 				</div>
