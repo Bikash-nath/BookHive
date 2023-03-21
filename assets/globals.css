@@ -58,7 +58,11 @@
 }
 
 .input-field {
-	@apply w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border focus:border-[#8C6AFF];
+	@apply text-lg w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
+}
+
+.edit-field {
+	@apply w-full my-2 p-3.5 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
 }
 
 /* html {

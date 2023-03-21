@@ -5,14 +5,15 @@ import Link from 'next/link'
 import useWindowWidth from '../hooks/useWindowWidth'
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../api/books'
 import { getTopAuthors } from '../api/authors'
+import { getUserProfile } from '../api/userProfile'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
-// import ScrollToTop from '../components/ScrollToTop'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
 import AccountIcon from '../assets/icons/AccountIcon'
 
+// import ScrollToTop from '../components/ScrollToTop'
 // import HamburgerIcon from '../assets/icons/HamburgerIcon'
 // import SpinnerContext from '../store/spinnerContext'
 
@@ -20,13 +21,21 @@ function HomePage(props) {
 	const { user } = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
 	const windowWidth = useWindowWidth()
+	const pageRef = useRef(null)
 
 	useEffect(() => {
 		setActiveUser(user?.data)
-		// if (!activeUser) getUserProfile()
+		if (!activeUser) getUserProfile()
 	}, [user])
 
-	const pageRef = useRef(null)
+	const getGreeting = () => {
+		const timeNow = new Date().getHours()
+		return timeNow >= 5 && timeNow < 12
+			? 'Good Morning'
+			: timeNow >= 12 && timeNow < 18
+			? 'Good Afternoon'
+			: 'Good Evening'
+	}
 
 	return (
 		<Fragment>
@@ -64,6 +73,16 @@ function HomePage(props) {
 								)
 							}
 						/>
+					</div>
+				)}
+				{activeUser && (
+					<div className='flex w-full items-center justify-center'>
+						<div className='flex flex-col w-full xl:gap-2 p-3 md:p-4 xl:px-[5.6rem] xl:pt-10 xl:w-[84vw] my-1 xl:my-2'>
+							<h3 className='text-md xl:text-lg font-medium mx-[.5px]'>
+								{'Hi, ' + activeUser.name || 'User'}
+							</h3>
+							<h2 className='text-lg xl:text-xl font-semibold'>{getGreeting()}</h2>
+						</div>
 					</div>
 				)}
 				<div className='py-1 xl:py-4'>

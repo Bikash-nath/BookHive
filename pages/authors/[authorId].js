@@ -53,7 +53,7 @@ function AuthorDetailPage(props) {
 					<TopNavModal pageTitle={author.name} pageRef={pageRef} coverRef={coverRef} />
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
-					<div className='flex items-center justify-center w-full p-2 pt-12 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
+					<div className='flex items-center justify-center w-full p-2 pt-11 xl:pt-4 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
 						<div className='flex justify-end min-w-max h-full'>
 							<Image
 								src={process.env.AUTHORS_URL + author.image}

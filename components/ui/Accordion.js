@@ -12,7 +12,7 @@ export default function Accordion(props) {
 				</div>
 			</div>
 			<div className='md:text-md overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
-				<p className='py-2 text-gray-300'>{props.children}</p>
+				<div className='py-2 text-gray-300'>{props.children}</div>
 			</div>
 		</div>
 	)

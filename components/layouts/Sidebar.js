@@ -75,9 +75,17 @@ function Sidebar() {
 									className={'flex items-center mr-2'}
 									onClick={() => setLibraryToggle(!libraryToggle)}>
 									{libraryToggle ? (
-										<ChevronDownIcon dimensions='h-6 w-6' color='white' />
+										<ChevronDownIcon
+											dimensions='h-6 w-6'
+											color='#999999'
+											stroke='#999999'
+										/>
 									) : (
-										<ChevronRightIcon dimensions='h-6 w-6' color='white' />
+										<ChevronRightIcon
+											dimensions='h-6 w-6'
+											color='#999999'
+											stroke='#999999'
+										/>
 									)}
 								</div>
 							) : (
@@ -110,7 +118,7 @@ function Sidebar() {
 						)}
 					</div>
 
-					<Link href='/user/account'>
+					<Link href='/user/account/profile'>
 						<div className={routeClassHandler('/account') + 'my-4'}>
 							<AccountIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Account</p>

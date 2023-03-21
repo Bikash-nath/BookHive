@@ -49,7 +49,7 @@ function LoginEmailPage(props) {
 			{/* {loading && <LoadingSpinner />} */}
 			{/* {error && <ErrorAlert variant='danger'>{error}</ErrorAlert>} */}
 			<LoginContainer>
-				<h2 className='mb-4 text-3xl font-bold'>Log In</h2>
+				<h2 className='font-bold text-3xl mb-4'>Log In</h2>
 				<input
 					value={email}
 					onChange={(e) => {
@@ -57,15 +57,15 @@ function LoginEmailPage(props) {
 					}}
 					placeholder='Enter email address or phone'
 					type='email'
-					className='input-field mb-4'
+					className='input-field my-4'
 				/>
-				<div className='relative'>
+				<div className='relative my-4'>
 					<input
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder='Enter your password'
 						type={!showPassword ? 'password' : 'text'}
-						className='input-field mb-4 box-border'
+						className='input-field box-border'
 					/>
 					{password ? (
 						!showPassword ? (

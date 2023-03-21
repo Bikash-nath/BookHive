@@ -5,19 +5,19 @@ import { useRouter } from 'next/router'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
 import SpinnerContext from '../../../store/spinnerContext'
-import { signup } from '../../../api/userProfile'
+import { changeUserPassword } from '../../../api/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
 
-function SignUpPage(props) {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
+function ChangeNewPassword(props) {
 	const [password, setPassword] = useState('')
-	const [passwordConfirm, setPasswordConfirm] = useState('')
+	const [newPassword, setNewPassword] = useState('')
+	const [newPasswordConfirm, setNewPasswordConfirm] = useState('')
 	const [showPassword, setShowPassword] = useState(null)
-	const [showPasswordConfirm, setShowPasswordConfirm] = useState(null)
+	const [showNewPassword, setShowNewPassword] = useState(null)
+	const [showNewPasswordConfirm, setShowNewPasswordConfirm] = useState(null)
 
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
@@ -26,12 +26,12 @@ function SignUpPage(props) {
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
-		if (password === passwordConfirm) {
+		if (newPassword === newPasswordConfirm) {
 			toggleSpinner(true)
-			const user = await signup(name, email, password, passwordConfirm)
+			const user = await changeUserPassword(password, newPassword, newPasswordConfirm)
 			if (user.data) {
 				userCtx.addUser(user)
-				snackbarCtx.addMessage({ title: 'Log in successfull' })
+				snackbarCtx.addMessage({ title: 'Password change successfull' })
 			} else {
 				snackbarCtx.addMessage({ title: user })
 			}
@@ -40,31 +40,17 @@ function SignUpPage(props) {
 	}
 
 	useEffect(() => {
-		if (userCtx.user?.data) router.push('/')
+		if (!userCtx.user?.data) router.push('/')
 	}, [userCtx.user, router])
 
 	return (
 		<Fragment>
 			<Head>
-				<title>Sign Up</title>
-				<meta name='description' content='BookHive SignUp page' />
+				<title>Change Password</title>
+				<meta name='description' content='BookHive change user password page' />
 			</Head>
 			<LoginContainer>
-				<h2 className='mb-8 text-3xl font-bold'>Sign Up</h2>
-				<input
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					placeholder='Enter your name'
-					type='text'
-					className='input-field mb-4'
-				/>
-				<input
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					placeholder='Enter email address or phone'
-					type='email'
-					className='input-field mb-4'
-				/>
+				<h2 className='mb-8 text-3xl font-bold'>Change Password</h2>
 				<div className='relative'>
 					<input
 						value={password}
@@ -93,23 +79,49 @@ function SignUpPage(props) {
 				</div>
 				<div className='relative'>
 					<input
-						value={passwordConfirm}
-						onChange={(e) => setPasswordConfirm(e.target.value)}
-						placeholder='Confirm your password'
-						type={!showPasswordConfirm ? 'password' : 'text'}
+						value={newPassword}
+						onChange={(e) => setNewPassword(e.target.value)}
+						placeholder='Enter your newPassword'
+						type={!showNewPassword ? 'newPassword' : 'text'}
 						className='input-field mb-4'
 					/>
-					{passwordConfirm ? (
-						!showPasswordConfirm ? (
+					{newPassword ? (
+						!showNewPassword ? (
 							<div
 								className='absolute top-6 right-2 box-border cursor-pointer'
-								onClick={() => setShowPasswordConfirm(true)}>
+								onClick={() => setShowNewPassword(true)}>
 								<EyeIcon />
 							</div>
 						) : (
 							<div
 								className='absolute top-6 right-2 box-border cursor-pointer'
-								onClick={() => setShowPasswordConfirm(false)}>
+								onClick={() => setShowNewPassword(false)}>
+								<EyeSlashIcon />
+							</div>
+						)
+					) : (
+						<></>
+					)}
+				</div>
+				<div className='relative'>
+					<input
+						value={newPasswordConfirm}
+						onChange={(e) => setNewPasswordConfirm(e.target.value)}
+						placeholder='Confirm your newPassword'
+						type={!showNewPasswordConfirm ? 'newPassword' : 'text'}
+						className='input-field mb-4'
+					/>
+					{newPasswordConfirm ? (
+						!showNewPasswordConfirm ? (
+							<div
+								className='absolute top-6 right-2 box-border cursor-pointer'
+								onClick={() => setShowNewPasswordConfirm(true)}>
+								<EyeIcon />
+							</div>
+						) : (
+							<div
+								className='absolute top-6 right-2 box-border cursor-pointer'
+								onClick={() => setShowNewPasswordConfirm(false)}>
 								<EyeSlashIcon />
 							</div>
 						)
@@ -129,4 +141,4 @@ function SignUpPage(props) {
 	)
 }
 
-export default SignUpPage
+export default ChangeNewPassword

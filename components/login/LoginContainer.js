@@ -6,8 +6,8 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 function LoginContainer(props) {
 	return (
 		<div className='flex items-start justify-center w-full h-full bg-[#0C111B] text-white p-0 m-0'>
-			<div className='relative flex flex-col w-full md:flex-row md:space-y-0 m-0 h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
-				<div className='px-4 md:p-4 w-full sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3'>
+			<div className='relative flex flex-col w-full md:flex-row h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
+				<div className='w-full sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 px-4 md:p-4'>
 					<div
 						className={
 							'md:flex md:items-center justify-center ' + props.splashScreen

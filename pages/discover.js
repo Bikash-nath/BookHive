@@ -21,13 +21,13 @@ function DiscoverPage(props) {
 				<meta name='description' content='Discover section' />
 			</Head>
 			<div className='bg-[#0C111B] h-full'>
-				<div className='fixed z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
+				<div className='sticky top-0 z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
 					<PageHeader pageTitle={<p className=''>Discover</p>} />
 					<div className='p-1 pb-2 xl:p-2 xl:pb-3 sm:w-3/5 md:w-1/2'>
 						<SearchBar />
 					</div>
 				</div>
-				<div className={'mx-auto p-1 pt-32 md:p-2 md:pt-36 xl:p-4 xl:pt-40'}>
+				<div className={'mx-auto p-1 md:p-2 xl:p-4'}>
 					<div className='item-container discover-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6'>
 						<div className='flex justify-center w-full h-full'>
 							<Link href={'/books/category/bestsellers'}>

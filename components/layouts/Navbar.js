@@ -57,7 +57,7 @@ function Navbar(props) {
 						</Link>
 					</div>
 					<div className={routeClassHandler('/account')}>
-						<Link href='/user/account'>
+						<Link href='/user/account/profile'>
 							<div className='flex w-full'>
 								<div className='mx-auto'>
 									<AccountIcon dimensions='h-6 w-6' />

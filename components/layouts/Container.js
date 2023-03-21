@@ -6,18 +6,21 @@ import { SearchToggleContextProvider } from '../../store/searchToggleContext'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import PageContainer from './PageContainer'
+import SnackBar from '../notification/SnackBar'
+import Navbar from './Navbar'
 
 function Container(props) {
 	const headerRef = useRef()
 	const windowWidth = useWindowWidth()
+	const navbarRef = useRef()
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			// window.addEventListener('load', function () {
-			setTimeout(function () {
-				window.scrollTo(0, 1)
-			}, 2)
-			// })
+			window.addEventListener('load', function () {
+				setTimeout(function () {
+					window.scrollTo(0, 1)
+				}, 2)
+			})
 		}
 	}, [])
 
@@ -32,6 +35,8 @@ function Container(props) {
 							{windowWidth > 1280 && <Header headerRef={headerRef} />}
 							<PageContainer page={props.children} headerRef={headerRef} />
 						</main>
+						<SnackBar navbarRef={navbarRef} />
+						{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 					</SearchToggleContextProvider>
 				</div>
 			</div>

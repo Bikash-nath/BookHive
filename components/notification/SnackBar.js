@@ -30,7 +30,7 @@ function SnackBar(props) {
 		<div
 			className={
 				message.title
-					? 'absolute overflow-hidden m-2 xl:m-3 w-auto ' +
+					? 'absolute overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
 					  (windowWidth < 1280
 							? props.navbarRef.current
 								? 'left-0 bottom-14'
@@ -42,7 +42,7 @@ function SnackBar(props) {
 				className='flex items-center justify-between bg-[#192132] w-full rounded-md box-border'
 				vshow='show'
 				transition={classes.uiSnackbarToggle}>
-				<div className='p-2 xl:p-2.5 text-lg xl:text-xl font-medium leading-relaxed  text-white'>
+				<div className='p-2 xl:p-3 text-lg xl:text-xl font-medium leading-relaxed  text-white'>
 					{message.title}
 				</div>
 				<div

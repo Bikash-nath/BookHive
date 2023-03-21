@@ -6,9 +6,8 @@ export const login = async (email, password) => {
 		// console.log('Login-Res', res)
 		return res.data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		// error.response?.data
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -26,26 +25,16 @@ export const signup = async (name, email, password, passwordConfirm) => {
 		})
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 //To get user profile based on :id or 'profile' passed as argument
 export const getUserProfile = async () => {
 	try {
-		// const  { userInfo } or cookie = getState()
-		const config = {
-			headers: {
-				Authorization: `Bearer ${cookie.token}`,
-			},
-		}
-		const { data } = await axios.get(`/users/profile/getMe`, config)
+		const { data } = await axios.get(`/users/profile/getMe`)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -57,22 +46,29 @@ export const updateUserProfile = async (user) => {
 		for (var key in user) {
 			formData.append(key, user[key])
 		}
-		const config = {
-			headers: {
-				Authorization: `Bearer ${cookie.token}`,
-			},
-		}
-		const { data } = await axios.put(`/users/profile/update/`, formData, config)
+		const { data } = await axios.put(`/users/profile/updateMe/`, formData)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
 //To update user profile based on user object
-export const deleteUser = async (id) => {
+export const changeUserPassword = async (password, newPassword, newPasswordConfirm) => {
+	try {
+		const { data } = await axios.put(`/users/profile/updatePassword/`, {
+			password,
+			newPassword,
+			newPasswordConfirm,
+		})
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+//To update user profile based on user object
+export const deleteUser = async () => {
 	try {
 		// const  { userInfo } or cookie = getState()
 		const config = {
@@ -80,11 +76,9 @@ export const deleteUser = async (id) => {
 				Authorization: `Bearer ${cookie.token}`,
 			},
 		}
-		const { data } = await axios.delete(`/users/delete/${id}`, config)
+		const { data } = await axios.delete(`/users/deleteMe`, config)
 		return data.message
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }

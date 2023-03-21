@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
+import openLink from '../../utils/helpers/openLink'
 
 function SupportPage(props) {
 	return (
@@ -19,21 +19,23 @@ function SupportPage(props) {
 					Your small, recurring support and feedback will allow us to respond to bugs more
 					quickly.
 				</div>
-				<div className='text-md font-medium italic'>
+				<div className='text-lg font-medium italic leading-relaxed'>
 					Consider supporting our project at{' '}
-					<Link
-						href='https://github.com/Bikash-nath/BookHive'
-						className='text-indigo-500'>
+					<div
+						onClick={() => openLink('https://github.com/Bikash-nath/BookHive')}
+						className='cursor-pointer inline text-indigo-500'>
 						github.com
-					</Link>
+					</div>
 				</div>
-				<div className='text-md font-medium italic'>
+				<div className='text-lg font-medium italic leading-relaxed'>
 					Provide some feedback at{' '}
-					<Link
-						href='https://github.com/Bikash-nath/BookHive/discussions'
-						className='text-indigo-500'>
-						BookHive/discussions
-					</Link>
+					<div
+						onClick={() =>
+							openLink('https://github.com/Bikash-nath/BookHive/discussions')
+						}
+						className='cursor-pointer inline text-indigo-500'>
+						BookHive
+					</div>
 				</div>
 			</div>
 		</Fragment>

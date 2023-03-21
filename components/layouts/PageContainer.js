@@ -6,8 +6,7 @@ import { SpinnerContextProvider } from '../../store/spinnerContext'
 import SpinnerContext from '../../store/spinnerContext'
 import SearchToggleContext from '../../store/searchToggleContext'
 import Spinner from '../widgets/Spinner'
-import SnackBar from '../notification/SnackBar'
-import Navbar from './Navbar'
+
 import Sidebar from './Sidebar'
 
 // import useScrollToTop from '../../hooks/useScrollToTop'
@@ -16,7 +15,6 @@ function PageContainer(props) {
 	const { activeSearch } = useContext(SearchToggleContext)
 	const { activeSpinner } = useContext(SpinnerContext)
 	const windowWidth = useWindowWidth()
-	const navbarRef = useRef()
 	const router = useRouter()
 
 	// useEffect(() => {
@@ -40,8 +38,6 @@ function PageContainer(props) {
 				{/* {windowWidth > 1280 && <Sidebar />} */}
 				{props.page}
 			</div>
-			<SnackBar navbarRef={navbarRef} />
-			{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 		</SpinnerContextProvider>
 	)
 }

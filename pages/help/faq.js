@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { Fragment } from 'react'
 
 import Footer from '../../components/layouts/Footer'
 import Accordion from '../../components/ui/Accordion'
+import openLink from '../../utils/helpers/openLink'
 
 function HelpPage(props) {
 	return (
@@ -41,18 +41,24 @@ function HelpPage(props) {
 							</Accordion>
 							<Accordion title='How can I find latest audiobooks?' tabIndex='2'>
 								Visit{' '}
-								<Link
-									href='https://bookhive.vercel.app/books/category/audiobooks'
-									className='text-indigo-500'>
+								<div
+									onClick={() =>
+										openLink(
+											'https://bookhive.vercel.app/books/category/audiobooks'
+										)
+									}
+									className='cursor-pointer text-indigo-500'>
 									bookhive.vercel.app/audiobooks
-								</Link>{' '}
+								</div>{' '}
 								to find latest audiobooks.
 							</Accordion>
 							<Accordion title='How can I contact BookHive team?' tabIndex='2'>
 								You can visit us directly at
-								<Link href='' className='text-indigo-500'>
+								<div
+									onClick={() => openLink('')}
+									className='cursor-pointer text-indigo-500'>
 									LinkedIn.
-								</Link>
+								</div>
 							</Accordion>
 						</div>
 					</div>
