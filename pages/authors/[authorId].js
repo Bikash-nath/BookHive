@@ -4,7 +4,7 @@ import Image from 'next/image'
 // import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
-import { getAuthorDetails, getTopAuthors } from '../../api/authors'
+import { getAuthorDetails, getTopAuthors } from '../../API/authors'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'

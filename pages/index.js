@@ -3,9 +3,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import useWindowWidth from '../hooks/useWindowWidth'
-import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../api/books'
-import { getTopAuthors } from '../api/authors'
-import { getUserProfile } from '../api/userProfile'
+import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../API/books'
+import { getTopAuthors } from '../API/authors'
+import { getUserProfile } from '../API/userProfile'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
 import ListSliderModal from '../components/modals/ListSliderModal'
@@ -55,7 +55,7 @@ function HomePage(props) {
 							pageTitle={<Logo size={32} />}
 							rightContainer={
 								activeUser?.name ? (
-									<Link href={'/user/account'}>
+									<Link href={'/user/account/profile'}>
 										{activeUser?.image ? (
 											<img
 												className='rounded-full w-7 h-7'

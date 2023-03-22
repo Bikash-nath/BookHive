@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState, Fragment } from 'react'
 import Link from 'next/link'
 
-// import { getUserProfile } from '../../../api/userProfile'
+// import { getUserProfile } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 

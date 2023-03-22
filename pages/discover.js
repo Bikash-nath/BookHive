@@ -3,7 +3,7 @@ import { Fragment, useRef } from 'react'
 // import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-import { getTopGenres } from '../api/genres'
+import { getTopGenres } from '../API/genres'
 import SearchBar from '../components/SearchBar'
 import PageHeader from '../components/layouts/PageHeader'
 import GenreCards from '../components/cards/GenreCards'

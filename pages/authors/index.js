@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
-import { getTopAuthors } from '../../api/authors'
+import { getTopAuthors } from '../../API/authors'
 import SpinnerContext from '../../store/spinnerContext'
 import ListGridModal from '../../components/modals/ListGridModal'
 import TopNavModal from '../../components/modals/TopNavModal'

@@ -6,9 +6,7 @@ export const getGenreBooks = async (genre, query) => {
 		// const bookList = bookList.map(genre => genre.books)
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -17,8 +15,8 @@ export const getTopGenres = async () => {
 		const { data } = await axios.get('/genres/top/')
 		return data
 	} catch (error) {
-		return error.response && error.response.data.error_message
-			? error.response.data.error_message
+		return error.response && error.response.data.message
+			? error.response.data.message
 			: error.message
 	}
 }

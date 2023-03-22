@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
-import { getBookDetails, getBestsellers } from '../../../api/books'
+import { getBookDetails, getBestsellers } from '../../../API/books'
 import SnackbarContext from '../../../store/snackbarContext'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'

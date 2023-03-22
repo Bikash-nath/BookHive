@@ -52,10 +52,10 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 				setBgColor(coverRef.current.className.split('from-')[1].split('-')[0] + '-800')
 			}
 			return () => {
-				pageRef.current.removeEventListener('wheel', setDebouncedScroll)
-				pageRef.current.removeEventListener('touchstart', setDebouncedScroll)
-				pageRef.current.removeEventListener('touchmove', setDebouncedScroll)
-				pageRef.current.removeEventListener('touchend', setDebouncedScroll)
+				pageRef.current?.removeEventListener('wheel', setDebouncedScroll)
+				pageRef.current?.removeEventListener('touchstart', setDebouncedScroll)
+				pageRef.current?.removeEventListener('touchmove', setDebouncedScroll)
+				pageRef.current?.removeEventListener('touchend', setDebouncedScroll)
 			}
 		}
 	}, [])

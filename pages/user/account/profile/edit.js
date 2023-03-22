@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import UserContext from '../../../../store/userContext'
-import { getUserProfile, updateUserProfile } from '../../../../api/userProfile'
+import { getUserProfile, updateUserProfile } from '../../../../API/userProfile'
 import SnackbarContext from '../../../../store/snackbarContext'
 import SpinnerContext from '../../../../store/spinnerContext'
 import LoginBanner from '../../../../components/login/LoginBanner'

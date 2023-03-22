@@ -2,7 +2,11 @@ import axios from '../lib/axiosConfig'
 
 export const login = async (email, password) => {
 	try {
-		const res = await axios.post('/users/profile/login/', { email, password })
+		const res = await axios.post(
+			'/users/profile/login/',
+			{ email, password },
+			{ withCredentials: true }
+		)
 		// console.log('Login-Res', res)
 		return res.data
 	} catch (error) {
@@ -17,12 +21,16 @@ export const logout = async () => {
 
 export const signup = async (name, email, password, passwordConfirm) => {
 	try {
-		const { data } = await axios.post('/users/profile/signup/', {
-			name,
-			email,
-			password,
-			passwordConfirm,
-		})
+		const { data } = await axios.post(
+			'/users/profile/signup/',
+			{
+				name,
+				email,
+				password,
+				passwordConfirm,
+			},
+			{ withCredentials: true }
+		)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -31,7 +39,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
 //To get user profile based on :id or 'profile' passed as argument
 export const getUserProfile = async () => {
 	try {
-		const { data } = await axios.get(`/users/profile/getMe`)
+		const { data } = await axios.get(`/users/profile/getMe`, { withCredentials: true })
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -46,7 +54,9 @@ export const updateUserProfile = async (user) => {
 		for (var key in user) {
 			formData.append(key, user[key])
 		}
-		const { data } = await axios.put(`/users/profile/updateMe/`, formData)
+		const { data } = await axios.put(`/users/profile/updateMe/`, formData, {
+			withCredentials: true,
+		})
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -56,11 +66,15 @@ export const updateUserProfile = async (user) => {
 //To update user profile based on user object
 export const changeUserPassword = async (password, newPassword, newPasswordConfirm) => {
 	try {
-		const { data } = await axios.put(`/users/profile/updatePassword/`, {
-			password,
-			newPassword,
-			newPasswordConfirm,
-		})
+		const { data } = await axios.put(
+			`/users/profile/updatePassword/`,
+			{
+				password,
+				newPassword,
+				newPasswordConfirm,
+			},
+			{ withCredentials: true }
+		)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message

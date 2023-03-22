@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState, useEffect, useContext, Fragment } from 'react'
 import { useRouter } from 'next/router'
 
-import { searchBooks } from '../api/books'
+import { searchBooks } from '../API/books'
 import SearchBar from '../components/SearchBar'
 import ListGridModal from '../components/modals/ListGridModal'
 import SpinnerContext from '../store/spinnerContext'

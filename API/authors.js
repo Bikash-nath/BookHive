@@ -5,9 +5,7 @@ export const getTopAuthors = async (query) => {
 		const { data } = await axios.get('/authors/top', { params: query })
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -16,9 +14,7 @@ export const getAuthorDetails = async (authorId, query) => {
 		const { data } = await axios.get(`/authors/${authorId}/`, { params: query })
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -27,9 +23,7 @@ export const getSimilarAuthors = async (authorId, query) => {
 		const { data } = await axios.get(`/authors/${authorId}/similar/`, { params: query })
 		return data
 	} catch (error) {
-		return error.response?.data.error_message
-			? error.response.data.error_message
-			: error.message
+		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -38,6 +32,6 @@ export const getSimilarAuthors = async (authorId, query) => {
 // 		const { data } = await axios.get('/authors/all/')
 // 		return data
 // 	} catch (error) {
-// 		return error.response?.data.error_message ? error.response.data.error_message : error.message
+// 		return error.response?.data.message ? error.response.data.message : error.message
 // 	}
 // }

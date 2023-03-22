@@ -17,7 +17,7 @@ import ProfileIcon from '../../assets/icons/ProfileIcon'
 import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
 // 	import SettingsIcon from '../../assets/icons/SettingsIcon'
-// import { getUserProfile } from '../../api/userProfile'
+// import { getUserProfile } from '../../API/userProfile'
 
 function Header(props) {
 	const [showNavBtn, setShowNavBtn] = useState(false)
