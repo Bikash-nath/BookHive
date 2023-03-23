@@ -57,6 +57,10 @@
 	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-[#8C6AFF] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
 }
 
+.btn-next-inactive {
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-[#192132] shadow-gray-800 hover:bg-opacity-90 hover:shadow-lg border;
+}
+
 .input-field {
 	@apply text-lg w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
 }

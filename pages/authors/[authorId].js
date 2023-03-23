@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef, Fragment } from 'react'
+import { useState, useEffect, useRef, useContext, Fragment, React } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 // import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { getAuthorDetails, getTopAuthors } from '../../API/authors'
+import { followAuthor, getLibraryAuthors } from '../../API/userLibrary'
+import UserContext from '../../store/userContext'
+import SnackbarContext from '../../store/snackbarContext'
 import BgCover from '../../components/modals/BgCover'
 import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'
@@ -17,9 +20,12 @@ import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 
 function AuthorDetailPage(props) {
 	const { author } = props
+	const { user } = useContext(UserContext)
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	const [bioLines, setBioLines] = useState(0)
 	const windowWidth = useWindowWidth()
+	const [isFollowing, setFollowing] = useState(false)
+	const snackbarCtx = useContext(SnackbarContext)
 
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
@@ -40,6 +46,24 @@ function AuthorDetailPage(props) {
 			window.addEventListener('orientationchange', readMoreBioHandler, false) // bioLines incorrect value
 		}
 	}, [bioRef?.current, author?.biography]) //remove author?.biography later
+
+	useEffect(() => {
+		if (!isFollowing && user?.data && author) {
+			;(async () => {
+				const { authors } = await getLibraryAuthors()
+				authors.find((a) => a.slug === author.slug) && setFollowing(true)
+			})()
+		}
+	}, [author])
+
+	const followAuthorHandler = async () => {
+		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save followed authors' })
+		else {
+			const { authors } = await followAuthor(author.slug)
+			if (authors.find((a) => a.slug === author.slug)) setFollowing(true)
+			else setFollowing(false)
+		}
+	}
 
 	return author ? (
 		<Fragment>
@@ -90,10 +114,21 @@ function AuthorDetailPage(props) {
 					</div>
 
 					<div className='flex xl:flex-col items-end xl:px-8 xl:space-y-4 right-2 text-white'>
-						<button className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'>
-							<HeartIcon dimensions='h-7 w-7' />
-							<span className='font-semibold pr-2'>Follow</span>
-						</button>
+						{isFollowing ? (
+							<button
+								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#192132] brightness-90 rounded-3xl shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+								onClick={followAuthorHandler}>
+								<HeartIcon dimensions='h-7 w-7' />
+								<span className='font-semibold pr-2'>Following</span>
+							</button>
+						) : (
+							<button
+								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+								onClick={followAuthorHandler}>
+								<HeartIcon dimensions='h-7 w-7' />
+								<span className='font-semibold pr-2'>Follow</span>
+							</button>
+						)}
 					</div>
 				</BgCover>
 

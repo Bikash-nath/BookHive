@@ -1,11 +1,13 @@
-import { useState, useEffect, useContext, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment, React } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
-import { getBookDetails, getBestsellers } from '../../../API/books'
+import { getBookDetails, getBestsellers, getLatestBooks } from '../../../API/books'
+import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
+import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
@@ -27,11 +29,13 @@ import ShareIcon from '../../../assets/icons/ShareIcon'
 
 function BookDetailPage(props) {
 	const { book } = props
+	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
+	const windowWidth = useWindowWidth()
 
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const [descLines, setDescLines] = useState(0)
-	const windowWidth = useWindowWidth()
+	const [isFavourite, setFavourite] = useState(false)
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
@@ -52,6 +56,24 @@ function BookDetailPage(props) {
 			descEl.style.display = 'inline'
 			setDescLines(descEl.getClientRects().length)
 			descEl.style.display = '-webkit-box'
+		}
+	}
+
+	useEffect(() => {
+		if (!isFavourite && user?.data) {
+			;(async () => {
+				const { books } = await getLibraryBooks()
+				books.find((b) => b.slug === book.slug) && setFavourite(true)
+			})()
+		}
+	}, [])
+
+	const favouriteBookHandler = async () => {
+		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save favourite books' })
+		else {
+			const { books } = await favouriteBook(book.slug)
+			if (books.find((b) => b.slug === book.slug)) setFavourite(true)
+			else setFavourite(false)
 		}
 	}
 
@@ -84,7 +106,15 @@ function BookDetailPage(props) {
 					{windowWidth < 1280 && (
 						<TopNavModal
 							rightIcon={<ShareIcon dimensions='h-6 w-6' color='' />}
-							lastIcon={<BookmarkIcon dimensions='h-7 w-7' color='' />}
+							lastIcon={
+								<div onClick={favouriteBookHandler}>
+									{isFavourite ? (
+										<BookmarkIcon dimensions='h-7 w-7' color='white' />
+									) : (
+										<BookmarkIcon dimensions='h-7 w-7' color='' />
+									)}
+								</div>
+							}
 							pageTitle={book.title}
 							pageRef={pageRef}
 							coverRef={coverRef}

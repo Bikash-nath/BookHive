@@ -14,6 +14,7 @@ import AccountIcon from '../../../../assets/icons/AccountIcon'
 
 function EditProfilePage(props) {
 	const snackbarCtx = useContext(SnackbarContext)
+	const userCtx = useContext(UserContext)
 	const { toggleSpinner } = useContext(SpinnerContext)
 
 	const { user } = useContext(UserContext)
@@ -28,7 +29,7 @@ function EditProfilePage(props) {
 			setName(user.data.name)
 			setGender(user.data.gender)
 			setDob(user.data.dob)
-			setAddress(user.data.address?.country)
+			setAddress(user.data.address)
 			setActiveUser(user.data)
 		} else getUserProfile()
 	}, [user])
@@ -38,7 +39,7 @@ function EditProfilePage(props) {
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		toggleSpinner(true)
-		const updatedUser = await updateUserProfile(activeUser, name, gender, dob, address)
+		const updatedUser = await updateUserProfile({ name, gender, dob, address })
 		if (updatedUser.data) {
 			userCtx.addUser(updatedUser)
 			snackbarCtx.addMessage({ title: 'Profile update successfull', status: 'success' })
@@ -121,7 +122,7 @@ function EditProfilePage(props) {
 										value={dob}
 										onChange={(e) => setDob(e.target.value)}
 										placeholder='Your birthday'
-										type='text'
+										type='date'
 										className='edit-field box-border'
 									/>
 								</div>

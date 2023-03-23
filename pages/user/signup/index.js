@@ -10,6 +10,7 @@ import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
+import { createUserLibrary } from '../../../API/userLibrary'
 
 function SignUpPage(props) {
 	const [name, setName] = useState('')
@@ -31,7 +32,8 @@ function SignUpPage(props) {
 			const user = await signup(name, email, password, passwordConfirm)
 			if (user.data) {
 				userCtx.addUser(user)
-				snackbarCtx.addMessage({ title: 'Log in successfull' })
+				snackbarCtx.addMessage({ title: 'Sign up successfull' })
+				setTimeout(() => createUserLibrary(), 500)
 			} else {
 				snackbarCtx.addMessage({ title: user })
 			}
@@ -40,7 +42,9 @@ function SignUpPage(props) {
 	}
 
 	useEffect(() => {
-		if (userCtx.user?.data) router.push('/')
+		if (userCtx.user?.data) {
+			router.push('/')
+		}
 	}, [userCtx.user, router])
 
 	return (
@@ -50,7 +54,7 @@ function SignUpPage(props) {
 				<meta name='description' content='BookHive SignUp page' />
 			</Head>
 			<LoginContainer>
-				<h2 className='mb-8 text-3xl font-bold'>Sign Up</h2>
+				<h2 className='text-2xl xl:text-3xl mb-6 xl:mb-8 font-bold'>Sign Up</h2>
 				<input
 					value={name}
 					onChange={(e) => setName(e.target.value)}
@@ -119,7 +123,13 @@ function SignUpPage(props) {
 				</div>
 
 				<div className='flex items-center justify-end my-3 md:my-6'>
-					<button onClick={submitHandler} className='btn-next'>
+					<button
+						onClick={submitHandler}
+						className={
+							name && email && password && password === passwordConfirm
+								? 'btn-next'
+								: 'btn-next-inactive'
+						}>
 						<span>Next</span>
 						<ArrowIcon />
 					</button>

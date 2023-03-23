@@ -2,12 +2,24 @@ import axios from '../lib/axiosConfig'
 
 export const login = async (email, password) => {
 	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+			mode: 'same-origin',
+			redirect: 'follow',
+		}
+
 		const res = await axios.post(
 			'/users/profile/login/',
 			{ email, password },
-			{ withCredentials: true }
+			{
+				withCredentials: true,
+				// credentials: 'include',
+			},
+			config
 		)
-		// console.log('Login-Res', res)
 		return res.data
 	} catch (error) {
 		// error.response?.data
@@ -15,12 +27,16 @@ export const login = async (email, password) => {
 	}
 }
 
-export const logout = async () => {
-	localStorage.removeItem('userInfo')
-}
-
 export const signup = async (name, email, password, passwordConfirm) => {
 	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+		// mode: 'same-origin',
+		// redirect: 'follow',
 		const { data } = await axios.post(
 			'/users/profile/signup/',
 			{
@@ -29,17 +45,28 @@ export const signup = async (name, email, password, passwordConfirm) => {
 				password,
 				passwordConfirm,
 			},
-			{ withCredentials: true }
+			{ withCredentials: true },
+			config
 		)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
+
+export const logout = async () => {
+	localStorage.removeItem('userInfo')
+}
+
 //To get user profile based on :id or 'profile' passed as argument
 export const getUserProfile = async () => {
 	try {
-		const { data } = await axios.get(`/users/profile/getMe`, { withCredentials: true })
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}
+		const { data } = await axios.get(`/users/profile/getMe`, { withCredentials: true }, config)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -49,31 +76,66 @@ export const getUserProfile = async () => {
 //To update user profile based on user object
 export const updateUserProfile = async (user) => {
 	try {
-		// const  { userInfo } or cookie = getState()
 		var formData = new FormData()
 		for (var key in user) {
 			formData.append(key, user[key])
 		}
-		const { data } = await axios.put(`/users/profile/updateMe/`, formData, {
-			withCredentials: true,
-		})
+
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+
+		const { data } = await axios.patch(
+			`/users/profile/updateMe`,
+			formData,
+			{
+				withCredentials: true,
+			},
+			config
+		)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
-//To update user profile based on user object
-export const changeUserPassword = async (password, newPassword, newPasswordConfirm) => {
+export const updateUserEmail = async (userData) => {
 	try {
-		const { data } = await axios.put(
-			`/users/profile/updatePassword/`,
-			{
-				password,
-				newPassword,
-				newPasswordConfirm,
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			}, //'Access-Control-Allow-Origin': 'http://localhost:3000',
+		}
+		const { data } = await axios.patch(
+			`/users/profile/updateEmail/`,
+			userData,
+			{ withCredentials: true },
+			config
+		)
+		console.log('data', data)
+
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+export const updateUserPassword = async (userData) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
 			},
-			{ withCredentials: true }
+		}
+		const { data } = await axios.patch(
+			`/users/profile/updatePassword/`,
+			userData,
+			{ withCredentials: true },
+			config
 		)
 		return data
 	} catch (error) {

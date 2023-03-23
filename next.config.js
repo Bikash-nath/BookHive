@@ -24,11 +24,10 @@ const nextConfig = (phase) => {
 		}
 
 	const hostnames = [
-		'bookhive-books.s3.amazonaws.com',
-		'bookhive-authors.s3.amazonaws.com',
+		'bookhive-book.s3.ap-south-1.amazonaws.com',
+		'bookhive-author.s3.ap-south-1.amazonaws.com',
+		'bookhive-ebook.s3.ap-south-1.amazonaws.com',
 		'bookhive-genre.s3.ap-south-1.amazonaws.com',
-		'bookhive-users.s3.amazonaws.com',
-		'bookhive-epub.s3.ap-south-1.amazonaws.com',
 	]
 
 	return {
@@ -41,11 +40,11 @@ const nextConfig = (phase) => {
 		},
 		env: {
 			API_URL: 'https://bookhive.up.railway.app/api',
-			BOOKS_URL: 'https://bookhive-books.s3.amazonaws.com/',
-			AUTHORS_URL: 'https://bookhive-authors.s3.amazonaws.com/',
-			GENRES_URL: 'https://bookhive-genre.s3.ap-south-1.amazonaws.com/',
-			USERS_URL: 'https://bookhive-users.s3.amazonaws.com/',
+			BOOKS_URL: 'https://bookhive-book.s3.ap-south-1.amazonaws.com/',
+			AUTHORS_URL: 'https://bookhive-author.s3.ap-south-1.amazonaws.com/',
 			EBOOK_URL: 'https://bookhive-ebook.s3.ap-south-1.amazonaws.com/',
+			GENRES_URL: 'https://bookhive-genre.s3.ap-south-1.amazonaws.com/',
+			USERS_URL: '',
 		},
 	}
 }

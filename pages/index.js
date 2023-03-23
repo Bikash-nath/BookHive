@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef, Fragment } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment, React } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -24,8 +24,8 @@ function HomePage(props) {
 	const pageRef = useRef(null)
 
 	useEffect(() => {
-		setActiveUser(user?.data)
 		if (!activeUser) getUserProfile()
+		setActiveUser(user?.data)
 	}, [user])
 
 	const getGreeting = () => {

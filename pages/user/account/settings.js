@@ -49,7 +49,9 @@ function SettingsPage() {
 				<div className='page-gradient h-full w-screen xl:w-full'>
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
-						<button className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#181f31]'>
+						<button
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#181f31]'
+							onClick={() => router.push('/user/account/update-email')}>
 							<MailIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Update Email</p>
 						</button>

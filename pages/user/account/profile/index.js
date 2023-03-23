@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext, Fragment } from 'react'
+import { useState, useEffect, useRef, useContext, Fragment, React } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -90,6 +90,20 @@ function AccountPage(props) {
 									</p>
 								</div>
 							</div>
+							{activeUser.dob && (
+								<div className='w-full'>
+									<div className='flex items-start justify-start w-full p-2'>
+										<p className='text-xl font-medium text-white text-left'>
+											Birthday
+										</p>
+									</div>
+									<div className='rounded-xl px-4 py-1 bg-[#192132]'>
+										<p className='text-lg rounded-md py-2 font-medium'>
+											{activeUser.dob.split('T')[0]}
+										</p>
+									</div>
+								</div>
+							)}
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full p-2'>
 									<p className='text-xl font-medium text-white text-left'>
@@ -98,7 +112,7 @@ function AccountPage(props) {
 								</div>
 								<div className='rounded-xl px-4 py-1 bg-[#192132]'>
 									<p className='text-lg rounded-md py-2 font-medium'>
-										{activeUser.address?.country}
+										{activeUser.address}
 									</p>
 								</div>
 							</div>
