@@ -94,6 +94,20 @@ function BookDetailPage(props) {
 		}
 	}
 
+	const shareBookHandler = async () => {
+		if (navigator?.share) {
+			const sharedBook = await navigator.share({
+				title: book.title,
+				url: window.location.origin + router.asPath,
+			})
+			if (sharedBook) snackbarCtx.addMessage({ title: 'Thanks for sharing' })
+		} else {
+			snackbarCtx.addMessage({
+				title: 'Sorry! Web Share API is not supported in this browser',
+			})
+		}
+	}
+
 	return book ? (
 		<Fragment>
 			<Head>
@@ -105,7 +119,11 @@ function BookDetailPage(props) {
 				<div className='pb-16 xl:pb-12'>
 					{windowWidth < 1280 && (
 						<TopNavModal
-							rightIcon={<ShareIcon dimensions='h-6 w-6' color='' />}
+							rightIcon={
+								<div onClick={shareBookHandler}>
+									<ShareIcon dimensions='h-6 w-6' color='' />
+								</div>
+							}
 							lastIcon={
 								<div onClick={favouriteBookHandler}>
 									{isFavourite ? (
@@ -167,14 +185,25 @@ function BookDetailPage(props) {
 								<BookReadIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
+							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
-							<button className='xl:flex hidden items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl max-sm: p-2 font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
-								<LibraryIcon dimensions='h-7 w-7' />
-								<span className='font-semibold'>Add To Library</span>
-							</button>
+							{isFavourite ? (
+								<button
+									className='xl:flex hidden items-center justify-center px-3 py-2 xl:px-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+									onClick={favouriteBookHandler}>
+									<LibraryIcon dimensions='h-7 w-7' />
+									<span className='font-semibold'>Saved in Library</span>
+								</button>
+							) : (
+								<button
+									className='xl:flex hidden items-center justify-center px-3 py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
+									onClick={favouriteBookHandler}>
+									<LibraryIcon dimensions='h-7 w-7' />
+									<span className='font-semibold'>Add To Library</span>
+								</button>
+							)}
 						</div>
 					</BgCover>
 

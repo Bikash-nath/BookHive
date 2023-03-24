@@ -16,10 +16,8 @@ export const createUserLibrary = async () => {
 			},
 			config
 		)
-		// console.log('Login-Res', res)
 		return res.data
 	} catch (error) {
-		// error.response?.data
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
@@ -39,10 +37,8 @@ export const getUserLibrary = async () => {
 			},
 			config
 		)
-		// console.log('Login-Res', res)
 		return res.data
 	} catch (error) {
-		// error.response?.data
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }

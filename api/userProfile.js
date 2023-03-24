@@ -116,8 +116,6 @@ export const updateUserEmail = async (userData) => {
 			{ withCredentials: true },
 			config
 		)
-		console.log('data', data)
-
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message

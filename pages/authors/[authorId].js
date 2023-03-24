@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext, Fragment, React } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { getAuthorDetails, getTopAuthors } from '../../API/authors'
@@ -17,6 +17,7 @@ import StarIcon from '../../assets/icons/StarIcon'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
+import ShareIcon from '../../assets/icons/ShareIcon'
 
 function AuthorDetailPage(props) {
 	const { author } = props
@@ -27,6 +28,7 @@ function AuthorDetailPage(props) {
 	const [isFollowing, setFollowing] = useState(false)
 	const snackbarCtx = useContext(SnackbarContext)
 
+	const router = useRouter()
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
 	const pageRef = useRef(null)
@@ -65,6 +67,20 @@ function AuthorDetailPage(props) {
 		}
 	}
 
+	const shareBookHandler = async () => {
+		if (navigator?.share && window.location.origin) {
+			const sharedAuthor = await navigator.share({
+				title: author.name,
+				url: window.location.origin + router.asPath,
+			})
+			if (sharedAuthor) snackbarCtx.addMessage({ title: 'Thanks for sharing' })
+		} else {
+			snackbarCtx.addMessage({
+				title: 'Sorry! Web Share API is not supported in this browser',
+			})
+		}
+	}
+
 	return author ? (
 		<Fragment>
 			<Head>
@@ -74,10 +90,19 @@ function AuthorDetailPage(props) {
 
 			<div className='bg-[#0C111B] pb-16 xl:pb-12' ref={pageRef}>
 				{windowWidth < 1280 && (
-					<TopNavModal pageTitle={author.name} pageRef={pageRef} coverRef={coverRef} />
+					<TopNavModal
+						rightIcon={
+							<div onClick={shareBookHandler}>
+								<ShareIcon dimensions='h-6 w-6' color='' />
+							</div>
+						}
+						pageTitle={author.name}
+						pageRef={pageRef}
+						coverRef={coverRef}
+					/>
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
-					<div className='flex items-center justify-center w-full p-2 pt-11 xl:pt-4 gap-2 ms:gap-3 md:gap-4 xl:gap-5'>
+					<div className='flex items-center justify-center w-full xl:max-w-2xl p-2 pt-11 xl:pt-4 gap-2 ms:gap-3 md:gap-4'>
 						<div className='flex justify-end min-w-max h-full'>
 							<Image
 								src={process.env.AUTHORS_URL + author.image}
@@ -87,7 +112,7 @@ function AuthorDetailPage(props) {
 								className='object-cover rounded-full w-32 h-32 xl:w-48 xl:h-48'
 							/>
 						</div>
-						<div className='p-1 space-y-4 xl:max-w-sm xl:min-w-[18rem]'>
+						<div className='p-1 space-y-4 xl:max-w-xs xl:min-w-[16rem]'>
 							<div>
 								<h2 className='text-xl md:text-3xl xl:text-4xl font-medium'>
 									{author.name}
@@ -113,7 +138,12 @@ function AuthorDetailPage(props) {
 						</div>
 					</div>
 
-					<div className='flex xl:flex-col items-end xl:px-8 xl:space-y-4 right-2 text-white'>
+					<div className='flex xl:flex-col justify-center relative xl:min-h-[12rem] xl:space-y-4 text-white'>
+						<div
+							onClick={shareBookHandler}
+							className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
+							<ShareIcon dimensions='h-7 w-7' color='' />
+						</div>
 						{isFollowing ? (
 							<button
 								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#192132] brightness-90 rounded-3xl shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
