@@ -26,7 +26,7 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 	)
 
 	return (
-		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent'>
+		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent w-full'>
 			<div className='mx-auto md:px-2'>
 				<div className='flex xl:justify-center'>
 					<div className='flex justify-between my-3 w-full xl:w-[86.5%] xl:my-2'>

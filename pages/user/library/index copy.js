@@ -1,25 +1,33 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
+// import Link from 'next/link'
+// import Image from 'next/image'
 
 import UserContext from '../../../store/userContext'
-import LoginBanner from '../../../components/login/LoginBanner'
+import SpinnerContext from '../../../store/spinnerContext'
+import { getUserLibrary } from '../../../API/userLibrary'
 import PageHeader from '../../../components/layouts/PageHeader'
-import AccountIcon from '../../../assets/icons/AccountIcon'
+import ListSliderModal from '../../../components/modals/ListSliderModal'
+import GenreListModal from '../../../components/modals/GenreListModal'
+import LoginBanner from '../../../components/login/LoginBanner'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
-import HistoryIcon from '../../../assets/icons/HistoryIcon'
-import CollectionIcon from '../../../assets/icons/CollectionIcon'
-import HeartIcon from '../../../assets/icons/HeartIcon'
-import CompletedIcon from '../../../assets/icons/CompletedIcon'
 
 function LibraryPage(props) {
 	const userCtx = useContext(UserContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
 	const [activeUser, setActiveUser] = useState(null)
+	const [library, setLibrary] = useState([null])
 
 	useEffect(() => {
-		setActiveUser(userCtx.user)
-		// if (!activeUser?.data) getUserProfile()
+		setActiveUser(userCtx.user?.data)
+		if (activeUser) {
+			;(async () => {
+				toggleSpinner(true)
+				const userLibrary = await getUserLibrary()
+				if (userLibrary.data) setLibrary(userLibrary.data)
+				toggleSpinner(false)
+			})()
+		}
 	}, [activeUser])
 
 	return (
@@ -28,85 +36,71 @@ function LibraryPage(props) {
 				<title>Library</title>
 				<meta name='description' content='Library section' />
 			</Head>
-			{!activeUser?.data ? (
+			{!activeUser ? (
 				<LoginBanner
 					title='Enjoy Your Favourite Books'
-					message='Log in to see saved books, authors,
-						and collections in your library.'
+					message='Log in to see saved books, authors, and collections in your library.'
 					icon={<LibraryIcon />}
 				/>
 			) : (
 				<div className='page-gradient'>
 					<PageHeader pageTitle='Library' />
-					<div className='flex flex-col'>
-						<div className='flex flex-col items-start justify-between mx-2 md:mx-6 my-6 space-y-3'>
-							<Link href='/user/library/collections'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
-									<div className='flex rounded-md py-2 gap-2'>
-										<CollectionIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>
-											Collections
-										</p>
-									</div>
-									<p className='text-base md:text-lg text-gray-400 text-left'>
-										Book collections that you created.
-									</p>
-								</div>
-							</Link>
-							<Link href='/user/library/read-history'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
-									<div className='flex rounded-md py-2 gap-2'>
-										<HistoryIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>
-											History
-										</p>
-									</div>
-									<p className='text-base md:text-lg text-gray-400 text-left'>
-										Books that you have read or listened.
-									</p>
-								</div>
-							</Link>
-							<Link href='/user/library/read-later'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
-									<div className='flex rounded-md py-2 gap-2'>
-										<HistoryIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>
-											Read Later
-										</p>
-									</div>
-									<p className='text-base md:text-lg text-gray-400 text-left'>
-										Books that you have saved for read later.
-									</p>
-								</div>
-							</Link>
-							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
-									<div className='flex rounded-md py-2 gap-2'>
-										<HeartIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>
-											Favourites
-										</p>
-									</div>
-									<p className='text-base md:text-lg text-gray-400 text-left'>
-										List of your liked books.
-									</p>
-								</div>
-							</Link>
-							<Link href='/user/library/favourites'>
-								<div className='rounded-lg w-[90vw] md:w-[70vw] lg:w-[50vw] p-2 bg-gray-900 border border-black'>
-									<div className='flex rounded-md py-2 gap-2'>
-										<CompletedIcon dimensions='h-7 w-7' />
-										<p className='text-lg md:text-xl text-left font-semibold'>
-											Finished Books
-										</p>
-									</div>
-									<p className='text-base md:text-lg text-gray-400 text-left'>
-										List of books that you have completed.
-									</p>
-								</div>
-							</Link>
+					{!library.books?.length &&
+					!library.genres?.length &&
+					!library.authors?.length ? (
+						<div className='flex flex-col items-center justify-center h-[75vh] p-2'>
+							<div className='flex py-4 text-white'>
+								<LibraryIcon dimensions='h-24 w-24' />
+							</div>
+							<div className='flex text-center py-2 md:py-4 text-xl md:text-2xl'>
+								<h3>Save books, authors and genres to see in your library</h3>
+							</div>
 						</div>
-					</div>
+					) : (
+						<div className='flex flex-col items-center xl:items-start justify-center w-full pb-8 xl:pb-4 md:mx-6'>
+							{/* <p className='text-base md:text-lg xl:text-lg text-gray-300 xl:px-6'>You do not have any saved books.</p> */}
+							{library.books?.length ? (
+								<div className='flex justify-center w-full xl:w-fit p-1 xl:p-4'>
+									<ListSliderModal
+										listTitle='Saved books'
+										listLink={
+											'/user/library/user-books'
+											// library.books.length > 10 : null
+										}
+										books={library.books.slice(library.books.length - 3)}
+									/>
+								</div>
+							) : (
+								<></>
+							)}
+
+							{library.authors?.length ? (
+								<div className='flex justify-center w-full xl:w-fit p-1 xl:p-4'>
+									<ListSliderModal
+										listTitle='Followed authors'
+										listLink={
+											'/user/library/user-authors'
+											// library.authors.length > 10 : null
+										}
+										authors={library.authors.slice(library.authors.length - 3)}
+									/>
+								</div>
+							) : (
+								<></>
+							)}
+
+							{library.genres?.length ? (
+								<div className='flex flex-col w-full xl:w-fit mx-3 xl:mx-4 my-12 xl:my-16'>
+									<h3 className='text-xl xl:text-2xl font-semibold leading-relaxed text-center xl:text-left w-full xl:mx-9'>
+										Favourite genres
+									</h3>
+									<GenreListModal genres={library.genres} />
+								</div>
+							) : (
+								<></>
+							)}
+						</div>
+					)}
 				</div>
 			)}
 		</Fragment>
@@ -114,45 +108,3 @@ function LibraryPage(props) {
 }
 
 export default LibraryPage
-
-/*
-<div className='flex flex-col items-start justify-between max-w-6xl w-full mx-auto gap-2 my-6 space-y-4 divide-y divide-gray-400'>
-		<div className='flex w-full p-1 py-2 gap-2'>
-			<p className='text-lg md:text-xl text-left font-semibold'>Collections</p>
-			<p className='text-base md:text-lg text-gray-400 text-left'>
-			Book collections that you created.
-			</p>
-			</div>
-		<div className='flex w-full p-1 py-2 gap-2'>
-			<p className='text-lg md:text-xl text-left font-semibold'>History</p>
-			<p className='text-base md:text-lg text-gray-400 text-left'>
-			Books that you have read or listened.
-			</p>
-			</div>
-		<div className='flex w-full p-1 py-2 gap-2'>
-			<p className='text-lg md:text-xl text-left font-semibold'>Read Later</p>
-			<p className='text-base md:text-lg text-gray-400 text-left'>
-			Books that you have saved for read later.
-			</p>
-			</div>
-	</Link>
-	<Link href='/user/library/favourites'>
-		<div className='flex w-full p-1 py-2 gap-2'>
-			<HeartIcon dimensions='h-7 w-7' />
-			<p className='text-lg md:text-xl text-left font-semibold'>Favourite Books</p>
-		</div>
-		<p className='text-base md:text-lg text-gray-400 text-left'>
-			List of your liked books.
-		</p>
-	</Link>
-	<Link href='/user/library/favourites'>
-		<div className='flex w-full p-1 py-2 gap-2'>
-			<CompletedIcon dimensions='h-7 w-7' />
-			<p className='text-lg md:text-xl text-left font-semibold'>Finished Books</p>
-		</div>
-		<p className='text-base md:text-lg text-gray-400 text-left'>
-			List of books that you have completed.
-		</p>
-	</Link>
-</div>
-*/

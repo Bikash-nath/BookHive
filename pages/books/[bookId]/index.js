@@ -324,7 +324,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
 	const { data } = await getBestsellers()
 
-	const bookParams = data.map((book) => ({
+	const bookParams = data?.map((book) => ({
 		params: { bookId: book.slug.toString() },
 	}))
 

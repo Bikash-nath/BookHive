@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import BookCard from '../cards/BookCard'
 import AuthorCard from '../cards/AuthorCard'
 
-export default function ListGridModal({ listTitle, books, authors, coverRef }) {
+export default function ListGridModal({ listTitle, books, authors, coverRef, rightIcon }) {
 	const router = useRouter()
 
 	return (
@@ -11,13 +11,16 @@ export default function ListGridModal({ listTitle, books, authors, coverRef }) {
 			{listTitle && (
 				<div
 					className={
-						'flex justify-between px-1 xl:p-6 ' +
+						'flex justify-between relative px-1 xl:p-6 ' +
 						(!router.pathname.includes('/authors/') ? 'py-12' : 'py-1 xl:py-2')
 					}
 					ref={coverRef}>
 					<h3 className='text-xl xl:text-2xl font-semibold leading-relaxed text-center xl:text-left w-full'>
 						{listTitle}
 					</h3>
+					<div className='hidden xl:flex absolute right-4 cursor-pointer m-2'>
+						{rightIcon}
+					</div>
 				</div>
 			)}
 			<div className='px-1 xl:p-2'>

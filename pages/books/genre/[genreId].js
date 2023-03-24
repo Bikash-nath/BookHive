@@ -79,7 +79,20 @@ function GenreBooksPage(props) {
 						pageRef={pageRef}
 					/>
 				)}
-				<ListGridModal listTitle={`${genre} books`} books={books} coverRef={coverRef} />
+				<ListGridModal
+					listTitle={`${genre} books`}
+					books={books}
+					coverRef={coverRef}
+					rightIcon={
+						<div onClick={favouriteGenreHandler}>
+							{isFavourite ? (
+								<HeartIcon dimensions='h-8 w-8' color='white' />
+							) : (
+								<HeartIcon dimensions='h-8 w-8' color='' />
+							)}
+						</div>
+					}
+				/>
 				{books?.length >= 30 && <Paginate totalPages={4} page={1} />}
 			</div>
 		</Fragment>

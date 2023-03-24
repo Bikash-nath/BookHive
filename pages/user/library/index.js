@@ -20,12 +20,10 @@ function LibraryPage(props) {
 
 	useEffect(() => {
 		setActiveUser(userCtx.user?.data)
-		console.log('activeUser', activeUser)
 		if (activeUser) {
 			;(async () => {
 				toggleSpinner(true)
 				const userLibrary = await getUserLibrary()
-				console.log(userLibrary)
 				if (userLibrary.data) setLibrary(userLibrary.data)
 				toggleSpinner(false)
 			})()
