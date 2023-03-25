@@ -22,11 +22,6 @@ function UpdateEmail(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
-	const logOutHandler = (e) => {
-		userCtx.removeUser()
-		router.push({ pathname: '/user/login/splash/' })
-	}
-
 	const submitHandler = async () => {
 		// e.preventDefault()
 		toggleSpinner(true)
@@ -34,7 +29,7 @@ function UpdateEmail(props) {
 		if (user.data) {
 			userCtx.addUser(user)
 			snackbarCtx.addMessage({ title: 'Email update successfull. Login again.' })
-			logOutHandler(e)
+			router.push({ pathname: '/user/account/profile/' })
 		} else {
 			snackbarCtx.addMessage({ title: user })
 		}
@@ -51,61 +46,63 @@ function UpdateEmail(props) {
 				<title>Update Email</title>
 				<meta name='description' content='BookHive user email update page' />
 			</Head>
-			<LoginContainer>
-				<h2 className='mb-8 text-3xl font-bold'>Update Email</h2>
-				<input
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					placeholder='Enter your email'
-					type='email'
-					className='input-field my-4'
-				/>
-				<input
-					value={newEmail}
-					onChange={(e) => setNewEmail(e.target.value)}
-					placeholder='Enter your newEmail'
-					type='email'
-					className='input-field my-4'
-				/>
-				<div className='relative mb-4'>
+			<div className='page-gradient'>
+				<LoginContainer>
+					<h2 className='mb-8 text-3xl font-bold'>Update Email</h2>
 					<input
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						placeholder='Your current password'
-						type={!showPassword ? 'password' : 'text'}
-						className='input-field box-border'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						placeholder='Enter your email'
+						type='email'
+						className='input-field my-4'
 					/>
-					{password ? (
-						!showPassword ? (
-							<div
-								className='absolute top-6 right-2 box-border cursor-pointer'
-								onClick={() => setShowPassword(true)}>
-								<EyeIcon />
-							</div>
+					<input
+						value={newEmail}
+						onChange={(e) => setNewEmail(e.target.value)}
+						placeholder='Enter your newEmail'
+						type='email'
+						className='input-field my-4'
+					/>
+					<div className='relative mb-4'>
+						<input
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder='Your current password'
+							type={!showPassword ? 'password' : 'text'}
+							className='input-field box-border'
+						/>
+						{password ? (
+							!showPassword ? (
+								<div
+									className='absolute top-6 right-2 box-border cursor-pointer'
+									onClick={() => setShowPassword(true)}>
+									<EyeIcon />
+								</div>
+							) : (
+								<div
+									className='absolute top-6 right-2 box-border cursor-pointer'
+									onClick={() => setShowPassword(false)}>
+									<EyeSlashIcon />
+								</div>
+							)
 						) : (
-							<div
-								className='absolute top-6 right-2 box-border cursor-pointer'
-								onClick={() => setShowPassword(false)}>
-								<EyeSlashIcon />
-							</div>
-						)
-					) : (
-						<></>
-					)}
-				</div>
-				<div className='flex items-center justify-end my-3 md:my-6'>
-					<button
-						onClick={submitHandler}
-						className={
-							email.includes('@') && newEmail.includes('@') && password
-								? 'btn-next'
-								: 'btn-next-inactive'
-						}>
-						<span>Next</span>
-						<ArrowIcon />
-					</button>
-				</div>
-			</LoginContainer>
+							<></>
+						)}
+					</div>
+					<div className='flex items-center justify-end my-3 md:my-6'>
+						<button
+							onClick={submitHandler}
+							className={
+								email.includes('@') && newEmail.includes('@') && password
+									? 'btn-next'
+									: 'btn-next-inactive'
+							}>
+							<span>Next</span>
+							<ArrowIcon />
+						</button>
+					</div>
+				</LoginContainer>
+			</div>
 		</Fragment>
 	)
 }

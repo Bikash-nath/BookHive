@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext, useRef, Fragment, React } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 
 import useWindowWidth from '../hooks/useWindowWidth'
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../API/books'
@@ -11,7 +10,7 @@ import PageHeader from '../components/layouts/PageHeader'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
-import AccountIcon from '../assets/icons/AccountIcon'
+import BellIcon from '../assets/icons/BellIcon'
 
 // import ScrollToTop from '../components/ScrollToTop'
 // import HamburgerIcon from '../assets/icons/HamburgerIcon'
@@ -54,18 +53,10 @@ function HomePage(props) {
 						<PageHeader
 							pageTitle={<Logo size={32} />}
 							rightContainer={
-								activeUser?.name ? (
-									<Link href={'/user/account/profile'}>
-										{activeUser?.image ? (
-											<img
-												className='rounded-full w-7 h-7'
-												src={activeUser.image}
-												alt='user image'
-											/>
-										) : (
-											<AccountIcon dimensions='h-7 w-7' />
-										)}
-									</Link>
+								activeUser ? (
+									<div className='flex items-center cursor-pointer focus:bg-slate-800'>
+										<BellIcon dimensions='h-7 w-7' />
+									</div>
 								) : (
 									<div className='transform scale-90'>
 										<LoginButton />
@@ -85,9 +76,9 @@ function HomePage(props) {
 						</div>
 					</div>
 				)}
-				<div className='py-1 xl:py-4'>
+				<div className='py-2 xl:py-6'>
 					<ListSliderModal
-						listTitle='Popular books'
+						listTitle='Popular Books'
 						listLink='/books/category/bestsellers'
 						books={props.bestsellers}
 					/>
@@ -97,15 +88,11 @@ function HomePage(props) {
 						books={props.audiobooks}
 					/>
 					<ListSliderModal
-						listTitle='Latest arrivals'
+						listTitle='Latest Arrivals'
 						listLink='/books/category/latest'
 						books={props.latestBooks}
 					/>
-					<ListSliderModal
-						listTitle='Popular authors'
-						listLink='/authors'
-						authors={props.authors}
-					/>
+					<ListSliderModal listTitle='Popular Authors' listLink='/authors' authors={props.authors} />
 				</div>
 			</div>
 		</Fragment>

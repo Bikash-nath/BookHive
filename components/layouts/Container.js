@@ -1,46 +1,50 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useContext, Fragment } from 'react'
+// import { useRouter } from 'next/router'
 
+import { SpinnerContextProvider } from '../../store/spinnerContext'
+import SpinnerContext from '../../store/spinnerContext'
+import SearchToggleContext from '../../store/searchToggleContext'
 import useWindowWidth from '../../hooks/useWindowWidth'
-import { SnackbarContextProvider } from '../../store/snackbarContext'
-import { SearchToggleContextProvider } from '../../store/searchToggleContext'
-import Header from './Header'
 import Sidebar from './Sidebar'
-import PageContainer from './PageContainer'
-import SnackBar from '../notification/SnackBar'
+import Header from './Header'
 import Navbar from './Navbar'
+import SnackBar from '../notification/SnackBar'
+import Spinner from '../widgets/Spinner'
 
 function Container(props) {
 	const headerRef = useRef()
 	const windowWidth = useWindowWidth()
 	const navbarRef = useRef()
+	const { activeSpinner } = useContext(SpinnerContext)
+	const { activeSearch } = useContext(SearchToggleContext)
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			window.addEventListener('load', function () {
-				setTimeout(function () {
-					window.scrollTo(0, 1)
-				}, 2)
-			})
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		window.addEventListener('load', function () {
+	// 			setTimeout(function () {
+	// 				window.scrollTo(0, 1)
+	// 			}, 2)
+	// 		})
+	// 	}
+	// }, [])
 
 	return (
-		<SnackbarContextProvider>
-			{/*overflow-scroll overflow-x-hidden overflow-y-scroll || xl:overflow-hidden || overflow-auto*/}
-			<div className='xl:overflow-hidden hide-scrollbar'>
-				<div className='flex h-screen'>
+		<Fragment>
+			<SpinnerContextProvider>
+				<Spinner headerRef={headerRef} />
+				<main className={'flex page-gradient relative hide-scrollbar scroll-smooth'}>
 					{windowWidth > 1280 && <Sidebar />}
-					<SearchToggleContextProvider>
-						<main className='flex-grow overflow-y-scroll select-none h-full page-gradient '>
-							{windowWidth > 1280 && <Header headerRef={headerRef} />}
-							<PageContainer page={props.children} headerRef={headerRef} />
-						</main>
-						<SnackBar navbarRef={navbarRef} />
-						{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
-					</SearchToggleContextProvider>
-				</div>
-			</div>
-		</SnackbarContextProvider>
+					<div className='flex flex-col w-screen xl:max-w-[85.5vw]'>
+						{windowWidth > 1280 && <Header headerRef={headerRef} />}
+						<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-25' : '')}>
+							{props.children}
+						</div>
+					</div>
+				</main>
+			</SpinnerContextProvider>
+			<SnackBar navbarRef={navbarRef} />
+			{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
+		</Fragment>
 	)
 }
 

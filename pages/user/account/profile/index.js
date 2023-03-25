@@ -73,29 +73,21 @@ function AccountPage(props) {
 									<p className='text-xl font-medium text-white text-left'>Name</p>
 								</div>
 								<div className='rounded-xl px-4 py-1 bg-[#192132]'>
-									<p className='text-lg rounded-md py-2 font-medium'>
-										{activeUser.name}
-									</p>
+									<p className='text-lg rounded-md py-2 font-medium'>{activeUser.name}</p>
 								</div>
 							</div>
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full p-2'>
-									<p className='text-xl font-medium text-white text-left'>
-										Email
-									</p>
+									<p className='text-xl font-medium text-white text-left'>Email</p>
 								</div>
 								<div className='rounded-xl px-4 py-1 bg-[#192132]'>
-									<p className='text-lg rounded-md py-2 font-medium'>
-										{activeUser.email}
-									</p>
+									<p className='text-lg rounded-md py-2 font-medium'>{activeUser.email}</p>
 								</div>
 							</div>
 							{activeUser.dob && (
 								<div className='w-full'>
 									<div className='flex items-start justify-start w-full p-2'>
-										<p className='text-xl font-medium text-white text-left'>
-											Birthday
-										</p>
+										<p className='text-xl font-medium text-white text-left'>Birthday</p>
 									</div>
 									<div className='rounded-xl px-4 py-1 bg-[#192132]'>
 										<p className='text-lg rounded-md py-2 font-medium'>
@@ -106,14 +98,10 @@ function AccountPage(props) {
 							)}
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full p-2'>
-									<p className='text-xl font-medium text-white text-left'>
-										Address
-									</p>
+									<p className='text-xl font-medium text-white text-left'>Address</p>
 								</div>
 								<div className='rounded-xl px-4 py-1 bg-[#192132]'>
-									<p className='text-lg rounded-md py-2 font-medium'>
-										{activeUser.address}
-									</p>
+									<p className='text-lg rounded-md py-2 font-medium'>{activeUser.address}</p>
 								</div>
 							</div>
 							<div className='flex justify-center my-6'>

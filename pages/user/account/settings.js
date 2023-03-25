@@ -46,7 +46,7 @@ function SettingsPage() {
 					icon={<SettingsIcon />}
 				/>
 			) : (
-				<div className='page-gradient h-full w-screen xl:w-full'>
+				<div className='page-gradient'>
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button

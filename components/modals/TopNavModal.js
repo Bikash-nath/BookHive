@@ -40,22 +40,22 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 	// const debouncedScroll = useCallback(_.debounce(handleScroll, 500),[]);
 
 	useEffect(() => {
-		if (pageRef?.current) {
-			if ('ontouchstart' in window) {
-				pageRef.current.addEventListener('touchstart', setDebouncedScroll)
-				pageRef.current.addEventListener('touchmove', setDebouncedScroll)
-				pageRef.current.addEventListener('touchend', setDebouncedScroll)
-			} else {
-				pageRef.current.addEventListener('wheel', setDebouncedScroll)
-			}
+		if (typeof window !== 'undefined') {
+			window.addEventListener('scroll', setDebouncedScroll)
+
+			// if ('ontouchstart' in window) {
+			// pageRef.current.addEventListener('touchstart', setDebouncedScroll)
+			// pageRef.current.addEventListener('touchmove', setDebouncedScroll)
+			// pageRef.current.addEventListener('touchend', setDebouncedScroll)
+			// } else {
 			if (coverRef.current.className.includes('from-')) {
 				setBgColor(coverRef.current.className.split('from-')[1].split('-')[0] + '-800')
 			}
 			return () => {
-				pageRef.current?.removeEventListener('wheel', setDebouncedScroll)
-				pageRef.current?.removeEventListener('touchstart', setDebouncedScroll)
-				pageRef.current?.removeEventListener('touchmove', setDebouncedScroll)
-				pageRef.current?.removeEventListener('touchend', setDebouncedScroll)
+				window?.removeEventListener('scroll', setDebouncedScroll)
+				// pageRef.current?.removeEventListener('touchstart', setDebouncedScroll)
+				// pageRef.current?.removeEventListener('touchmove', setDebouncedScroll)
+				// pageRef.current?.removeEventListener('touchend', setDebouncedScroll)
 			}
 		}
 	}, [])
@@ -71,9 +71,9 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 			<div ref={titleRef} className={`opacity-0 truncate font-medium text-lg text-center`}>
 				{pageTitle}
 			</div>
-			<div className='flex gap-1'>
-				<div className='m-2'>{rightIcon}</div>
-				<div className='m-2'>{lastIcon}</div>
+			<div className='flex gap-4 sm:gap-6 m-2'>
+				<div className=''>{rightIcon}</div>
+				<div className=''>{lastIcon}</div>
 			</div>
 		</div>
 	)

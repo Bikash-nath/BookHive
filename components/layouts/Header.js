@@ -14,9 +14,8 @@ import SearchIcon from '../../assets/icons/SearchIcon'
 import ChevronDoubleDownIcon from '../../assets/icons/ChevronDoubleDownIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import ProfileIcon from '../../assets/icons/ProfileIcon'
-import DarkmodeIcon from '../../assets/icons/DarkmodeIcon'
+import SettingsIcon from '../../assets/icons/SettingsIcon'
 import LogoutIcon from '../../assets/icons/LogoutIcon'
-// 	import SettingsIcon from '../../assets/icons/SettingsIcon'
 // import { getUserProfile } from '../../API/userProfile'
 
 function Header(props) {
@@ -52,9 +51,7 @@ function Header(props) {
 
 	const routeClassHandler = (route) => {
 		return `flex items-center space-x-4 m-2 xl:my-3 cursor-pointer hover:text-white text-${
-			(currentRoute.includes(route) && route !== '/') || currentRoute === route
-				? 'white'
-				: 'gray-400'
+			(currentRoute.includes(route) && route !== '/') || currentRoute === route ? 'white' : 'gray-400'
 		}`
 	}
 
@@ -129,27 +126,18 @@ function Header(props) {
 															(!showNavBtn && 'hidden')
 														}>
 														<Link href='/user/account/profile'>
-															<div
-																className={routeClassHandler(
-																	'/account'
-																)}>
+															<div className={routeClassHandler('/account')}>
 																<ProfileIcon dimensions='h-7 w-7' />
-																<p className='w-[4.9rem]'>
-																	Profile
-																</p>
+																<p className='w-[4.9rem]'>Profile</p>
 															</div>
 														</Link>
-														<button
-															id='theme-toggle'
-															className='flex space-x-2 ml-2 w-full text-gray-500 hover:text-white'>
-															<DarkmodeIcon dimensions='h-7 w-7' />
-															<p className='w-[4.9rem]'>Dark mode</p>
+														<button className={routeClassHandler('/settings')}>
+															<SettingsIcon dimensions='h-7 w-7' />
+															<p className='w-[4.9rem]'>Settings</p>
 														</button>
 														<div
 															onClick={logOutHandler}
-															className={routeClassHandler(
-																'/log-out'
-															)}>
+															className={routeClassHandler('/log-out')}>
 															<LogoutIcon dimensions='h-7 w-7' />
 															<p className='w-[4.9rem]'>Log out</p>
 														</div>

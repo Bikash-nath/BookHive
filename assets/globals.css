@@ -18,7 +18,7 @@
 	/*@apply bg-gradient-to-b from-[#181818] via-[#121212] to-[#0C0C0C] text-white;
 	@apply bg-gradient-to-b from-[#121826] via-[#101621] to-[#0C111B] text-white;
 	@apply bg-gradient-to-b from-[#101621] via-[#0f171e] to-[#0C111B] text-white pb-16 xl:pb-0;*/
-	@apply bg-gradient-to-b from-[#101621] via-[#0d131e] to-[#0C111B] text-white; /* pb-14 xl:pb-0*/
+	@apply bg-gradient-to-b from-[#101621] via-[#0d131e] to-[#0C111B] text-white min-h-screen; /* pb-14 xl:pb-0*/
 }
 
 .cover-page-bg {

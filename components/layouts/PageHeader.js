@@ -3,7 +3,7 @@ import NavigateBackButton from '../ui/NavigateBackButton'
 
 function PageHeader(props) {
 	return (
-		<header className='flex flex-grow justify-between items-center'>
+		<header className='flex flex-grow justify-between items-center py-1'>
 			<nav className='mx-auto px-1 w-screen'>
 				<div className='flex items-center justify-between gap-3 md:gap-4 md:mx-2 xl:mx-3 my-1 sm:my-2 xl:my-4 text-white'>
 					{props.backBtn && (
@@ -17,7 +17,7 @@ function PageHeader(props) {
 
 					{props.rightContainer && (
 						<div className='flex justify-end w-full'>
-							<div className='flex items-center cursor-pointer rounded-full pr-2 xl:pr-4'>
+							<div className='flex items-end cursor-pointer rounded-full pr-2 xl:pr-4'>
 								{props.rightContainer}
 							</div>
 						</div>

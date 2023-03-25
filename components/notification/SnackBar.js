@@ -30,12 +30,12 @@ function SnackBar(props) {
 		<div
 			className={
 				message.title
-					? 'absolute overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
+					? 'fixed overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
 					  (windowWidth < 1280
 							? props.navbarRef.current
 								? 'left-0 bottom-14'
 								: 'left-0 bottom-0'
-							: 'left-52 bottom-0')
+							: 'left-[13.5vw] bottom-0')
 					: 'hidden'
 			}>
 			<div

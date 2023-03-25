@@ -88,7 +88,7 @@ function AuthorDetailPage(props) {
 				<meta name='bioription' content='Author detail page' />
 			</Head>
 
-			<div className='bg-[#0C111B] pb-16 xl:pb-12' ref={pageRef}>
+			<div className='cover-page-bg pb-16 xl:pb-12' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
