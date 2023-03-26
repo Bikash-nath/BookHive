@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext, Fragment, React } from 'react'
+import { useState, useEffect, useRef, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -88,7 +88,7 @@ function AuthorDetailPage(props) {
 				<meta name='bioription' content='Author detail page' />
 			</Head>
 
-			<div className='cover-page-bg pb-16 xl:pb-12' ref={pageRef}>
+			<div className='cover-page-bg xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
@@ -114,9 +114,7 @@ function AuthorDetailPage(props) {
 						</div>
 						<div className='p-1 space-y-4 xl:max-w-xs xl:min-w-[16rem]'>
 							<div>
-								<h2 className='text-xl md:text-3xl xl:text-4xl font-medium'>
-									{author.name}
-								</h2>
+								<h2 className='text-xl md:text-3xl xl:text-4xl font-medium'>{author.name}</h2>
 							</div>
 							{author.ratingsAvg ? (
 								<div className='flex items-center justify-start text-md md:text-lg text-xl w-full font-medium'>
@@ -129,9 +127,7 @@ function AuthorDetailPage(props) {
 								<></>
 							)}
 							{author.origin ? (
-								<div className='text-sm md:text-md xl:text-xl italic'>
-									Born {author.origin}
-								</div>
+								<div className='text-sm md:text-md xl:text-xl italic'>Born {author.origin}</div>
 							) : (
 								<></>
 							)}
@@ -201,11 +197,7 @@ function AuthorDetailPage(props) {
 				) : (
 					<></>
 				)}
-				{author.books?.length ? (
-					<ListGridModal listTitle='Author Books' books={author.books} />
-				) : (
-					<></>
-				)}
+				{author.books?.length ? <ListGridModal listTitle='Author Books' books={author.books} /> : <></>}
 			</div>
 		</Fragment>
 	) : (

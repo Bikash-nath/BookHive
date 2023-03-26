@@ -20,8 +20,8 @@ function HelpPage(props) {
 								Frequently Asked Questions
 							</h2>
 							<p className='max-w-lg px-6 mx-auto text-center text-graishBlue'>
-								Here are some of our FAQs. If you have any other questions you'd
-								like answered please feel free to email us.
+								Here are some of our FAQs. If you have any other questions you'd like answered please
+								feel free to email us.
 							</p>
 						</div>
 					</section>
@@ -29,24 +29,20 @@ function HelpPage(props) {
 						<div className='container mx-auto px-6 mb-auto'>
 							<div className='max-w-2xl m-8 mx-auto overflow-hidden'>
 								<Accordion title='What is BookHive?' tabIndex='1'>
-									Bookhive is an extensive reading library with thousands of free
-									audiobooks, eBooks and magazines.
+									Bookhive is an evolving reading library with thousands of free audiobooks, eBooks
+									and magazines.
 									<br />
-									Now a comprehensive, seamless and personalized reading
-									experience is at your fingertips, making reading more affordable
-									and accessible than ever.
+									Now a comprehensive, seamless and personalized reading experience is at your
+									fingertips, making reading more affordable and accessible than ever.
 									<br />
-									Our Aim is to help people explore, discuss and share books they
-									love and improve the process of learning and reading via the
-									efforts of a fantastic community of readers.
+									Our Aim is to help people explore, discuss and share books they love and improve the
+									process of learning and reading via the efforts of a fantastic community of readers.
 								</Accordion>
 								<Accordion title='How can I find latest audiobooks?' tabIndex='2'>
 									Visit{' '}
 									<div
 										onClick={() =>
-											openLink(
-												'https://bookhive.vercel.app/books/category/audiobooks'
-											)
+											openLink('https://bookhive.vercel.app/books/category/audiobooks')
 										}
 										className='cursor-pointer text-indigo-500'>
 										bookhive.vercel.app/audiobooks
@@ -55,9 +51,7 @@ function HelpPage(props) {
 								</Accordion>
 								<Accordion title='How can I contact BookHive team?' tabIndex='2'>
 									You can visit us directly at
-									<div
-										onClick={() => openLink('')}
-										className='cursor-pointer text-indigo-500'>
+									<div onClick={() => openLink('')} className='cursor-pointer text-indigo-500'>
 										LinkedIn.
 									</div>
 								</Accordion>

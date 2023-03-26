@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext, useRef, Fragment, React } from 'react'
+import { useState, useEffect, useContext, useRef, Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getBookDetails, getBestsellers, getLatestBooks } from '../../../API/books'
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
+import useWindowWidth from '../../../hooks/useWindowWidth'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
@@ -22,7 +22,6 @@ import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
-// import ScrollToTop from '../../../hooks/useScrollToTop'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
@@ -116,7 +115,7 @@ function BookDetailPage(props) {
 			</Head>
 
 			<div className='cover-page-bg relative' ref={pageRef}>
-				<div className='pb-16 xl:pb-12'>
+				<div className='xl:pb-8'>
 					{windowWidth < 1280 && (
 						<TopNavModal
 							rightIcon={
@@ -148,14 +147,11 @@ function BookDetailPage(props) {
 						/>
 						<div className='flex flex-col px-2 md:px-4 space-y-1 xl:space-y-2'>
 							<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-lg min-w-[20rem]'>
-								<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>
-									{book.title}
-								</p>
+								<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>{book.title}</p>
 							</div>
 							<Link href={`/authors/${book.author.slug}`}>
 								<div className='text-md md:text-lg text-center xl:text-left '>
-									By{' '}
-									<p className='font-medium inline-block'>{book.author.name}</p>
+									By <p className='font-medium inline-block'>{book.author.name}</p>
 									<div className='inline-block px-[2px] py-[1px]'>
 										<ChevronRightIcon dimensions='h-4 w-4' />
 									</div>
@@ -209,47 +205,36 @@ function BookDetailPage(props) {
 
 					<GenreListModal genres={book.genres} />
 
-					<div className='flex justify-center items-center w-full'>
+					<div className='flex justify-start xs:justify-center items-center overflow-x-scroll p-3 hide-scrollbar'>
 						<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
 							{book.language && (
 								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-									<p className='px-2 text-md md:text-base font-medium'>
-										{book.language}
-									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
-										language
-									</p>
+									<p className='px-2 text-md md:text-base font-medium'>{book.language}</p>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>language</p>
 								</div>
 							)}
-							{book.format?.ebook.pagesCount !== 0 &&
-								book.format?.ebook.pagesCount && (
-									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-										<p className='px-4 text-sm md:text-base font-medium'>
-											{book.format.ebook.pagesCount}
-										</p>
-										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
-											pages
-										</p>
-									</div>
-								)}
+							{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
+								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+									<p className='px-4 text-sm md:text-base font-medium'>
+										{book.format.ebook.pagesCount}
+									</p>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>pages</p>
+								</div>
+							)}
 							{book.publicationDate !== null && (
 								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
 									<p className='px-4 text-sm md:text-base font-medium'>
 										{book.publicationDate.split('-')[0]}
 									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
-										published
-									</p>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>published</p>
 								</div>
 							)}
 							{book.publisher !== null && (
-								<div className='hidden md:flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
+								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
 									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
 										{book.publisher}
 									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>
-										publisher
-									</p>
+									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>publisher</p>
 								</div>
 							)}
 						</div>
@@ -257,9 +242,7 @@ function BookDetailPage(props) {
 
 					{book.description ? (
 						<div className='p-4 md:p-8'>
-							<h4 className='text-xl md:text-2xl font-semibold py-2'>
-								Book description
-							</h4>
+							<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
 							<p
 								ref={descRef}
 								className={

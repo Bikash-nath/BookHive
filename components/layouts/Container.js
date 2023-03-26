@@ -31,19 +31,19 @@ function Container(props) {
 	return (
 		<Fragment>
 			<SpinnerContextProvider>
-				<Spinner headerRef={headerRef} />
 				<main className={'flex page-gradient relative hide-scrollbar scroll-smooth'}>
 					{windowWidth > 1280 && <Sidebar />}
 					<div className='flex flex-col w-screen xl:max-w-[85.5vw]'>
 						{windowWidth > 1280 && <Header headerRef={headerRef} />}
+						<Spinner headerRef={headerRef} />
 						<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-25' : '')}>
 							{props.children}
 						</div>
+						<SnackBar navbarRef={navbarRef} />
+						{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 					</div>
 				</main>
 			</SpinnerContextProvider>
-			<SnackBar navbarRef={navbarRef} />
-			{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 		</Fragment>
 	)
 }

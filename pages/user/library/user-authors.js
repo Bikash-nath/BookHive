@@ -29,19 +29,11 @@ function LibraryAuthorssPage() {
 				<title>Favourite authors</title>
 				<meta name='description' content='A list of user library authors' />
 			</Head>
-			<div className='pb-16 xl:pb-12' ref={pageRef}>
+			<div className='xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
-					<TopNavModal
-						pageTitle='Favourite authors'
-						pageRef={pageRef}
-						coverRef={coverRef}
-					/>
+					<TopNavModal pageTitle='Favourite authors' pageRef={pageRef} coverRef={coverRef} />
 				)}
-				<ListGridModal
-					listTitle='Favourite authors'
-					authors={authors}
-					coverRef={coverRef}
-				/>
+				<ListGridModal listTitle='Favourite authors' authors={authors} coverRef={coverRef} />
 			</div>
 		</Fragment>
 	) : (

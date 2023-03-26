@@ -46,7 +46,7 @@ function Header(props) {
 
 	const currentRoute = router.pathname
 	// const navRoutes = ['/', '/discover', '/library', '/account']
-	const paths = ['login', 'signup', 'discover', 'search', 'read']
+	const paths = ['login', 'signup', 'discover', 'search', 'read', 'update']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
@@ -131,10 +131,12 @@ function Header(props) {
 																<p className='w-[4.9rem]'>Profile</p>
 															</div>
 														</Link>
-														<button className={routeClassHandler('/settings')}>
-															<SettingsIcon dimensions='h-7 w-7' />
-															<p className='w-[4.9rem]'>Settings</p>
-														</button>
+														<Link href={'/user/account/settings'}>
+															<button className={routeClassHandler('/settings')}>
+																<SettingsIcon dimensions='h-7 w-7' />
+																<p className='w-[4.9rem]'>Settings</p>
+															</button>
+														</Link>
 														<div
 															onClick={logOutHandler}
 															className={routeClassHandler('/log-out')}>

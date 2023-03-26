@@ -22,7 +22,7 @@ function Sidebar() {
 	const [libraryToggle, setLibraryToggle] = useState(true)
 	const router = useRouter()
 	const currentRoute = router.asPath
-	const paths = ['login', 'signup']
+	const paths = ['login', 'signup', 'update']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const { user } = useContext(UserContext)
@@ -41,7 +41,7 @@ function Sidebar() {
 
 	return (
 		showRoute && (
-			<div className='overflow-y-scroll hide-scrollbar inline-block relative min-h-[40rem] min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 p-2'>
+			<div className='overflow-y-scroll hide-scrollbar inline-block relative min-h-[40rem] min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 py-2'>
 				<div className='flex items-center space-x-20'>
 					<Logo size={46} />
 				</div>
@@ -57,7 +57,7 @@ function Sidebar() {
 						<p className='text-base'>Discover</p>
 					</div>
 				</Link>
-				<hr className='border-t-[0.1px] border-gray-800' />
+				<hr className='border-t-[0.1px] border-gray-800 w-full' />
 				<div className='flex flex-col'>
 					<div className='flex w-full'>
 						<Link href='/user/library'>
@@ -67,7 +67,9 @@ function Sidebar() {
 							</div>
 						</Link>
 						{activeUser ? (
-							<div className={'flex items-center mr-2'} onClick={() => setLibraryToggle(!libraryToggle)}>
+							<div
+								className={'flex items-center mr-2 cursor-pointer'}
+								onClick={() => setLibraryToggle(!libraryToggle)}>
 								{libraryToggle ? (
 									<ChevronDownIcon dimensions='h-6 w-6' color='#999999' stroke='#999999' />
 								) : (
@@ -111,7 +113,7 @@ function Sidebar() {
 					</div>
 				</Link>
 
-				<hr className='border-t-[0.1px] border-gray-800' />
+				<hr className='border-t-[0.1px] border-gray-800 w-full' />
 				<div className='absolute bottom-28 w-full'>
 					<Link href='/user/account/settings'>
 						<div className={routeClassHandler('/account/settings')}>

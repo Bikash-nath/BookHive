@@ -5,6 +5,7 @@ import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
+import SearchIcon from '../../assets/icons/SearchIcon'
 
 function Navbar(props) {
 	const router = useRouter()
@@ -13,59 +14,65 @@ function Navbar(props) {
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
-		return `font-medium text-xs md:sm-md mt-[0.1rem]  group text-${
-			(currentRoute.includes(route) && route !== '/') || currentRoute === route
-				? 'white'
-				: 'gray-400'
+		return `font-medium text-xs md:sm-md mt-[0.1rem] group text-${
+			(currentRoute.includes(route) && route !== '/') || currentRoute === route ? 'white' : 'gray-400'
 		}`
 	}
 
 	return (
 		showRoute && (
 			<div
-				className='fixed bottom-0 z-20 w-screen scale-100 p-[.45rem] md:p-2 m-0 text-white bg-[#030b17] shadow-inner shadow-gray-800'
+				className='flex items-center justify-between sticky bottom-0 z-20 w-screen bg-[#030b17] shadow-inner shadow-gray-800 py-[.45rem] md:py-2 px-1 ms:px-3 xs:px-4 sm:px-6 md:px-10'
 				ref={props.navbarRef}>
-				<div className='flex flex-row items-center justify-between space-x-8 mx-4 sm:mx-6 md:mx-10'>
-					<div className={routeClassHandler('/')}>
-						<Link href='/'>
-							<div className='flex w-full'>
-								<div className='mx-auto'>
-									<HomeIcon dimensions='h-6 w-6' />
-								</div>
+				<div className={routeClassHandler('/')}>
+					<Link href='/'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<HomeIcon dimensions='h-6 w-6' />
 							</div>
-							<p className=''>Home</p>
-						</Link>
-					</div>
-					<div className={routeClassHandler('/discover')}>
-						<Link href='/discover'>
-							<div className='flex w-full'>
-								<div className='mx-auto'>
-									<DiscoverIcon dimensions='h-6 w-6' />
-								</div>
+						</div>
+						<p className=''>Home</p>
+					</Link>
+				</div>
+				<div className={routeClassHandler('/discover')}>
+					<Link href='/discover'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<SearchIcon dimensions='h-6 w-6' />
 							</div>
-							<p className=''>Discover</p>
-						</Link>
-					</div>
-					<div className={routeClassHandler('/library')}>
-						<Link href='/user/library'>
-							<div className='flex w-full'>
-								<div className='mx-auto'>
-									<LibraryIcon dimensions='h-6 w-6' />
-								</div>
+						</div>
+						<p className=''>Search</p>
+					</Link>
+				</div>
+				<div className={routeClassHandler('/regional')}>
+					<Link href='/regional'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<DiscoverIcon dimensions='h-6 w-6' />
 							</div>
-							<p className=''>Library</p>
-						</Link>
-					</div>
-					<div className={routeClassHandler('/account')}>
-						<Link href='/user/account/profile'>
-							<div className='flex w-full'>
-								<div className='mx-auto'>
-									<AccountIcon dimensions='h-6 w-6' />
-								</div>
+						</div>
+						<p className=''>Regional</p>
+					</Link>
+				</div>
+				<div className={routeClassHandler('/library')}>
+					<Link href='/user/library'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<LibraryIcon dimensions='h-6 w-6' />
 							</div>
-							<p className=''>Account</p>
-						</Link>
-					</div>
+						</div>
+						<p className=''>Library</p>
+					</Link>
+				</div>
+				<div className={routeClassHandler('/account')}>
+					<Link href='/user/account/profile'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<AccountIcon dimensions='h-6 w-6' />
+							</div>
+						</div>
+						<p className=''>Account</p>
+					</Link>
 				</div>
 			</div>
 		)

@@ -62,7 +62,7 @@ function GenreBooksPage(props) {
 				<title>{genre + ' books'}</title>
 				<meta name='description' content={`${genre} books section`} />
 			</Head>
-			<div className='pb-16 xl:pb-12' ref={pageRef}>
+			<div className='xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={

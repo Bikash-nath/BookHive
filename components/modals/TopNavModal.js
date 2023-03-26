@@ -43,19 +43,11 @@ export default function TopNavModal({ rightIcon, lastIcon, pageTitle, pageRef, c
 		if (typeof window !== 'undefined') {
 			window.addEventListener('scroll', setDebouncedScroll)
 
-			// if ('ontouchstart' in window) {
-			// pageRef.current.addEventListener('touchstart', setDebouncedScroll)
-			// pageRef.current.addEventListener('touchmove', setDebouncedScroll)
-			// pageRef.current.addEventListener('touchend', setDebouncedScroll)
-			// } else {
 			if (coverRef.current.className.includes('from-')) {
 				setBgColor(coverRef.current.className.split('from-')[1].split('-')[0] + '-800')
 			}
 			return () => {
 				window?.removeEventListener('scroll', setDebouncedScroll)
-				// pageRef.current?.removeEventListener('touchstart', setDebouncedScroll)
-				// pageRef.current?.removeEventListener('touchmove', setDebouncedScroll)
-				// pageRef.current?.removeEventListener('touchend', setDebouncedScroll)
 			}
 		}
 	}, [])

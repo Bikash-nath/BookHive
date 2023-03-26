@@ -1,6 +1,6 @@
 {
 	"name": "bookhive",
-	"description": "Bookhive is an extensive reading library where you can access thousands of free audiobooks, eBooks and magazines.",
+	"description": "Bookhive is an evolving reading library where you can access thousands of free audiobooks, eBooks and magazines.",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {

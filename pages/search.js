@@ -40,19 +40,15 @@ function SearchPage() {
 					<SearchBar />
 				</div>
 				{searchResult?.length ? (
-					<div className='pb-16 xl:pb-10'>
+					<div className='pb-16 xl:pb-8'>
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>
 						<ListGridModal books={searchResult} />
-						{searchResult.length >= 30 && (
-							<Paginate totalPages={3} page={1} keyword={keyword} />
-						)}
+						{searchResult.length >= 30 && <Paginate totalPages={3} page={1} keyword={keyword} />}
 					</div>
 				) : (
-					!activeSpinner && (
-						<div className='text-2xl p-4'>No books found with "{keyword}"</div>
-					)
+					!activeSpinner && <div className='text-2xl p-4'>No books found with "{keyword}"</div>
 				)}
 			</div>
 		</Fragment>

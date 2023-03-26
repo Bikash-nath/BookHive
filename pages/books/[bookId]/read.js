@@ -25,9 +25,7 @@ function BookEpubReader() {
 			const { displayed, href } = renditionRef.current.location.start
 			const chapter = tocRef.current.find((item) => item.href === href)
 			setPageDetails(
-				`Page ${displayed.page} of ${displayed.total} ${
-					chapter ? 'in chapter ' + chapter.label : ''
-				}`
+				`Page ${displayed.page} of ${displayed.total} ${chapter ? 'in chapter ' + chapter.label : ''}`
 			)
 		}
 	}

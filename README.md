@@ -1,6 +1,6 @@
 # BookHive
 
-**_Bookhive is an extensive reading library with thousands of free audiobooks, eBooks and magazines.
+**_Bookhive is an evolving reading library with thousands of free audiobooks, eBooks and magazines.
 <br />
 Now a comprehensive, seamless and personalized reading experience is at your fingertips, making reading more accessible than ever.
 <br />

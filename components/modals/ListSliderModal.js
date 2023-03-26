@@ -11,14 +11,23 @@ import { settings } from '../../utils/constants/sliderSettings'
 export default function ListSliderModal({ listTitle, listLink, books, authors }) {
 	const windowWidth = useWindowWidth()
 
+	const autoPlay = listLink?.includes('/latest')
+		? {
+				infinite: true,
+				slidesToScroll: 1,
+				autoplay: true,
+				autoplaySpeed: 1500,
+				pauseOnHover: true,
+				cssEase: 'linear',
+		  }
+		: {}
+
 	const silderContent = books ? (
 		books.length ? (
 			books.map((book, i) => <BookCard book={book} key={i} />)
 		) : (
 			<div className='flex justify-items-center w-screen xl:w-52'>
-				<h3 className='text-lg md:text-xl w-full p-6 text-center xl:text-left'>
-					No books found
-				</h3>
+				<h3 className='text-lg md:text-xl w-full p-6 text-center xl:text-left'>No books found</h3>
 			</div>
 		)
 	) : (
@@ -29,10 +38,8 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 		<section className='mb-8 xl:mb-6 xl:py-3 px-2 bg-transparent w-full'>
 			<div className='mx-auto md:px-2'>
 				<div className='flex xl:justify-center'>
-					<div className='flex justify-between my-3 w-full xl:w-[86.5%] xl:my-2'>
-						<h3 className='text-lg xl:text-2xl mx-1 xl:mx-0 font-semibold text-center'>
-							{listTitle}
-						</h3>
+					<div className='flex justify-between my-3 w-full xl:w-[89%] xl:my-2'>
+						<h3 className='text-lg xl:text-2xl mx-1 xl:mx-0 font-semibold text-center'>{listTitle}</h3>
 						{listLink ? (
 							<Link href={listLink} scroll={true}>
 								<button className='more-box-btn mx-2 xl:mx-0'>More</button>
@@ -50,7 +57,7 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 					</div>
 				) : (
 					<div className='h-auto group lg:px-8 xl:px-12'>
-						<Slider {...settings}>{silderContent}</Slider>
+						<Slider {...{ ...settings, ...autoPlay }}>{silderContent}</Slider>
 					</div>
 				)}
 			</div>

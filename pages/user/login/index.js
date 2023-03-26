@@ -11,9 +11,8 @@ import LoginContainer from '../../../components/login/LoginContainer'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
-// import ErrorAlert from '../../../components/widgets/ErrorAlert'
 
-function LoginEmailPage(props) {
+function LoginEmailPage() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
@@ -91,9 +90,7 @@ function LoginEmailPage(props) {
 					</Link>
 					<button
 						onClick={submitHandler}
-						className={
-							email && password?.length > 8 ? 'btn-next' : 'btn-next-inactive'
-						}>
+						className={email && password?.length > 8 ? 'btn-next' : 'btn-next-inactive'}>
 						<span>Login</span>
 						<ArrowIcon />
 					</button>

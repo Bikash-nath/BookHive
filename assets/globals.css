@@ -78,10 +78,10 @@
 	overflow: auto;
 } */
 
-body {
-	font-family: 'Roboto', sans-serif;
-	width: 100%;
-	height: auto;
+@layer components {
+	body {
+		font-family: 'Merriweather Sans', sans-serif;
+	}
 }
 
 h1 {
@@ -90,7 +90,7 @@ h1 {
 }
 
 h2 h3 {
-	font-family: 'Poppins', sans-serif;
+	/* font-family: 'Poppins', sans-serif; */
 	/* @apply 'font-poppins'; */
 }
 

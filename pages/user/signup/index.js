@@ -12,7 +12,7 @@ import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
 import { createUserLibrary } from '../../../API/userLibrary'
 
-function SignUpPage(props) {
+function SignUpPage() {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -126,9 +126,7 @@ function SignUpPage(props) {
 					<button
 						onClick={submitHandler}
 						className={
-							name && email && password && password === passwordConfirm
-								? 'btn-next'
-								: 'btn-next-inactive'
+							name && email && password && password === passwordConfirm ? 'btn-next' : 'btn-next-inactive'
 						}>
 						<span>Next</span>
 						<ArrowIcon />

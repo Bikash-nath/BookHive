@@ -1,39 +1,37 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
 import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 
 function Paginate({ totalPages, page, keyword = '' }) {
 	const router = useRouter()
 
-	const routeHandler = (n) => {
-		const path = router.asPath
+	const [currentPage, setCurrentPage] = useState(1)
 
+	const paginateHandler = (n) => {
+		const path = router.asPath
 		// const sortType = keyword.split("&sortBy=")[1]?.split("&")[0];
 		if (keyword) {
-			router.push({ path: path, query: { keyword, page: n } })
+			return { path: path, query: { keyword, page: n } }
 		} else {
 			if (path.includes('category')) {
 				const category = path.split('category/')[1]?.split('?')[0]
-				router.push({
+				return {
 					query: { category, page: n },
-				})
+				}
 			} else if (path.includes('genre')) {
 				const genre = path.split('genre/')[1]?.split('?')[0]
-				router.push({
+				return {
 					pathname: genre,
 					query: { page: n },
-				})
+				}
 			} else
-				router.push({
+				return {
 					query: { page: n },
-				})
+				}
 		}
 	}
-
-	const [currentPage, setCurrentPage] = useState(1)
 
 	const getPageNos = () => {
 		let leftSide = currentPage - 2
@@ -47,31 +45,30 @@ function Paginate({ totalPages, page, keyword = '' }) {
 		}
 		return pages
 	}
-	const nextPage = () => {
-		if (currentPage < totalPages) {
-			setCurrentPage(currentPage + 1)
-		}
-	}
 
 	const prevPage = () => {
-		if (currentPage > 1) {
-			setCurrentPage(currentPage - 1)
-		}
+		if (currentPage > 1) return currentPage - 1
+	}
+	const nextPage = () => {
+		if (currentPage < totalPages) return currentPage + 1
 	}
 
 	//	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.2);
 	return (
 		totalPages > 1 && (
-			<div className='flex justify-center items-center w-full pt-8 pb-2 xl:pt-10'>
-				<button
-					className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
-					onClick={prevPage}>
-					<ChevronLeftIcon dimensions='h-6 w-6' />
-				</button>
+			<div className='flex justify-center items-center w-full my-6 lg:my-8 xl:my-10'>
+				<Link href={paginateHandler(prevPage())}>
+					<div
+						className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
+						onClick={() => {
+							setCurrentPage(prevPage)
+						}}>
+						<ChevronLeftIcon dimensions='h-6 w-6' />
+					</div>
+				</Link>
 				{getPageNos().map((pageNo) => (
-					<button key={pageNo} onClick={() => routeHandler(pageNo)}>
+					<Link href={paginateHandler(pageNo)} key={pageNo}>
 						<div
-							key={pageNo}
 							className={
 								'rounded-full text-center p-1.5 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 ' +
 								(pageNo === currentPage
@@ -83,13 +80,18 @@ function Paginate({ totalPages, page, keyword = '' }) {
 							}}>
 							{pageNo}
 						</div>
-					</button>
+					</Link>
 				))}
-				<button
-					className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
-					onClick={nextPage}>
-					<ChevronRightIcon dimensions='h-6 w-6' />
-				</button>
+				<Link href={paginateHandler(nextPage())}>
+					<div
+						className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
+						onClick={() => {
+							setCurrentPage(nextPage)
+						}}>
+						{' '}
+						<ChevronRightIcon dimensions='h-6 w-6' />
+					</div>
+				</Link>
 			</div>
 		)
 	)

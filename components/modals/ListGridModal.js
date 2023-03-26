@@ -18,9 +18,7 @@ export default function ListGridModal({ listTitle, books, authors, coverRef, rig
 					<h3 className='text-xl xl:text-2xl font-semibold leading-relaxed text-center xl:text-left w-full'>
 						{listTitle}
 					</h3>
-					<div className='hidden xl:flex absolute right-4 cursor-pointer m-2'>
-						{rightIcon}
-					</div>
+					<div className='hidden xl:flex absolute right-4 top-0 cursor-pointer m-2'>{rightIcon}</div>
 				</div>
 			)}
 			<div className='px-1 xl:p-2'>

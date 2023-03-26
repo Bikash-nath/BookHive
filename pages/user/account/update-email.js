@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, Fragment, React } from 'react'
+import { useContext, useState, useEffect, Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
