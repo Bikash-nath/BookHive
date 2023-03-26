@@ -17,6 +17,7 @@ import HistoryIcon from '../../assets/icons/HistoryIcon'
 import SettingsIcon from '../../assets/icons/SettingsIcon'
 import HelpIcon from '../../assets/icons/HelpIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
+import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 
 function Sidebar() {
 	const [libraryToggle, setLibraryToggle] = useState(true)
@@ -105,6 +106,13 @@ function Sidebar() {
 						<></>
 					)}
 				</div>
+
+				<Link href='/user/uploads'>
+					<div className={routeClassHandler('/user/uploads') + 'my-4'}>
+						<PlusCircleIcon dimensions='h-7 w-7' />
+						<p className='text-base'>Upload</p>
+					</div>
+				</Link>
 
 				<Link href='/user/account/profile'>
 					<div className={routeClassHandler('/account') + 'my-4'}>

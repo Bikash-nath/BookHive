@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useContext } from 'react'
 
 import SearchToggleContext from '../../store/searchToggleContext'
 import SpinnerContext from '../../store/spinnerContext'
@@ -8,13 +8,13 @@ function Spinner(props) {
 	const { toggleSearch } = useContext(SearchToggleContext)
 	const { activeSpinner } = useContext(SpinnerContext)
 
-	useEffect(() => {
-		if (activeSpinner) {
-			toggleSearch(true)
-		} else {
-			toggleSearch(false)
-		}
-	}, [activeSpinner])
+	// useEffect(() => {
+	// 	if (activeSpinner) {
+	// 		toggleSearch(true)
+	// 	} else {
+	// 		toggleSearch(false)
+	// 	}
+	// }, [activeSpinner])
 
 	return (
 		<div

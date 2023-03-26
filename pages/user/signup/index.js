@@ -1,16 +1,16 @@
 import { useContext, useState, useEffect, Fragment } from 'react'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-import SpinnerContext from '../../../store/spinnerContext'
 import { signup } from '../../../API/userProfile'
+import { createUserLibrary } from '../../../API/userLibrary'
 import LoginContainer from '../../../components/login/LoginContainer'
+import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
-import { createUserLibrary } from '../../../API/userLibrary'
 
 function SignUpPage() {
 	const [name, setName] = useState('')
@@ -19,16 +19,16 @@ function SignUpPage() {
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 	const [showPassword, setShowPassword] = useState(null)
 	const [showPasswordConfirm, setShowPasswordConfirm] = useState(null)
+	const [loading, setLoading] = useState(true)
 
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		if (password === passwordConfirm) {
-			toggleSpinner(true)
+			setLoading(true)
 			const user = await signup(name, email, password, passwordConfirm)
 			if (user.data) {
 				userCtx.addUser(user)
@@ -37,7 +37,7 @@ function SignUpPage() {
 			} else {
 				snackbarCtx.addMessage({ title: user })
 			}
-			toggleSpinner(false)
+			setLoading(false)
 		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match' })
 	}
 
@@ -128,8 +128,14 @@ function SignUpPage() {
 						className={
 							name && email && password && password === passwordConfirm ? 'btn-next' : 'btn-next-inactive'
 						}>
-						<span>Next</span>
-						<ArrowIcon />
+						{loading ? (
+							<ButtonSpinner />
+						) : (
+							<>
+								<span>Sign Up</span>
+								<ArrowIcon />
+							</>
+						)}
 					</button>
 				</div>
 			</LoginContainer>

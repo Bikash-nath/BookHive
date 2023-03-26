@@ -13,19 +13,15 @@ function SignUpSplashPage(props) {
 				<meta name='description' content='Login section' />
 			</Head>
 			<LoginContainer splashScreen={true}>
-				<h2 className='mb-4 text-3xl font-bold'>Sign Up</h2>
-				<div className='flex flex-col items-center my-6'>
+				<h2 className='text-3xl font-bold'>Sign Up</h2>
+				<div className='flex flex-col items-center'>
 					<Link href='/user/signup' className='w-full'>
 						<button className='login-btn'>
 							<span>Sign up with email address</span>
 						</button>
 					</Link>
 				</div>
-				<LoginOptions
-					btnLink='/user/login/splash'
-					btnMsg='Login'
-					accountMsg='Already have an account?'
-				/>
+				<LoginOptions btnLink='/user/login/splash' btnMsg='Login' accountMsg='Already have an account?' />
 			</LoginContainer>
 		</Fragment>
 	)

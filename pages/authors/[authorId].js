@@ -13,6 +13,7 @@ import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
+import ButtonSpinner from '../../components/widgets/ButtonSpinner'
 import StarIcon from '../../assets/icons/StarIcon'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
@@ -22,11 +23,12 @@ import ShareIcon from '../../assets/icons/ShareIcon'
 function AuthorDetailPage(props) {
 	const { author } = props
 	const { user } = useContext(UserContext)
+	const snackbarCtx = useContext(SnackbarContext)
 	const [readMoreBio, setReadMoreBio] = useState(false)
 	const [bioLines, setBioLines] = useState(0)
 	const windowWidth = useWindowWidth()
 	const [isFollowing, setFollowing] = useState(false)
-	const snackbarCtx = useContext(SnackbarContext)
+	const [loadingFollow, setLoadingFollow] = useState(true)
 
 	const router = useRouter()
 	const bioRef = useRef(null)
@@ -52,8 +54,16 @@ function AuthorDetailPage(props) {
 	useEffect(() => {
 		if (!isFollowing && user?.data && author) {
 			;(async () => {
-				const { authors } = await getLibraryAuthors()
-				authors.find((a) => a.slug === author.slug) && setFollowing(true)
+				setLoadingFollow(true)
+				const library = await getLibraryAuthors()
+				if (!library.authors) {
+					snackbarCtx.addMessage({ title: library })
+					setLoadingFollow(false)
+					return
+				}
+				if (library.authors.find((a) => a.slug === author.slug)) setFollowing(true)
+				else setFollowing(false)
+				setLoadingFollow(false)
 			})()
 		}
 	}, [author])
@@ -61,19 +71,30 @@ function AuthorDetailPage(props) {
 	const followAuthorHandler = async () => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save followed authors' })
 		else {
-			const { authors } = await followAuthor(author.slug)
-			if (authors.find((a) => a.slug === author.slug)) setFollowing(true)
-			else setFollowing(false)
+			setLoadingFollow(true)
+			const library = await followAuthor(author.slug)
+			if (!library.authors) {
+				snackbarCtx.addMessage({ title: library })
+				setLoadingFollow(false)
+				return
+			}
+			if (library.authors.find((a) => a.slug === author.slug)) {
+				setFollowing(true)
+				snackbarCtx.addMessage({ title: 'Author saved in your library' })
+			} else {
+				setFollowing(false)
+				snackbarCtx.addMessage({ title: 'Author removed from your library' })
+			}
+			setLoadingFollow(false)
 		}
 	}
 
 	const shareBookHandler = async () => {
 		if (navigator?.share && window.location.origin) {
-			const sharedAuthor = await navigator.share({
+			await navigator.share({
 				title: author.name,
 				url: window.location.origin + router.asPath,
 			})
-			if (sharedAuthor) snackbarCtx.addMessage({ title: 'Thanks for sharing' })
 		} else {
 			snackbarCtx.addMessage({
 				title: 'Sorry! Web Share API is not supported in this browser',
@@ -144,15 +165,27 @@ function AuthorDetailPage(props) {
 							<button
 								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#192132] brightness-90 rounded-3xl shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
 								onClick={followAuthorHandler}>
-								<HeartIcon dimensions='h-7 w-7' />
-								<span className='font-semibold pr-2'>Following</span>
+								{loadingFollow ? (
+									<ButtonSpinner dimensions='h-7 w-7' />
+								) : (
+									<>
+										<HeartIcon dimensions='h-7 w-7' />
+										<span className='font-semibold pr-2'>Following</span>
+									</>
+								)}
 							</button>
 						) : (
 							<button
 								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
 								onClick={followAuthorHandler}>
-								<HeartIcon dimensions='h-7 w-7' />
-								<span className='font-semibold pr-2'>Follow</span>
+								{loadingFollow ? (
+									<ButtonSpinner dimensions='h-7 w-7' />
+								) : (
+									<>
+										<HeartIcon dimensions='h-7 w-7' />
+										<span className='font-semibold pr-2'>Follow</span>
+									</>
+								)}
 							</button>
 						)}
 					</div>

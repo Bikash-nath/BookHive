@@ -6,6 +6,7 @@ import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
 import SearchIcon from '../../assets/icons/SearchIcon'
+import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 
 function Navbar(props) {
 	const router = useRouter()
@@ -38,20 +39,20 @@ function Navbar(props) {
 					<Link href='/discover'>
 						<div className='flex w-full'>
 							<div className='mx-auto'>
-								<SearchIcon dimensions='h-6 w-6' />
-							</div>
-						</div>
-						<p className=''>Search</p>
-					</Link>
-				</div>
-				<div className={routeClassHandler('/regional')}>
-					<Link href='/regional'>
-						<div className='flex w-full'>
-							<div className='mx-auto'>
 								<DiscoverIcon dimensions='h-6 w-6' />
 							</div>
 						</div>
-						<p className=''>Regional</p>
+						<p className=''>Discover</p>
+					</Link>
+				</div>
+				<div className={routeClassHandler('/user/uploads')}>
+					<Link href='/user/uploads'>
+						<div className='flex w-full'>
+							<div className='mx-auto'>
+								<PlusCircleIcon dimensions='h-6 w-6' />
+							</div>
+						</div>
+						<p className=''>Upload</p>
 					</Link>
 				</div>
 				<div className={routeClassHandler('/library')}>

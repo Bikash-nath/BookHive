@@ -6,7 +6,7 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 function LoginContainer(props) {
 	return (
 		<div className='flex items-start justify-center w-screen h-screen bg-[#0C111B] text-white p-0 m-0'>
-			<div className='relative flex flex-col w-full md:flex-row h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
+			<div className='relative flex flex-col w-full h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
 				<div className='w-full sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 px-4 md:p-4'>
 					<div
 						className={
@@ -16,7 +16,7 @@ function LoginContainer(props) {
 					</div>
 					{props.splashScreen && (
 						<div className='flex flex-col items-center mb-8 relative'>
-							<div className='flex md:hidden justify-center items-center -mt-10'>
+							<div className='flex justify-center items-center -mt-10'>
 								<div className='image-gradient'></div>
 								<img src='/images/bookhive.webp' alt='Bookhive' className='w-9/12' />
 							</div>
@@ -28,11 +28,6 @@ function LoginContainer(props) {
 					)}
 					{props.children}
 				</div>
-				{props.splashScreen && (
-					<div className='hidden md:flex md:w-1/2 md:h-full justify-center items-center'>
-						<img src='/images/bookhive.webp' alt='' className='w-2/3 px-8 mt-4' />
-					</div>
-				)}
 				<Link href='/'>
 					<div className='group absolute top-3 right-4 xl:top-8 xl:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 						<CloseIcon />

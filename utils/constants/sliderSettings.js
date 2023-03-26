@@ -7,6 +7,13 @@ export const settings = {
 	dots: true,
 	responsive: [
 		{
+			breakpoint: 1440,
+			settings: {
+				slidesToShow: 6,
+				slidesToScroll: 6,
+			},
+		},
+		{
 			breakpoint: 1280,
 			settings: {
 				slidesToShow: 5,

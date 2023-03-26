@@ -4,20 +4,20 @@ import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import { getGenreBooks, getTopGenres } from '../../../API/genres'
+import { favouriteGenre, getLibraryGenres } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SpinnerContext from '../../../store/spinnerContext'
 import SnackbarContext from '../../../store/snackbarContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import Paginate from '../../../components/widgets/Paginate'
+import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import HeartIcon from '../../../assets/icons/HeartIcon'
-import { favouriteGenre, getLibraryGenres } from '../../../API/userLibrary'
 
 function GenreBooksPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-
 	const coverRef = useRef()
 	const pageRef = useRef(null)
 	const router = useRouter()
@@ -25,6 +25,7 @@ function GenreBooksPage(props) {
 	const { genre, slug } = props
 	const [books, setBooks] = useState(props.books)
 	const [isFavourite, setFavourite] = useState(false)
+	const [loadingFavourite, setLoadingFavourite] = useState(true)
 
 	useEffect(() => {
 		;(async () => {
@@ -41,8 +42,16 @@ function GenreBooksPage(props) {
 	useEffect(() => {
 		if (!isFavourite && user?.data) {
 			;(async () => {
-				const { genres } = await getLibraryGenres()
-				genres.find((g) => g.slug === slug) && setFavourite(true)
+				setLoadingFavourite(true)
+				const library = await getLibraryGenres()
+				if (!library.genres) {
+					snackbarCtx.addMessage({ title: library })
+					setLoadingFavourite(false)
+					return
+				}
+				if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
+				else setFavourite(false)
+				setLoadingFavourite(false)
 			})()
 		}
 	}, [])
@@ -50,9 +59,16 @@ function GenreBooksPage(props) {
 	const favouriteGenreHandler = async () => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save favourite genres' })
 		else {
-			const { genres } = await favouriteGenre(slug)
-			if (genres.find((g) => g.slug === slug)) setFavourite(true)
+			setLoadingFavourite(true)
+			const library = await favouriteGenre(slug)
+			if (!library.genres) {
+				snackbarCtx.addMessage({ title: library })
+				setLoadingFavourite(false)
+				return
+			}
+			if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
 			else setFavourite(false)
+			setLoadingFavourite(false)
 		}
 	}
 
@@ -66,13 +82,17 @@ function GenreBooksPage(props) {
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
-							<div onClick={favouriteGenreHandler}>
-								{isFavourite ? (
-									<HeartIcon dimensions='h-7 w-7' color='white' />
-								) : (
-									<HeartIcon dimensions='h-7 w-7' color='' />
-								)}
-							</div>
+							loadingFavourite ? (
+								<ButtonSpinner dimensions='h-7 w-7' />
+							) : (
+								<div onClick={favouriteGenreHandler}>
+									{isFavourite ? (
+										<HeartIcon dimensions='h-7 w-7' color='white' />
+									) : (
+										<HeartIcon dimensions='h-7 w-7' color='' />
+									)}
+								</div>
+							)
 						}
 						pageTitle={genre}
 						coverRef={coverRef}
@@ -85,7 +105,9 @@ function GenreBooksPage(props) {
 					coverRef={coverRef}
 					rightIcon={
 						<div onClick={favouriteGenreHandler}>
-							{isFavourite ? (
+							{loadingFavourite ? (
+								<ButtonSpinner dimensions='h-8 w-8' />
+							) : isFavourite ? (
 								<HeartIcon dimensions='h-8 w-8' color='white' />
 							) : (
 								<HeartIcon dimensions='h-8 w-8' color='' />

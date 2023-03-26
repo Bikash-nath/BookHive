@@ -46,7 +46,7 @@
 }
 
 .box-text {
-	@apply absolute left-0 top-0 flex items-center justify-center text-center text-base ms:text-lg xl:text-xl font-medium p-1 xl:p-2 w-full h-full xl:w-5/6;
+	@apply absolute left-0 top-0 flex items-center justify-center text-center text-base ms:text-lg xl:text-xl font-medium p-1 xl:p-2 h-full xl:w-5/6;
 }
 
 .image-gradient {
@@ -54,11 +54,11 @@
 }
 
 .btn-next {
-	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-[#8C6AFF] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md min-w-[6rem] bg-[#8C6AFF] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
 }
 
 .btn-next-inactive {
-	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md bg-[#192132] shadow-gray-800 hover:bg-opacity-90 hover:shadow-lg border;
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold min-w-[6rem] shadow-md bg-[#192132] shadow-gray-800 hover:bg-opacity-90 hover:shadow-lg border;
 }
 
 .input-field {

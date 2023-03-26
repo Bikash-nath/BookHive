@@ -13,6 +13,7 @@ import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import GenreListModal from '../../../components/modals/GenreListModal'
+import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -22,7 +23,6 @@ import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
-
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
 
@@ -35,6 +35,7 @@ function BookDetailPage(props) {
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
 	const [descLines, setDescLines] = useState(0)
 	const [isFavourite, setFavourite] = useState(false)
+	const [loadingFavourite, setLoadingFavourite] = useState(false)
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
@@ -61,8 +62,16 @@ function BookDetailPage(props) {
 	useEffect(() => {
 		if (!isFavourite && user?.data) {
 			;(async () => {
-				const { books } = await getLibraryBooks()
-				books.find((b) => b.slug === book.slug) && setFavourite(true)
+				setLoadingFavourite(true)
+				const library = await getLibraryBooks()
+				if (!library.books) {
+					snackbarCtx.addMessage({ title: library })
+					setLoadingFavourite(false)
+					return
+				}
+				if (library.books.find((b) => b.slug === book.slug)) setFavourite(true)
+				else setFavourite(false)
+				setLoadingFavourite(false)
 			})()
 		}
 	}, [])
@@ -70,21 +79,33 @@ function BookDetailPage(props) {
 	const favouriteBookHandler = async () => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save favourite books' })
 		else {
-			const { books } = await favouriteBook(book.slug)
-			if (books.find((b) => b.slug === book.slug)) setFavourite(true)
-			else setFavourite(false)
+			setLoadingFavourite(true)
+			const library = await favouriteBook(book.slug)
+			if (!library.books) {
+				snackbarCtx.addMessage({ title: library })
+				setLoadingFavourite(false)
+				return
+			}
+			if (library.books.find((b) => b.slug === book.slug)) {
+				setFavourite(true)
+				snackbarCtx.addMessage({ title: 'Book saved in your library' })
+			} else {
+				setFavourite(false)
+				snackbarCtx.addMessage({ title: 'Book removed from your library' })
+			}
+			setLoadingFavourite(false)
 		}
 	}
 
 	const readBookHandler = () => {
-		if (book.format.ebook?.link) {
+		if (book.format?.ebook?.link) {
 			// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
 			// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 
 			router.push({
 				pathname: `/books/${book.slug}/read`,
 				query: {
-					ebookLink: book.format.ebook?.link,
+					ebookLink: book.format.ebook.link,
 					author: book.author.name,
 				},
 			})
@@ -95,11 +116,10 @@ function BookDetailPage(props) {
 
 	const shareBookHandler = async () => {
 		if (navigator?.share) {
-			const sharedBook = await navigator.share({
+			await navigator.share({
 				title: book.title,
 				url: window.location.origin + router.asPath,
 			})
-			if (sharedBook) snackbarCtx.addMessage({ title: 'Thanks for sharing' })
 		} else {
 			snackbarCtx.addMessage({
 				title: 'Sorry! Web Share API is not supported in this browser',
@@ -124,13 +144,17 @@ function BookDetailPage(props) {
 								</div>
 							}
 							lastIcon={
-								<div onClick={favouriteBookHandler}>
-									{isFavourite ? (
-										<BookmarkIcon dimensions='h-7 w-7' color='white' />
-									) : (
-										<BookmarkIcon dimensions='h-7 w-7' color='' />
-									)}
-								</div>
+								loadingFavourite ? (
+									<ButtonSpinner dimensions='h-7 w-7' />
+								) : (
+									<div onClick={favouriteBookHandler}>
+										{isFavourite ? (
+											<BookmarkIcon dimensions='h-7 w-7' color='white' />
+										) : (
+											<BookmarkIcon dimensions='h-7 w-7' color='' />
+										)}
+									</div>
+								)
 							}
 							pageTitle={book.title}
 							pageRef={pageRef}
@@ -187,17 +211,29 @@ function BookDetailPage(props) {
 							</button>
 							{isFavourite ? (
 								<button
-									className='xl:flex hidden items-center justify-center px-3 py-2 xl:px-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+									className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
 									onClick={favouriteBookHandler}>
-									<LibraryIcon dimensions='h-7 w-7' />
-									<span className='font-semibold'>Saved in Library</span>
+									{loadingFavourite ? (
+										<ButtonSpinner dimensions='h-7 w-7' />
+									) : (
+										<>
+											<LibraryIcon dimensions='h-7 w-7' />
+											<span className='font-semibold'>Saved in Library</span>
+										</>
+									)}
 								</button>
 							) : (
 								<button
-									className='xl:flex hidden items-center justify-center px-3 py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
+									className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
 									onClick={favouriteBookHandler}>
-									<LibraryIcon dimensions='h-7 w-7' />
-									<span className='font-semibold'>Add To Library</span>
+									{loadingFavourite ? (
+										<ButtonSpinner dimensions='h-7 w-7' />
+									) : (
+										<>
+											<LibraryIcon dimensions='h-7 w-7' />
+											<span className='font-semibold'>Add To Library</span>
+										</>
+									)}
 								</button>
 							)}
 						</div>

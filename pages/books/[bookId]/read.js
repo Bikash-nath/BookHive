@@ -84,7 +84,7 @@ function BookEpubReader() {
 							<button
 								className={'mx-3 my-1 ' + (size >= 150 && 'opacity-60')}
 								onClick={() => changeSize(Math.min(150, size + 10))}>
-								<PlusCircleIcon dimensions='w-7 h-7' />
+								<PlusCircleIcon dimensions='w-7 h-7' color='#0C111B' />
 							</button>
 						</div>
 					</div>
