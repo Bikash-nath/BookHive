@@ -19,7 +19,7 @@ function SignUpPage() {
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 	const [showPassword, setShowPassword] = useState(null)
 	const [showPasswordConfirm, setShowPasswordConfirm] = useState(null)
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(false)
 
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)

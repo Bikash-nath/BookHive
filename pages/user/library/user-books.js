@@ -31,7 +31,7 @@ function LibraryBooksPage() {
 				<title>Library books</title>
 				<meta name='description' content='A list of user library books' />
 			</Head>
-			<div className='xl:pb-8' ref={pageRef}>
+			<div className='pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && <TopNavModal pageTitle='Library books' pageRef={pageRef} coverRef={coverRef} />}
 				<ListGridModal listTitle='Library books' books={books} coverRef={coverRef} />
 			</div>

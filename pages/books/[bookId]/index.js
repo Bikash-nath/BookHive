@@ -98,20 +98,18 @@ function BookDetailPage(props) {
 	}
 
 	const readBookHandler = () => {
-		if (book.format?.ebook?.link) {
-			// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
-			// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
+		// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
+		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 
-			router.push({
-				pathname: `/books/${book.slug}/read`,
-				query: {
-					ebookLink: book.format.ebook.link,
-					author: book.author.name,
-				},
-			})
-		} else {
-			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
-		}
+		router.push({
+			pathname: `/books/${book.slug}/read`,
+			query: {
+				ebookLink: book.format.ebook.link,
+				author: book.author.name,
+			},
+		})
+		// } else {
+		// 	snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
 	}
 
 	const shareBookHandler = async () => {
@@ -135,7 +133,7 @@ function BookDetailPage(props) {
 			</Head>
 
 			<div className='cover-page-bg relative' ref={pageRef}>
-				<div className='xl:pb-8'>
+				<div className='pb-16 xl:pb-8'>
 					{windowWidth < 1280 && (
 						<TopNavModal
 							rightIcon={
@@ -196,15 +194,22 @@ function BookDetailPage(props) {
 						</div>
 						{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
 						<div className='flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'>
-							<button
-								className={
-									'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150 ' +
-									(book.format?.ebook?.link ? 'text-white' : 'text-[#c6c6c6]')
-								}
-								onClick={readBookHandler}>
-								<BookReadIcon dimensions='h-7 w-7' />
-								<span className='font-semibold'>Read</span>
-							</button>
+							{book.format?.ebook?.link ? (
+								<button
+									className={
+										'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150 ' +
+										(book.format?.ebook?.link ? 'text-white' : 'text-[#c6c6c6]')
+									}
+									onClick={readBookHandler}>
+									<BookReadIcon dimensions='h-7 w-7' />
+									<span className='font-semibold'>Read</span>
+								</button>
+							) : (
+								<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 bg-[#192132] border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400 text-[#c6c6c6]'>
+									<BookReadIcon dimensions='h-7 w-7' />
+									<span className='font-semibold'>Upload</span>
+								</button>
+							)}
 							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>

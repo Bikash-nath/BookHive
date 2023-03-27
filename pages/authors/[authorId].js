@@ -28,7 +28,7 @@ function AuthorDetailPage(props) {
 	const [bioLines, setBioLines] = useState(0)
 	const windowWidth = useWindowWidth()
 	const [isFollowing, setFollowing] = useState(false)
-	const [loadingFollow, setLoadingFollow] = useState(true)
+	const [loadingFollow, setLoadingFollow] = useState(false)
 
 	const router = useRouter()
 	const bioRef = useRef(null)
@@ -109,7 +109,7 @@ function AuthorDetailPage(props) {
 				<meta name='bioription' content='Author detail page' />
 			</Head>
 
-			<div className='cover-page-bg xl:pb-8' ref={pageRef}>
+			<div className='cover-page-bg pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={

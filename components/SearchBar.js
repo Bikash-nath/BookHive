@@ -57,7 +57,7 @@ export default function SearchBar(props) {
 			) : (
 				<></>
 			)}
-			<div className='relative w-full p-1 xl:p-[.125rem] mx-2'>
+			<div className='relative w-full p-1.5 xl:p-[.125rem]'>
 				<input
 					type='text'
 					value={keyword}
@@ -69,7 +69,7 @@ export default function SearchBar(props) {
 					ref={inputRef}
 					className='w-full box-border h-9 xl:h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
 					placeholder='Search books'></input>
-				<button className='absolute top-[.1rem] xl:top-1 right-2 box-border cursor-pointer rounded-full p-1'>
+				<button className='absolute top-1 right-2.5 box-border cursor-pointer rounded-full p-1'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'

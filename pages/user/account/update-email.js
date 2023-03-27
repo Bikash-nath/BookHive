@@ -23,7 +23,10 @@ function UpdateEmail(props) {
 	const router = useRouter()
 
 	const submitHandler = async () => {
-		// e.preventDefault()
+		if (email === newEmail) {
+			snackbarCtx.addMessage({ title: 'Your current email cannot be equal to new email' })
+			return
+		}
 		toggleSpinner(true)
 		const user = await updateUserEmail({ email, newEmail, password, passwordConfirm: password })
 		if (user.data) {
@@ -52,14 +55,14 @@ function UpdateEmail(props) {
 					<input
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
-						placeholder='Enter your email'
+						placeholder='Enter your current email'
 						type='email'
 						className='input-field my-4'
 					/>
 					<input
 						value={newEmail}
 						onChange={(e) => setNewEmail(e.target.value)}
-						placeholder='Enter your newEmail'
+						placeholder='Enter your new email'
 						type='email'
 						className='input-field my-4'
 					/>
@@ -93,7 +96,7 @@ function UpdateEmail(props) {
 						<button
 							onClick={submitHandler}
 							className={
-								email.includes('@') && newEmail.includes('@') && password
+								email !== newEmail && email.includes('@') && newEmail.includes('@') && password
 									? 'btn-next'
 									: 'btn-next-inactive'
 							}>

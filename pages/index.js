@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../API/books'
 import { getTopAuthors } from '../API/authors'
@@ -10,10 +11,8 @@ import PageHeader from '../components/layouts/PageHeader'
 import ListSliderModal from '../components/modals/ListSliderModal'
 import Logo from '../components/ui/Logo'
 import LoginButton from '../components/ui/LoginButton'
+import AccountIcon from '../assets/icons/AccountIcon'
 import BellIcon from '../assets/icons/BellIcon'
-
-// import HamburgerIcon from '../assets/icons/HamburgerIcon'
-// import SpinnerContext from '../store/spinnerContext'
 
 function HomePage(props) {
 	const { user } = useContext(UserContext)
@@ -44,16 +43,21 @@ function HomePage(props) {
 					Now a comprehensive, seamless and personalized reading experience is at your fingertips, making reading more affordable and accessible than ever.'
 				/>
 			</Head>
-			<div className='page-gradient xl:pb-8'>
+			<div className='page-gradient pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<div className='block'>
 						<PageHeader
 							pageTitle={<Logo size={32} />}
 							rightContainer={
 								activeUser ? (
-									<div className='flex items-center cursor-pointer focus:bg-slate-800'>
-										<BellIcon dimensions='h-7 w-7' />
-									</div>
+									<>
+										<div className='flex items-center gap-3 focus:bg-slate-800'>
+											<BellIcon dimensions='h-7 w-7' />
+											<Link href='/user/account/profile'>
+												<AccountIcon dimensions='h-7 w-7' />
+											</Link>
+										</div>
+									</>
 								) : (
 									<div className='transform scale-90'>
 										<LoginButton />

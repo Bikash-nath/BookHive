@@ -13,7 +13,7 @@ function LoginSplashPage(props) {
 				<meta name='description' content='Login splash page' />
 			</Head>
 			<LoginContainer splashScreen={true}>
-				<h2 className='text-3xl font-bold'>Log In</h2>
+				<h2 className='text-3xl font-bold mb-4 xl:mb-8'>Log In</h2>
 				<div className='flex flex-col items-center'>
 					<Link href='/user/login' className='w-full'>
 						<button className='login-btn'>

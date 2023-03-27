@@ -40,7 +40,7 @@ function BookListPage(props) {
 				<title>{`${categoryTitle}`}</title>
 				<meta name='description' content={`A list of all ${categoryTitle}`} />
 			</Head>
-			<div className='xl:pb-8' ref={pageRef}>
+			<div className='pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && <TopNavModal pageTitle={categoryTitle} pageRef={pageRef} coverRef={coverRef} />}
 				<ListGridModal listTitle={`${categoryTitle}`} books={books} coverRef={coverRef} />
 				<Paginate totalPages={4} page={1} />

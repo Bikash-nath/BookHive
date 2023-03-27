@@ -48,7 +48,7 @@ function LoginEmailPage() {
 			{/* {loading && <LoadingSpinner />} */}
 			{/* {error && <ErrorAlert variant='danger'>{error}</ErrorAlert>} */}
 			<LoginContainer>
-				<h2 className='font-bold text-2xl xl:text-3xl'>Log In</h2>
+				<h2 className='font-bold text-2xl xl:text-3xl mb-4 xl:mb-8'>Log In</h2>
 				<input
 					value={email}
 					onChange={(e) => {
@@ -86,7 +86,7 @@ function LoginEmailPage() {
 				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<Link href='/user/forgotPassword'>
-						<div className='font-semibold text-purple-400'>Forgot password ?</div>
+						<div className='font-medium text-purple-400'>Forgot password ?</div>
 					</Link>
 					<button
 						onClick={submitHandler}

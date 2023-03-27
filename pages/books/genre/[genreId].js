@@ -25,7 +25,7 @@ function GenreBooksPage(props) {
 	const { genre, slug } = props
 	const [books, setBooks] = useState(props.books)
 	const [isFavourite, setFavourite] = useState(false)
-	const [loadingFavourite, setLoadingFavourite] = useState(true)
+	const [loadingFavourite, setLoadingFavourite] = useState(false)
 
 	useEffect(() => {
 		;(async () => {
@@ -78,7 +78,7 @@ function GenreBooksPage(props) {
 				<title>{genre + ' books'}</title>
 				<meta name='description' content={`${genre} books section`} />
 			</Head>
-			<div className='xl:pb-8' ref={pageRef}>
+			<div className='pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={

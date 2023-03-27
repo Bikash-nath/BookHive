@@ -42,7 +42,7 @@ function Sidebar() {
 
 	return (
 		showRoute && (
-			<div className='overflow-y-scroll hide-scrollbar inline-block relative min-h-[40rem] min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 py-2'>
+			<div className='overflow-y-scroll overflow-x-hidden hide-scrollbar inline-block relative min-h-[40rem] min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 p-2'>
 				<div className='flex items-center space-x-20'>
 					<Logo size={46} />
 				</div>
@@ -110,7 +110,7 @@ function Sidebar() {
 				<Link href='/user/uploads'>
 					<div className={routeClassHandler('/user/uploads') + 'my-4'}>
 						<PlusCircleIcon dimensions='h-7 w-7' />
-						<p className='text-base'>Upload</p>
+						<p className='text-base'>Uploads</p>
 					</div>
 				</Link>
 

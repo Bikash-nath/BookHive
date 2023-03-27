@@ -35,7 +35,7 @@ function AuthorListPage(props) {
 				<title>Popular Authors</title>
 				<meta name='description' content='A list of all popular authors!' />
 			</Head>
-			<div className='xl:pb-8' ref={pageRef}>
+			<div className='pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && (
 					<TopNavModal pageTitle='Popular Authors' coverRef={coverRef} pageRef={pageRef} />
 				)}

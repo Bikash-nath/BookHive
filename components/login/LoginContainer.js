@@ -5,13 +5,10 @@ import CloseIcon from '../../assets/icons/CloseIcon'
 
 function LoginContainer(props) {
 	return (
-		<div className='flex items-start justify-center w-screen h-screen bg-[#0C111B] text-white p-0 m-0'>
-			<div className='relative flex flex-col w-full h-full md:h-screen md:flex justify-center items-center rounded-2xl '>
+		<div className='flex items-start justify-center w-screen h-screen bg-[#0C111B] text-white'>
+			<div className='relative flex flex-col w-full h-full justify-center items-center rounded-2xl '>
 				<div className='w-full sm:w-2/3 md:w-1/2 lg:w-5/12 xl:w-1/3 px-4 md:p-4'>
-					<div
-						className={
-							'md:flex md:items-center justify-center ' + props.splashScreen ? 'py-4 xl:py-6' : ''
-						}>
+					<div className={'md:flex md:items-center justify-center ' + props.splashScreen ? 'py-8' : ''}>
 						<Logo className='absolute top-0 left-0 md:static w-full' size={50} />
 					</div>
 					{props.splashScreen && (
@@ -20,7 +17,7 @@ function LoginContainer(props) {
 								<div className='image-gradient'></div>
 								<img src='/images/bookhive.webp' alt='Bookhive' className='w-9/12' />
 							</div>
-							<div className='absolute bottom-0 md:static'>
+							<div className='absolute bottom-0'>
 								<p className='max-w-md mt-2 text-xl	font-bold'>Thousands of books.</p>
 								<p className='max-w-md text-xl font-bold'>Free on Bookhive.</p>
 							</div>

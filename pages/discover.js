@@ -18,16 +18,16 @@ function DiscoverPage(props) {
 				<title>Discover</title>
 				<meta name='description' content='Discover section' />
 			</Head>
-			<div className='bg-[#0C111B] pb-4 xl:pb-8'>
+			<div className='bg-[#0C111B] pb-16 xl:pb-8'>
 				<div className='sticky top-0 z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
-					<PageHeader pageTitle={<p className=''>Discover</p>} />
-					<div className='p-1 pb-2 xl:p-2 xl:pb-3 sm:w-3/5 md:w-1/2'>
+					<PageHeader pageTitle='Discover' />
+					<div className='p-1 pb-2 xl:p-2 xl:pb-3 xl:px-5 sm:w-3/5 md:w-1/2'>
 						<SearchBar />
 					</div>
 				</div>
 				<div className={'mx-auto p-1 md:p-2 xl:p-4'}>
 					<h2 className='text-2xl xl:text-3xl text-center xl:text-left pt-4 pb-3 lg:px-4 lg:pt-8 lg:pb-6'>
-						Regional books
+						Indian Collections
 					</h2>
 					<div className='item-container discover-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6'>
 						<div className='flex justify-center w-full h-full'>
@@ -83,7 +83,7 @@ function DiscoverPage(props) {
 				<section>
 					<div className='mx-auto p-1 md:p-2 xl:p-4 text-white'>
 						<h2 className='text-2xl xl:text-3xl text-center xl:text-left pt-4 pb-3 lg:px-4 lg:pt-8 lg:pb-6'>
-							Popular Genres
+							International Genres
 						</h2>
 						<GenreCards genreList={props.genreList} colors={colors} />
 					</div>

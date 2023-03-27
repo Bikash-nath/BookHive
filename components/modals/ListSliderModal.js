@@ -11,16 +11,16 @@ import { settings } from '../../utils/constants/sliderSettings'
 export default function ListSliderModal({ listTitle, listLink, books, authors }) {
 	const windowWidth = useWindowWidth()
 
-	const autoPlay = listLink?.includes('/latest')
-		? {
-				infinite: true,
-				slidesToScroll: 1,
-				autoplay: true,
-				autoplaySpeed: 1500,
-				pauseOnHover: true,
-				cssEase: 'linear',
-		  }
-		: {}
+	// const autoPlay = listLink?.includes('/latest')
+	// 	? {
+	// 			infinite: true,
+	// 			slidesToScroll: 1,
+	// 			autoplay: true,
+	// 			autoplaySpeed: 1500,
+	// 			pauseOnHover: true,
+	// 			cssEase: 'linear',
+	// 	  }
+	// 	: {}	//{...{ ...settings, ...autoPlay }
 
 	const silderContent = books ? (
 		books.length ? (
@@ -57,7 +57,7 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 					</div>
 				) : (
 					<div className='h-auto group lg:px-8 xl:px-12'>
-						<Slider {...{ ...settings, ...autoPlay }}>{silderContent}</Slider>
+						<Slider {...settings}>{silderContent}</Slider>
 					</div>
 				)}
 			</div>

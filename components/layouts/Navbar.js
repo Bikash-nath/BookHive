@@ -23,7 +23,7 @@ function Navbar(props) {
 	return (
 		showRoute && (
 			<div
-				className='flex items-center justify-between sticky bottom-0 z-20 w-screen bg-[#030b17] shadow-inner shadow-gray-800 py-[.45rem] md:py-2 px-1 ms:px-3 xs:px-4 sm:px-6 md:px-10'
+				className='flex items-center justify-between fixed bottom-0 z-20 w-screen bg-[#030b17] shadow-inner shadow-gray-800 py-[.45rem] md:py-2 px-1 ms:px-3 xs:px-4 sm:px-6 md:px-10'
 				ref={props.navbarRef}>
 				<div className={routeClassHandler('/')}>
 					<Link href='/'>
@@ -52,7 +52,7 @@ function Navbar(props) {
 								<PlusCircleIcon dimensions='h-6 w-6' />
 							</div>
 						</div>
-						<p className=''>Upload</p>
+						<p className=''>Uploads</p>
 					</Link>
 				</div>
 				<div className={routeClassHandler('/library')}>

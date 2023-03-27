@@ -69,7 +69,7 @@ function Header(props) {
 			<header
 				ref={props.headerRef}
 				className='flex flex-grow sticky top-0 justify-between items-center z-20 bg-gradient-to-r from-[#080e19] to-[#030b17] bg-opacity-95'>
-				<nav className='mx-auto p-1 w-screen'>
+				<nav className='mx-auto p-1.5 w-screen'>
 					{activeSearch ? (
 						<div
 							className={`flex items-center justify-center w-full cursor-pointer text-gray-300 hover:text-white space-x-2 px-1`}>
@@ -148,7 +148,7 @@ function Header(props) {
 											</div>
 										</>
 									) : (
-										<div className='transform scale-90'>
+										<div className='transform scale-95'>
 											<LoginButton />
 										</div>
 									)}
