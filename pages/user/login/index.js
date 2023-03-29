@@ -91,8 +91,14 @@ function LoginEmailPage() {
 					<button
 						onClick={submitHandler}
 						className={email && password?.length > 8 ? 'btn-next' : 'btn-next-inactive'}>
-						{loading ? <ButtonSpinner /> : <span>Login</span>}
-						<ArrowIcon />
+						{loading ? (
+							<ButtonSpinner />
+						) : (
+							<>
+								<span>Login</span>
+								<ArrowIcon />
+							</>
+						)}
 					</button>
 				</div>
 			</LoginContainer>
