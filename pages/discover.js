@@ -31,7 +31,7 @@ function DiscoverPage(props) {
 					</h2>
 					<div className='item-container discover-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6'>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/books/category/bestsellers'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-sky-900 to bg-sky-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>हिंदी</h5>
@@ -39,7 +39,7 @@ function DiscoverPage(props) {
 							</Link>
 						</div>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/books/category/audiobooks'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-purple-900 to bg-purple-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>বাংলা</h5>
@@ -47,7 +47,7 @@ function DiscoverPage(props) {
 							</Link>
 						</div>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/authors'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-amber-900 to bg-amber-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>मराठी</h5>
@@ -55,7 +55,7 @@ function DiscoverPage(props) {
 							</Link>
 						</div>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/authors'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-rose-900 to bg-rose-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>తెలుగు</h5>
@@ -63,7 +63,7 @@ function DiscoverPage(props) {
 							</Link>
 						</div>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/books/category/latest'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-emerald-900 to bg-emerald-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>ਪੰਜਾਬੀ</h5>
@@ -71,7 +71,7 @@ function DiscoverPage(props) {
 							</Link>
 						</div>
 						<div className='flex justify-center w-full h-full'>
-							<Link href={'/authors'}>
+							<Link href={''}>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
 									<div className='bg-gradient-to-b from-fuchsia-900 to bg-fuchsia-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>ગુજરાતી</h5>

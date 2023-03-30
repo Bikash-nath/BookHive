@@ -13,6 +13,7 @@ import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import GenreListModal from '../../../components/modals/GenreListModal'
+import ReviewCard from '../../../components/cards/ReviewCard'
 import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
@@ -132,191 +133,201 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 
-			<div className='cover-page-bg relative' ref={pageRef}>
-				<div className='pb-16 xl:pb-8'>
-					{windowWidth < 1280 && (
-						<TopNavModal
-							rightIcon={
-								<div onClick={shareBookHandler}>
-									<ShareIcon dimensions='h-6 w-6' color='' />
-								</div>
-							}
-							lastIcon={
-								loadingFavourite ? (
-									<ButtonSpinner dimensions='h-7 w-7' />
-								) : (
-									<div onClick={favouriteBookHandler}>
-										{isFavourite ? (
-											<BookmarkIcon dimensions='h-7 w-7' color='white' />
-										) : (
-											<BookmarkIcon dimensions='h-7 w-7' color='' />
-										)}
-									</div>
-								)
-							}
-							pageTitle={book.title}
-							pageRef={pageRef}
-							coverRef={coverRef}
-						/>
-					)}
-					<BgCover color={props.color} coverRef={coverRef}>
-						<Image
-							src={process.env.BOOKS_URL + book.image.path}
-							alt={book.title}
-							height={360}
-							width={220}
-							className='object-contain rounded-lg w-36 h-[13.5rem] xl:w-44 xl:h-64 m-1'
-						/>
-						<div className='flex flex-col px-2 md:px-4 space-y-1 xl:space-y-2'>
-							<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-lg min-w-[20rem]'>
-								<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>{book.title}</p>
+			<div className='cover-page-bg relative pb-16 xl:pb-8' ref={pageRef}>
+				{windowWidth < 1280 && (
+					<TopNavModal
+						rightIcon={
+							<div onClick={shareBookHandler}>
+								<ShareIcon dimensions='h-6 w-6' color='' />
 							</div>
-							<Link href={`/authors/${book.author.slug}`}>
-								<div className='text-md md:text-lg text-center xl:text-left '>
-									By <p className='font-medium inline-block'>{book.author.name}</p>
-									<div className='inline-block px-[2px] py-[1px]'>
-										<ChevronRightIcon dimensions='h-4 w-4' />
-									</div>
+						}
+						lastIcon={
+							loadingFavourite ? (
+								<ButtonSpinner dimensions='h-7 w-7' />
+							) : (
+								<div onClick={favouriteBookHandler}>
+									{isFavourite ? (
+										<BookmarkIcon dimensions='h-7 w-7' color='white' />
+									) : (
+										<BookmarkIcon dimensions='h-7 w-7' color='' />
+									)}
 								</div>
-							</Link>
-							<div className='text-center xl:text-left'>
-								{book.ratingsAvg ? (
-									<div className='flex items-center justify-center xl:justify-start text-md md:text-lg text-xl w-full font-medium'>
-										<div className='mr-1 xl:mr-2'>
-											<StarIcon dimensions='h-6 w-6' />
-										</div>
-										{book.ratingsAvg}
-									</div>
-								) : (
-									<></>
-								)}
+							)
+						}
+						pageTitle={book.title}
+						pageRef={pageRef}
+						coverRef={coverRef}
+					/>
+				)}
+				<BgCover color={props.color} coverRef={coverRef}>
+					<Image
+						src={process.env.BOOKS_URL + book.image.path}
+						alt={book.title}
+						height={360}
+						width={220}
+						className='object-contain rounded-lg w-36 h-[13.5rem] xl:w-44 xl:h-64 m-1'
+					/>
+					<div className='flex flex-col px-2 md:px-4 space-y-1 xl:space-y-2'>
+						<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-lg min-w-[20rem]'>
+							<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>{book.title}</p>
+						</div>
+						<Link href={`/authors/${book.author.slug}`}>
+							<div className='text-md md:text-lg text-center xl:text-left '>
+								By <p className='font-medium inline-block'>{book.author.name}</p>
+								<div className='inline-block px-[2px] py-[1px]'>
+									<ChevronRightIcon dimensions='h-4 w-4' />
+								</div>
 							</div>
-						</div>
-						{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
-						<div className='flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'>
-							{book.format?.ebook?.link ? (
-								<button
-									className={
-										'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150 ' +
-										(book.format?.ebook?.link ? 'text-white' : 'text-[#c6c6c6]')
-									}
-									onClick={readBookHandler}>
-									<BookReadIcon dimensions='h-7 w-7' />
-									<span className='font-semibold'>Read</span>
-								</button>
+						</Link>
+						<div className='text-center xl:text-left'>
+							{book.ratingsAvg ? (
+								<div className='flex items-center justify-center xl:justify-start text-md md:text-lg text-xl w-full font-medium'>
+									<div className='mr-1 xl:mr-2'>
+										<StarIcon dimensions='h-6 w-6' />
+									</div>
+									{book.ratingsAvg}
+								</div>
 							) : (
-								<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 bg-[#192132] border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400 text-[#c6c6c6]'>
-									<BookReadIcon dimensions='h-7 w-7' />
-									<span className='font-semibold'>Upload</span>
-								</button>
-							)}
-							<button className='flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'>
-								<HeadphoneIcon dimensions='h-7 w-7' />
-								<span className='font-semibold'>Listen</span>
-							</button>
-							{isFavourite ? (
-								<button
-									className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
-									onClick={favouriteBookHandler}>
-									{loadingFavourite ? (
-										<ButtonSpinner dimensions='h-7 w-7' />
-									) : (
-										<>
-											<LibraryIcon dimensions='h-7 w-7' />
-											<span className='font-semibold'>Saved in Library</span>
-										</>
-									)}
-								</button>
-							) : (
-								<button
-									className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
-									onClick={favouriteBookHandler}>
-									{loadingFavourite ? (
-										<ButtonSpinner dimensions='h-7 w-7' />
-									) : (
-										<>
-											<LibraryIcon dimensions='h-7 w-7' />
-											<span className='font-semibold'>Add To Library</span>
-										</>
-									)}
-								</button>
-							)}
-						</div>
-					</BgCover>
-
-					<GenreListModal genres={book.genres} />
-
-					<div className='flex justify-start xs:justify-center items-center overflow-x-scroll p-3 hide-scrollbar'>
-						<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
-							{book.language && (
-								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-									<p className='px-2 text-md md:text-base font-medium'>{book.language}</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>language</p>
-								</div>
-							)}
-							{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
-								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-									<p className='px-4 text-sm md:text-base font-medium'>
-										{book.format.ebook.pagesCount}
-									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>pages</p>
-								</div>
-							)}
-							{book.publicationDate !== null && (
-								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-									<p className='px-4 text-sm md:text-base font-medium'>
-										{book.publicationDate.split('-')[0]}
-									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>published</p>
-								</div>
-							)}
-							{book.publisher !== null && (
-								<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
-									<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
-										{book.publisher}
-									</p>
-									<p className='text-sm font-light xl:text-md text-gray-300 py-1'>publisher</p>
-								</div>
+								<></>
 							)}
 						</div>
 					</div>
-
-					{book.description ? (
-						<div className='p-4 md:p-8'>
-							<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
-							<p
-								ref={descRef}
-								className={
-									'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
-									(!readMoreDesc ? 'line-clamp-4' : '')
-								}>
-								{book.description}
-							</p>
+					{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
+					<div className='flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'>
+						<button
+							className={
+								book.format?.ebook?.link
+									? 'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+									: 'btn-inactive'
+							}
+							onClick={readBookHandler}>
+							<BookReadIcon dimensions='h-7 w-7' />
+							<span className='font-semibold'>Read</span>
+						</button>
+						<button className='btn-inactive'>
+							<HeadphoneIcon dimensions='h-7 w-7' />
+							<span className='font-semibold'>Listen</span>
+						</button>
+						{isFavourite ? (
 							<button
-								onClick={(e) => {
-									setReadMoreDesc(!readMoreDesc)
-									e.preventDefault()
-								}}
-								className={
-									'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-									(descLines <= 4 ? 'hidden' : '')
-								}>
-								{readMoreDesc ? (
-									<div className='flex'>
-										Read less <ChevronUpIcon dimensions='h-5 w-5' />
-									</div>
+								className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
+								onClick={favouriteBookHandler}>
+								{loadingFavourite ? (
+									<ButtonSpinner dimensions='h-7 w-7' />
 								) : (
-									<div className='flex'>
-										Read more{' '}
-										<div className='py-[.1rem]'>
-											<ChevronDownIcon dimensions='h-5 w-5' />
-										</div>
-									</div>
+									<>
+										<LibraryIcon dimensions='h-7 w-7' />
+										<span className='font-semibold'>Saved in Library</span>
+									</>
 								)}
 							</button>
+						) : (
+							<button
+								className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
+								onClick={favouriteBookHandler}>
+								{loadingFavourite ? (
+									<ButtonSpinner dimensions='h-7 w-7' />
+								) : (
+									<>
+										<LibraryIcon dimensions='h-7 w-7' />
+										<span className='font-semibold'>Add To Library</span>
+									</>
+								)}
+							</button>
+						)}
+					</div>
+				</BgCover>
+
+				<GenreListModal genres={book.genres} />
+
+				<div className='flex justify-start xs:justify-center items-center overflow-x-scroll p-3 hide-scrollbar'>
+					<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
+						{book.language && (
+							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+								<p className='px-2 text-md md:text-base font-medium'>{book.language}</p>
+								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>language</p>
+							</div>
+						)}
+						{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
+							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+								<p className='px-4 text-sm md:text-base font-medium'>{book.format.ebook.pagesCount}</p>
+								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>pages</p>
+							</div>
+						)}
+						{book.publicationDate !== null && (
+							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+								<p className='px-4 text-sm md:text-base font-medium'>
+									{book.publicationDate.split('-')[0]}
+								</p>
+								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>published</p>
+							</div>
+						)}
+						{book.publisher !== null && (
+							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
+								<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
+									{book.publisher}
+								</p>
+								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>publisher</p>
+							</div>
+						)}
+					</div>
+				</div>
+
+				{book.description ? (
+					<div className='p-4 md:p-8'>
+						<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
+						<p
+							ref={descRef}
+							className={
+								'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
+								(!readMoreDesc ? 'line-clamp-4' : '')
+							}>
+							{book.description}
+						</p>
+						<button
+							onClick={(e) => {
+								setReadMoreDesc(!readMoreDesc)
+								e.preventDefault()
+							}}
+							className={
+								'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
+								(descLines <= 4 ? 'hidden' : '')
+							}>
+							{readMoreDesc ? (
+								<div className='flex'>
+									Read less <ChevronUpIcon dimensions='h-5 w-5' />
+								</div>
+							) : (
+								<div className='flex'>
+									Read more{' '}
+									<div className='py-[.1rem]'>
+										<ChevronDownIcon dimensions='h-5 w-5' />
+									</div>
+								</div>
+							)}
+						</button>
+					</div>
+				) : (
+					<></>
+				)}
+				<div className='p-4 md:p-8'>
+					<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
+					<div className='flex justify-between items-center w-full md:w-2/3 xl:w-2/5 gap-16 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>
+						<p className='text-md font-semibold'>Write a review</p>
+						<div className='inline-block px-[2px] py-[1px]'>
+							<ChevronRightIcon dimensions='h-4 w-4' />
+						</div>
+					</div>
+					{book.reviews?.length ? (
+						<div className='w-full md:w-2/3 xl:w-1/2 p-3 my-4 xl:my-8'>
+							{book.reviews.map((review) => (
+								<ReviewCard review={review} />
+							))}
 						</div>
 					) : (
-						<></>
+						<div className='w-full md:w-2/3 xl:w-2/5 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>
+							No reviews yet
+						</div>
 					)}
 				</div>
 			</div>

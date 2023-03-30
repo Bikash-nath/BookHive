@@ -101,6 +101,7 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
+	// const topFreeBooks = await getTopFree({ limit: 18 })
 	const bestsellers = await getBestsellers({ limit: 18 })
 	const audiobooks = await getTopAudiobooks({ limit: 18 })
 	const latestBooks = await getLatestBooks({ limit: 18 })
@@ -113,6 +114,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
+			// getTopFree: topFreeBooks.data,
 			bestsellers: bestsellers.data,
 			audiobooks: audiobooks.data,
 			latestBooks: latestBooks.data,

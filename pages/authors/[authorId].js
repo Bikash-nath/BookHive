@@ -162,9 +162,7 @@ function AuthorDetailPage(props) {
 							<ShareIcon dimensions='h-7 w-7' color='' />
 						</div>
 						{isFollowing ? (
-							<button
-								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#192132] brightness-90 rounded-3xl shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
-								onClick={followAuthorHandler}>
+							<button className='btn-inactive' onClick={followAuthorHandler}>
 								{loadingFollow ? (
 									<ButtonSpinner dimensions='h-7 w-7' />
 								) : (

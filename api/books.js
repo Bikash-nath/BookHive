@@ -1,13 +1,20 @@
 import axios from '../lib/axiosConfig'
 
+export const getFreeBooks = async (query) => {
+	try {
+		const { data } = await axios.get('/books/freeBooks', { params: query })
+		return data
+	} catch (error) {
+		return error.response && error.response.data.message ? error.response.data.message : error.message
+	}
+}
+
 export const getBestsellers = async (query) => {
 	try {
 		const { data } = await axios.get('/books/bestsellers', { params: query })
 		return data
 	} catch (error) {
-		return error.response && error.response.data.message
-			? error.response.data.message
-			: error.message
+		return error.response && error.response.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -16,9 +23,7 @@ export const getTopAudiobooks = async (query) => {
 		const { data } = await axios.get('/books/audiobooks', { params: query })
 		return data
 	} catch (error) {
-		return error.response && error.response.data.message
-			? error.response.data.message
-			: error.message
+		return error.response && error.response.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -27,9 +32,7 @@ export const getLatestBooks = async (query) => {
 		const { data } = await axios.get('/books/latest/', { params: query })
 		return data
 	} catch (error) {
-		return error.response && error.response.data.message
-			? error.response.data.message
-			: error.message
+		return error.response && error.response.data.message ? error.response.data.message : error.message
 	}
 }
 
@@ -38,9 +41,7 @@ export const getIndianBooks = async (query) => {
 		const { data } = await axios.get('/books/indian/', { params: query })
 		return data
 	} catch (error) {
-		return error.response && error.response.data.message
-			? error.response.data.message
-			: error.message
+		return error.response && error.response.data.message ? error.response.data.message : error.message
 	}
 }
 
