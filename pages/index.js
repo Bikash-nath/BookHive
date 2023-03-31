@@ -32,6 +32,8 @@ function HomePage(props) {
 			? 'Good Afternoon'
 			: 'Good Evening'
 	}
+	{
+	}
 
 	return (
 		<Fragment>
@@ -101,7 +103,6 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-	// const topFreeBooks = await getTopFree({ limit: 18 })
 	const bestsellers = await getBestsellers({ limit: 18 })
 	const audiobooks = await getTopAudiobooks({ limit: 18 })
 	const latestBooks = await getLatestBooks({ limit: 18 })

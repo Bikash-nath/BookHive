@@ -1,14 +1,5 @@
 import axios from '../lib/axiosConfig'
 
-export const getFreeBooks = async (query) => {
-	try {
-		const { data } = await axios.get('/books/freeBooks', { params: query })
-		return data
-	} catch (error) {
-		return error.response && error.response.data.message ? error.response.data.message : error.message
-	}
-}
-
 export const getBestsellers = async (query) => {
 	try {
 		const { data } = await axios.get('/books/bestsellers', { params: query })
@@ -36,9 +27,19 @@ export const getLatestBooks = async (query) => {
 	}
 }
 
-export const getIndianBooks = async (query) => {
+//Free books
+export const getIndianBooks = async (language) => {
 	try {
-		const { data } = await axios.get('/books/indian/', { params: query })
+		const { data } = await axios.get('/books/indian/', { params: { language } })
+		return data
+	} catch (error) {
+		return error.response && error.response.data.message ? error.response.data.message : error.message
+	}
+}
+
+export const getRegionalBooks = async (language) => {
+	try {
+		const { data } = await axios.get('/books/regional/', { params: { language } })
 		return data
 	} catch (error) {
 		return error.response && error.response.data.message ? error.response.data.message : error.message

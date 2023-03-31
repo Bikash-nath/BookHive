@@ -24,6 +24,7 @@ import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
+import ReportIcon from '../../../assets/icons/ReportIcon'
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
 
@@ -70,7 +71,7 @@ function BookDetailPage(props) {
 					setLoadingFavourite(false)
 					return
 				}
-				if (library.books.find((b) => b.slug === book.slug)) setFavourite(true)
+				if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
 				else setFavourite(false)
 				setLoadingFavourite(false)
 			})()
@@ -310,6 +311,16 @@ function BookDetailPage(props) {
 				) : (
 					<></>
 				)}
+
+				<div className='flex justify-start m-4 xl:m-8'>
+					<button
+						className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#151d3a]'
+						onClick={() => router.push(`/books/${book.slug}/report/`)}>
+						<ReportIcon dimensions='h-7 w-7' />
+						<p className='text-base'>Report book</p>
+					</button>
+				</div>
+
 				<div className='p-4 md:p-8'>
 					<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
 					<div className='flex justify-between items-center w-full md:w-2/3 xl:w-2/5 gap-16 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>

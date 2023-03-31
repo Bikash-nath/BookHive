@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import useWindowWidth from '../../../hooks/useWindowWidth'
-import { getBestsellers, getTopAudiobooks, getLatestBooks } from '../../../API/books'
+import { getBestsellers, getTopAudiobooks, getLatestBooks, getIndianBooks } from '../../../API/books'
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
@@ -43,7 +43,7 @@ function BookListPage(props) {
 			<div className='pb-16 xl:pb-8' ref={pageRef}>
 				{windowWidth < 1280 && <TopNavModal pageTitle={categoryTitle} pageRef={pageRef} coverRef={coverRef} />}
 				<ListGridModal listTitle={`${categoryTitle}`} books={books} coverRef={coverRef} />
-				<Paginate totalPages={4} page={1} />
+				{books?.length >= 30 && <Paginate totalPages={4} page={1} />}
 			</div>
 		</Fragment>
 	) : (
@@ -58,8 +58,10 @@ export async function getStaticProps(context) {
 		books = await getBestsellers()
 	} else if (params.category == 'audiobooks') {
 		books = await getTopAudiobooks()
-	} else {
+	} else if (params.category == 'latest') {
 		books = await getLatestBooks()
+	} else {
+		books = await getIndianBooks(params.category)
 	}
 
 	if (!books.data)
@@ -77,14 +79,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-	const categoryParams = [
-		'bestsellers',
-		'audiobooks',
-		'latest',
-		'bestsellers?page=2',
-		'bestsellers?page=3',
-		'audiobooks?page=3',
-	].map((category) => ({
+	const categoryParams = ['bestsellers', 'audiobooks', 'latest', 'indian', 'bangla', 'punjabi'].map((category) => ({
 		params: { category },
 	}))
 
