@@ -102,16 +102,17 @@ function BookDetailPage(props) {
 	const readBookHandler = () => {
 		// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
-
-		router.push({
-			pathname: `/books/${book.slug}/read`,
-			query: {
-				ebookLink: book.format.ebook.link,
-				author: book.author.name,
-			},
-		})
-		// } else {
-		// 	snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
+		if (book.format?.ebook?.link) {
+			router.push({
+				pathname: `/books/${book.slug}/read`,
+				query: {
+					ebookLink: book.format.ebook.link,
+					author: book.author.name,
+				},
+			})
+		} else {
+			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
+		}
 	}
 
 	const shareBookHandler = async () => {
@@ -324,7 +325,7 @@ function BookDetailPage(props) {
 				<div className='p-4 md:p-8'>
 					<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
 					<div className='flex justify-between items-center w-full md:w-2/3 xl:w-2/5 gap-16 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>
-						<p className='text-md font-semibold'>Write a review</p>
+						<button className='text-md font-semibold'>Write a review</button>
 						<div className='inline-block px-[2px] py-[1px]'>
 							<ChevronRightIcon dimensions='h-4 w-4' />
 						</div>

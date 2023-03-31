@@ -9,7 +9,7 @@
 }
 
 .spinner {
-	--spinner-color: #0c111b;
+	--spinner-color: white;
 
 	aspect-ratio: 1/1;
 	border-radius: 50%;
