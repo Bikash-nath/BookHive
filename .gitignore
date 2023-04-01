@@ -7,10 +7,10 @@
 /coverage
 /.components*
 /data
-pending.md
 /public/ebooks
 /.add-later
-
+pending.md
+features.md
 # next.js
 /.next/
 /out/

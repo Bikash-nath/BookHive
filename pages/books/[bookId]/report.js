@@ -53,7 +53,11 @@ function SettingsPage() {
 								</p>
 							</div>
 							<div className='flex justify-end items-center w-1/6'>
-								<input type='checkbox' value='copyright' className='rounded-full h-4 w-4' />
+								<input
+									type='checkbox'
+									value='copyright'
+									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+								/>
 							</div>
 						</div>
 						<div className='flex justify-between w-full gap-8 xl:gap-12'>
@@ -64,7 +68,11 @@ function SettingsPage() {
 								</p>
 							</div>
 							<div className='flex justify-end items-center w-1/6'>
-								<input type='checkbox' value='missing' className='rounded-full h-4 w-4' />
+								<input
+									type='checkbox'
+									value='missing'
+									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+								/>
 							</div>
 						</div>
 						<div className='flex justify-between w-full gap-8 xl:gap-12'>
@@ -73,7 +81,11 @@ function SettingsPage() {
 								<p className='text-md text-gray-300'>Using incorrect or wrong details of the book</p>
 							</div>
 							<div className='flex justify-end items-center w-1/6'>
-								<input type='checkbox' value='missing' className='rounded-full h-4 w-4' />
+								<input
+									type='checkbox'
+									value='missing'
+									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+								/>
 							</div>
 						</div>
 						<div className='flex justify-between w-full gap-8 xl:gap-12'>
@@ -84,7 +96,11 @@ function SettingsPage() {
 								</p>
 							</div>
 							<div className='flex justify-end items-center w-1/6'>
-								<input type='checkbox' value='missing' className='rounded-full h-4 w-4' />
+								<input
+									type='checkbox'
+									value='missing'
+									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+								/>
 							</div>
 						</div>
 						<div className='flex justify-between w-full gap-8 xl:gap-12'>
@@ -96,7 +112,11 @@ function SettingsPage() {
 								</p>
 							</div>
 							<div className='flex justify-end items-center w-1/6'>
-								<input type='checkbox' value='missing' className='rounded-full h-4 w-4' />
+								<input
+									type='checkbox'
+									value='missing'
+									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+								/>
 							</div>
 						</div>
 						<div className='flex justify-center py-6'>

@@ -33,7 +33,6 @@ function AuthorDetailPage(props) {
 	const router = useRouter()
 	const bioRef = useRef(null)
 	const coverRef = useRef(null)
-	const pageRef = useRef(null)
 
 	const readMoreBioHandler = () => {
 		const bioEl = bioRef.current
@@ -89,7 +88,7 @@ function AuthorDetailPage(props) {
 		}
 	}
 
-	const shareBookHandler = async () => {
+	const shareAuthorHandler = async () => {
 		if (navigator?.share && window.location.origin) {
 			await navigator.share({
 				title: author.name,
@@ -109,7 +108,7 @@ function AuthorDetailPage(props) {
 				<meta name='bioription' content='Author detail page' />
 			</Head>
 
-			<div className='cover-page-bg pb-16 xl:pb-8' ref={pageRef}>
+			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
@@ -118,7 +117,6 @@ function AuthorDetailPage(props) {
 							</div>
 						}
 						pageTitle={author.name}
-						pageRef={pageRef}
 						coverRef={coverRef}
 					/>
 				)}
@@ -155,37 +153,37 @@ function AuthorDetailPage(props) {
 						</div>
 					</div>
 
-					<div className='flex xl:flex-col justify-center relative xl:min-h-[12rem] xl:space-y-4 text-white'>
-						<div
-							onClick={shareBookHandler}
-							className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
-							<ShareIcon dimensions='h-7 w-7' color='' />
+					<div className='xl:min-w-[20rem]'>
+						<div className='flex xl:flex-col items-end justify-center relative w-fit xl:min-h-[12rem] text-white'>
+							<div
+								onClick={shareAuthorHandler}
+								className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
+								<ShareIcon dimensions='h-7 w-7' color='' />
+							</div>
+							{isFollowing ? (
+								<button className='btn-inactive' onClick={followAuthorHandler}>
+									{loadingFollow ? (
+										<ButtonSpinner dimensions='h-7 w-7' />
+									) : (
+										<>
+											<HeartIcon dimensions='h-7 w-7' />
+											<span className='font-semibold pr-2'>Following</span>
+										</>
+									)}
+								</button>
+							) : (
+								<button className='btn-active' onClick={followAuthorHandler}>
+									{loadingFollow ? (
+										<ButtonSpinner dimensions='h-7 w-7' />
+									) : (
+										<>
+											<HeartIcon dimensions='h-7 w-7' />
+											<span className='font-semibold pr-2'>Follow</span>
+										</>
+									)}
+								</button>
+							)}
 						</div>
-						{isFollowing ? (
-							<button className='btn-inactive' onClick={followAuthorHandler}>
-								{loadingFollow ? (
-									<ButtonSpinner dimensions='h-7 w-7' />
-								) : (
-									<>
-										<HeartIcon dimensions='h-7 w-7' />
-										<span className='font-semibold pr-2'>Following</span>
-									</>
-								)}
-							</button>
-						) : (
-							<button
-								className='flex items-center justify-center px-3 py-1 xl:px-2 w-full space-x-2 bg-[#AA14F0] brightness-90 rounded-3xl shadow-md border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
-								onClick={followAuthorHandler}>
-								{loadingFollow ? (
-									<ButtonSpinner dimensions='h-7 w-7' />
-								) : (
-									<>
-										<HeartIcon dimensions='h-7 w-7' />
-										<span className='font-semibold pr-2'>Follow</span>
-									</>
-								)}
-							</button>
-						)}
 					</div>
 				</BgCover>
 

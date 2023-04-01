@@ -41,7 +41,6 @@ function BookDetailPage(props) {
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
-	const pageRef = useRef(null)
 
 	const router = useRouter()
 
@@ -135,7 +134,7 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 
-			<div className='cover-page-bg relative pb-16 xl:pb-8' ref={pageRef}>
+			<div className='cover-page-bg relative pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
@@ -157,7 +156,6 @@ function BookDetailPage(props) {
 							)
 						}
 						pageTitle={book.title}
-						pageRef={pageRef}
 						coverRef={coverRef}
 					/>
 				)}
@@ -195,48 +193,49 @@ function BookDetailPage(props) {
 						</div>
 					</div>
 					{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
-					<div className='flex xl:flex-col items-end xl:px-10 space-x-8 xl:space-y-4 right-2'>
-						<button
-							className={
-								book.format?.ebook?.link
-									? 'flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 bg-[#8C6AFF] rounded-3xl shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
-									: 'btn-inactive'
-							}
-							onClick={readBookHandler}>
-							<BookReadIcon dimensions='h-7 w-7' />
-							<span className='font-semibold'>Read</span>
-						</button>
-						<button className='btn-inactive'>
-							<HeadphoneIcon dimensions='h-7 w-7' />
-							<span className='font-semibold'>Listen</span>
-						</button>
-						{isFavourite ? (
+					<div className='xl:min-w-[20rem]'>
+						<div className='flex xl:flex-col items-end justify-center w-fit xl:px-10 space-x-8 xl:space-y-4 right-2'>
+							<div
+								onClick={shareBookHandler}
+								className='hidden xl:flex absolute top-4 right-36 m-1 cursor-pointer'>
+								<ShareIcon dimensions='h-7 w-7' color='' />
+							</div>
 							<button
-								className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 bg-[#192132] rounded-3xl font-bold shadow-sm border-[0.5px] border-purple-600 shadow-purple-500 transition hover:-translate-y-0.5 duration-150'
-								onClick={favouriteBookHandler}>
-								{loadingFavourite ? (
-									<ButtonSpinner dimensions='h-7 w-7' />
-								) : (
-									<>
-										<LibraryIcon dimensions='h-7 w-7' />
-										<span className='font-semibold'>Saved in Library</span>
-									</>
-								)}
+								className={book.format?.ebook?.link ? 'btn-active' : 'btn-inactive'}
+								onClick={readBookHandler}>
+								<BookReadIcon dimensions='h-7 w-7' />
+								<span className='font-semibold'>Read</span>
 							</button>
-						) : (
-							<button
-								className='xl:flex hidden items-center justify-center py-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400'
-								onClick={favouriteBookHandler}>
-								{loadingFavourite ? (
-									<ButtonSpinner dimensions='h-7 w-7' />
-								) : (
-									<>
-										<LibraryIcon dimensions='h-7 w-7' />
-										<span className='font-semibold'>Add To Library</span>
-									</>
-								)}
+							<button className='btn-inactive'>
+								<HeadphoneIcon dimensions='h-7 w-7' />
+								<span className='font-semibold'>Listen</span>
 							</button>
-						)}
+							<div className='hidden xl:flex w-full'>
+								{isFavourite ? (
+									<button className={'btn-inactive'} onClick={favouriteBookHandler}>
+										{loadingFavourite ? (
+											<ButtonSpinner dimensions='h-7 w-7' />
+										) : (
+											<>
+												<LibraryIcon dimensions='h-7 w-7' />
+												<span className='font-semibold'>Saved in Library</span>
+											</>
+										)}
+									</button>
+								) : (
+									<button className={'btn-active'} onClick={favouriteBookHandler}>
+										{loadingFavourite ? (
+											<ButtonSpinner dimensions='h-7 w-7' />
+										) : (
+											<>
+												<LibraryIcon dimensions='h-7 w-7' />
+												<span className='font-semibold'>Add To Library</span>
+											</>
+										)}
+									</button>
+								)}
+							</div>
+						</div>
 					</div>
 				</BgCover>
 

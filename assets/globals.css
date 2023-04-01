@@ -33,6 +33,10 @@
 	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5;
 }
 
+.categories-grid {
+	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4;
+}
+
 .item-container {
 	@apply justify-between gap-1 md:gap-2 text-lg md:text-xl text-white;
 }
@@ -54,15 +58,19 @@
 }
 
 .btn-next {
-	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold shadow-md min-w-[6rem] bg-[#9440F5] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-bold shadow-md min-w-[6rem] bg-[#9440F5] border-[#8C6AFF] shadow-purple-500 hover:bg-opacity-90 hover:shadow-lg border transition hover:translate-y-0.5 duration-150;
 }
 
 .btn-next-inactive {
-	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-sans font-bold min-w-[6rem] shadow-md bg-[#192132] shadow-gray-800 hover:bg-opacity-90 hover:shadow-lg border;
+	@apply rounded-full w-auto flex justify-center items-center p-2 px-3 space-x-4 font-bold min-w-[6rem] shadow-md bg-[#192132] border-gray-600 shadow-gray-800 hover:bg-opacity-90 hover:shadow-lg border;
+}
+
+.btn-active {
+	@apply flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold bg-[#8C6AFF] shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150;
 }
 
 .btn-inactive {
-	@apply flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold shadow-sm hover:bg-opacity-90 bg-[#192132] border-[#8C6AFF] border-[1px] xl:border-2 shadow-purple-400 text-[#c6c6c6] transition hover:-translate-y-0.5 duration-150;
+	@apply flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold bg-[#192132] shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-400 transition hover:-translate-y-0.5 duration-150 text-[#c6c6c6];
 }
 
 .input-field {
@@ -72,15 +80,6 @@
 .edit-field {
 	@apply w-full my-2 p-3.5 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
 }
-
-/* html {
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	overflow: auto;
-} */
 
 @layer components {
 	body {
@@ -128,19 +127,3 @@ h5 p {
 * .slick-dots button:before {
 	color: white !important;
 }
-
-/*
-::-webkit-scrollbar {
-	width: 1rem;
-	background-color: violet;
-}
-
-html {
-	width: 100%;
-}
-body {
-	height: 100%;
-	position: fixed;
-	overflow-y: scroll;
-}
-*/

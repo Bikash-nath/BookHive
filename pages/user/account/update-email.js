@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-import SpinnerContext from '../../../store/spinnerContext'
-import { logout, updateUserEmail } from '../../../API/userProfile'
+import { updateUserEmail } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
+import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
@@ -16,18 +16,18 @@ function UpdateEmail(props) {
 	const [newEmail, setNewEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
+	const [updating, setUpdating] = useState(false)
 
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
 	const submitHandler = async () => {
 		if (email === newEmail) {
-			snackbarCtx.addMessage({ title: 'Your current email cannot be equal to new email' })
+			snackbarCtx.addMessage({ title: 'Your current email cannot be same as new email' })
 			return
 		}
-		toggleSpinner(true)
+		setUpdating(true)
 		const user = await updateUserEmail({ email, newEmail, password, passwordConfirm: password })
 		if (user.data) {
 			userCtx.addUser(user)
@@ -36,7 +36,7 @@ function UpdateEmail(props) {
 		} else {
 			snackbarCtx.addMessage({ title: user })
 		}
-		toggleSpinner(false)
+		setUpdating(false)
 	}
 
 	useEffect(() => {
@@ -100,8 +100,14 @@ function UpdateEmail(props) {
 									? 'btn-next'
 									: 'btn-next-inactive'
 							}>
-							<span>Next</span>
-							<ArrowIcon />
+							{updating ? (
+								<ButtonSpinner />
+							) : (
+								<>
+									<span>Update Email</span>
+									<ArrowIcon />
+								</>
+							)}
 						</button>
 					</div>
 				</LoginContainer>

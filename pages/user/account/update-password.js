@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-import SpinnerContext from '../../../store/spinnerContext'
 import { updateUserPassword } from '../../../API/userProfile'
 import LoginContainer from '../../../components/login/LoginContainer'
+import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
 import EyeIcon from '../../../assets/icons/EyeIcon'
 import EyeSlashIcon from '../../../assets/icons/EyeSlashIcon'
@@ -18,15 +18,15 @@ function UpdatePassword(props) {
 	const [showPasswordCurrent, setShowPasswordCurrent] = useState(null)
 	const [showNewPassword, setShowNewPassword] = useState(null)
 	const [showNewPasswordConfirm, setShowNewPasswordConfirm] = useState(null)
+	const [updating, setUpdating] = useState(false)
 
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-	const { toggleSpinner } = useContext(SpinnerContext)
 	const router = useRouter()
 
 	const submitHandler = async () => {
 		if (newPassword === newPasswordConfirm) {
-			toggleSpinner(true)
+			setUpdating(true)
 			const user = await updateUserPassword({
 				passwordCurrent,
 				newPassword,
@@ -34,12 +34,12 @@ function UpdatePassword(props) {
 			})
 			if (user.data) {
 				userCtx.addUser(user)
-				snackbarCtx.addMessage({ title: 'Password update successfull. Login again.' })
+				snackbarCtx.addMessage({ title: 'Password update successfull.' })
 				router.push({ pathname: '/user/account/profile/' })
 			} else {
 				snackbarCtx.addMessage({ title: user })
 			}
-			toggleSpinner(false)
+			setUpdating(false)
 		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match' })
 	}
 
@@ -139,14 +139,18 @@ function UpdatePassword(props) {
 						<button
 							onClick={submitHandler}
 							className={
-								passwordCurrent &&
-								newPassword.length > 8 &&
-								newPassword === newPasswordConfirm
+								passwordCurrent && newPassword.length > 8 && newPassword === newPasswordConfirm
 									? 'btn-next'
 									: 'btn-next-inactive'
 							}>
-							<span>Next</span>
-							<ArrowIcon />
+							{updating ? (
+								<ButtonSpinner />
+							) : (
+								<>
+									<span>Update Password</span>
+									<ArrowIcon />
+								</>
+							)}
 						</button>
 					</div>
 				</LoginContainer>

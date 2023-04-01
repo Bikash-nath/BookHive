@@ -27,10 +27,10 @@ function HomePage(props) {
 	const getGreeting = () => {
 		const timeNow = new Date().getHours()
 		return timeNow >= 5 && timeNow < 12
-			? 'Good Morning'
+			? 'Good Morning, '
 			: timeNow >= 12 && timeNow < 18
-			? 'Good Afternoon'
-			: 'Good Evening'
+			? 'Good Afternoon, '
+			: 'Good Evening, '
 	}
 	{
 	}
@@ -71,11 +71,10 @@ function HomePage(props) {
 				)}
 				{activeUser && (
 					<div className='flex w-full items-center justify-center'>
-						<div className='flex flex-col w-full xl:gap-2 p-3 md:p-4 xl:px-[5.6rem] xl:pt-10 xl:w-[89vw] my-1 xl:my-2'>
-							<h3 className='text-md xl:text-lg font-medium mx-[.5px]'>
-								{'Hi, ' + activeUser.name || 'User'}
-							</h3>
-							<h2 className='text-lg xl:text-xl font-semibold'>{getGreeting()}</h2>
+						<div className='flex flex-col w-full xl:gap-2 p-3 md:p-4 xl:px-[5.5rem] xl:pt-10 xl:w-[89vw] my-1 xl:my-2'>
+							<h2 className='text-lg xl:text-xl font-semibold'>
+								{getGreeting() + activeUser.name.split(' ')[0]}
+							</h2>
 						</div>
 					</div>
 				)}
@@ -86,16 +85,59 @@ function HomePage(props) {
 						books={props.latestBooks}
 					/>
 					<ListSliderModal
-						listTitle='Popular Books'
+						listTitle='Popular Book Summary'
 						listLink='/books/category/bestsellers'
 						books={props.bestsellers}
 					/>
 					<ListSliderModal
-						listTitle='Featured Audiobooks'
+						listTitle='Short Audiobooks'
 						listLink='/books/category/audiobooks'
 						books={props.audiobooks}
 					/>
 					<ListSliderModal listTitle='Popular Authors' listLink='/authors' authors={props.authors} />
+
+					<div className='mx-auto p-1 md:p-2 xl:py-6 xl:px-8'>
+						<h2 className='text-2xl xl:text-3xl text-center m-4 xl:my-4 xl:mx-12 xl:text-left'>
+							Featured categories
+						</h2>
+						<div className='item-container categories-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6 xl:mx-8'>
+							<div className='flex justify-center w-full h-full'>
+								<Link href=''>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-purple-900 to bg-purple-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+										<h5 className='box-text'>Blogs</h5>
+									</div>
+								</Link>
+							</div>
+
+							<div className='flex justify-center w-full h-full'>
+								<Link href=''>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-emerald-900 to bg-emerald-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+										<h5 className='box-text'>Podcasts</h5>
+									</div>
+								</Link>
+							</div>
+
+							<div className='flex justify-center w-full h-full'>
+								<Link href=''>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-rose-900 to bg-rose-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+										<h5 className='box-text'>Short Stories</h5>
+									</div>
+								</Link>
+							</div>
+
+							<div className='flex justify-center w-full h-full'>
+								<Link href=''>
+									<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
+										<div className='bg-gradient-to-b from-sky-900 to bg-sky-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+										<h5 className='box-text'>Poems</h5>
+									</div>
+								</Link>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</Fragment>
@@ -103,9 +145,9 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
+	const latestBooks = await getLatestBooks({ limit: 18 })
 	const bestsellers = await getBestsellers({ limit: 18 })
 	const audiobooks = await getTopAudiobooks({ limit: 18 })
-	const latestBooks = await getLatestBooks({ limit: 18 })
 	const authors = await getTopAuthors({ limit: 18 })
 
 	if (!bestsellers.data)

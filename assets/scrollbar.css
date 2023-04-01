@@ -5,12 +5,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: hsl(221, 33%, 15%);
+	background-color: hsl(221, 33%, 18%);
 	border-radius: 100vw;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: hsl(221, 33%, 20%);
+	background-color: hsl(221, 33%, 22%);
 }
 
 ::-webkit-scrollbar-track {
