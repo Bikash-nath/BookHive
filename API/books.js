@@ -73,15 +73,31 @@ export const getBookDetails = async (bookId) => {
 	}
 }
 
-export const createBookReview = async (bookId, review) => {
+export const getBookReviews = async (bookId) => {
 	try {
-		// const  { userInfo } or cookie = getState()
+		const config = {
+			// headers: {
+			// 	'Content-Type': 'application/json',
+			// 	Accept: 'application/json',
+			// },
+		}
+
+		const { data } = await axios.get(`/books/${bookId}/reviews/`, { withCredentials: true }, config)
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+export const createBookReview = async (review) => {
+	try {
 		const config = {
 			headers: {
-				Authorization: `Bearer ${userInfo.token}`,
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
 			},
 		}
-		const { data } = await axios.post(`/books/${bookId}/reviews/`, review, config)
+
+		const { data } = await axios.post(`/reviews/`, review, { withCredentials: true }, config)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message

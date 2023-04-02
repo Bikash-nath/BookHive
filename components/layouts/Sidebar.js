@@ -42,7 +42,7 @@ function Sidebar() {
 
 	return (
 		showRoute && (
-			<div className='overflow-x-hidden hide-scrollbar inline-block sticky top-0 min-h-[40rem] h-screen min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 p-2'>
+			<div className='overflow-x-hidden hide-scrollbar inline-block sticky top-0 select-none min-h-[40rem] h-screen min-w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 p-2'>
 				<div className='flex items-center space-x-20'>
 					<Logo size={46} />
 				</div>
@@ -121,15 +121,14 @@ function Sidebar() {
 					</div>
 				</Link>
 
+				<Link href='/user/account/settings'>
+					<div className={routeClassHandler('/account/settings') + 'my-4'}>
+						<SettingsIcon dimensions='h-7 w-7' />
+						<p className='text-base'>Settings</p>
+					</div>
+				</Link>
+
 				<hr className='border-t-[0.1px] border-gray-800 w-full' />
-				<div className='absolute bottom-28 w-full'>
-					<Link href='/user/account/settings'>
-						<div className={routeClassHandler('/account/settings')}>
-							<SettingsIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Settings</p>
-						</div>
-					</Link>
-				</div>
 				<div className='absolute bottom-16 w-full'>
 					<Link href='/help/faq'>
 						<div className={routeClassHandler('/faq')}>

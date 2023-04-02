@@ -29,6 +29,7 @@ function AuthorDetailPage(props) {
 	const windowWidth = useWindowWidth()
 	const [isFollowing, setFollowing] = useState(false)
 	const [loadingFollow, setLoadingFollow] = useState(false)
+	const [editReview, setEditReview] = useState(false)
 
 	const router = useRouter()
 	const bioRef = useRef(null)
@@ -226,6 +227,7 @@ function AuthorDetailPage(props) {
 				) : (
 					<></>
 				)}
+
 				{author.books?.length ? <ListGridModal listTitle='Author Books' books={author.books} /> : <></>}
 			</div>
 		</Fragment>

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { getBookDetails, getBestsellers, getLatestBooks } from '../../../API/books'
+import { getBookDetails, getBestsellers, getLatestBooks, createBookReview } from '../../../API/books'
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
@@ -25,11 +25,14 @@ import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
 import ReportIcon from '../../../assets/icons/ReportIcon'
+import ReviewEditModal from '../../../components/modals/ReviewEditModal'
+
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
 
 function BookDetailPage(props) {
 	const { book } = props
+	const [reviews, setReviews] = useState(book.reviews)
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
 	const windowWidth = useWindowWidth()
@@ -38,10 +41,11 @@ function BookDetailPage(props) {
 	const [descLines, setDescLines] = useState(0)
 	const [isFavourite, setFavourite] = useState(false)
 	const [loadingFavourite, setLoadingFavourite] = useState(false)
+	const [editReview, setEditReview] = useState(false)
+	const [reviewSubmitted, setReviewSubmitted] = useState(false)
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
-
 	const router = useRouter()
 
 	useEffect(() => {
@@ -96,6 +100,11 @@ function BookDetailPage(props) {
 			}
 			setLoadingFavourite(false)
 		}
+	}
+
+	const editReviewHandler = () => {
+		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review' })
+		else setEditReview(true)
 	}
 
 	const readBookHandler = () => {
@@ -321,26 +330,43 @@ function BookDetailPage(props) {
 					</button>
 				</div>
 
-				<div className='p-4 md:p-8'>
-					<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
-					<div className='flex justify-between items-center w-full md:w-2/3 xl:w-2/5 gap-16 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>
-						<button className='text-md font-semibold'>Write a review</button>
-						<div className='inline-block px-[2px] py-[1px]'>
-							<ChevronRightIcon dimensions='h-4 w-4' />
-						</div>
+				{!editReview ? (
+					<div className='w-full md:w-2/3 xl:w-2/5 p-4 md:p-8'>
+						<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
+						{reviews ? (
+							<div className='flex flex-col gap-4'>
+								{!reviewSubmitted ? (
+									<button
+										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
+										onClick={editReviewHandler}>
+										<div className='text-md font-semibold'>Write a review</div>
+										<div className='inline-block px-[2px] py-[1px]'>
+											<ChevronRightIcon dimensions='h-4 w-4' />
+										</div>
+									</button>
+								) : (
+									<div className='flex flex-col gap-4 rounded-md bg-[#192132] p-4'>
+										<h3 className='text-lg font-medium'>Thanks for reviewing</h3>
+										<p>If approved, your review should be posted sooon</p>
+									</div>
+								)}
+								{reviews.length ? (
+									reviews.map((review) => <ReviewCard review={review} />)
+								) : (
+									<div className='rounded-md bg-[#192132] p-4'>No reviews yet</div>
+								)}
+							</div>
+						) : (
+							<ButtonSpinner dimensions='h-7 w-7' />
+						)}
 					</div>
-					{book.reviews?.length ? (
-						<div className='w-full md:w-2/3 xl:w-1/2 p-3 my-4 xl:my-8'>
-							{book.reviews.map((review) => (
-								<ReviewCard review={review} />
-							))}
-						</div>
-					) : (
-						<div className='w-full md:w-2/3 xl:w-2/5 p-3 my-4 xl:my-8 rounded-md bg-[#192132]'>
-							No reviews yet
-						</div>
-					)}
-				</div>
+				) : (
+					<ReviewEditModal
+						reviewUpdateMethod={createBookReview}
+						setEditReview={setEditReview}
+						setReviewSubmitted={setReviewSubmitted}
+					/>
+				)}
 			</div>
 		</Fragment>
 	) : (

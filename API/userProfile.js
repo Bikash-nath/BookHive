@@ -16,13 +16,11 @@ export const login = async (email, password) => {
 			{ email, password },
 			{
 				withCredentials: true,
-				// credentials: 'include',
 			},
 			config
 		)
 		return res.data
 	} catch (error) {
-		// error.response?.data
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
@@ -64,6 +62,7 @@ export const getUserProfile = async () => {
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
+				Accept: 'application/json',
 			},
 		}
 		const { data } = await axios.get(`/users/profile/getMe`, { withCredentials: true }, config)
@@ -108,14 +107,9 @@ export const updateUserEmail = async (userData) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-			}, //'Access-Control-Allow-Origin': 'http://localhost:3000',
+			},
 		}
-		const { data } = await axios.patch(
-			`/users/profile/updateEmail/`,
-			userData,
-			{ withCredentials: true },
-			config
-		)
+		const { data } = await axios.patch(`/users/profile/updateEmail/`, userData, { withCredentials: true }, config)
 		return data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message

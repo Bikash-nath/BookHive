@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function StarIcon({ dimensions }) {
+export default function ReviewStarIcon({ dimensions, color }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			fill='#ffca28'
+			fill={color || '#ffca28'}
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
-			stroke='none'
+			stroke='#ffca28'
 			className={dimensions}>
 			<path
 				strokeLinecap='round'
