@@ -73,6 +73,10 @@
 	@apply flex items-center justify-center px-3 py-1 xl:p-2 w-full space-x-2 rounded-3xl font-bold bg-[#192132] shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-400 transition hover:-translate-y-0.5 duration-150 text-[#c6c6c6];
 }
 
+.btn-confirm {
+	@apply px-8 py-1.5 xl:px-9 xl:py-2 w-fit space-x-2 rounded-3xl font-bold bg-[#8C6AFF] shadow-sm border-[0.5px] border-[#8C6AFF] shadow-purple-500 transition hover:-translate-y-0.5 duration-150;
+}
+
 .input-field {
 	@apply text-lg w-full my-2 p-4 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
 }

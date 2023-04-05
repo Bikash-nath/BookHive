@@ -6,7 +6,7 @@ import ButtonSpinner from '../widgets/ButtonSpinner'
 import StarIcon from '../../assets/icons/StarIcon'
 // import CloseIcon from '../../assets/icons/CloseIcon'
 
-function ReviewEditModal({ reviewUpdateMethod, setEditReview, setReviewSubmitted }) {
+function ReviewEditModal({ reviewUpdateMethod, setEditReview, setDialogHandler, setSubmitHandler }) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const [rating, setRating] = useState(0)
 	const [title, setTitle] = useState('')
@@ -21,12 +21,12 @@ function ReviewEditModal({ reviewUpdateMethod, setEditReview, setReviewSubmitted
 		setLoading(true)
 		const review = await reviewUpdateMethod({ bookId, title, description })
 		if (review.data) {
-			snackbarCtx.addMessage({ title: 'Review add successfull', status: 'success' })
-			setReviewSubmitted(true)
+			setDialogHandler(true)
+			setSubmitHandler(true)
+			setEditReview(false)
 		} else {
 			snackbarCtx.addMessage({ title: review })
 		}
-		setEditReview(false)
 		setLoading(false)
 	}
 

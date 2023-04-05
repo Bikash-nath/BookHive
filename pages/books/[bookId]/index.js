@@ -26,13 +26,13 @@ import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
 import ReportIcon from '../../../assets/icons/ReportIcon'
 import ReviewEditModal from '../../../components/modals/ReviewEditModal'
+import DialogBox from '../../../components/notification/DialogBox'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
 
 function BookDetailPage(props) {
 	const { book } = props
-	const [reviews, setReviews] = useState(book.reviews)
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
 	const windowWidth = useWindowWidth()
@@ -42,6 +42,7 @@ function BookDetailPage(props) {
 	const [isFavourite, setFavourite] = useState(false)
 	const [loadingFavourite, setLoadingFavourite] = useState(false)
 	const [editReview, setEditReview] = useState(false)
+	const [reviewDialog, setReviewDialog] = useState(false)
 	const [reviewSubmitted, setReviewSubmitted] = useState(false)
 
 	const descRef = useRef(null)
@@ -102,6 +103,12 @@ function BookDetailPage(props) {
 		}
 	}
 
+	const isReviewAllowed = () => {
+		if (reviewSubmitted || !user?.data) return false
+		else if (!book.reviews.length) return true
+		return book.reviews.some((review) => review.user === user.data?._id)
+	}
+
 	const editReviewHandler = () => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review' })
 		else setEditReview(true)
@@ -143,7 +150,7 @@ function BookDetailPage(props) {
 				<meta name='description' content='A ebook' />
 			</Head>
 
-			<div className='cover-page-bg relative pb-16 xl:pb-8'>
+			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
@@ -333,25 +340,27 @@ function BookDetailPage(props) {
 				{!editReview ? (
 					<div className='w-full md:w-2/3 xl:w-2/5 p-4 md:p-8'>
 						<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
-						{reviews ? (
+						{book.reviews ? (
 							<div className='flex flex-col gap-4'>
-								{!reviewSubmitted ? (
+								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
 										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
 										onClick={editReviewHandler}>
-										<div className='text-md font-semibold'>Write a review</div>
-										<div className='inline-block px-[2px] py-[1px]'>
+										<p className='text-md font-semibold'>Write a review</p>
+										<p className='inline-block px-[2px] py-[1px]'>
 											<ChevronRightIcon dimensions='h-4 w-4' />
-										</div>
+										</p>
 									</button>
-								) : (
-									<div className='flex flex-col gap-4 rounded-md bg-[#192132] p-4'>
-										<h3 className='text-lg font-medium'>Thanks for reviewing</h3>
-										<p>If approved, your review should be posted sooon</p>
-									</div>
 								)}
-								{reviews.length ? (
-									reviews.map((review) => <ReviewCard review={review} />)
+								{book.reviews.length ? (
+									book.reviews.map((review, i) => (
+										<ReviewCard
+											key={i}
+											review={review}
+											user={user?.data}
+											editReviewHandler={editReviewHandler}
+										/>
+									))
 								) : (
 									<div className='rounded-md bg-[#192132] p-4'>No reviews yet</div>
 								)}
@@ -364,9 +373,11 @@ function BookDetailPage(props) {
 					<ReviewEditModal
 						reviewUpdateMethod={createBookReview}
 						setEditReview={setEditReview}
-						setReviewSubmitted={setReviewSubmitted}
+						setDialogHandler={setReviewDialog}
+						setSubmitHandler={setReviewSubmitted}
 					/>
 				)}
+				{reviewDialog && <DialogBox setDialogHandler={setReviewDialog} />}
 			</div>
 		</Fragment>
 	) : (

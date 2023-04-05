@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
-import AccountIcon from '../../assets/icons/AccountIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../assets/icons/StarIcon'
+// import AccountIcon from '../../assets/icons/AccountIcon'
 
 function ReviewCard(props) {
-	const { rating, title, description, user, createdAt } = props.review
+	const { review, user, editReviewHandler } = props
 	const [readMore, setReadMore] = useState(false)
 	const [descLines, setDescLines] = useState(0)
 	const descRef = useRef(null)
@@ -27,12 +27,11 @@ function ReviewCard(props) {
 			window.addEventListener('orientationchange', readMoreDescHandler, false) // descLines incorrect value
 		}
 	}, [descRef?.current])
-
-	return (
+	return review ? (
 		<div className='flex flex-col relative rounded-lg bg-gray-900 my-4 xl:my-8'>
-			{/* {user.image ? (
+			{/* {user?.image ? (
 					<Image
-						src={process.env.USERS_URL + user.image}
+						src={process.env.USERS_URL + user?.image}
 						alt={title}
 						height={80}
 						width={80}
@@ -46,10 +45,10 @@ function ReviewCard(props) {
 					<div className='mr-1 xl:mr-2'>
 						<StarIcon dimensions='h-6 w-6' />
 					</div>
-					{rating}
+					{review.rating}
 				</div>
 				<div className='flex items-center flex-wrap font-semibold text-lg leading-5 line-clamp-2 p-2'>
-					{title}
+					{review.title}
 				</div>
 			</div>
 			<div className='flex flex-col justify-center h-full p-2 text-white'>
@@ -59,7 +58,7 @@ function ReviewCard(props) {
 						'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
 						(!readMore ? 'line-clamp-4' : '')
 					}>
-					{description}
+					{review.description}
 				</p>
 				<button
 					onClick={(e) => {
@@ -83,12 +82,27 @@ function ReviewCard(props) {
 						</div>
 					)}
 				</button>
-				<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-4'>
-					<div className='font-medium'>{user.name}</div>
-					<div className='px-4'>{createdAt.split('T')[0]}</div>
+				<div className='flex justify-between'>
+					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-4'>
+						<div className='font-medium'>{review.user.name}</div>
+						<div className='px-4'>{review.createdAt.split('T')[0]}</div>
+					</div>
+					{user?._id === review.user._id ? (
+						<button
+							className='text-lg font-semibold border-[.2px] border-purple-500'
+							onClick={editReviewHandler}>
+							Edit
+						</button>
+					) : (
+						<button className='font-medium border-[.2px] p-1 h-fit rounded-md border-purple-500'>
+							Helpful
+						</button>
+					)}
 				</div>
 			</div>
 		</div>
+	) : (
+		<></>
 	)
 }
 
