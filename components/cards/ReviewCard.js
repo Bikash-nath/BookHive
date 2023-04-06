@@ -10,10 +10,12 @@ function ReviewCard(props) {
 	const { review, user, editReviewHandler } = props
 	const [readMore, setReadMore] = useState(false)
 	const [descLines, setDescLines] = useState(0)
-	const descRef = useRef(null)
+	const [userId, setUserId] = useState('')
+
+	const reviewRef = useRef(null)
 
 	const readMoreDescHandler = () => {
-		const descEl = descRef.current
+		const descEl = reviewRef.current
 		if (descEl) {
 			descEl.style.display = 'inline'
 			setDescLines(descEl.getClientRects().length)
@@ -22,11 +24,16 @@ function ReviewCard(props) {
 	}
 
 	useEffect(() => {
-		if (typeof window !== 'undefined' && descRef) {
+		if (typeof window !== 'undefined' && reviewRef) {
 			readMoreDescHandler()
 			window.addEventListener('orientationchange', readMoreDescHandler, false) // descLines incorrect value
 		}
-	}, [descRef?.current])
+	}, [reviewRef?.current])
+
+	useEffect(() => {
+		if (user) setUserId(user._id)
+	}, [user])
+
 	return review ? (
 		<div className='flex flex-col relative rounded-lg bg-gray-900 my-4 xl:my-8'>
 			{/* {user?.image ? (
@@ -53,10 +60,10 @@ function ReviewCard(props) {
 			</div>
 			<div className='flex flex-col justify-center h-full p-2 text-white'>
 				<p
-					ref={descRef}
+					ref={reviewRef}
 					className={
 						'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
-						(!readMore ? 'line-clamp-4' : '')
+						(!readMore ? 'line-clamp-3' : '')
 					}>
 					{review.description}
 				</p>
@@ -87,10 +94,10 @@ function ReviewCard(props) {
 						<div className='font-medium'>{review.user.name}</div>
 						<div className='px-4'>{review.createdAt.split('T')[0]}</div>
 					</div>
-					{user?._id === review.user._id ? (
+					{userId === review.user._id ? (
 						<button
 							className='font-medium text-sm border-[.2px] px-2 py-1 h-fit rounded-md bg-[#151d3a] border-purple-500'
-							onClick={editReviewHandler}>
+							onClick={() => editReviewHandler(review)}>
 							Edit
 						</button>
 					) : (

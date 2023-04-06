@@ -113,7 +113,7 @@ function AuthorDetailPage(props) {
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
-							<div onClick={shareBookHandler}>
+							<div onClick={shareAuthorHandler}>
 								<ShareIcon dimensions='h-6 w-6' color='' />
 							</div>
 						}
@@ -197,7 +197,7 @@ function AuthorDetailPage(props) {
 							ref={bioRef}
 							className={
 								'text-md text-gray-200 font-medium sm:leading-snug leading-normal' +
-								(!readMoreBio ? ' line-clamp-4' : '')
+								(!readMoreBio ? ' line-clamp-3' : '')
 							}>
 							{author.biography}
 						</p>

@@ -1,37 +1,36 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import SnackbarContext from '../../store/snackbarContext'
 import ButtonSpinner from '../widgets/ButtonSpinner'
 import StarIcon from '../../assets/icons/StarIcon'
 // import CloseIcon from '../../assets/icons/CloseIcon'
 
-function ReviewEditModal({ book, reviewUpdateMethod, setEditReview, setDialogHandler, setSubmitHandler }) {
-	const snackbarCtx = useContext(SnackbarContext)
+function ReviewEditModal({ review, reviewSubmitHandler, setEditReview, setDialogHandler, setSubmitHandler }) {
 	const [rating, setRating] = useState(0)
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [loading, setLoading] = useState(false)
 
-	const router = useRouter()
+	// const router = useRouter()
+
+	useEffect(() => {
+		if (review) {
+			setRating(review.rating)
+			setTitle(review.title)
+			setDescription(review.description)
+		}
+	}, [review])
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
 		setLoading(true)
-		const review = await reviewUpdateMethod({ book, rating, title, description })
-		if (review.data) {
-			setDialogHandler(true)
-			setSubmitHandler(true)
-			setEditReview(false)
-		} else {
-			snackbarCtx.addMessage({ title: review })
-		}
+		await reviewSubmitHandler(rating, title, description, review?._id)
 		setLoading(false)
 	}
 
 	return (
 		<div className='relative flex flex-col items-center justify-center w-screen md:w-2/3 lg:2/5 p-4 xl:p-8 z-10 bg-[#0C111B] bg-opacity-10'>
-			<h1 className='font-semibold text-lg w-full my-4'>Add a new review</h1>
+			<h1 className='font-semibold text-lg w-full my-4'>{review ? 'Edit your review' : 'Add a new review'}</h1>
 			<form className='w-full my-4'>
 				<fieldset className='flex gap-1 justify-start'>
 					<div className='cursor-pointer' onClick={() => setRating(1)}>

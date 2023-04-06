@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { getBookDetails, getBestsellers, getLatestBooks, createBookReview } from '../../../API/books'
+import { getBookDetails, getBestsellers, getLatestBooks, createBookReview, updateBookReview } from '../../../API/books'
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
@@ -41,13 +41,19 @@ function BookDetailPage(props) {
 	const [descLines, setDescLines] = useState(0)
 	const [isFavourite, setFavourite] = useState(false)
 	const [loadingFavourite, setLoadingFavourite] = useState(false)
-	const [editReview, setEditReview] = useState(false)
+	const [addReview, setAddReview] = useState(false)
+	const [editReview, setEditReview] = useState(null)
 	const [reviewDialog, setReviewDialog] = useState(false)
 	const [reviewSubmitted, setReviewSubmitted] = useState(false)
+	const [activeUser, setActiveUser] = useState(null)
 
 	const descRef = useRef(null)
 	const coverRef = useRef(null)
 	const router = useRouter()
+
+	useEffect(() => {
+		setActiveUser(user?.data)
+	}, [activeUser])
 
 	useEffect(() => {
 		if (typeof window !== 'undefined' && descRef) {
@@ -104,14 +110,31 @@ function BookDetailPage(props) {
 	}
 
 	const isReviewAllowed = () => {
-		if (reviewSubmitted || !user?.data) return false
+		if (reviewSubmitted || !activeUser) return false
 		else if (!book.reviews.length) return true
 		return book.reviews.some((review) => review.user === user.data?._id)
 	}
 
-	const editReviewHandler = () => {
+	const editReviewHandler = (review) => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review' })
-		else setEditReview(true)
+		else setEditReview(review)
+	}
+
+	const reviewSubmitHandler = async (rating, title, description, reviewId) => {
+		let review
+		if (reviewId) {
+			review = await updateBookReview({ book: book._id, reviewId, rating, title, description })
+		} else {
+			review = await createBookReview({ book: book._id, rating, title, description })
+		}
+		if (review.data) {
+			setReviewDialog(true)
+			setReviewSubmitted(true)
+			setEditReview(null)
+			setAddReview(false)
+		} else {
+			snackbarCtx.addMessage({ title: review })
+		}
 	}
 
 	const readBookHandler = () => {
@@ -297,7 +320,7 @@ function BookDetailPage(props) {
 							ref={descRef}
 							className={
 								'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
-								(!readMoreDesc ? 'line-clamp-4' : '')
+								(!readMoreDesc ? 'line-clamp-3' : '')
 							}>
 							{book.description}
 						</p>
@@ -337,7 +360,7 @@ function BookDetailPage(props) {
 					</button>
 				</div>
 
-				{!editReview ? (
+				{!addReview && !editReview ? (
 					<div className='w-full md:w-2/3 xl:w-2/5 p-4 md:p-8'>
 						<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
 						{book.reviews ? (
@@ -345,7 +368,7 @@ function BookDetailPage(props) {
 								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
 										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
-										onClick={editReviewHandler}>
+										onClick={() => setAddReview(true)}>
 										<p className='text-md font-semibold'>Write a review</p>
 										<p className='inline-block px-[2px] py-[1px]'>
 											<ChevronRightIcon dimensions='h-4 w-4' />
@@ -370,13 +393,7 @@ function BookDetailPage(props) {
 						)}
 					</div>
 				) : (
-					<ReviewEditModal
-						book={book._id}
-						reviewUpdateMethod={createBookReview}
-						setEditReview={setEditReview}
-						setDialogHandler={setReviewDialog}
-						setSubmitHandler={setReviewSubmitted}
-					/>
+					<ReviewEditModal review={editReview} reviewSubmitHandler={reviewSubmitHandler} />
 				)}
 				{reviewDialog && <DialogBox setDialogHandler={setReviewDialog} />}
 			</div>

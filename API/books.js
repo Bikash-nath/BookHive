@@ -104,3 +104,19 @@ export const createBookReview = async (review) => {
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
+
+export const updateBookReview = async (review) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+
+		const { data } = await axios.patch(`/reviews/${review.reviewId}`, review, { withCredentials: true }, config)
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}

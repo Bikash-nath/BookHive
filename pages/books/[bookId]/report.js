@@ -38,7 +38,7 @@ function SettingsPage() {
 			{!activeUser?.data ? (
 				<LoginBanner title='Report book' message='Please login to report this book' icon={<ReportIcon />} />
 			) : (
-				<div className='page-gradient p-2 xl:p-8'>
+				<div className='page-gradient p-2 pb-16 xl:p-8 xl:pb-8'>
 					<PageHeader pageTitle='Report Book' backBtn={true} />
 					<div className='p-2 xl:p-4'>
 						<p className='text-xl font-bold py-2 xl:py-4'>Book: {title}</p>

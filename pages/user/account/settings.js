@@ -50,7 +50,7 @@ function SettingsPage() {
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#151d3a]'
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/user/account/update-email')}>
 							<MailIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Update Email</p>
@@ -59,7 +59,7 @@ function SettingsPage() {
 
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#151d3a]'
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/user/account/update-password')}>
 							<KeyIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Update Password</p>
@@ -68,7 +68,7 @@ function SettingsPage() {
 
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#151d3a]'
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
 							onClick={logOutHandler}>
 							<LogoutIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Log Out</p>
@@ -77,7 +77,7 @@ function SettingsPage() {
 					<hr className='border-t-[0.1px] w-screen xs:w-64 border-gray-700' />
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#151d3a]'
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/help/faq')}>
 							<HelpIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Help</p>
@@ -85,7 +85,7 @@ function SettingsPage() {
 					</div>
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#151d3a]'
+							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/help/support')}>
 							<FeedbackIcon dimensions='h-7 w-7' />
 							<p className='text-base'>Support</p>
