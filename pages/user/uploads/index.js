@@ -30,10 +30,10 @@ function UploadsPage() {
 					icon={<PlusCircleIcon />}
 				/>
 			) : (
-				<div className='page-gradient relative'>
+				<div className='page-gradient relative h-screen'>
 					<PageHeader pageTitle='My Uploads' />
 
-					<div className='flex flex-col items-center justify-center h-screen p-2'>
+					<div className='flex flex-col items-center justify-center h-2/3 p-2'>
 						<div className='flex py-4'>
 							<PlusCircleIcon dimensions='h-24 w-24' />
 						</div>

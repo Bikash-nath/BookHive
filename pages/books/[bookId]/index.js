@@ -371,6 +371,7 @@ function BookDetailPage(props) {
 					</div>
 				) : (
 					<ReviewEditModal
+						book={book._id}
 						reviewUpdateMethod={createBookReview}
 						setEditReview={setEditReview}
 						setDialogHandler={setReviewDialog}

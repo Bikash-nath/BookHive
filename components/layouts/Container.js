@@ -36,7 +36,7 @@ function Container(props) {
 					<div className='flex flex-col w-screen xl:max-w-[85.5vw]'>
 						{windowWidth > 1280 && <Header headerRef={headerRef} />}
 						<Spinner headerRef={headerRef} />
-						<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-25' : '')}>
+						<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-30' : '')}>
 							{props.children}
 						</div>
 						<SnackBar navbarRef={navbarRef} />

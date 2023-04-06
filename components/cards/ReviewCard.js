@@ -82,19 +82,19 @@ function ReviewCard(props) {
 						</div>
 					)}
 				</button>
-				<div className='flex justify-between'>
+				<div className='flex justify-between items-center'>
 					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-4'>
 						<div className='font-medium'>{review.user.name}</div>
 						<div className='px-4'>{review.createdAt.split('T')[0]}</div>
 					</div>
 					{user?._id === review.user._id ? (
 						<button
-							className='text-lg font-semibold border-[.2px] border-purple-500'
+							className='font-medium text-sm border-[.2px] px-2 py-1 h-fit rounded-md bg-[#151d3a] border-purple-500'
 							onClick={editReviewHandler}>
 							Edit
 						</button>
 					) : (
-						<button className='font-medium border-[.2px] p-1 h-fit rounded-md border-purple-500'>
+						<button className='font-medium text-sm border-[.2px] px-2 py-1 h-fit rounded-md bg-[#151d3a] border-purple-500'>
 							Helpful
 						</button>
 					)}
