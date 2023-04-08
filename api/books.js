@@ -120,3 +120,35 @@ export const updateBookReview = async (review) => {
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
+
+export const likeBookReview = async (reviewId) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+
+		const { data } = await axios.patch(`/reviews/${reviewId}/like`, {}, { withCredentials: true }, config)
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+// export const dislikeBookReview = async () => {
+// 	try {
+// 		const config = {
+// 			headers: {
+// 				'Content-Type': 'application/json',
+// 				Accept: 'application/json',
+// 			},
+// 		}
+
+// 		const { data } = await axios.patch(`/reviews/${review.reviewId}/dislike`, {}, { withCredentials: true }, config)
+// 		return data
+// 	} catch (error) {
+// 		return error.response?.data.message ? error.response.data.message : error.message
+// 	}
+// }

@@ -111,7 +111,7 @@ function BookDetailPage(props) {
 
 	const isReviewAllowed = () => {
 		if (reviewSubmitted || !activeUser) return false
-		else if (!book.reviews.length) return true
+		else if (!book.reviews?.length) return true
 		return book.reviews.some((review) => review.user === user.data?._id)
 	}
 
@@ -278,104 +278,96 @@ function BookDetailPage(props) {
 					</div>
 				</BgCover>
 
-				<GenreListModal genres={book.genres} />
-
-				<div className='flex justify-start xs:justify-center items-center overflow-x-scroll p-3 hide-scrollbar'>
-					<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
-						{book.language && (
-							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-								<p className='px-2 text-md md:text-base font-medium'>{book.language}</p>
-								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>language</p>
-							</div>
-						)}
-						{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
-							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-								<p className='px-4 text-sm md:text-base font-medium'>{book.format.ebook.pagesCount}</p>
-								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>pages</p>
-							</div>
-						)}
-						{book.publicationDate !== null && (
-							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
-								<p className='px-4 text-sm md:text-base font-medium'>
-									{book.publicationDate.split('-')[0]}
-								</p>
-								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>published</p>
-							</div>
-						)}
-						{book.publisher !== null && (
-							<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
-								<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
-									{book.publisher}
-								</p>
-								<p className='text-sm font-light xl:text-md text-gray-300 py-1'>publisher</p>
-							</div>
-						)}
-					</div>
-				</div>
-
-				{book.description ? (
-					<div className='p-4 md:p-8'>
-						<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
-						<p
-							ref={descRef}
-							className={
-								'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
-								(!readMoreDesc ? 'line-clamp-3' : '')
-							}>
-							{book.description}
-						</p>
-						<button
-							onClick={(e) => {
-								setReadMoreDesc(!readMoreDesc)
-								e.preventDefault()
-							}}
-							className={
-								'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
-								(descLines <= 4 ? 'hidden' : '')
-							}>
-							{readMoreDesc ? (
-								<div className='flex'>
-									Read less <ChevronUpIcon dimensions='h-5 w-5' />
-								</div>
-							) : (
-								<div className='flex'>
-									Read more{' '}
-									<div className='py-[.1rem]'>
-										<ChevronDownIcon dimensions='h-5 w-5' />
-									</div>
-								</div>
-							)}
-						</button>
-					</div>
-				) : (
-					<></>
-				)}
-
-				<div className='flex justify-start m-4 xl:m-8'>
-					<button
-						className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#151d3a]'
-						onClick={() => router.push(`/books/${book.slug}/report/`)}>
-						<ReportIcon dimensions='h-7 w-7' />
-						<p className='text-base'>Report book</p>
-					</button>
-				</div>
-
 				{!addReview && !editReview ? (
-					<div className='w-full md:w-2/3 xl:w-2/5 p-4 md:p-8'>
-						<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
-						{book.reviews ? (
-							<div className='flex flex-col gap-4'>
-								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
-									<button
-										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
-										onClick={() => setAddReview(true)}>
-										<p className='text-md font-semibold'>Write a review</p>
-										<p className='inline-block px-[2px] py-[1px]'>
-											<ChevronRightIcon dimensions='h-4 w-4' />
-										</p>
-									</button>
+					<>
+						<GenreListModal genres={book.genres} />
+
+						<div className='flex justify-start xs:justify-center items-center overflow-x-scroll p-3 hide-scrollbar'>
+							<div className='flex items-center justify-center rounded-md divide-x divide-gray-600 space-x-2 p-1 md:p-2 xl:p-3 bg-[#030b17]'>
+								{book.language && (
+									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+										<p className='px-2 text-md md:text-base font-medium'>{book.language}</p>
+										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>language</p>
+									</div>
 								)}
-								{book.reviews.length ? (
+								{book.format?.ebook.pagesCount !== 0 && book.format?.ebook.pagesCount && (
+									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+										<p className='px-4 text-sm md:text-base font-medium'>
+											{book.format.ebook.pagesCount}
+										</p>
+										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>pages</p>
+									</div>
+								)}
+								{book.publicationDate !== null && (
+									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 w-full'>
+										<p className='px-4 text-sm md:text-base font-medium'>
+											{book.publicationDate.split('-')[0]}
+										</p>
+										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>published</p>
+									</div>
+								)}
+								{book.publisher !== null && (
+									<div className='flex flex-col justify-center items-center p-1 px-2 md:p-2 xl:p-3 h-full'>
+										<p className='px-2 text-sm text-center font-medium leading-5 min-w-max min-h-full'>
+											{book.publisher}
+										</p>
+										<p className='text-sm font-light xl:text-md text-gray-300 py-1'>publisher</p>
+									</div>
+								)}
+							</div>
+						</div>
+
+						{book.description ? (
+							<div className='p-4 md:p-8'>
+								<h4 className='text-xl md:text-2xl font-semibold py-2'>Book description</h4>
+								<p
+									ref={descRef}
+									className={
+										'text-md text-gray-200 font-medium sm:leading-snug leading-normal ' +
+										(!readMoreDesc ? 'line-clamp-3' : '')
+									}>
+									{book.description}
+								</p>
+								<button
+									onClick={(e) => {
+										setReadMoreDesc(!readMoreDesc)
+										e.preventDefault()
+									}}
+									className={
+										'cursor-pointer text-sm xl:text-sm font-semibold text-[#8C6AFF] underline decoration-1 decoration-gray-300 underline-offset-4 ' +
+										(descLines <= 4 ? 'hidden' : '')
+									}>
+									{readMoreDesc ? (
+										<div className='flex'>
+											Read less <ChevronUpIcon dimensions='h-5 w-5' />
+										</div>
+									) : (
+										<div className='flex'>
+											Read more{' '}
+											<div className='py-[.1rem]'>
+												<ChevronDownIcon dimensions='h-5 w-5' />
+											</div>
+										</div>
+									)}
+								</button>
+							</div>
+						) : (
+							<></>
+						)}
+
+						<div className='flex justify-start m-4 xl:m-8'>
+							<button
+								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#151d3a]'
+								onClick={() => router.push(`/books/${book.slug}/report/`)}>
+								<ReportIcon dimensions='h-7 w-7' />
+								<p className='text-base'>Report book</p>
+							</button>
+						</div>
+
+						<div className='w-full md:w-2/3 xl:w-1/2 p-4 md:p-8'>
+							<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
+							<div className='flex flex-col gap-4'>
+								{book.reviews?.length ? (
 									book.reviews.map((review, i) => (
 										<ReviewCard
 											key={i}
@@ -387,13 +379,29 @@ function BookDetailPage(props) {
 								) : (
 									<div className='rounded-md bg-[#192132] p-4'>No reviews yet</div>
 								)}
+								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
+									<button
+										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
+										onClick={() => setAddReview(true)}>
+										<p className='text-md font-semibold'>
+											{book.reviews.length
+												? 'Write a review'
+												: 'Be the first one to write review'}
+										</p>
+										<p className='inline-block px-[2px] py-[1px]'>
+											<ChevronRightIcon dimensions='h-4 w-4' />
+										</p>
+									</button>
+								)}
 							</div>
-						) : (
-							<ButtonSpinner dimensions='h-7 w-7' />
-						)}
-					</div>
+						</div>
+					</>
 				) : (
-					<ReviewEditModal review={editReview} reviewSubmitHandler={reviewSubmitHandler} />
+					<ReviewEditModal
+						review={editReview}
+						reviewSubmitHandler={reviewSubmitHandler}
+						editReviewHandler={setEditReview}
+					/>
 				)}
 				{reviewDialog && <DialogBox setDialogHandler={setReviewDialog} />}
 			</div>

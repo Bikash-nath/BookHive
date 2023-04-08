@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 import ButtonSpinner from '../widgets/ButtonSpinner'
 import StarIcon from '../../assets/icons/StarIcon'
 // import CloseIcon from '../../assets/icons/CloseIcon'
 
-function ReviewEditModal({ review, reviewSubmitHandler, setEditReview, setDialogHandler, setSubmitHandler }) {
+function ReviewEditModal({ review, reviewSubmitHandler, editReviewHandler }) {
 	const [rating, setRating] = useState(0)
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
@@ -71,15 +71,16 @@ function ReviewEditModal({ review, reviewSubmitHandler, setEditReview, setDialog
 						}}
 						placeholder='What did you like or dislike?'
 						rows='4'
-						className='w-full rounded-md p-4 text-lg placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF]'
+						className='input-field'
 					/>
+					{/* w-full rounded-md p-4 text-lg placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF] */}
 					<div className='flex justify-end w-full'>
 						<p className='text-sm text-gray-400'>minimum 50 characters</p>
 					</div>
 				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<button
-						onClick={() => setEditReview(false)}
+						onClick={() => editReviewHandler(null)}
 						className='text-center px-3 py-2 border border-[#8C6AFF] rounded-3xl'>
 						<span>Cancel</span>
 					</button>

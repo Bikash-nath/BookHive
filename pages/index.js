@@ -103,28 +103,28 @@ function HomePage(props) {
 						<div className='item-container categories-grid gap-2 ms:gap-3 sm:gap-4 xl:gap-6 xl:mx-8'>
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-slate-600 via-slate-500 to bg-slate-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-slate-500 to bg-slate-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Blogs</h5>
 								</div>
 							</div>
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-gray-600 via-gray-500 to bg-gray-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-gray-500 to bg-gray-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Podcasts</h5>
 								</div>
 							</div>
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-zinc-600 via-zinc-500 to bg-zinc-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-zinc-500 to bg-zinc-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Short Stories</h5>
 								</div>
 							</div>
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-stone-600 via-stone-500 to bg-stone-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-stone-500 to bg-stone-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Poems</h5>
 								</div>
 							</div>
