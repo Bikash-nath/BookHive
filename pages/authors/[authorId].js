@@ -56,37 +56,34 @@ function AuthorDetailPage(props) {
 			;(async () => {
 				setLoadingFollow(true)
 				const library = await getLibraryAuthors()
-				if (!library.authors) {
-					snackbarCtx.addMessage({ title: library })
-					setLoadingFollow(false)
-					return
+				if (!library.authors) snackbarCtx.addMessage({ title: library })
+				else {
+					if (library.authors.find((a) => a.slug === author.slug)) setFollowing(true)
+					else setFollowing(false)
 				}
-				if (library.authors.find((a) => a.slug === author.slug)) setFollowing(true)
-				else setFollowing(false)
 				setLoadingFollow(false)
 			})()
 		}
 	}, [author])
 
 	const followAuthorHandler = async () => {
-		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save followed authors' })
-		else {
-			setLoadingFollow(true)
-			const library = await followAuthor(author.slug)
-			if (!library.authors) {
-				snackbarCtx.addMessage({ title: library })
-				setLoadingFollow(false)
-				return
-			}
-			if (library.authors.find((a) => a.slug === author.slug)) {
-				setFollowing(true)
-				snackbarCtx.addMessage({ title: 'Author saved in your library' })
-			} else {
-				setFollowing(false)
-				snackbarCtx.addMessage({ title: 'Author removed from your library' })
-			}
-			setLoadingFollow(false)
+		if (!user?.data) {
+			snackbarCtx.addMessage({ title: 'Please login to save followed authors' })
+			return
 		}
+		if (loadingFollow) return
+		setLoadingFollow(true)
+		setFollowing(!isFollowing)
+		const library = await followAuthor(author.slug)
+		if (!library.author) {
+			snackbarCtx.addMessage({ title: library })
+			setFollowing(!isFollowing)
+			setLoadingFollow(false)
+			return
+		}
+		if (library.author === 'followed') snackbarCtx.addMessage({ title: 'Author saved in your library' })
+		else snackbarCtx.addMessage({ title: 'Author removed from your library' })
+		setLoadingFollow(false)
 	}
 
 	const shareAuthorHandler = async () => {

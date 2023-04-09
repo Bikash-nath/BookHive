@@ -9,6 +9,7 @@ import LoginBanner from '../../../../components/login/LoginBanner'
 import PageHeader from '../../../../components/layouts/PageHeader'
 import AccountIcon from '../../../../assets/icons/AccountIcon'
 import SettingsIcon from '../../../../assets/icons/SettingsIcon'
+import { formattedDate } from '../../../../utils/helpers/formatDate'
 
 function AccountPage(props) {
 	const { user } = useContext(UserContext)
@@ -83,7 +84,7 @@ function AccountPage(props) {
 									</div>
 									<div className='rounded-xl px-4 py-1 bg-[#192132]'>
 										<p className='text-lg rounded-md py-2 font-medium'>
-											{activeUser.dob.split('T')[0]}
+											{formattedDate(activeUser.dob)}
 										</p>
 									</div>
 								</div>

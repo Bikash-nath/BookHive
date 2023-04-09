@@ -76,37 +76,36 @@ function BookDetailPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryBooks()
-				if (!library.books) {
-					snackbarCtx.addMessage({ title: library })
-					setLoadingFavourite(false)
-					return
+				if (!library.books) snackbarCtx.addMessage({ title: library })
+				else {
+					if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
+					else setFavourite(false)
 				}
-				if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
-				else setFavourite(false)
 				setLoadingFavourite(false)
 			})()
 		}
 	}, [])
 
 	const favouriteBookHandler = async () => {
-		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save favourite books' })
-		else {
-			setLoadingFavourite(true)
-			const library = await favouriteBook(book.slug)
-			if (!library.books) {
-				snackbarCtx.addMessage({ title: library })
-				setLoadingFavourite(false)
-				return
-			}
-			if (library.books.find((b) => b.slug === book.slug)) {
-				setFavourite(true)
-				snackbarCtx.addMessage({ title: 'Book saved in your library' })
-			} else {
-				setFavourite(false)
-				snackbarCtx.addMessage({ title: 'Book removed from your library' })
-			}
-			setLoadingFavourite(false)
+		if (!user?.data) {
+			snackbarCtx.addMessage({ title: 'Please login to save favourite books' })
+			return
 		}
+		if (loadingFavourite) return
+		setFavourite(!isFavourite)
+		setLoadingFavourite(true)
+
+		const library = await favouriteBook(book.slug)
+		if (!library.book) {
+			snackbarCtx.addMessage({ title: library })
+			setFavourite(!isFavourite)
+			setLoadingFavourite(false)
+			return
+		}
+		if (library.book === 'saved') snackbarCtx.addMessage({ title: 'Book saved in your library' })
+		else snackbarCtx.addMessage({ title: 'Book removed from your library' })
+
+		setLoadingFavourite(false)
 	}
 
 	const isReviewAllowed = () => {
@@ -182,17 +181,13 @@ function BookDetailPage(props) {
 							</div>
 						}
 						lastIcon={
-							loadingFavourite ? (
-								<ButtonSpinner dimensions='h-7 w-7' />
-							) : (
-								<div onClick={favouriteBookHandler}>
-									{isFavourite ? (
-										<BookmarkIcon dimensions='h-7 w-7' color='white' />
-									) : (
-										<BookmarkIcon dimensions='h-7 w-7' color='' />
-									)}
-								</div>
-							)
+							<div onClick={favouriteBookHandler}>
+								{isFavourite ? (
+									<BookmarkIcon dimensions='h-7 w-7' color='white' />
+								) : (
+									<BookmarkIcon dimensions='h-7 w-7' color='' />
+								)}
+							</div>
 						}
 						pageTitle={book.title}
 						coverRef={coverRef}
@@ -252,25 +247,13 @@ function BookDetailPage(props) {
 							<div className='hidden xl:flex w-full'>
 								{isFavourite ? (
 									<button className={'btn-inactive'} onClick={favouriteBookHandler}>
-										{loadingFavourite ? (
-											<ButtonSpinner dimensions='h-7 w-7' />
-										) : (
-											<>
-												<LibraryIcon dimensions='h-7 w-7' />
-												<span className='font-semibold'>Saved in Library</span>
-											</>
-										)}
+										<LibraryIcon dimensions='h-7 w-7' />
+										<span className='font-semibold'>Saved in Library</span>
 									</button>
 								) : (
 									<button className={'btn-active'} onClick={favouriteBookHandler}>
-										{loadingFavourite ? (
-											<ButtonSpinner dimensions='h-7 w-7' />
-										) : (
-											<>
-												<LibraryIcon dimensions='h-7 w-7' />
-												<span className='font-semibold'>Add To Library</span>
-											</>
-										)}
+										<LibraryIcon dimensions='h-7 w-7' />
+										<span className='font-semibold'>Add To Library</span>
 									</button>
 								)}
 							</div>
@@ -357,7 +340,7 @@ function BookDetailPage(props) {
 
 						<div className='flex justify-start m-4 xl:m-8'>
 							<button
-								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#151d3a]'
+								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#152338]'
 								onClick={() => router.push(`/books/${book.slug}/report/`)}>
 								<ReportIcon dimensions='h-7 w-7' />
 								<p className='text-base'>Report book</p>
@@ -366,7 +349,7 @@ function BookDetailPage(props) {
 
 						<div className='w-full md:w-2/3 xl:w-1/2 p-4 md:p-8'>
 							<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
-							<div className='flex flex-col gap-4'>
+							<div className='flex flex-col gap-4 xl:gap-8'>
 								{book.reviews?.length ? (
 									book.reviews.map((review, i) => (
 										<ReviewCard
@@ -381,7 +364,7 @@ function BookDetailPage(props) {
 								)}
 								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
-										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#192132]'
+										className='flex justify-between items-center gap-16 p-4 my-2 rounded-md bg-[#192132]'
 										onClick={() => setAddReview(true)}>
 										<p className='text-md font-semibold'>
 											{book.reviews.length

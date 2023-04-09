@@ -44,32 +44,34 @@ function GenreBooksPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryGenres()
-				if (!library.genres) {
-					snackbarCtx.addMessage({ title: library })
-					setLoadingFavourite(false)
-					return
+				if (!library.genres) snackbarCtx.addMessage({ title: library })
+				else {
+					if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
+					else setFavourite(false)
 				}
-				if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
-				else setFavourite(false)
 				setLoadingFavourite(false)
 			})()
 		}
 	}, [])
 
 	const favouriteGenreHandler = async () => {
-		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to save favourite genres' })
-		else {
-			setLoadingFavourite(true)
-			const library = await favouriteGenre(slug)
-			if (!library.genres) {
-				snackbarCtx.addMessage({ title: library })
-				setLoadingFavourite(false)
-				return
-			}
-			if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
-			else setFavourite(false)
-			setLoadingFavourite(false)
+		if (!user?.data) {
+			snackbarCtx.addMessage({ title: 'Please login to save favourite genres' })
+			return
 		}
+		if (loadingFavourite) return
+		setFavourite(!isFavourite)
+		setLoadingFavourite(true)
+		const library = await favouriteGenre(slug)
+		if (!library.genre) {
+			snackbarCtx.addMessage({ title: library })
+			setFavourite(!isFavourite)
+			setLoadingFavourite(false)
+			return
+		}
+		if (library.genre === 'saved') snackbarCtx.addMessage({ title: 'Genre saved in your library' })
+		else snackbarCtx.addMessage({ title: 'Genre removed from your library' })
+		setLoadingFavourite(false)
 	}
 
 	return genre ? (
@@ -82,17 +84,13 @@ function GenreBooksPage(props) {
 				{windowWidth < 1280 && (
 					<TopNavModal
 						rightIcon={
-							loadingFavourite ? (
-								<ButtonSpinner dimensions='h-7 w-7' />
-							) : (
-								<div onClick={favouriteGenreHandler}>
-									{isFavourite ? (
-										<HeartIcon dimensions='h-7 w-7' color='white' />
-									) : (
-										<HeartIcon dimensions='h-7 w-7' color='' />
-									)}
-								</div>
-							)
+							<div onClick={favouriteGenreHandler}>
+								{isFavourite ? (
+									<HeartIcon dimensions='h-7 w-7' color='white' />
+								) : (
+									<HeartIcon dimensions='h-7 w-7' color='' />
+								)}
+							</div>
 						}
 						pageTitle={genre}
 						coverRef={coverRef}
@@ -105,9 +103,7 @@ function GenreBooksPage(props) {
 					coverRef={coverRef}
 					rightIcon={
 						<div onClick={favouriteGenreHandler}>
-							{loadingFavourite ? (
-								<ButtonSpinner dimensions='h-8 w-8' />
-							) : isFavourite ? (
+							{isFavourite ? (
 								<HeartIcon dimensions='h-8 w-8' color='white' />
 							) : (
 								<HeartIcon dimensions='h-8 w-8' color='' />

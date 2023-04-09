@@ -90,7 +90,7 @@ function HomePage(props) {
 						books={props.bestsellers}
 					/>
 					<ListSliderModal
-						listTitle='Short Audiobooks'
+						listTitle='Featured Audiobooks'
 						listLink='/books/category/audiobooks'
 						books={props.audiobooks}
 					/>
@@ -124,7 +124,7 @@ function HomePage(props) {
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-stone-500 to bg-stone-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-neutral-500 to bg-neutral-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Poems</h5>
 								</div>
 							</div>

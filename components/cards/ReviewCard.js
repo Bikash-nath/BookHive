@@ -8,6 +8,7 @@ import LikeIcon from '../../assets/icons/LikeIcon'
 import EllipsisIcon from '../../assets/icons/EllipsisIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
+import { formattedDate } from '../../utils/helpers/formatDate'
 // import AccountIcon from '../../assets/icons/AccountIcon'
 
 function ReviewCard(props) {
@@ -63,7 +64,7 @@ function ReviewCard(props) {
 		}
 
 		const data = await likeBookReview(reviewId)
-		console.log('review:-\n', data)
+		console.log('review:-\n', data, typeof data)
 		if (!data.review) {
 			if (likedReview) {
 				setLikedReview(false)
@@ -72,15 +73,15 @@ function ReviewCard(props) {
 				setLikedReview(true)
 				setTotalLikes(totalLikes + 1)
 			}
-			snackbarCtx.addMessage({ title: review })
+			snackbarCtx.addMessage({ title: data })
 		} else snackbarCtx.addMessage({ title: 'Thank you for your feedback' })
 		setUpdatingLikes(false)
 	}
 
 	return (
-		<div className='flex flex-col relative rounded-lg bg-gray-900 my-4 xl:my-8'>
+		<div className='flex flex-col relative rounded-lg bg-[#152338]'>
 			<div className='flex items-start justify-start gap-2'>
-				<div className='flex items-center justify-start text-md md:text-lg text-xl w-fit px-2 py-1 font-medium bg-[#192132] rounded-lg'>
+				<div className='flex items-center justify-start text-md md:text-lg text-xl w-fit px-2 py-1 font-medium rounded-tl-lg bg-[#111844]'>
 					<div className='mr-1 xl:mr-2'>
 						<StarIcon dimensions='h-6 w-6' />
 					</div>
@@ -122,9 +123,9 @@ function ReviewCard(props) {
 					)}
 				</button>
 				<div className='flex justify-between items-center'>
-					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-4'>
+					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-2 xl:gap-4'>
 						<div className='font-medium'>{review.user.name.split(' ')[0]}</div>
-						<div className='px-4'>{review.createdAt.split('T')[0]}</div>
+						<div className='px-2 xl:px-4'>{formattedDate(review.createdAt)}</div>
 					</div>
 					{userId === review.user._id ? (
 						<button

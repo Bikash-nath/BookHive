@@ -11,6 +11,7 @@ import SpinnerContext from '../../../../store/spinnerContext'
 import LoginBanner from '../../../../components/login/LoginBanner'
 import PageHeader from '../../../../components/layouts/PageHeader'
 import AccountIcon from '../../../../assets/icons/AccountIcon'
+import { formattedDate } from '../../../../utils/helpers/formatDate'
 
 function EditProfilePage(props) {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -97,9 +98,7 @@ function EditProfilePage(props) {
 							</div>
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full px-2'>
-									<p className='text-xl font-medium text-white text-left'>
-										Gender
-									</p>
+									<p className='text-xl font-medium text-white text-left'>Gender</p>
 								</div>
 								<div className='rounded-lg w-full'>
 									<input
@@ -113,9 +112,7 @@ function EditProfilePage(props) {
 							</div>
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full px-2'>
-									<p className='text-xl font-medium text-white text-left'>
-										Birthday
-									</p>
+									<p className='text-xl font-medium text-white text-left'>Birthday</p>
 								</div>
 								<div className='rounded-lg w-full'>
 									<input
@@ -129,9 +126,7 @@ function EditProfilePage(props) {
 							</div>
 							<div className='w-full'>
 								<div className='flex items-start justify-start w-full px-2'>
-									<p className='text-xl font-medium text-white text-left'>
-										Address
-									</p>
+									<p className='text-xl font-medium text-white text-left'>Address</p>
 								</div>
 								<div className='rounded-lg w-full'>
 									<input
