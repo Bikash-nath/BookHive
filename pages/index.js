@@ -110,21 +110,21 @@ function HomePage(props) {
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-gray-500 to bg-gray-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-gray-600 to bg-gray-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Podcasts</h5>
 								</div>
 							</div>
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-zinc-500 to bg-zinc-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-zinc-600 to bg-zinc-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Short Stories</h5>
 								</div>
 							</div>
 
 							<div className='flex justify-center w-full h-full'>
 								<div className='group item rounded-lg w-[10.5rem] h-20 xl:w-60 xl:h-28'>
-									<div className='bg-gradient-to-b from-neutral-500 to bg-neutral-300 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
+									<div className='bg-gradient-to-b from-neutral-600 to bg-neutral-400 bg-opacity-95 w-[10.5rem] h-20 xl:w-60 xl:h-28 items-center'></div>
 									<h5 className='box-text'>Poems</h5>
 								</div>
 							</div>
@@ -155,7 +155,7 @@ export async function getStaticProps() {
 			latestBooks: latestBooks.data,
 			authors: authors.data,
 		},
-		revalidate: 600,
+		revalidate: 3050,
 	}
 }
 

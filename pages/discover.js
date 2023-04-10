@@ -93,7 +93,6 @@ export async function getStaticProps() {
 		props: {
 			genreList: topGenres.data,
 		},
-		revalidate: 600,
 	}
 }
 

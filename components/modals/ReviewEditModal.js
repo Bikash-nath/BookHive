@@ -80,7 +80,10 @@ function ReviewEditModal({ review, reviewSubmitHandler, editReviewHandler }) {
 				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<button
-						onClick={() => editReviewHandler(null)}
+						onClick={(e) => {
+							e.preventDefault()
+							editReviewHandler(null)
+						}}
 						className='text-center px-3 py-2 border border-[#8C6AFF] rounded-3xl'>
 						<span>Cancel</span>
 					</button>

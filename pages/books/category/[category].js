@@ -74,7 +74,6 @@ export async function getStaticProps(context) {
 			books: books.data,
 			category: params.category,
 		},
-		revalidate: 600,
 	}
 }
 

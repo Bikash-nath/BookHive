@@ -248,7 +248,6 @@ export async function getStaticProps(context) {
 			author: author.data,
 			color: bgColor,
 		},
-		revalidate: 600,
 	}
 }
 

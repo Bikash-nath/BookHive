@@ -121,7 +121,7 @@ function GenreBooksPage(props) {
 
 export async function getStaticProps(context) {
 	const { params } = context
-	const genre = await getGenreBooks(params.genreId, { page: 2 })
+	const genre = await getGenreBooks(params.genreId)
 
 	if (!genre.data) {
 		return { notFound: true }
@@ -133,7 +133,6 @@ export async function getStaticProps(context) {
 			slug: genre.data.slug,
 			books: genre.data.books,
 		},
-		revalidate: 600,
 	}
 }
 

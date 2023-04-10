@@ -386,7 +386,14 @@ function BookDetailPage(props) {
 						editReviewHandler={setEditReview}
 					/>
 				)}
-				{reviewDialog && <DialogBox setDialogHandler={setReviewDialog} />}
+				{reviewDialog && (
+					<DialogBox
+						title='Thanks for reviewing!'
+						description='If approved, your review should be posted soon (typically within few minutes)'
+						message='OK'
+						setDialogHandler={setReviewDialog}
+					/>
+				)}
 			</div>
 		</Fragment>
 	) : (

@@ -9,6 +9,7 @@ import EllipsisIcon from '../../assets/icons/EllipsisIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 import { formattedDate } from '../../utils/helpers/formatDate'
+import DialogBox from '../notification/DialogBox'
 // import AccountIcon from '../../assets/icons/AccountIcon'
 
 function ReviewCard(props) {
@@ -20,6 +21,8 @@ function ReviewCard(props) {
 	const [likedReview, setLikedReview] = useState(false)
 	const [totalLikes, setTotalLikes] = useState(0)
 	const [updatingLikes, setUpdatingLikes] = useState(false)
+	const [showReport, setShowReport] = useState(false)
+	const [reportDialog, setReportDialog] = useState(false)
 
 	const reviewRef = useRef(null)
 
@@ -141,10 +144,38 @@ function ReviewCard(props) {
 								</button>
 								<p className='font-medium'>{totalLikes}</p>
 							</div>
-							<div className='cursor-pointer'>
+							<div onClick={() => setShowReport(true)} className='cursor-pointer'>
 								<EllipsisIcon dimensions='h-6 w-6' />
 							</div>
 						</div>
+					)}
+					{showReport && (
+						<div className='absolute -bottom-6 right-0 flex justify-start mx-2 xl:mx-4'>
+							<button
+								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#192132] border-gray-900 shadow-md shadow-gray-800'
+								onClick={() => {
+									setReportDialog(true)
+									setShowReport(false)
+								}}>
+								<p className='text-base'>Report</p>
+							</button>
+						</div>
+					)}
+					{reportDialog && (
+						<DialogBox
+							title='Report Inappropriate Review'
+							description={
+								<>
+									<p>
+										If you find this review inappropriate and think it should be removed from our
+										site let us know.
+									</p>
+									<p>This report will be reviewed and we will take appropriate action.</p>
+								</>
+							}
+							message='Report'
+							setDialogHandler={setReportDialog}
+						/>
 					)}
 				</div>
 			</div>
