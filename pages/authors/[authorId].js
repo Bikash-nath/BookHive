@@ -77,7 +77,7 @@ function AuthorDetailPage(props) {
 		const library = await followAuthor(author.slug)
 		if (!library.author) {
 			snackbarCtx.addMessage({ title: library })
-			setFollowing(!isFollowing)
+			setFollowing((isFollowing) => !isFollowing)
 			setLoadingFollow(false)
 			return
 		}
@@ -160,25 +160,13 @@ function AuthorDetailPage(props) {
 							</div>
 							{isFollowing ? (
 								<button className='btn-inactive' onClick={followAuthorHandler}>
-									{loadingFollow ? (
-										<ButtonSpinner dimensions='h-7 w-7' />
-									) : (
-										<>
-											<HeartIcon dimensions='h-7 w-7' />
-											<span className='font-semibold pr-2'>Following</span>
-										</>
-									)}
+									<HeartIcon dimensions='h-7 w-7' />
+									<span className='font-semibold pr-2'>Following</span>
 								</button>
 							) : (
 								<button className='btn-active' onClick={followAuthorHandler}>
-									{loadingFollow ? (
-										<ButtonSpinner dimensions='h-7 w-7' />
-									) : (
-										<>
-											<HeartIcon dimensions='h-7 w-7' />
-											<span className='font-semibold pr-2'>Follow</span>
-										</>
-									)}
+									<HeartIcon dimensions='h-7 w-7' />
+									<span className='font-semibold pr-2'>Follow</span>
 								</button>
 							)}
 						</div>

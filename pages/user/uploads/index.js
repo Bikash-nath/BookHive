@@ -45,7 +45,7 @@ function UploadsPage() {
 					<div className='flex w-full xl:w-[85.5vw] justify-center fixed bottom-24 xl:bottom-16'>
 						<button
 							className='flex items-center gap-1 md:gap-2 p-1 xl:p-[.4rem] rounded-full bg-gray-800 shadow-lg shadow-gray-700'
-							onClick={() => router.push('/user/uploads/new')}>
+							onClick={() => router.push('/user/uploads/book-type')}>
 							<PlusCircleIcon dimensions='h-7 w-7' />
 							<div className='text-white font-bold p-[.15rem] pr-2 xl:p-1 xl:pr-[.3rem]'>Upload</div>
 						</button>

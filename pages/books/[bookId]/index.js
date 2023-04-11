@@ -14,7 +14,6 @@ import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import GenreListModal from '../../../components/modals/GenreListModal'
 import ReviewCard from '../../../components/cards/ReviewCard'
-import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -98,7 +97,7 @@ function BookDetailPage(props) {
 		const library = await favouriteBook(book.slug)
 		if (!library.book) {
 			snackbarCtx.addMessage({ title: library })
-			setFavourite(!isFavourite)
+			setFavourite((isFavourite) => !isFavourite)
 			setLoadingFavourite(false)
 			return
 		}
@@ -111,7 +110,7 @@ function BookDetailPage(props) {
 	const isReviewAllowed = () => {
 		if (reviewSubmitted || !activeUser) return false
 		else if (!book.reviews?.length) return true
-		return book.reviews.some((review) => review.user === user.data?._id)
+		return !book.reviews.some((review) => review.user._id === user.data?._id)
 	}
 
 	const editReviewHandler = (review) => {
@@ -360,11 +359,11 @@ function BookDetailPage(props) {
 										/>
 									))
 								) : (
-									<div className='rounded-md bg-[#192132] p-4'>No reviews yet</div>
+									<div className='rounded-md bg-[#152338] p-4'>No reviews yet</div>
 								)}
 								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
-										className='flex justify-between items-center gap-16 p-4 my-2 rounded-md bg-[#192132]'
+										className='flex justify-between items-center gap-16 p-4 my-2 rounded-md bg-[#152338]'
 										onClick={() => setAddReview(true)}>
 										<p className='text-md font-semibold'>
 											{book.reviews.length

@@ -40,7 +40,7 @@ function SearchPage() {
 					<SearchBar />
 				</div>
 				{searchResult?.length ? (
-					<div className='pb-16 pb-16 xl:pb-8'>
+					<div className='pb-16 xl:pb-8'>
 						<div className='text-2xl p-4'>
 							{searchResult?.length} results for "{keyword}"
 						</div>

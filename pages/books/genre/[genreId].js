@@ -11,7 +11,6 @@ import SnackbarContext from '../../../store/snackbarContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import Paginate from '../../../components/widgets/Paginate'
-import ButtonSpinner from '../../../components/widgets/ButtonSpinner'
 import HeartIcon from '../../../assets/icons/HeartIcon'
 
 function GenreBooksPage(props) {
@@ -65,7 +64,7 @@ function GenreBooksPage(props) {
 		const library = await favouriteGenre(slug)
 		if (!library.genre) {
 			snackbarCtx.addMessage({ title: library })
-			setFavourite(!isFavourite)
+			setFavourite((isFavourite) => !isFavourite)
 			setLoadingFavourite(false)
 			return
 		}

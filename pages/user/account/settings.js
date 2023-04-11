@@ -46,49 +46,49 @@ function SettingsPage() {
 					icon={<SettingsIcon />}
 				/>
 			) : (
-				<div className='page-gradient'>
+				<div className='page-gradient pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Settings' backBtn={true} />
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
+							className='flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/user/account/update-email')}>
 							<MailIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Update Email</p>
+							<p className='text-lg font-medium'>Update Email</p>
 						</button>
 					</div>
 
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
+							className='flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/user/account/update-password')}>
 							<KeyIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Update Password</p>
+							<p className='text-lg font-medium'>Update Password</p>
 						</button>
 					</div>
 
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
+							className='flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]'
 							onClick={logOutHandler}>
 							<LogoutIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Log Out</p>
+							<p className='text-lg font-medium'>Log Out</p>
 						</button>
 					</div>
-					<hr className='border-t-[0.1px] w-screen xs:w-64 border-gray-700' />
+					<hr className='border-t-[0.1px] w-screen sm:w-80 m-4 my-6 border-gray-700' />
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
+							className='flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/help/faq')}>
 							<HelpIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Help</p>
+							<p className='text-lg font-medium'>Help</p>
 						</button>
 					</div>
 					<div className='flex justify-start m-4'>
 						<button
-							className='flex items-center rounded-lg w-full sm:w-60 p-4 gap-6 bg-[#192136]'
+							className='flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]'
 							onClick={() => router.push('/help/support')}>
 							<FeedbackIcon dimensions='h-7 w-7' />
-							<p className='text-base'>Support</p>
+							<p className='text-lg font-medium'>Support</p>
 						</button>
 					</div>
 				</div>

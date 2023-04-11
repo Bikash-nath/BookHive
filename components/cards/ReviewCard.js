@@ -126,7 +126,7 @@ function ReviewCard(props) {
 					)}
 				</button>
 				<div className='flex justify-between items-center'>
-					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-gray-600 gap-2 xl:gap-4'>
+					<div className='flex justify-start items-start py-3 rounded-lg divide-x divide-[#9bafff] gap-2 xl:gap-4'>
 						<div className='font-medium'>{review.user.name.split(' ')[0]}</div>
 						<div className='px-2 xl:px-4'>{formattedDate(review.createdAt)}</div>
 					</div>
@@ -144,7 +144,7 @@ function ReviewCard(props) {
 								</button>
 								<p className='font-medium'>{totalLikes}</p>
 							</div>
-							<div onClick={() => setShowReport(true)} className='cursor-pointer'>
+							<div onClick={() => setShowReport(!showReport)} className='cursor-pointer'>
 								<EllipsisIcon dimensions='h-6 w-6' />
 							</div>
 						</div>
@@ -152,7 +152,7 @@ function ReviewCard(props) {
 					{showReport && (
 						<div className='absolute -bottom-6 right-0 flex justify-start mx-2 xl:mx-4'>
 							<button
-								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#192132] border-gray-900 shadow-md shadow-gray-800'
+								className='flex items-center rounded-lg w-fit px-3 py-2 gap-2 bg-[#192132] border-gray-900 shadow-md shadow-gray-800'
 								onClick={() => {
 									setReportDialog(true)
 									setShowReport(false)
