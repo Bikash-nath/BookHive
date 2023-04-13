@@ -58,14 +58,14 @@ function SignUpPage() {
 				<input
 					value={name}
 					onChange={(e) => setName(e.target.value)}
-					placeholder='Enter your name'
+					placeholder='Name'
 					type='text'
 					className='input-field mb-4'
 				/>
 				<input
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
-					placeholder='Enter email address or phone'
+					placeholder='Email address or phone'
 					type='email'
 					className='input-field mb-4'
 				/>
@@ -73,7 +73,7 @@ function SignUpPage() {
 					<input
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						placeholder='Enter your password'
+						placeholder='Password'
 						type={!showPassword ? 'password' : 'text'}
 						className='input-field mb-4'
 					/>
@@ -99,7 +99,7 @@ function SignUpPage() {
 					<input
 						value={passwordConfirm}
 						onChange={(e) => setPasswordConfirm(e.target.value)}
-						placeholder='Confirm your password'
+						placeholder='Confirm password'
 						type={!showPasswordConfirm ? 'password' : 'text'}
 						className='input-field mb-4'
 					/>

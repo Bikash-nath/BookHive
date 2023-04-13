@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-import LoginBanner from '../../../components/login/LoginBanner'
 import PageHeader from '../../../components/layouts/PageHeader'
+import LoginBanner from '../../../components/login/LoginBanner'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../assets/icons/ArrowIcon'
@@ -23,7 +23,14 @@ function UploadBookType() {
 
 	const nextPageHandler = () => {
 		if (!bookType) snackbarCtx.addMessage({ title: 'Please select a book type' })
-		else router.push('/user/uploads/select-book')
+		else router.push(`/user/uploads/${bookType}/select-book`)
+	}
+
+	const activeClassHandler = (type) => {
+		return (
+			'flex items-center w-full rounded-lg w-full sm:w-80 my-4 p-4 gap-6 bg-[#192136]' +
+			(bookType === type ? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400' : '')
+		)
 	}
 
 	return (
@@ -42,82 +49,32 @@ function UploadBookType() {
 			) : (
 				<div className='page-gradient pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Select Book Type' backBtn={true} />
-					<div className='p-2 xl:p-4'>
-						<p className='text-xl font-bold p-2 xl:p-4'>What do you want to upload?</p>
-					</div>
+					<div className='p-4 xl:p-6'>
+						<p className='text-xl font-bold p-2'>What do you want to upload?</p>
 
-					<div className='flex justify-start m-4'>
-						<button
-							className={
-								'flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]' +
-								(bookType === 'new-book'
-									? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400'
-									: '')
-							}
-							onClick={() => setBookType('new-book')}>
-							<BookReadIcon dimensions='h-7 w-7' />
-							<p className='text-lg font-medium'>Create Your Own Book</p>
-						</button>
-					</div>
-
-					<div className='flex justify-start m-4'>
-						<button
-							className={
-								'flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]' +
-								(bookType === 'summary'
-									? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400'
-									: '')
-							}
-							onClick={() => setBookType('summary')}>
+						<button className={activeClassHandler('summary')} onClick={() => setBookType('summary')}>
 							<BookReadIcon dimensions='h-7 w-7' />
 							<p className='text-lg font-medium'>Book Summary</p>
 						</button>
-					</div>
-
-					<div className='flex justify-start m-4'>
-						<button
-							className={
-								'flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]' +
-								(bookType === 'story'
-									? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400'
-									: '')
-							}
-							onClick={() => setBookType('story')}>
+						<button className={activeClassHandler('story')} onClick={() => setBookType('story')}>
 							<BookReadIcon dimensions='h-7 w-7' />
 							<p className='text-lg font-medium'>Short Story</p>
 						</button>
-					</div>
-					<div className='flex justify-start m-4'>
-						<button
-							className={
-								'flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]' +
-								(bookType === 'poem'
-									? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400'
-									: '')
-							}
-							onClick={() => setBookType('poem')}>
+						<button className={activeClassHandler('poem')} onClick={() => setBookType('poem')}>
 							<BookReadIcon dimensions='h-7 w-7' />
 							<p className='text-lg font-medium'>Poem</p>
 						</button>
-					</div>
-					<div className='flex justify-start m-4'>
-						<button
-							className={
-								'flex items-center rounded-lg w-full sm:w-80 p-4 gap-6 bg-[#192136]' +
-								(bookType === 'blog'
-									? ' border-[#8C6AFF] border-[1px] shadow-sm shadow-purple-400'
-									: '')
-							}
-							onClick={() => setBookType('blog')}>
+						<button className={activeClassHandler('blog')} onClick={() => setBookType('blog')}>
 							<BookReadIcon dimensions='h-7 w-7' />
 							<p className='text-lg font-medium'>Blog</p>
 						</button>
-					</div>
-					<div className='flex items-center justify-center p-4 md:p-6'>
-						<button onClick={nextPageHandler} className={bookType ? 'btn-next' : 'btn-next-inactive'}>
-							<span>Next</span>
-							<ArrowIcon />
-						</button>
+
+						<div className='flex items-center justify-center w-full sm:w-80 py-4 md:py-6'>
+							<button onClick={nextPageHandler} className={bookType ? 'btn-next' : 'btn-next-inactive'}>
+								<span>Next</span>
+								<ArrowIcon />
+							</button>
+						</div>
 					</div>
 				</div>
 			)}

@@ -10,12 +10,12 @@ import ReportIcon from '../../../assets/icons/ReportIcon'
 
 function SettingsPage() {
 	const userCtx = useContext(UserContext)
-	const [activeUser, setActiveUser] = useState(null)
 	const snackbarCtx = useContext(SnackbarContext)
+	const [activeUser, setActiveUser] = useState(null)
+	const [selected, setSelected] = useState(null)
 
 	useEffect(() => {
 		setActiveUser(userCtx.user)
-		// if (!activeUser?.data) getUserProfile()
 	}, [activeUser])
 
 	const router = useRouter()
@@ -26,6 +26,10 @@ function SettingsPage() {
 		e.preventDefault()
 		router.push(`/${slug.split('/report')[0]}/`)
 		snackbarCtx.addMessage({ title: 'Report submitted successfully.' })
+	}
+
+	const selectInputHandler = (e) => {
+		setSelected(e.target.value)
 	}
 
 	return (
@@ -56,6 +60,8 @@ function SettingsPage() {
 								<input
 									type='checkbox'
 									value='copyright'
+									checked={selected === 'copyright' ? true : false}
+									onClick={selectInputHandler}
 									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
 								/>
 							</div>
@@ -71,6 +77,8 @@ function SettingsPage() {
 								<input
 									type='checkbox'
 									value='missing'
+									checked={selected === 'missing' ? true : false}
+									onClick={selectInputHandler}
 									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
 								/>
 							</div>
@@ -83,7 +91,9 @@ function SettingsPage() {
 							<div className='flex justify-end items-center w-1/6'>
 								<input
 									type='checkbox'
-									value='missing'
+									value='incorrect'
+									checked={selected === 'incorrect' ? true : false}
+									onClick={selectInputHandler}
 									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
 								/>
 							</div>
@@ -98,7 +108,9 @@ function SettingsPage() {
 							<div className='flex justify-end items-center w-1/6'>
 								<input
 									type='checkbox'
-									value='missing'
+									value='abusive'
+									checked={selected === 'abusive' ? true : false}
+									onClick={selectInputHandler}
 									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
 								/>
 							</div>
@@ -114,7 +126,9 @@ function SettingsPage() {
 							<div className='flex justify-end items-center w-1/6'>
 								<input
 									type='checkbox'
-									value='missing'
+									value='spam'
+									checked={selected === 'spam' ? true : false}
+									onClick={selectInputHandler}
 									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
 								/>
 							</div>

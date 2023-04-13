@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useContext } from 'react'
-// import Image from 'next/image'
 
 import SnackbarContext from '../../store/snackbarContext'
 import { likeBookReview } from '../../API/books'
@@ -10,7 +9,6 @@ import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
 import { formattedDate } from '../../utils/helpers/formatDate'
 import DialogBox from '../notification/DialogBox'
-// import AccountIcon from '../../assets/icons/AccountIcon'
 
 function ReviewCard(props) {
 	const snackbarCtx = useContext(SnackbarContext)

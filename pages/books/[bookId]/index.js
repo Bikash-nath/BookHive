@@ -225,7 +225,7 @@ function BookDetailPage(props) {
 							)}
 						</div>
 					</div>
-					{/* bg-[#AA14F0] 'bg-slate-900 border-gray-800 shadow-gray-700' */}
+
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center w-fit xl:px-10 space-x-8 xl:space-y-4 right-2'>
 							<div
@@ -382,6 +382,7 @@ function BookDetailPage(props) {
 					<ReviewEditModal
 						review={editReview}
 						reviewSubmitHandler={reviewSubmitHandler}
+						addReviewHandler={setAddReview}
 						editReviewHandler={setEditReview}
 					/>
 				)}

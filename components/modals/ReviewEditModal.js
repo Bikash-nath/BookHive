@@ -5,7 +5,7 @@ import ButtonSpinner from '../widgets/ButtonSpinner'
 import StarIcon from '../../assets/icons/StarIcon'
 // import CloseIcon from '../../assets/icons/CloseIcon'
 
-function ReviewEditModal({ review, reviewSubmitHandler, editReviewHandler }) {
+function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editReviewHandler }) {
 	const [rating, setRating] = useState(0)
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
@@ -26,6 +26,12 @@ function ReviewEditModal({ review, reviewSubmitHandler, editReviewHandler }) {
 		setLoading(true)
 		await reviewSubmitHandler(rating, title, description, review?._id)
 		setLoading(false)
+	}
+
+	const cancelReviewHandler = (e) => {
+		e.preventDefault()
+		if (addReviewHandler) addReviewHandler(false)
+		else editReviewHandler(null)
 	}
 
 	return (
@@ -80,10 +86,7 @@ function ReviewEditModal({ review, reviewSubmitHandler, editReviewHandler }) {
 				</div>
 				<div className='flex items-center justify-between my-3 md:my-6'>
 					<button
-						onClick={(e) => {
-							e.preventDefault()
-							editReviewHandler(null)
-						}}
+						onClick={cancelReviewHandler}
 						className='text-center px-3 py-2 border border-[#8C6AFF] rounded-3xl'>
 						<span>Cancel</span>
 					</button>

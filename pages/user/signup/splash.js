@@ -16,8 +16,12 @@ function SignUpSplashPage(props) {
 				<h2 className='text-3xl font-bold mb-4 xl:mb-8'>Sign Up</h2>
 				<div className='flex flex-col items-center'>
 					<Link href='/user/signup' className='w-full'>
-						<button className='login-btn'>
-							<span>Sign up with email address</span>
+						<button
+							className='login-btn'
+							style={{
+								background: 'linear-gradient(to right, #2563eb, #4f46e5, #7c3aed, #7e22ce, #6b21a8)',
+							}}>
+							Sign up with email address
 						</button>
 					</Link>
 				</div>
