@@ -68,7 +68,8 @@ export default function SearchBar(props) {
 					}}
 					ref={inputRef}
 					className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
-					placeholder='Search books'></input>
+					placeholder='Search books'
+				/>
 				<button className='absolute top-1.5 xl:top-1 right-2.5 box-border cursor-pointer rounded-full p-1'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

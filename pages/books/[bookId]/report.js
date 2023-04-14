@@ -62,7 +62,7 @@ function SettingsPage() {
 									value='copyright'
 									checked={selected === 'copyright' ? true : false}
 									onClick={selectInputHandler}
-									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+									className='h-4 w-4 rounded border-gray-300 text-indigo-600'
 								/>
 							</div>
 						</div>
@@ -79,7 +79,7 @@ function SettingsPage() {
 									value='missing'
 									checked={selected === 'missing' ? true : false}
 									onClick={selectInputHandler}
-									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+									className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
 								/>
 							</div>
 						</div>
@@ -94,7 +94,7 @@ function SettingsPage() {
 									value='incorrect'
 									checked={selected === 'incorrect' ? true : false}
 									onClick={selectInputHandler}
-									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+									className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
 								/>
 							</div>
 						</div>
@@ -111,7 +111,7 @@ function SettingsPage() {
 									value='abusive'
 									checked={selected === 'abusive' ? true : false}
 									onClick={selectInputHandler}
-									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+									className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
 								/>
 							</div>
 						</div>
@@ -129,7 +129,7 @@ function SettingsPage() {
 									value='spam'
 									checked={selected === 'spam' ? true : false}
 									onClick={selectInputHandler}
-									className='rounded-3xl h-[1.15rem] w-[1.15rem]'
+									className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
 								/>
 							</div>
 						</div>
@@ -146,3 +146,5 @@ function SettingsPage() {
 }
 
 export default SettingsPage
+
+// className='rounded-3xl h-[1.15rem] w-[1.15rem]'
