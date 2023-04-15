@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
+import openLink from '../../utils/helpers/openLink'
 
 function BookListCards({ books, selectedBook, setSelectedBook }) {
 	// const selectBookHandler=(book)=>{}
@@ -25,15 +26,17 @@ function BookListCards({ books, selectedBook, setSelectedBook }) {
 						{`By ${book.author.name}`}
 					</p>
 				</div>
-				<div class='flex flex-col items-end justify-between w-1/4'>
+				<div className='flex flex-col items-end justify-between w-1/4'>
 					<input
 						type='checkbox'
 						value='copyright'
 						checked={selectedBook?._id === book._id ? true : false}
 						className='h-4 w-4 rounded text-green-600'
 					/>
-					<div class='flex'>
-						<button type='button' class='font-medium text-indigo-600 hover:text-indigo-500'>
+					<div className='flex items-center justify-center'>
+						<button
+							onClick={() => openLink(`/books/${book.slug}`)}
+							className='font-medium text-indigo-600 hover:text-indigo-500'>
 							Details
 						</button>
 					</div>

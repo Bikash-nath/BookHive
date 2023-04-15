@@ -15,6 +15,7 @@ import SearchIcon from '../../../../assets/icons/SearchIcon'
 import PlusIcon from '../../../../assets/icons/PlusIcon'
 import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../../assets/icons/ArrowIcon'
+import BookAddForm from '../../../../components/forms/BookAddForm'
 
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -26,6 +27,7 @@ function SelectBook() {
 	const [addBookModal, setAddBookModal] = useState(false)
 	const [searchResult, setSearchResult] = useState([])
 	const [selectedBook, setSelectedBook] = useState(null)
+	const [saveBook, setSaveBook] = useState(false)
 	const [keyword, setKeyword] = useState('')
 
 	const router = useRouter()
@@ -65,7 +67,7 @@ function SelectBook() {
 				<div className='page-gradient pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Select Book' backBtn={true} />
 					<div className='p-4 xl:p-8 w-full sm:w-3/5 md:w-1/2 lg:w-2/5 xl:w-[36%]'>
-						{selectedBook ? (
+						{selectedBook && (addBookModal || showSearchModal) ? (
 							<BookCard book={selectedBook} />
 						) : (
 							<>
@@ -91,9 +93,9 @@ function SelectBook() {
 									<p className='text-gray-600 -mt-2 px-2'>or</p>
 									<hr className='border-t-[0.1px] w-full border-gray-600' />
 								</div>
-								<div className='flex flex-col justify-between px-2'>
-									<p className='text-xl text-center font-medium py-4 xl:py-6'>Upload your own book</p>
-									<div className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136] ring-1 ring-inset ring-slate-600'>
+								<div className='flex flex-col justify-between'>
+									<p className='text-xl text-center font-medium py-4'>Upload your own book</p>
+									<div className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136]'>
 										<p className='font-size-[1.5rem] font-medium p-3 xl:p-3.5'>Add New Book</p>
 										<div
 											className='flex items-center p-3 xl:p-3.5 rounded-lg bg-[#111844]'
@@ -104,7 +106,7 @@ function SelectBook() {
 								</div>
 							</>
 						)}
-						<div className='flex items-center justify-between py-6 xl:py-8'>
+						<div className='flex items-center justify-end gap-4 w-full py-8 xl:py-10'>
 							{selectedBook && (
 								<button
 									onClick={() => setSelectedBook(null)}
@@ -121,27 +123,39 @@ function SelectBook() {
 						</div>
 					</div>
 					{showSearchModal ? (
-						<BookAddModal title='Search Book' book={selectedBook} setAddBookHandler={setShowSearchModal}>
-							<div className='relative w-full py-1.5 xl:py-[.125rem]'>
+						<BookAddModal
+							title='Search & Select Book'
+							book={selectedBook}
+							cancelBookHandler={setShowSearchModal}
+							saveBookHandler={() => {
+								setShowSearchModal(false)
+							}}>
+							<div className='relative w-full'>
 								<input
 									type='text'
 									value={keyword}
 									onChange={(e) => setKeyword(e.target.value)}
-									className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
+									className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none border-[1px] border-gray-600 bg-[#192136]'
 									placeholder='Search books'
 								/>
 								<button
 									className='absolute top-1.5 xl:top-1 right-2.5 box-border cursor-pointer rounded-full p-1'
 									onClick={searchBookHandler}>
-									<SearchIcon dimensions='h-7 w-7' />
+									<SearchIcon dimensions='h-7 w-7' color={keyword ? 'white' : '#9ca3af'} />
 								</button>
 							</div>
 							<BookListCards books={searchResult} />
 						</BookAddModal>
 					) : (
 						addBookModal && (
-							<BookAddModal title='Add New Book' setAddBookHandler={setAddBookModal}>
-								<form></form>
+							<BookAddModal
+								title='Add New Book'
+								cancelBookHandler={setAddBookModal}
+								saveBookHandler={() => {
+									setSaveBook(true)
+									setAddBookModal(false)
+								}}>
+								<BookAddForm selectBookHandler={setSelectedBook} saveBook={saveBook} />
 							</BookAddModal>
 						)
 					)}

@@ -79,7 +79,6 @@ function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editRe
 						rows='4'
 						className='input-field'
 					/>
-					{/* w-full rounded-md p-4 text-lg placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF] */}
 					<div className='flex justify-end w-full'>
 						<p className='text-sm text-gray-400'>minimum 50 characters</p>
 					</div>

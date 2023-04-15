@@ -73,21 +73,21 @@ export const getBookDetails = async (bookId) => {
 	}
 }
 
-// export const getBookReviews = async (bookId) => {
-// 	try {
-// 		const config = {
-// 			// headers: {
-// 			// 	'Content-Type': 'application/json',
-// 			// 	Accept: 'application/json',
-// 			// },
-// 		}
+export const createBook = async (book) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
 
-// 		const { data } = await axios.get(`/books/${bookId}/reviews/`, { withCredentials: true }, config)
-// 		return data
-// 	} catch (error) {
-// 		return error.response?.data.message ? error.response.data.message : error.message
-// 	}
-// }
+		const { data } = await axios.post(`/books/`, book, { withCredentials: true }, config)
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
 
 export const createBookReview = async (review) => {
 	try {

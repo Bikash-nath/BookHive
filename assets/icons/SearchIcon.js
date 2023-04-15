@@ -1,11 +1,11 @@
-export default function SearchIcon({ dimensions }) {
+export default function SearchIcon({ dimensions, color }) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			fill='none'
 			viewBox='0 0 24 24'
 			strokeWidth={2}
-			stroke='currentColor'
+			stroke={color || 'currentColor'}
 			className={dimensions}>
 			<title>Search</title>
 			<path
