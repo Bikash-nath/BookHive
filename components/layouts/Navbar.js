@@ -10,11 +10,12 @@ import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 
 function Navbar(props) {
 	const router = useRouter()
-	const currentRoute = router.asPath
+	const currentRoute = router.pathname
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	const routeClassHandler = (route) => {
+		// console.log('router', router.asPath, router.pathname)
 		return `font-medium text-xs md:sm-md mt-[0.1rem] group text-${
 			(currentRoute.includes(route) && route !== '/') || currentRoute === route ? 'white' : 'gray-400'
 		}`

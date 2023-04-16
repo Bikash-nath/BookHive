@@ -29,7 +29,7 @@ function UploadBookType() {
 	const activeClassHandler = (type) => {
 		return (
 			'flex items-center w-full rounded-lg w-full sm:w-80 my-4 p-4 gap-6 bg-[#192136]' +
-			(bookType === type ? ' border-[#8C6AFF] border-[1.2px]' : '')
+			(bookType === type ? ' border-[#8C6AFF] border-[1.8px]' : '')
 		)
 	}
 

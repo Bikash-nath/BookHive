@@ -135,7 +135,7 @@ function SelectBook() {
 									type='text'
 									value={keyword}
 									onChange={(e) => setKeyword(e.target.value)}
-									className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none border-[1px] border-gray-600 bg-[#192136]'
+									className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
 									placeholder='Search books'
 								/>
 								<button

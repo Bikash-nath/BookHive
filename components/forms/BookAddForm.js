@@ -41,7 +41,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							autoComplete='title'
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>
@@ -57,7 +57,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							onChange={(e) => setDescription(e.target.value)}
 							rows='3'
 							placeholder='Write a few sentences about this book'
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>
@@ -66,19 +66,19 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 					<label htmlFor='cover-photo' className='block text-sm font-medium leading-6 text-white'>
 						Cover photo
 					</label>
-					<div className='mt-2 flex justify-center w-1/2 rounded-lg border border-dashed border-gray-600 py-4'>
+					<div className='mt-2 flex justify-center w-2/3 rounded-lg border border-dashed border-gray-600 py-4'>
 						<div className='flex flex-col items-center justify-center'>
 							<ImageIcon />
 							<div className='flex text-sm leading-6 text-gray-400'>
 								<label
 									htmlFor='file-upload'
-									className='relative cursor-pointer rounded-md font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500'>
+									className='relative cursor-pointer rounded-md font-semibold text-[#8C6AFF] focus-within:outline-none focus-within:ring-2 focus-within:ring-[#8C6AFF] focus-within:ring-offset-2 hover:text-indigo-500'>
 									<span>Upload a file</span>
 									<input id='file-upload' name='file-upload' type='file' className='sr-only' />
 								</label>
-								<p className='pl-1'>or drag and drop</p>
+								<p className='text-sm leading-5 text-gray-400 pl-1'>or drag and drop</p>
 							</div>
-							<p className='text-sm leading-5 text-gray-600'>PNG, JPG up to 1MB</p>
+							<p className='text-sm leading-5 text-gray-400'>PNG, JPG up to 1MB</p>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							autoComplete='ISBN_10'
 							value={ISBN_10}
 							onChange={(e) => setISBN_10(e.target.value)}
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>
@@ -112,7 +112,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							autoComplete='ISBN_13'
 							value={ISBN_13}
 							onChange={(e) => setISBN_13(e.target.value)}
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>
@@ -128,7 +128,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							autoComplete='language-name'
 							value={language}
 							onChange={(e) => setLanguage(e.target.value)}
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'>
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm focus:ring-2 focus:ring-[#8C6AFF] sm:max-w-xs sm:text-sm sm:leading-6'>
 							<option>English</option>
 							<option>Hindi</option>
 							<option>Bangla</option>
@@ -150,7 +150,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							value={publisher}
 							onChange={(e) => setPublisher(e.target.value)}
 							autoComplete='publisher'
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>
@@ -167,7 +167,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							value={publicationDate}
 							onChange={(e) => setPublicationDate(e.target.value)}
 							autoComplete='address-level1'
-							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:border-0 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+							className='block w-full rounded-md border-0 px-2 py-1.5 bg-[#192136] text-white shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
 					</div>
 				</div>

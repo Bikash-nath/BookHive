@@ -16,7 +16,7 @@ function DiscoverPage(props) {
 		<Fragment>
 			<Head>
 				<title>Discover</title>
-				<meta name='description' content='Discover section' />
+				<meta name='description' content='Discover genres and languages section' />
 			</Head>
 			<div className='bg-[#0C111B] pb-16 xl:pb-8'>
 				<div className='sticky top-0 z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
