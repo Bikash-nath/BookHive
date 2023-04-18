@@ -16,6 +16,7 @@ import PlusIcon from '../../../../assets/icons/PlusIcon'
 import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../../assets/icons/ArrowIcon'
 import BookAddForm from '../../../../components/forms/BookAddForm'
+import HorizontalRuleText from '../../../../components/ui/HorizontalRuleText'
 
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -64,49 +65,36 @@ function SelectBook() {
 					icon={<PlusCircleIcon />}
 				/>
 			) : (
-				<div className='page-gradient pb-16 xl:pb-8'>
+				<div className='page-gradient relative pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Select Book' backBtn={true} />
 					<div className='p-4 xl:p-8 w-full sm:w-3/5 md:w-1/2 lg:w-2/5 xl:w-[36%]'>
 						{selectedBook && (addBookModal || showSearchModal) ? (
 							<BookCard book={selectedBook} />
 						) : (
 							<>
-								<p className='text-xl font-semibold'>{`Which book's ${bookType} you want to upload`}</p>
-								<div className='py-4 xl:py-6'>
-									<p className='text-xl font-medium text-center py-2 xl:py-4'>
-										Find book from our collection
-									</p>
-									<div className='relative w-full p-1.5 xl:p-[.125rem]'>
-										<input
-											type='text'
-											onClick={setShowSearchModal}
-											className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
-											placeholder='Search books'
-										/>
-										<button className='absolute top-1.5 xl:top-1 right-2.5 box-border cursor-pointer rounded-full p-1'>
-											<SearchIcon />
-										</button>
+								<p className='text-xl font-semibold my-4'>{`Which book's ${bookType} you want to upload`}</p>
+								<p className='text-xl font-medium text-center py-2 xl:py-4'>
+									Find book from our collection
+								</p>
+								<div
+									type='text'
+									onClick={setShowSearchModal}
+									className='font-size-[1.6rem] text-lg font-medium px-4 py-2.5 mb-2 text-gray-200 bg-[#192136] rounded-full'>
+									Search books
+								</div>
+								<HorizontalRuleText message='or' />
+								<p className='text-xl text-center font-medium py-2 xl:py-4'>Upload your own book</p>
+								<button
+									className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136]'
+									onClick={() => setAddBookModal(true)}>
+									<p className='font-size-[1.5rem] font-medium p-3 xl:p-3.5'>Add New Book</p>
+									<div className='flex items-center p-3 xl:p-3.5 rounded-lg bg-[#111844]'>
+										<PlusIcon dimensions='h-6 w-6' />
 									</div>
-								</div>
-								<div className='flex items-center relative w-full my-4 xl:my-6'>
-									<hr className='border-t-[0.1px] w-full border-gray-600' />
-									<p className='text-gray-600 -mt-2 px-2'>or</p>
-									<hr className='border-t-[0.1px] w-full border-gray-600' />
-								</div>
-								<div className='flex flex-col justify-between'>
-									<p className='text-xl text-center font-medium py-4'>Upload your own book</p>
-									<div className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136]'>
-										<p className='font-size-[1.5rem] font-medium p-3 xl:p-3.5'>Add New Book</p>
-										<div
-											className='flex items-center p-3 xl:p-3.5 rounded-lg bg-[#111844]'
-											onClick={() => setAddBookModal(true)}>
-											<PlusIcon dimensions='h-6 w-6' />
-										</div>
-									</div>
-								</div>
+								</button>
 							</>
 						)}
-						<div className='flex items-center justify-end gap-4 w-full py-8 xl:py-10'>
+						<div className='flex items-center justify-center gap-4 w-full py-8 xl:py-10'>
 							{selectedBook && (
 								<button
 									onClick={() => setSelectedBook(null)}
@@ -139,7 +127,7 @@ function SelectBook() {
 									placeholder='Search books'
 								/>
 								<button
-									className='absolute top-1.5 xl:top-1 right-2.5 box-border cursor-pointer rounded-full p-1'
+									className='absolute top-1.5 xl:top-1 right-2.5 box-border cursor-pointer rounded-full px-1.5'
 									onClick={searchBookHandler}>
 									<SearchIcon dimensions='h-7 w-7' color={keyword ? 'white' : '#9ca3af'} />
 								</button>
@@ -166,3 +154,11 @@ function SelectBook() {
 }
 
 export default SelectBook
+
+/*
+<div className='flex items-center relative w-full my-4 xl:my-6'>
+	<hr className='border-t-[0.1px] w-full border-gray-600' />
+	<p className='text-gray-600 -mt-2 px-2'>or</p>
+	<hr className='border-t-[0.1px] w-full border-gray-600' />
+</div>
+*/

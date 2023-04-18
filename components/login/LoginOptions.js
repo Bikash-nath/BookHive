@@ -1,11 +1,10 @@
 import Link from 'next/link'
+import HorizontalRuleText from '../ui/HorizontalRuleText'
 
 function LoginOptions(props) {
 	return (
-		<div className='w-full'>
-			<div className='flex items-center my-6 xl:my-8 before:mt-0.5 before:flex-1 before:border-t before:border-neutral-200 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-200'>
-				<p className='mx-4 mb-0 text-center font-medium text-sm text-gray-400'>or continue with</p>
-			</div>
+		<div className='flex flex-col gap-4 my-2 w-full'>
+			<HorizontalRuleText message='or continue with' />
 			<div className='flex space-x-4 justify-between'>
 				<button className='flex items-center justify-center w-1/2 py-3 space-x-2 border border-gray-500 rounded-lg shadow-sm hover:bg-opacity-30 hover:shadow-lg hover:-translate-y-0.5 transition duration-150'>
 					<img src='/images/google.png' alt='Google login' className='w-7' />
@@ -16,7 +15,7 @@ function LoginOptions(props) {
 					<span className='font-thin'>Facebook</span>
 				</button>
 			</div>
-			<div className='flex flex-col items-center justify-between my-6 xl:my-8 gap-2 xl:gap-4'>
+			<div className='flex flex-col items-center justify-between my-2 xl:my-4 gap-2 xl:gap-4'>
 				<p className='text-bold text-lg'>{props.accountMsg}</p>
 				<Link href={props.btnLink} className='w-full'>
 					<button className='login-btn'>

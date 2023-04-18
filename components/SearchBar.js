@@ -38,7 +38,7 @@ export default function SearchBar(props) {
 	}
 
 	return (
-		<div className='flex items-center justify-center w-full gap-1 md:gap-2 xl:gap-3'>
+		<div className='flex items-center justify-center w-full gap-0 md:gap-2 xl:gap-3'>
 			{activeSearch ? (
 				<div
 					className='flex items-center justify-center cursor-pointer'
