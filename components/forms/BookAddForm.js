@@ -2,7 +2,9 @@ import { useState, useEffect, useContext } from 'react'
 
 import SnackbarContext from '../../store/snackbarContext'
 import { createBook } from '../../API/books'
+import GenreListModal from '../../components/modals/GenreListModal'
 import ImageIcon from '../../assets/icons/ImageIcon'
+import PlusIcon from '../../assets/icons/PlusIcon'
 
 function BookAddForm({ selectBookHandler, saveBook }) {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -14,6 +16,8 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 	const [language, setLanguage] = useState('')
 	const [publisher, setPublisher] = useState('')
 	const [publicationDate, setPublicationDate] = useState('')
+	const [genre, setGenre] = useState('')
+	const [genreList, setGenreList] = useState([])
 
 	useEffect(() => {
 		if (saveBook) {
@@ -25,6 +29,13 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 			})()
 		}
 	}, [saveBook])
+
+	const genreAddHandler = () => {
+		if (genre?.length > 2) {
+			setGenreList([...genreList, genre])
+			setGenre('')
+		} else snackbarCtx.addMessage({ title: 'Please enter a valid genre' })
+	}
 
 	return (
 		<form>
@@ -123,7 +134,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 					</div>
 				</div>
 
-				<div className='sm:col-span-3'>
+				<div className='col-span-full'>
 					<label htmlFor='language' className='block text-sm font-medium leading-6 text-white'>
 						Language
 					</label>
@@ -175,6 +186,32 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							autoComplete='publication-date'
 							className='block w-full rounded-md border-[1px] px-2 py-1.5 bg-[#192136] text-white shadow-sm border-gray-700 placeholder:text-gray-400 focus:border-2 focus:border-[#8C6AFF] sm:text-sm sm:leading-6'
 						/>
+					</div>
+				</div>
+
+				<div className='col-span-full'>
+					<div className='flex flex-wrap items-center justify-start gap-4'>
+						{genreList?.map((genre, i) => (
+							<button
+								className='rounded-full py-1 px-2 xl:p-2 xl:px-3 font-medium bg-[#334366] text-white'
+								key={i}>
+								{genre}
+							</button>
+						))}
+					</div>
+					<div className='relative my-4'>
+						<input
+							value={genre}
+							onChange={(e) => setGenre(e.target.value)}
+							placeholder='Add genre'
+							type='text'
+							className='input-field box-border'
+						/>
+						<div
+							className='absolute top-3.5 right-1.5 bg-[#111844] p-3 xl:p-3.5 rounded-lg box-border cursor-pointer'
+							onClick={genreAddHandler}>
+							<PlusIcon dimensions='h-6 w-6' />
+						</div>
 					</div>
 				</div>
 			</div>
