@@ -1,16 +1,16 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import Image from 'next/image'
 import openLink from '../../utils/helpers/openLink'
 
 function BookListCards({ books, selectedBook, selectBookHandler }) {
 	// const selectBookHandler=(book)=>{}
-
+	console.log('selectBookHandler', selectBookHandler)
 	return books?.map((book, i) => (
 		<div className='flex flex-row' key={i}>
 			<div
 				className={
-					'flex items-start relative rounded-md w-full h-[8.5rem] my-[.1rem] p-1 bg-[#192132]  border-[1.2px] cursor-pointer group-hover:flex' +
-					(selectedBook?._id === book._id ? ' border-green-700' : 'border-slate-900')
+					'flex items-start relative rounded-md w-full h-[8.5rem] my-[.1rem] p-1 bg-[#192132] border-[1.2px] focus:border-4 cursor-pointer group-hover:flex' +
+					(selectedBook?._id === book._id ? ' border-green-600' : 'border-slate-900')
 				}
 				onClick={() => selectBookHandler(book)}>
 				<Image
@@ -24,7 +24,7 @@ function BookListCards({ books, selectedBook, selectBookHandler }) {
 					<p className='font-medium text-lg leading-5 line-clamp-2 text-white '>{book.title}</p>
 					<p className='text-base font-medium truncate text-gray-200 py-1.5'>{`By ${book.author.name}`}</p>
 				</div>
-				<div className='flex flex-col items-end justify-between w-1/6 m-1'>
+				<div className='flex flex-col items-end justify-between h-full w-1/6 py-2 m-1'>
 					<input
 						type='checkbox'
 						value='copyright'

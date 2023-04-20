@@ -1,16 +1,19 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 
 import SpinnerContext from '../../store/spinnerContext'
+import SnackbarContext from '../../store/snackbarContext'
 import { searchBooks } from '../../API/books'
 import BookListCards from '../../components/cards/BookListCards'
 import SearchIcon from '../../assets/icons/SearchIcon'
 
-function BookSearchModal({ selectBookHandler }) {
+function BookSearchModal({ selectedBook, selectBookHandler }) {
 	const { toggleSpinner } = useContext(SpinnerContext)
+	const snackbarCtx = useContext(SnackbarContext)
 	const [searchResult, setSearchResult] = useState([])
 	const [keyword, setKeyword] = useState('')
 
 	const searchBookHandler = async () => {
+		if (!keyword) return
 		toggleSpinner(true)
 		const result = await searchBooks({ keyword })
 		console.log('result', result)
@@ -26,7 +29,7 @@ function BookSearchModal({ selectBookHandler }) {
 					type='text'
 					value={keyword}
 					onChange={(e) => setKeyword(e.target.value)}
-					className='w-full box-border h-10 p-4 text-white text-lg rounded-full focus:outline-none bg-gray-800'
+					className='w-full box-border h-10 p-4 text-white text-lg rounded-full bg-slate-700 outline-none focus:outline-2 focus:outline-slate-500 focus:bg-slate-700'
 					placeholder='Search books'
 				/>
 				<button
@@ -35,7 +38,7 @@ function BookSearchModal({ selectBookHandler }) {
 					<SearchIcon dimensions='h-7 w-7' color={keyword ? 'white' : '#9ca3af'} />
 				</button>
 			</div>
-			<BookListCards books={searchResult} selectBookHandler={selectBookHandler} />
+			<BookListCards books={searchResult} selectedBook={selectedBook} selectBookHandler={selectBookHandler} />
 		</>
 	)
 }

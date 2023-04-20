@@ -106,7 +106,7 @@ function SelectBook() {
 									setShowSearchModal(false)
 								} else snackbarCtx.addMessage({ title: 'Please search and select a book' })
 							}}>
-							<BookSearchModal selectBookHandler={setSelectedBook} />
+							<BookSearchModal selectedBook={selectedBook} selectBookHandler={setSelectedBook} />
 						</BookAddModal>
 					) : (
 						addBookModal && (
@@ -117,7 +117,7 @@ function SelectBook() {
 									if (selectedBook) {
 										setSaveBook(true)
 										setAddBookModal(false)
-									} else snackbarCtx.addMessage({ title: 'Please save this book' })
+									} else snackbarCtx.addMessage({ title: 'Please enter correct book details' })
 								}}>
 								<BookAddForm selectBookHandler={setSelectedBook} saveBook={saveBook} />
 							</BookAddModal>

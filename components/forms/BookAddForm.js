@@ -5,6 +5,7 @@ import { createBook } from '../../API/books'
 import GenreListModal from '../../components/modals/GenreListModal'
 import ImageIcon from '../../assets/icons/ImageIcon'
 import PlusIcon from '../../assets/icons/PlusIcon'
+import CrossIcon from '../../assets/icons/CrossIcon'
 
 function BookAddForm({ selectBookHandler, saveBook }) {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -190,13 +191,14 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 				</div>
 
 				<div className='col-span-full'>
-					<div className='flex flex-wrap items-center justify-start gap-4'>
+					<div className='flex flex-wrap items-center justify-start gap-x-4'>
 						{genreList?.map((genre, i) => (
-							<button
-								className='rounded-full py-1 px-2 xl:p-2 xl:px-3 font-medium bg-[#334366] text-white'
-								key={i}>
-								{genre}
-							</button>
+							<div className='flex rounded-full bg-[#334366] text-white' key={i}>
+								<p className='font-medium py-1 px-2 xl:p-2 xl:px-3 '>{genre}</p>
+								<div className='rounded-full bg-slate-700 p-2 cursor-pointer'>
+									<CrossIcon />
+								</div>
+							</div>
 						))}
 					</div>
 					<div className='relative my-4'>
@@ -205,10 +207,11 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							onChange={(e) => setGenre(e.target.value)}
 							placeholder='Add genre'
 							type='text'
+							style={{ padding: '0.75rem' }}
 							className='input-field box-border'
 						/>
 						<div
-							className='absolute top-3.5 right-1.5 bg-[#111844] p-3 xl:p-3.5 rounded-lg box-border cursor-pointer'
+							className='absolute top-2.5 right-0.5 bg-[#111844] p-3.5 rounded-lg box-border cursor-pointer'
 							onClick={genreAddHandler}>
 							<PlusIcon dimensions='h-6 w-6' />
 						</div>

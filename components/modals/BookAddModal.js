@@ -25,7 +25,7 @@ function BookAddModal(props) {
 						<h2 className='text-lg font-semibold text-white'>{props.title}</h2>
 					</div>
 					{props.children}
-					<div className='flex flex-row-reverse border-t border-slate-700 gap-4 mt-2 py-4 xl:py-6'>
+					<div className='flex flex-row-reverse border-t border-slate-700 gap-4 mt-2 pt-4 xl:pt-6'>
 						<button
 							className={props.book ? 'btn-next' : 'btn-next-inactive'}
 							onClick={props.saveBookHandler}>
