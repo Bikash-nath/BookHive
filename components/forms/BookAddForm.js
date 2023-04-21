@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from 'react'
 
 import SnackbarContext from '../../store/snackbarContext'
 import { createBook } from '../../API/books'
-import GenreListModal from '../../components/modals/GenreListModal'
 import ImageIcon from '../../assets/icons/ImageIcon'
 import PlusIcon from '../../assets/icons/PlusIcon'
 import CrossIcon from '../../assets/icons/CrossIcon'
+import SelectMenu from '../ui/SelectMenu'
 
-function BookAddForm({ selectBookHandler, saveBook }) {
+function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
@@ -17,7 +17,7 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 	const [language, setLanguage] = useState('')
 	const [publisher, setPublisher] = useState('')
 	const [publicationDate, setPublicationDate] = useState('')
-	const [genre, setGenre] = useState('')
+	const [inputGenre, setInputGenre] = useState('')
 	const [genreList, setGenreList] = useState([])
 
 	useEffect(() => {
@@ -25,17 +25,21 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 			;(async () => {
 				const book = { title, description, ISBN_10, ISBN_13, image, language, publisher, publicationDate }
 				const data = await createBook(book)
-				if (!data.book) snackbarCtx.addMessage({ title: data })
-				else selectBookHandler(data.book)
+				if (!data.book) snackbarCtx.addMessage({ title: data, status: 'fail' })
+				else {
+					selectBookHandler(data.book)
+					setAddBookModal(false)
+				}
+				//  else snackbarCtx.addMessage({ title: 'Please enter correct book details' })
 			})()
 		}
 	}, [saveBook])
 
 	const genreAddHandler = () => {
-		if (genre?.length > 2) {
-			setGenreList([...genreList, genre])
-			setGenre('')
-		} else snackbarCtx.addMessage({ title: 'Please enter a valid genre' })
+		if (inputGenre?.length > 2) {
+			setGenreList([...genreList, inputGenre])
+			setInputGenre('')
+		} else snackbarCtx.addMessage({ title: 'Please enter a valid genre', status: 'fail' })
 	}
 
 	return (
@@ -136,26 +140,14 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 				</div>
 
 				<div className='col-span-full'>
-					<label htmlFor='language' className='block text-sm font-medium leading-6 text-white'>
-						Language
-					</label>
-					<div className='mt-1.5'>
-						<select
-							id='language'
-							name='language'
-							autoComplete='language-name'
-							value={language}
-							onChange={(e) => setLanguage(e.target.value)}
-							className='block w-full rounded-md border-[1px] p-2 bg-[#192136] text-white shadow-sm focus:border-2 focus:border-[#8C6AFF] sm:max-w-xs sm:text-sm sm:leading-6'>
-							<option>English</option>
-							<option>Hindi</option>
-							<option>Bangla</option>
-							<option>Punjabi</option>
-							<option>Marathi</option>
-							<option>Telugu</option>
-						</select>
-					</div>
+					<SelectMenu
+						title='Language'
+						selectedOption={language}
+						selectOptionHandler={setLanguage}
+						options={['English', 'Hindi', 'Bangla', 'Punjabi', 'Marathi', 'Telugu']}
+					/>
 				</div>
+
 				<div className='sm:col-span-3 sm:col-start-1'>
 					<label htmlFor='publisher' className='block text-sm font-medium leading-6 text-white'>
 						Publisher
@@ -196,15 +188,15 @@ function BookAddForm({ selectBookHandler, saveBook }) {
 							<div className='flex rounded-full bg-[#334366] text-white' key={i}>
 								<p className='font-medium py-1 px-2 xl:p-2 xl:px-3 '>{genre}</p>
 								<div className='rounded-full bg-slate-700 p-2 cursor-pointer'>
-									<CrossIcon />
+									<CrossIcon dimensions='h-6 w-6' color='#334366' />
 								</div>
 							</div>
 						))}
 					</div>
 					<div className='relative my-4'>
 						<input
-							value={genre}
-							onChange={(e) => setGenre(e.target.value)}
+							value={inputGenre}
+							onChange={(e) => setInputGenre(e.target.value)}
 							placeholder='Add genre'
 							type='text'
 							style={{ padding: '0.75rem' }}

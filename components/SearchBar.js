@@ -6,9 +6,9 @@ import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
 import NavigateBackButton from './ui/NavigateBackButton'
 
 export default function SearchBar(props) {
+	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 	const router = useRouter()
 	const inputRef = useRef(null)
-	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
 	const [keyword, setKeyword] = useState(router.query.keyword || '')
 	const [prevRoute, setPrevRoute] = useState(false) //updated keyword after navigating back

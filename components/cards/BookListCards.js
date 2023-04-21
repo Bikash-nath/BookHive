@@ -1,16 +1,14 @@
-// import { useState } from 'react'
+// import { useEffect } from 'react'
 import Image from 'next/image'
 import openLink from '../../utils/helpers/openLink'
 
 function BookListCards({ books, selectedBook, selectBookHandler }) {
-	// const selectBookHandler=(book)=>{}
-	console.log('selectBookHandler', selectBookHandler)
 	return books?.map((book, i) => (
 		<div className='flex flex-row' key={i}>
 			<div
 				className={
-					'flex items-start relative rounded-md w-full h-[8.5rem] my-[.1rem] p-1 bg-[#192132] border-[1.2px] focus:border-4 cursor-pointer group-hover:flex' +
-					(selectedBook?._id === book._id ? ' border-green-600' : 'border-slate-900')
+					'flex items-start relative rounded-md w-full h-[8.5rem] my-[.1rem] p-1 bg-[#192132] cursor-pointer group-hover:flex' +
+					(selectedBook?._id === book._id ? ' border-4 border-green-600' : 'border-[1.2px] border-slate-900')
 				}
 				onClick={() => selectBookHandler(book)}>
 				<Image

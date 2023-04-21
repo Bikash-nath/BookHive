@@ -11,9 +11,11 @@ import PageHeader from '../../../../components/layouts/PageHeader'
 import BookAddForm from '../../../../components/forms/BookAddForm'
 import BookSearchModal from '../../../../components/modals/BookSearchModal'
 import HorizontalRuleText from '../../../../components/ui/HorizontalRuleText'
+import SelectMenu from '../../../../components/ui/SelectMenu'
 import PlusIcon from '../../../../assets/icons/PlusIcon'
 import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../../assets/icons/ArrowIcon'
+import DocumentPlusIcon from '../../../../assets/icons/DocumentPlusIcon'
 
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -22,8 +24,10 @@ function SelectBook() {
 	const [activeUser, setActiveUser] = useState(null)
 	const [showSearchModal, setShowSearchModal] = useState(false)
 	const [addBookModal, setAddBookModal] = useState(false)
-	const [selectedBook, setSelectedBook] = useState(null)
 	const [saveBook, setSaveBook] = useState(false)
+	const [selectedBook, setSelectedBook] = useState(null)
+	const [selectedBookType, setSelectedBookType] = useState(null)
+	const [selectedFileType, setSelectedFileType] = useState(null)
 
 	const router = useRouter()
 	const bookType = router.asPath.split('uploads/')[1].split('/select-book')[0]
@@ -54,31 +58,66 @@ function SelectBook() {
 				<div className='page-gradient relative pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Select Book' backBtn={true} />
 					<div className='p-4 xl:p-8 w-full sm:w-3/5 md:w-1/2 lg:w-2/5 xl:w-[36%]'>
-						{selectedBook && (addBookModal || showSearchModal) ? (
+						{selectedBook && !(addBookModal || showSearchModal) ? (
 							<BookCard book={selectedBook} />
 						) : (
-							<>
+							<Fragment>
 								<p className='text-xl font-semibold my-4'>{`Which book's ${bookType} you want to upload`}</p>
-								<p className='text-xl font-medium text-center py-2 xl:py-4'>
-									Find book from our collection
-								</p>
+								<p className='text-xl font-medium text-center py-2'>Find book from our collection</p>
 								<div
 									type='text'
 									onClick={setShowSearchModal}
-									className='font-size-[1.6rem] text-lg text-gray-200 font-medium px-4 py-2.5 mb-2 bg-[#192136] rounded-full cursor-pointer'>
+									className='font-medium text-lg font-size-[1.6rem] text-gray-200 px-4 py-2.5 mb-2 bg-[#192136] rounded-full cursor-pointer'>
 									Search books
 								</div>
 								<HorizontalRuleText message='or' />
-								<p className='text-xl text-center font-medium py-2 xl:py-4'>Upload your own book</p>
+								<p className='text-xl text-center font-medium pb-2'>Upload your own book</p>
 								<button
 									className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136]'
 									onClick={() => setAddBookModal(true)}>
-									<p className='font-size-[1.5rem] font-medium p-3 xl:p-3.5'>Add New Book</p>
-									<div className='flex items-center p-3 xl:p-3.5 rounded-lg bg-[#111844]'>
+									<p className='font-medium font-size-[1.6rem] px-3 py-2 xl:px-3.5 xl:py-2.5'>
+										Add New Book
+									</p>
+									<div className='flex items-center p-3 xl:px-3.5 rounded-lg bg-[#111844]'>
 										<PlusIcon dimensions='h-6 w-6' />
 									</div>
 								</button>
-							</>
+
+								<div className='flex w-full gap-4 my-8'>
+									<SelectMenu
+										title='Select Book Type'
+										selectedOption={selectedBookType}
+										selectOptionHandler={setSelectedBookType}
+										options={['eBook', 'audiobook']}
+									/>
+									<SelectMenu
+										title='Select File Type'
+										selectedOption={selectedFileType}
+										selectOptionHandler={setSelectedFileType}
+										options={selectedBookType == 'eBook' ? ['ePub', 'PDF'] : ['mp3', 'm4b']}
+									/>
+								</div>
+
+								<div className='mt-1.5 flex justify-center w-2/3 rounded-lg border border-dashed border-gray-600 py-4'>
+									<div className='flex flex-col items-center justify-center gap-2'>
+										<DocumentPlusIcon dimensions='h-8 w-8' />
+										<div className='flex text-sm leading-6 text-gray-400'>
+											<label
+												htmlFor='file-upload'
+												className='relative cursor-pointer rounded-md font-semibold text-[#8C6AFF] focus-within:outline-none focus-within:border-2 focus-within:border-[#8C6AFF] focus-within:border-offset-2 hover:text-indigo-500'>
+												<span>Upload a file</span>
+												<input
+													id='file-upload'
+													name='file-upload'
+													type='file'
+													onSelect={(e) => console.log('File event', e)}
+													className='sr-only'
+												/>
+											</label>
+										</div>
+									</div>
+								</div>
+							</Fragment>
 						)}
 						<div className='flex items-center justify-center gap-4 w-full py-8 xl:py-10'>
 							{selectedBook && (
@@ -102,9 +141,8 @@ function SelectBook() {
 							book={selectedBook}
 							cancelBookHandler={setShowSearchModal}
 							saveBookHandler={() => {
-								if (selectedBook) {
-									setShowSearchModal(false)
-								} else snackbarCtx.addMessage({ title: 'Please search and select a book' })
+								if (selectedBook) setShowSearchModal(false)
+								else snackbarCtx.addMessage({ title: 'Please search and select a book' })
 							}}>
 							<BookSearchModal selectedBook={selectedBook} selectBookHandler={setSelectedBook} />
 						</BookAddModal>
@@ -113,13 +151,12 @@ function SelectBook() {
 							<BookAddModal
 								title='Add New Book'
 								cancelBookHandler={setAddBookModal}
-								saveBookHandler={() => {
-									if (selectedBook) {
-										setSaveBook(true)
-										setAddBookModal(false)
-									} else snackbarCtx.addMessage({ title: 'Please enter correct book details' })
-								}}>
-								<BookAddForm selectBookHandler={setSelectedBook} saveBook={saveBook} />
+								saveBookHandler={() => setSaveBook(true)}>
+								<BookAddForm
+									saveBook={saveBook}
+									selectBookHandler={setSelectedBook}
+									setAddBookModal={setAddBookModal}
+								/>
 							</BookAddModal>
 						)
 					)}

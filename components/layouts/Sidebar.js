@@ -42,7 +42,7 @@ function Sidebar() {
 
 	return (
 		showRoute && (
-			<div className='overflow-x-hidden hide-scrollbar inline-block sticky top-0 select-none min-h-[40rem] h-screen w-[13.5vw] max-w-[20rem] bg-[#030b17] space-y-5 p-2'>
+			<div className='inline-block sticky top-0 min-h-[40rem] h-screen w-[13.5vw] max-w-[20rem] overflow-x-hidden hide-scrollbar select-none bg-[#030b17] space-y-5 p-2'>
 				<div className='flex items-center space-x-20'>
 					<Logo size={46} />
 				</div>
