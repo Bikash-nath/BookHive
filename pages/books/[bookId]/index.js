@@ -204,14 +204,14 @@ function BookDetailPage(props) {
 						<div className='flex items-center justify-center xl:items-start xl:justify-start max-w-lg min-w-[20rem]'>
 							<p className='text-xl xl:text-2xl text-center xl:text-left font-medium'>{book.title}</p>
 						</div>
-						<Link href={`/authors/${book.author.slug}`}>
-							<div className='text-md md:text-lg text-center xl:text-left '>
+						<div className='text-md md:text-lg text-center xl:text-left '>
+							<Link href={`/authors/${book.author.slug}`}>
 								By <p className='font-medium inline-block'>{book.author.name}</p>
 								<div className='inline-block px-[2px] py-[1px]'>
 									<ChevronRightIcon dimensions='h-4 w-4' />
 								</div>
-							</div>
-						</Link>
+							</Link>
+						</div>
 						<div className='text-center xl:text-left'>
 							{book.ratingsAvg ? (
 								<div className='flex items-center justify-center xl:justify-start text-md md:text-lg text-xl w-full font-medium'>

@@ -30,7 +30,7 @@ function LoginEmailPage() {
 			userCtx.addUser(user)
 			snackbarCtx.addMessage({ title: 'Log in successfull', status: 'success' })
 		} else {
-			snackbarCtx.addMessage({ title: user })
+			snackbarCtx.addMessage({ title: user, status: 'invalid' })
 		}
 		setLoading(false)
 	}

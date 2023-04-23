@@ -8,11 +8,10 @@ import ListGridModal from '../components/modals/ListGridModal'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
 import Paginate from '../components/widgets/Paginate'
-import SortIcon from '../assets/icons/SortIcon'
+// import SortItems from '../components/ui/SortItems'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])
-	const [showSortOption, setShowSortOption] = useState(false)
 	const router = useRouter()
 	const keyword = router.query.keyword
 
@@ -40,9 +39,7 @@ function SearchPage() {
 			<div className='h-full'>
 				<div className='flex gap-1 w-full sm:w-3/5 md:w-1/2 p-1 xl:p-2'>
 					<SearchBar />
-					<button className='flex justify-center items-center px-1' onClick={() => setShowSortOption(true)}>
-						<SortIcon dimensions='h-7 w-7' />
-					</button>
+					{/* <SortItems/> */}
 				</div>
 				{searchResult?.length ? (
 					<div className='pb-16 xl:pb-8'>

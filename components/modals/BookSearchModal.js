@@ -35,7 +35,7 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 					value={keyword}
 					onChange={(e) => setKeyword(e.target.value)}
 					ref={inputRef}
-					className='w-full box-border h-10 p-4 text-white text-lg rounded-full bg-slate-700 outline-none focus:outline-2 focus:outline-slate-500 focus:bg-slate-700'
+					className='w-full box-border h-10 p-4 text-white text-lg rounded-full bg-slate-700 outline-none focus:ring-1 focus:ring-[#8C6AFF]'
 					placeholder='Search books'
 				/>
 				<button

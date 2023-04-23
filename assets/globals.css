@@ -85,6 +85,10 @@
 	@apply w-full my-2 p-3.5 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
 }
 
+.form-input {
+	@apply block w-full rounded-md px-2 py-1.5 bg-[#192136] text-white shadow-sm placeholder:text-gray-400 focus:outline-none ring-1 ring-gray-500 focus:ring-2 focus:ring-[#8C6AFF] sm:text-sm sm:leading-6;
+}
+
 @layer components {
 	body {
 		font-family: 'Merriweather Sans', sans-serif;

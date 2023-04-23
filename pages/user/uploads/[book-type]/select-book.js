@@ -16,6 +16,7 @@ import PlusIcon from '../../../../assets/icons/PlusIcon'
 import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../../assets/icons/ArrowIcon'
 import DocumentPlusIcon from '../../../../assets/icons/DocumentPlusIcon'
+import CloseIcon from '../../../../assets/icons/CloseIcon'
 
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -38,7 +39,7 @@ function SelectBook() {
 
 	const nextPageHandler = () => {
 		if (!selectedBook) snackbarCtx.addMessage({ title: 'Please select a book which you want to upload' })
-		else router.push('')
+		else router.push('/user/uploads')
 	}
 
 	return (
@@ -59,7 +60,16 @@ function SelectBook() {
 					<PageHeader pageTitle='Select Book' backBtn={true} />
 					<div className='p-4 xl:p-8 w-full sm:w-3/5 md:w-1/2 lg:w-2/5 xl:w-[36%]'>
 						{selectedBook && !(addBookModal || showSearchModal) ? (
-							<BookCard book={selectedBook} />
+							<div className='flex items-center justify-start w-fit relative'>
+								<BookCard book={selectedBook} />
+								{selectedBook && (
+									<button
+										onClick={() => setSelectedBook(null)}
+										className='absolute top-0.5 right-0.5 xl:top-2'>
+										<CloseIcon dimensions='h-7 w-7' color='#8C6AFF' />
+									</button>
+								)}
+							</div>
 						) : (
 							<Fragment>
 								<p className='text-xl font-semibold my-4'>{`Which book's ${bookType} you want to upload`}</p>
@@ -67,7 +77,7 @@ function SelectBook() {
 								<div
 									type='text'
 									onClick={setShowSearchModal}
-									className='font-medium text-lg font-size-[1.6rem] text-gray-200 px-4 py-2.5 mb-2 bg-[#192136] rounded-full cursor-pointer'>
+									className='font-medium text-lg text-gray-200 px-4 py-2.5 mb-2 bg-[#192136] rounded-full cursor-pointer'>
 									Search books
 								</div>
 								<HorizontalRuleText message='or' />
@@ -75,15 +85,16 @@ function SelectBook() {
 								<button
 									className='flex items-center justify-between rounded-lg w-full sm:mr-8 gap-6 bg-[#192136]'
 									onClick={() => setAddBookModal(true)}>
-									<p className='font-medium font-size-[1.6rem] px-3 py-2 xl:px-3.5 xl:py-2.5'>
-										Add New Book
-									</p>
+									<p className='font-medium px-3 py-2 xl:px-3.5 xl:py-2.5'>Add New Book</p>
 									<div className='flex items-center p-3 xl:px-3.5 rounded-lg bg-[#111844]'>
 										<PlusIcon dimensions='h-6 w-6' />
 									</div>
 								</button>
-
-								<div className='flex w-full gap-4 my-8'>
+							</Fragment>
+						)}
+						{selectedBook && !(addBookModal || showSearchModal) && (
+							<>
+								<div className='flex flex-col w-full gap-4 my-8'>
 									<SelectMenu
 										title='Select Book Type'
 										selectedOption={selectedBookType}
@@ -117,20 +128,20 @@ function SelectBook() {
 										</div>
 									</div>
 								</div>
-							</Fragment>
+							</>
 						)}
 						<div className='flex items-center justify-center gap-4 w-full py-8 xl:py-10'>
-							{selectedBook && (
-								<button
-									onClick={() => setSelectedBook(null)}
-									className='text-center px-3 py-2 border border-[#8C6AFF] rounded-3xl'>
-									<span>Change</span>
-								</button>
-							)}
 							<button
 								onClick={nextPageHandler}
-								className={selectedBook ? 'btn-next' : 'btn-next-inactive'}>
-								<span>Next</span>
+								className={
+									selectedBook &&
+									selectedBookType &&
+									selectedFileType &&
+									!(addBookModal || showSearchModal)
+										? 'btn-next'
+										: 'btn-next-inactive'
+								}>
+								<span>Upload</span>
 								<ArrowIcon />
 							</button>
 						</div>
@@ -141,8 +152,10 @@ function SelectBook() {
 							book={selectedBook}
 							cancelBookHandler={setShowSearchModal}
 							saveBookHandler={() => {
-								if (selectedBook) setShowSearchModal(false)
-								else snackbarCtx.addMessage({ title: 'Please search and select a book' })
+								if (selectedBook) {
+									setShowSearchModal(false)
+									document.body.style.overflowY = 'auto'
+								} else snackbarCtx.addMessage({ title: 'Please search and select a book' })
 							}}>
 							<BookSearchModal selectedBook={selectedBook} selectBookHandler={setSelectedBook} />
 						</BookAddModal>
@@ -151,7 +164,10 @@ function SelectBook() {
 							<BookAddModal
 								title='Add New Book'
 								cancelBookHandler={setAddBookModal}
-								saveBookHandler={() => setSaveBook(true)}>
+								saveBookHandler={() => {
+									setSaveBook(true)
+									document.body.style.overflowY = 'auto'
+								}}>
 								<BookAddForm
 									saveBook={saveBook}
 									selectBookHandler={setSelectedBook}
