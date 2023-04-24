@@ -21,7 +21,7 @@ function DiscoverPage(props) {
 			<div className='bg-[#0C111B] pb-16 xl:pb-8'>
 				<div className='sticky top-0 z-10 bg-gradient-to-b from-[#101621] to-[#0C111B]'>
 					<PageHeader pageTitle='Discover' />
-					<div className='p-1 pb-2 xl:p-2 xl:pb-3 xl:px-5 sm:w-3/5 md:w-1/2'>
+					<div className='px-4 pb-2 xl:p-2 xl:pb-3 xl:px-5 sm:w-3/5 md:w-1/2'>
 						<SearchBar />
 					</div>
 				</div>

@@ -28,8 +28,8 @@ function UploadBookType() {
 
 	const activeClassHandler = (type) => {
 		return (
-			'flex items-center w-full rounded-lg w-full sm:w-80 my-4 p-4 gap-6 bg-[#192136]' +
-			(bookType === type ? ' border-[#8C6AFF] border-[1.8px]' : '')
+			'flex items-center w-full rounded-lg w-full sm:w-80 my-6 p-4 gap-6 ring-2 ' +
+			(bookType === type ? 'bg-purple-100 ring-[#8C6AFF]' : 'bg-[#192136] ring-[#192136]')
 		)
 	}
 
@@ -49,9 +49,13 @@ function UploadBookType() {
 			) : (
 				<div className='page-gradient pb-16 xl:pb-8'>
 					<PageHeader pageTitle='Select Book Type' backBtn={true} />
-					<div className='p-4 xl:p-6'>
+					<div className='p-6'>
 						<p className='text-xl font-bold p-2'>What do you want to upload?</p>
 
+						<button className={activeClassHandler('orignal')} onClick={() => setBookType('orignal')}>
+							<BookReadIcon dimensions='h-7 w-7' />
+							<p className='text-lg font-medium'>Orignal Book</p>
+						</button>
 						<button className={activeClassHandler('summary')} onClick={() => setBookType('summary')}>
 							<BookReadIcon dimensions='h-7 w-7' />
 							<p className='text-lg font-medium'>Book Summary</p>

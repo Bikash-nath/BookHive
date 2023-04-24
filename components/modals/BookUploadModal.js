@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-function BookAddModal(props) {
+function BookUploadModal(props) {
 	const modalRef = useRef()
 
 	useEffect(() => {
@@ -41,4 +41,4 @@ function BookAddModal(props) {
 	)
 }
 
-export default BookAddModal
+export default BookUploadModal

@@ -57,7 +57,7 @@ export default function SearchBar(props) {
 			) : (
 				<></>
 			)}
-			<div className='relative w-full p-1.5 xl:p-[.125rem]'>
+			<div className='relative w-full px-0.5 py-1.5 xl:p-[.125rem]'>
 				<input
 					type='text'
 					value={keyword}

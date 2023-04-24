@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 
 import UserContext from '../../../../store/userContext'
 import SnackbarContext from '../../../../store/snackbarContext'
-import BookAddModal from '../../../../components/modals/BookAddModal'
+import BookUploadModal from '../../../../components/modals/BookUploadModal'
 import BookCard from '../../../../components/cards/BookCard'
 import LoginBanner from '../../../../components/login/LoginBanner'
 import PageHeader from '../../../../components/layouts/PageHeader'
-import BookAddForm from '../../../../components/forms/BookAddForm'
+import BookUploadForm from '../../../../components/forms/BookUploadForm'
 import BookSearchModal from '../../../../components/modals/BookSearchModal'
 import HorizontalRuleText from '../../../../components/ui/HorizontalRuleText'
 import SelectMenu from '../../../../components/ui/SelectMenu'
@@ -17,6 +17,7 @@ import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
 import ArrowIcon from '../../../../assets/icons/ArrowIcon'
 import DocumentPlusIcon from '../../../../assets/icons/DocumentPlusIcon'
 import CloseIcon from '../../../../assets/icons/CloseIcon'
+import UploadIcon from '../../../../assets/icons/UploadIcon'
 
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
@@ -142,12 +143,12 @@ function SelectBook() {
 										: 'btn-next-inactive'
 								}>
 								<span>Upload</span>
-								<ArrowIcon />
+								<UploadIcon dimensions='h-7 w-7' />
 							</button>
 						</div>
 					</div>
 					{showSearchModal ? (
-						<BookAddModal
+						<BookUploadModal
 							title='Search & Select Book'
 							book={selectedBook}
 							cancelBookHandler={setShowSearchModal}
@@ -158,22 +159,22 @@ function SelectBook() {
 								} else snackbarCtx.addMessage({ title: 'Please search and select a book' })
 							}}>
 							<BookSearchModal selectedBook={selectedBook} selectBookHandler={setSelectedBook} />
-						</BookAddModal>
+						</BookUploadModal>
 					) : (
 						addBookModal && (
-							<BookAddModal
+							<BookUploadModal
 								title='Add New Book'
 								cancelBookHandler={setAddBookModal}
 								saveBookHandler={() => {
 									setSaveBook(true)
 									document.body.style.overflowY = 'auto'
 								}}>
-								<BookAddForm
+								<BookUploadForm
 									saveBook={saveBook}
 									selectBookHandler={setSelectedBook}
 									setAddBookModal={setAddBookModal}
 								/>
-							</BookAddModal>
+							</BookUploadModal>
 						)
 					)}
 				</div>
@@ -183,11 +184,3 @@ function SelectBook() {
 }
 
 export default SelectBook
-
-/*
-<div className='flex items-center relative w-full my-4 xl:my-6'>
-	<hr className='border-t-[0.1px] w-full border-gray-600' />
-	<p className='text-gray-600 -mt-2 px-2'>or</p>
-	<hr className='border-t-[0.1px] w-full border-gray-600' />
-</div>
-*/

@@ -47,7 +47,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 		<form>
 			<div className='grid grid-cols-6 gap-x-6 gap-y-8'>
 				<div className='col-span-6'>
-					<label htmlFor='title' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='title' className='block text-sm font-medium leading-6 text-white'>
 						Title<span className='text-red-600 mx-1'>*</span>
 					</label>
 					<div className='mt-1.5'>
@@ -63,7 +63,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 					</div>
 				</div>
 				<div className='col-span-6'>
-					<label htmlFor='description' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='description' className='block text-sm font-medium leading-6 text-white'>
 						Description<span className='text-red-600 mx-1'>*</span>
 					</label>
 					<div className='mt-1.5'>
@@ -80,13 +80,13 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 				</div>
 
 				<div className='col-span-6'>
-					<label htmlFor='cover-photo' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='cover-photo' className='block text-sm font-medium leading-6 text-white'>
 						Cover photo<span className='text-red-600 mx-1'>*</span>
 					</label>
 					<div className='mt-1.5 flex justify-center w-2/3 rounded-lg border border-dashed border-gray-600 py-4'>
 						<div className='flex flex-col items-center justify-center pb-1'>
 							<ImageIcon />
-							<div className='flex text-md leading-6 text-gray-400'>
+							<div className='flex text-sm leading-6 text-gray-400'>
 								<label
 									htmlFor='file-upload'
 									className='relative cursor-pointer rounded-md font-semibold text-[#8C6AFF] focus-within:outline-none focus-within:border-2 focus-within:border-[#8C6AFF] focus-within:border-offset-2 hover:text-indigo-500'>
@@ -99,15 +99,15 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 										className='sr-only'
 									/>
 								</label>
-								<p className='text-md leading-5 text-gray-400 pl-1'>or drag and drop</p>
+								<p className='text-sm leading-5 text-gray-400 pl-1'>or drag and drop</p>
 							</div>
-							<p className='text-md leading-5 text-gray-400'>PNG, JPG up to 1MB</p>
+							<p className='text-sm leading-5 text-gray-400'>PNG, JPG up to 1MB</p>
 						</div>
 					</div>
 				</div>
 
 				<div className='col-span-6 ms:col-span-3 ms:mr-2'>
-					<label htmlFor='ISBN_10' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='ISBN_10' className='block text-sm font-medium leading-6 text-white'>
 						ISBN 10
 					</label>
 					<div className='mt-1.5'>
@@ -124,7 +124,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 				</div>
 
 				<div className='col-span-6 ms:col-span-3'>
-					<label htmlFor='ISBN_13' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='ISBN_13' className='block text-sm font-medium leading-6 text-white'>
 						ISBN 13
 					</label>
 					<div className='mt-1.5'>
@@ -141,7 +141,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 				</div>
 
 				<div className='col-span-6 sm:col-span-3 sm:col-start-1'>
-					<label htmlFor='publisher' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='publisher' className='block text-sm font-medium leading-6 text-white'>
 						Publisher
 					</label>
 					<div className='mt-1.5'>
@@ -158,7 +158,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 				</div>
 
 				<div className='col-span-6 sm:col-span-3'>
-					<label htmlFor='publication-date' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='publication-date' className='block text-sm font-medium leading-6 text-white'>
 						Publication Date
 					</label>
 					<div className='mt-1.5'>
@@ -188,7 +188,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 				</div>
 
 				<div className='col-span-5'>
-					<label htmlFor='cover-photo' className='block text-md font-medium leading-6 text-white'>
+					<label htmlFor='cover-photo' className='block text-sm font-medium leading-6 text-white'>
 						Genres<span className='text-red-600 mx-1'>*</span>
 					</label>
 					<div className='flex flex-wrap items-center justify-start gap-x-4'>

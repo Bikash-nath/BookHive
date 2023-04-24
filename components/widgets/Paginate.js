@@ -4,15 +4,17 @@ import Link from 'next/link'
 import ChevronLeftIcon from '../../assets/icons/ChevronLeftIcon'
 import ChevronRightIcon from '../../assets/icons/ChevronRightIcon'
 
-function Paginate({ totalPages, page, keyword = '' }) {
+function Paginate({ totalPages, page, keyword }) {
 	const router = useRouter()
-
 	const [currentPage, setCurrentPage] = useState(1)
 
 	const paginateHandler = (n) => {
 		const path = router.asPath
-		// const sortType = keyword.split("&sortBy=")[1]?.split("&")[0];
-		if (keyword) {
+		const sortBy = router.query.sort
+
+		if (keyword && sortBy) {
+			return { path: path, query: { keyword, sort: sortBy, page: n } }
+		} else if (keyword) {
 			return { path: path, query: { keyword, page: n } }
 		} else {
 			if (path.includes('category')) {
