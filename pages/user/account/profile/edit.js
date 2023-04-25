@@ -45,7 +45,7 @@ function EditProfilePage(props) {
 			userCtx.addUser(updatedUser)
 			snackbarCtx.addMessage({ title: 'Profile update successfull', status: 'success' })
 		} else {
-			snackbarCtx.addMessage({ title: updatedUser })
+			snackbarCtx.addMessage({ title: updatedUser, status: 'invalid' })
 		}
 		toggleSpinner(false)
 		router.push('/user/account/profile')

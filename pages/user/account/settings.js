@@ -29,7 +29,7 @@ function SettingsPage() {
 		e.preventDefault()
 		userCtx.removeUser()
 		router.push('/')
-		snackbarCtx.addMessage({ title: 'Log out successfull' })
+		snackbarCtx.addMessage({ title: 'Log out successfull', status: 'success' })
 	}
 
 	return (

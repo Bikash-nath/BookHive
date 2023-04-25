@@ -25,7 +25,7 @@ function SettingsPage() {
 	const reportSubmitHandler = (e) => {
 		e.preventDefault()
 		router.push(`/${slug.split('/report')[0]}/`)
-		snackbarCtx.addMessage({ title: 'Report submitted successfully.' })
+		snackbarCtx.addMessage({ title: 'Report submitted successfully.', status: 'success' })
 	}
 
 	const selectInputHandler = (e) => {

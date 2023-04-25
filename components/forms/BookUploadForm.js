@@ -31,7 +31,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 					setAddBookModal(false)
 					snackbarCtx.addMessage({ title: 'Book saved', status: 'success' })
 				}
-				//  else snackbarCtx.addMessage({ title: 'Please enter correct book details' })
+				//  else snackbarCtx.addMessage({ title: 'Please enter correct book details', status: 'fail'})
 			})()
 		}
 	}, [saveBook])
@@ -174,7 +174,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 					</div>
 				</div>
 
-				<div className='col-span-5'>
+				<div className='col-span-4'>
 					<SelectMenu
 						title={
 							<p>
@@ -187,7 +187,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 					/>
 				</div>
 
-				<div className='col-span-5'>
+				<div className='col-span-4'>
 					<label htmlFor='cover-photo' className='block text-sm font-medium leading-6 text-white'>
 						Genres<span className='text-red-600 mx-1'>*</span>
 					</label>

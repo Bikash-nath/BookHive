@@ -56,7 +56,7 @@ function AuthorDetailPage(props) {
 			;(async () => {
 				setLoadingFollow(true)
 				const library = await getLibraryAuthors()
-				if (!library.authors) snackbarCtx.addMessage({ title: library })
+				if (!library.authors) snackbarCtx.addMessage({ title: library, status: 'invalid' })
 				else {
 					if (library.authors.find((a) => a.slug === author.slug)) setFollowing(true)
 					else setFollowing(false)
@@ -68,7 +68,7 @@ function AuthorDetailPage(props) {
 
 	const followAuthorHandler = async () => {
 		if (!user?.data) {
-			snackbarCtx.addMessage({ title: 'Please login to save followed authors' })
+			snackbarCtx.addMessage({ title: 'Please login to save followed authors', status: 'invalid' })
 			return
 		}
 		if (loadingFollow) return
@@ -76,13 +76,14 @@ function AuthorDetailPage(props) {
 		setFollowing(!isFollowing)
 		const library = await followAuthor(author.slug)
 		if (!library.author) {
-			snackbarCtx.addMessage({ title: library })
+			snackbarCtx.addMessage({ title: library, status: 'fail' })
 			setFollowing((isFollowing) => !isFollowing)
 			setLoadingFollow(false)
 			return
 		}
-		if (library.author === 'followed') snackbarCtx.addMessage({ title: 'Author saved in your library' })
-		else snackbarCtx.addMessage({ title: 'Author removed from your library' })
+		if (library.author === 'followed')
+			snackbarCtx.addMessage({ title: 'Author saved in your library', status: 'success' })
+		else snackbarCtx.addMessage({ title: 'Author removed from your library', status: 'success' })
 		setLoadingFollow(false)
 	}
 
@@ -95,6 +96,7 @@ function AuthorDetailPage(props) {
 		} else {
 			snackbarCtx.addMessage({
 				title: 'Sorry! Web Share API is not supported in this browser',
+				status: 'fail',
 			})
 		}
 	}

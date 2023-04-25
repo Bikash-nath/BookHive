@@ -22,7 +22,7 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 		if (!keyword) return
 		toggleSpinner(true)
 		const result = await searchBooks({ keyword, limit: 5 })
-		if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
+		if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong', status: 'fail' })
 		else setSearchResult(result.data)
 		toggleSpinner(false)
 	}

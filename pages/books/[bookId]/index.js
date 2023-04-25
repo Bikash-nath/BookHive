@@ -75,7 +75,7 @@ function BookDetailPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryBooks()
-				if (!library.books) snackbarCtx.addMessage({ title: library })
+				if (!library.books) snackbarCtx.addMessage({ title: library, status: 'invalid' })
 				else {
 					if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
 					else setFavourite(false)
@@ -87,7 +87,7 @@ function BookDetailPage(props) {
 
 	const favouriteBookHandler = async () => {
 		if (!user?.data) {
-			snackbarCtx.addMessage({ title: 'Please login to save favourite books' })
+			snackbarCtx.addMessage({ title: 'Please login to save favourite books', status: 'invalid' })
 			return
 		}
 		if (loadingFavourite) return
@@ -96,13 +96,13 @@ function BookDetailPage(props) {
 
 		const library = await favouriteBook(book.slug)
 		if (!library.book) {
-			snackbarCtx.addMessage({ title: library })
+			snackbarCtx.addMessage({ title: library, status: 'fail' })
 			setFavourite((isFavourite) => !isFavourite)
 			setLoadingFavourite(false)
 			return
 		}
-		if (library.book === 'saved') snackbarCtx.addMessage({ title: 'Book saved in your library' })
-		else snackbarCtx.addMessage({ title: 'Book removed from your library' })
+		if (library.book === 'saved') snackbarCtx.addMessage({ title: 'Book saved in your library', status: 'success' })
+		else snackbarCtx.addMessage({ title: 'Book removed from your library', status: 'success' })
 
 		setLoadingFavourite(false)
 	}
@@ -114,7 +114,7 @@ function BookDetailPage(props) {
 	}
 
 	const editReviewHandler = (review) => {
-		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review' })
+		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review', status: 'invalid' })
 		else setEditReview(review)
 	}
 
@@ -131,7 +131,7 @@ function BookDetailPage(props) {
 			setEditReview(null)
 			setAddReview(false)
 		} else {
-			snackbarCtx.addMessage({ title: review })
+			snackbarCtx.addMessage({ title: review, status: 'fail' })
 		}
 	}
 
@@ -147,7 +147,7 @@ function BookDetailPage(props) {
 				},
 			})
 		} else {
-			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe' })
+			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe', status: 'fail' })
 		}
 	}
 
@@ -160,6 +160,7 @@ function BookDetailPage(props) {
 		} else {
 			snackbarCtx.addMessage({
 				title: 'Sorry! Web Share API is not supported in this browser',
+				status: 'fail',
 			})
 		}
 	}

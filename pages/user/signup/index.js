@@ -32,13 +32,13 @@ function SignUpPage() {
 			const user = await signup(name, email, password, passwordConfirm)
 			if (user.data) {
 				userCtx.addUser(user)
-				snackbarCtx.addMessage({ title: 'Sign up successfull' })
+				snackbarCtx.addMessage({ title: 'Sign up successfull', status: 'success' })
 				setTimeout(() => createUserLibrary(), 500)
 			} else {
-				snackbarCtx.addMessage({ title: user })
+				snackbarCtx.addMessage({ title: user, status: 'invalid' })
 			}
 			setLoading(false)
-		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match' })
+		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'invalid' })
 	}
 
 	useEffect(() => {

@@ -5,7 +5,7 @@ import useWindowWidth from '../../hooks/useWindowWidth'
 import SnackbarContext from '../../store/snackbarContext'
 import classes from './snackbar.module.css'
 import CloseIcon from '../../assets/icons/CloseIcon'
-import CheckCircleIcon from '../../assets/icons/CheckCircleIcon'
+import CheckIcon from '../../assets/icons/CheckIcon'
 import WarningIcon from '../../assets/icons/WarningIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import InValidIcon from '../../assets/icons/InValidIcon'
@@ -20,7 +20,7 @@ function SnackBar(props) {
 	const badges = {
 		success: {
 			color: 'bg-green-50 text-green-700 border-green-700 ring-green-600/20',
-			icon: <CheckCircleIcon dimensions={'w-6 h-6'} />,
+			icon: <CheckIcon dimensions={'w-6s h-6'} />,
 		},
 		info: {
 			color: 'bg-blue-50 text-blue-700 border-blue-700 ring-blue-700/10',

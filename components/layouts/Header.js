@@ -59,7 +59,7 @@ function Header(props) {
 		e.preventDefault()
 		userCtx.removeUser()
 		router.push('/')
-		snackbarCtx.addMessage({ title: 'Log out successfull' })
+		snackbarCtx.addMessage({ title: 'Log out successfull', status: 'success' })
 	}
 	// from-[#131a27] via-[#121927] to-[#111724]
 	// bg-gradient-to-b from-[#111826] to-[#192132] text-white;

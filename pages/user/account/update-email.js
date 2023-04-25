@@ -24,17 +24,17 @@ function UpdateEmail(props) {
 
 	const submitHandler = async () => {
 		if (email === newEmail) {
-			snackbarCtx.addMessage({ title: 'Your current email cannot be same as new email' })
+			snackbarCtx.addMessage({ title: 'Your current email cannot be same as new email', status: 'invalid' })
 			return
 		}
 		setUpdating(true)
 		const user = await updateUserEmail({ email, newEmail, password, passwordConfirm: password })
 		if (user.data) {
 			userCtx.addUser(user)
-			snackbarCtx.addMessage({ title: 'Email update successfull. Login again.' })
+			snackbarCtx.addMessage({ title: 'Email update successfull. Login again.', status: 'success' })
 			router.push({ pathname: '/user/account/profile/' })
 		} else {
-			snackbarCtx.addMessage({ title: user })
+			snackbarCtx.addMessage({ title: user, status: 'invalid' })
 		}
 		setUpdating(false)
 	}

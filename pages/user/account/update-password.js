@@ -34,13 +34,13 @@ function UpdatePassword(props) {
 			})
 			if (user.data) {
 				userCtx.addUser(user)
-				snackbarCtx.addMessage({ title: 'Password update successfull.' })
+				snackbarCtx.addMessage({ title: 'Password update successfull.', status: 'success' })
 				router.push({ pathname: '/user/account/profile/' })
 			} else {
-				snackbarCtx.addMessage({ title: user })
+				snackbarCtx.addMessage({ title: user, status: 'invalid' })
 			}
 			setUpdating(false)
-		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match' })
+		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'invalid' })
 	}
 
 	useEffect(() => {

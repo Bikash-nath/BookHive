@@ -50,7 +50,7 @@ function ReviewCard(props) {
 
 	const likeReviewHandler = async (reviewId) => {
 		if (!user) {
-			snackbarCtx.addMessage({ title: 'Please login to like reviews' })
+			snackbarCtx.addMessage({ title: 'Please login to like reviews', status: 'invalid' })
 			return
 		} else if (updatingLikes) return
 
@@ -74,8 +74,8 @@ function ReviewCard(props) {
 				setLikedReview(true)
 				setTotalLikes(totalLikes + 1)
 			}
-			snackbarCtx.addMessage({ title: data })
-		} else snackbarCtx.addMessage({ title: 'Thank you for your feedback' })
+			snackbarCtx.addMessage({ title: data, status: 'invalid' })
+		} else snackbarCtx.addMessage({ title: 'Thank you for your feedback', status: 'success' })
 		setUpdatingLikes(false)
 	}
 

@@ -14,7 +14,6 @@ import HorizontalRuleText from '../../../../components/ui/HorizontalRuleText'
 import SelectMenu from '../../../../components/ui/SelectMenu'
 import PlusIcon from '../../../../assets/icons/PlusIcon'
 import PlusCircleIcon from '../../../../assets/icons/PlusCircleIcon'
-import ArrowIcon from '../../../../assets/icons/ArrowIcon'
 import DocumentPlusIcon from '../../../../assets/icons/DocumentPlusIcon'
 import CloseIcon from '../../../../assets/icons/CloseIcon'
 import UploadIcon from '../../../../assets/icons/UploadIcon'
@@ -39,7 +38,8 @@ function SelectBook() {
 	}, [user])
 
 	const nextPageHandler = () => {
-		if (!selectedBook) snackbarCtx.addMessage({ title: 'Please select a book which you want to upload' })
+		if (!selectedBook)
+			snackbarCtx.addMessage({ title: 'Please select a book which you want to upload', status: 'fail' })
 		else router.push('/user/uploads')
 	}
 
@@ -95,7 +95,7 @@ function SelectBook() {
 						)}
 						{selectedBook && !(addBookModal || showSearchModal) && (
 							<>
-								<div className='flex flex-col w-full gap-4 my-8'>
+								<div className='flex flex-col w-full xl:w-2/3 gap-4 my-8'>
 									<SelectMenu
 										title='Select Book Type'
 										selectedOption={selectedBookType}
@@ -156,7 +156,8 @@ function SelectBook() {
 								if (selectedBook) {
 									setShowSearchModal(false)
 									document.body.style.overflowY = 'auto'
-								} else snackbarCtx.addMessage({ title: 'Please search and select a book' })
+								} else
+									snackbarCtx.addMessage({ title: 'Please search and select a book', status: 'fail' })
 							}}>
 							<BookSearchModal selectedBook={selectedBook} selectBookHandler={setSelectedBook} />
 						</BookUploadModal>

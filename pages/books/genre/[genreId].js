@@ -43,7 +43,7 @@ function GenreBooksPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryGenres()
-				if (!library.genres) snackbarCtx.addMessage({ title: library })
+				if (!library.genres) snackbarCtx.addMessage({ title: library, status: 'invalid' })
 				else {
 					if (library.genres.find((g) => g.slug === slug)) setFavourite(true)
 					else setFavourite(false)
@@ -55,7 +55,7 @@ function GenreBooksPage(props) {
 
 	const favouriteGenreHandler = async () => {
 		if (!user?.data) {
-			snackbarCtx.addMessage({ title: 'Please login to save favourite genres' })
+			snackbarCtx.addMessage({ title: 'Please login to save favourite genres', status: 'invalid' })
 			return
 		}
 		if (loadingFavourite) return
@@ -63,13 +63,14 @@ function GenreBooksPage(props) {
 		setLoadingFavourite(true)
 		const library = await favouriteGenre(slug)
 		if (!library.genre) {
-			snackbarCtx.addMessage({ title: library })
+			snackbarCtx.addMessage({ title: library, status: 'fail' })
 			setFavourite((isFavourite) => !isFavourite)
 			setLoadingFavourite(false)
 			return
 		}
-		if (library.genre === 'saved') snackbarCtx.addMessage({ title: 'Genre saved in your library' })
-		else snackbarCtx.addMessage({ title: 'Genre removed from your library' })
+		if (library.genre === 'saved')
+			snackbarCtx.addMessage({ title: 'Genre saved in your library', status: 'success' })
+		else snackbarCtx.addMessage({ title: 'Genre removed from your library', status: 'success' })
 		setLoadingFavourite(false)
 	}
 

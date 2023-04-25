@@ -1,6 +1,6 @@
-import Head from 'next/head'
 import { useState, useEffect, useContext, Fragment } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 import { searchBooks } from '../API/books'
 import SearchBar from '../components/SearchBar'
@@ -24,7 +24,7 @@ function SearchPage() {
 				toggleSpinner(true)
 				const result = await searchBooks(router.query)
 				setSearchResult(result.data)
-				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong' })
+				if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong', status: 'fail' })
 				toggleSpinner(false)
 			})()
 		}
