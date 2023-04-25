@@ -7,10 +7,11 @@ import BookListCards from '../../components/cards/BookListCards'
 import SearchIcon from '../../assets/icons/SearchIcon'
 
 function BookSearchModal({ selectedBook, selectBookHandler }) {
-	const { toggleSpinner } = useContext(SpinnerContext)
+	const { activeSpinner, toggleSpinner } = useContext(SpinnerContext)
 	const snackbarCtx = useContext(SnackbarContext)
 	const [searchResult, setSearchResult] = useState([])
 	const [keyword, setKeyword] = useState('')
+	const [searchSubmitted, setSearchSubmitted] = useState(false)
 
 	const inputRef = useRef(null)
 
@@ -18,6 +19,10 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 		inputRef.current.focus()
 	}, [])
 
+	const keywordHandler = (e) => {
+		setKeyword(e.target.value)
+		setSearchSubmitted(false)
+	}
 	const searchBookHandler = async () => {
 		if (!keyword) return
 		toggleSpinner(true)
@@ -25,6 +30,7 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 		if (!result.data) snackbarCtx.addMessage({ title: 'Something went wrong', status: 'fail' })
 		else setSearchResult(result.data)
 		toggleSpinner(false)
+		setSearchSubmitted(true)
 	}
 
 	return (
@@ -33,7 +39,7 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 				<input
 					type='text'
 					value={keyword}
-					onChange={(e) => setKeyword(e.target.value)}
+					onChange={keywordHandler}
 					ref={inputRef}
 					className='w-full box-border h-10 p-4 text-white text-lg rounded-full bg-slate-700 outline-none focus:ring-1 focus:ring-[#8C6AFF]'
 					placeholder='Search books'
@@ -44,7 +50,11 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 					<SearchIcon dimensions='h-7 w-7' color={keyword ? 'white' : '#9ca3af'} />
 				</button>
 			</div>
-			<BookListCards books={searchResult} selectedBook={selectedBook} selectBookHandler={selectBookHandler} />
+			{searchResult?.length ? (
+				<BookListCards books={searchResult} selectedBook={selectedBook} selectBookHandler={selectBookHandler} />
+			) : (
+				searchSubmitted && <div className='text-xl text-center py-4'>No books found with "{keyword}"</div>
+			)}
 		</Fragment>
 	)
 }

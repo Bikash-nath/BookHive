@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import SortIcon from '../../assets/icons/SortIcon'
 
-function SortResults() {
+function SortResults({ showSuggestionHandler }) {
 	const [sortBy, setSortBy] = useState('-ratingsTotal')
 	const [showSortOption, setShowSortOption] = useState(false)
 
@@ -16,6 +16,11 @@ function SortResults() {
 		})
 	}, [sortBy, keyword])
 
+	const sortButtonHandler = () => {
+		showSuggestionHandler(false)
+		setShowSortOption(!showSortOption)
+	}
+
 	return (
 		<div className='flex items-center'>
 			<div className='relative inline-block text-left'>
@@ -23,7 +28,7 @@ function SortResults() {
 					<button
 						type='button'
 						className='group inline-flex justify-center rounded-md p-1 m-1 hover:bg-[#192139]'
-						onClick={() => setShowSortOption(!showSortOption)}
+						onClick={sortButtonHandler}
 						aria-expanded='false'
 						aria-haspopup='true'>
 						<SortIcon dimensions='h-7 w-7' />
@@ -40,8 +45,10 @@ function SortResults() {
 							<div
 								onClick={() => setSortBy('-ratingsTotal')}
 								className={
-									'font-medium block px-4 py-2 cursor-pointer ' +
-									(sortBy === '-ratingsTotal' ? 'bg-[#101621] text-white' : 'text-gray-300')
+									'font-medium block px-4 py-2 hover:bg-[#101621] ' +
+									(sortBy === '-ratingsTotal'
+										? 'bg-[#101621] text-white'
+										: 'text-gray-300 cursor-pointer')
 								}
 								role='menuitem'
 								tabIndex='-1'
@@ -51,8 +58,10 @@ function SortResults() {
 							<div
 								onClick={() => setSortBy('-ratingsAvg')}
 								className={
-									'font-medium block px-4 py-2 cursor-pointer ' +
-									(sortBy === '-ratingsAvg' ? 'bg-[#101621] text-white' : 'text-gray-300')
+									'font-medium block px-4 py-2 hover:bg-[#101621] ' +
+									(sortBy === '-ratingsAvg'
+										? 'bg-[#101621] text-white'
+										: 'text-gray-300 cursor-pointer')
 								}
 								role='menuitem'
 								tabIndex='-1'
@@ -62,8 +71,10 @@ function SortResults() {
 							<div
 								onClick={() => setSortBy('-createdAt')}
 								className={
-									'font-medium block px-4 py-2 cursor-pointer ' +
-									(sortBy === '-createdAt' ? 'bg-[#101621] text-white' : 'text-gray-300')
+									'font-medium block px-4 py-2 hover:bg-[#101621] ' +
+									(sortBy === '-createdAt'
+										? 'bg-[#101621] text-white'
+										: 'text-gray-300 cursor-pointer')
 								}
 								role='menuitem'
 								tabIndex='-1'
@@ -73,8 +84,8 @@ function SortResults() {
 							<div
 								onClick={() => setSortBy('title')}
 								className={
-									'font-medium block px-4 py-2 cursor-pointer ' +
-									(sortBy === 'title' ? 'bg-[#101621] text-white' : 'text-gray-300')
+									'font-medium block px-4 py-2 hover:bg-[#101621] ' +
+									(sortBy === 'title' ? 'bg-[#101621] text-white' : 'text-gray-300 cursor-pointer')
 								}
 								role='menuitem'
 								tabIndex='-1'

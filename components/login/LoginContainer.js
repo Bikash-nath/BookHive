@@ -5,9 +5,9 @@ import CrossIcon from '../../assets/icons/CrossIcon'
 
 function LoginContainer(props) {
 	return (
-		<div className='flex items-start justify-center w-screen xl:w-[99vw] h-full bg-[#0C111B] text-white'>
-			<div className='relative flex flex-col w-full h-full justify-center items-center rounded-2xl '>
-				<div className='w-full sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-[30%] px-4 md:px-8'>
+		<div className='flex items-start justify-center w-screen xl:w-[99vw] bg-[#0C111B] text-white'>
+			<div className='relative flex flex-col w-full justify-center items-center rounded-2xl '>
+				<div className='flex flex-col justify-center w-full sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-[30%] min-h-screen px-4 md:px-8'>
 					<div className={'md:flex md:items-center justify-center ' + props.splashScreen ? 'py-8' : ''}>
 						<Logo className='absolute top-0 left-0 md:static w-full' size={50} />
 					</div>

@@ -14,6 +14,8 @@ import { pickBgColor } from '../../../utils/helpers/pickBgColor'
 import TopNavModal from '../../../components/modals/TopNavModal'
 import GenreListModal from '../../../components/modals/GenreListModal'
 import ReviewCard from '../../../components/cards/ReviewCard'
+import ReviewEditModal from '../../../components/modals/ReviewEditModal'
+import DialogBox from '../../../components/notification/DialogBox'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -24,8 +26,6 @@ import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ShareIcon from '../../../assets/icons/ShareIcon'
 import ReportIcon from '../../../assets/icons/ReportIcon'
-import ReviewEditModal from '../../../components/modals/ReviewEditModal'
-import DialogBox from '../../../components/notification/DialogBox'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
@@ -338,18 +338,20 @@ function BookDetailPage(props) {
 							<></>
 						)}
 
-						<div className='flex justify-start m-4 xl:m-8'>
-							<button
-								className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#152338]'
-								onClick={() => router.push(`/books/${book.slug}/report/`)}>
-								<ReportIcon dimensions='h-7 w-7' />
-								<p className='text-base'>Report book</p>
-							</button>
-						</div>
+						{activeUser && (
+							<div className='flex justify-start m-4 xl:m-8'>
+								<button
+									className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#152338]'
+									onClick={() => router.push(`/books/${book.slug}/report/`)}>
+									<ReportIcon dimensions='h-7 w-7' />
+									<p className='text-base'>Report book</p>
+								</button>
+							</div>
+						)}
 
 						<div className='w-full md:w-2/3 xl:w-1/2 p-4 md:p-8'>
 							<h4 className='text-xl md:text-2xl font-semibold my-4'>Reviews</h4>
-							<div className='flex flex-col gap-4 xl:gap-8'>
+							<div className='flex flex-col gap-4 xl:gap-6'>
 								{book.reviews?.length ? (
 									book.reviews.map((review, i) => (
 										<ReviewCard
@@ -364,7 +366,7 @@ function BookDetailPage(props) {
 								)}
 								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
-										className='flex justify-between items-center gap-16 p-4 my-2 rounded-md bg-[#152338]'
+										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#152338]'
 										onClick={() => setAddReview(true)}>
 										<p className='text-md font-semibold'>
 											{book.reviews.length

@@ -55,6 +55,15 @@ export const searchBooks = async (query) => {
 	}
 }
 
+export const getSearchSuggestions = async (keyword) => {
+	try {
+		const { data } = await axios.get(`/books/searchSuggestion/`, { params: { keyword } })
+		return data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
 export const getSimilarBooks = async (bookId, query) => {
 	try {
 		const { data } = await axios.get(`/books/${bookId}/similar/`, { params: query })

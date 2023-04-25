@@ -82,7 +82,7 @@
 }
 
 .edit-field {
-	@apply w-full my-2 p-3.5 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 border-[.8px] border-gray-700 focus:border-[.2px] focus:border-[#8C6AFF];
+	@apply w-full my-2 p-3.5 rounded-md placeholder:font-sans placeholder:font-light bg-gray-900 focus:outline-none ring-1 ring-gray-500 focus:ring-2 focus:ring-[#8C6AFF];
 }
 
 .form-input {
