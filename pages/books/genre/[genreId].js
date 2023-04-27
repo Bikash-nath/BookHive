@@ -22,7 +22,7 @@ function GenreBooksPage(props) {
 	const router = useRouter()
 	const windowWidth = useWindowWidth()
 	const { genre, slug } = props
-	const [books, setBooks] = useState(props.books)
+	const [books, setBooks] = useState([])
 	const [isFavourite, setFavourite] = useState(false)
 	const [loadingFavourite, setLoadingFavourite] = useState(false)
 
@@ -31,12 +31,15 @@ function GenreBooksPage(props) {
 			const page = router.query.page
 			if (page) {
 				toggleSpinner(true)
-				var res = await getGenreBooks(slug, { page })
+				const res = await getGenreBooks(slug, { page })
 				setBooks(res.data.books)
 				toggleSpinner(false)
 			}
 		})()
-	}, [router.asPath])
+		if (!books?.length) {
+			setBooks(props.books)
+		}
+	}, [router.asPath, props.books])
 
 	useEffect(() => {
 		if (!isFavourite && user?.data) {

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { ReactReader, ReactReaderStyle } from 'react-reader'
+// import BookContext from '../../../store/bookContext'
 import CloseIcon from '../../../assets/icons/CloseIcon'
 import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import MinusCircleIcon from '../../../assets/icons/MinusCircleIcon'
@@ -13,6 +14,23 @@ function BookEpubReader() {
 	const { ebookLink, author } = router.query
 	const title = router.asPath.split('.')[1]?.split('/read')[0].split('-').join(' ')
 	const [size, setSize] = useState(100)
+
+	// const bookCtx = useContext(BookContext)
+	// const [title, setTitle] = useState('')
+	// const [author, setAuthor] = useState('')
+	// const [ebookLink, setEbookLink] = useState('')
+	// useEffect(() => {
+	// 	console.log('bookCtx.book', bookCtx.book)
+	// 	if (bookCtx.book) {
+	// 		setTitle(bookCtx.book.title)
+	// 		setAuthor(bookCtx.book.author.name)
+	// 		setEbookLink(bookCtx.book.format.ebook.link)
+	// 	}
+	// }, [bookCtx.book])
+	// const bookCloseHandler = () => {
+	// 	bookCtx.setActiveBook(true)
+	// 	router.back()
+	// }
 
 	const [location, setLocation] = useState(null)
 	const [pageDetails, setPageDetails] = useState('')

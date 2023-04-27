@@ -32,8 +32,6 @@ function HomePage(props) {
 			? 'Good Afternoon, '
 			: 'Good Evening, '
 	}
-	{
-	}
 
 	return (
 		<Fragment>
@@ -149,7 +147,6 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			// getTopFree: topFreeBooks.data,
 			bestsellers: bestsellers.data,
 			audiobooks: audiobooks.data,
 			latestBooks: latestBooks.data,

@@ -25,18 +25,18 @@ function Container(props) {
 			<SpinnerContextProvider>
 				<main className={'flex page-gradient relative hide-scrollbar scroll-smooth'}>
 					{windowWidth > 1280 && <Sidebar />}
-					<div className='flex flex-col w-screen xl:max-w-[85.5vw] relative'>
-						{windowWidth > 1280 && <Header headerRef={headerRef} />}
-						<Spinner headerRef={headerRef} />
-						<BookContextProvider>
+					<BookContextProvider>
+						<div className='flex flex-col w-screen xl:max-w-[85.5vw] relative'>
+							{windowWidth > 1280 && <Header headerRef={headerRef} />}
+							<Spinner headerRef={headerRef} />
 							<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-30' : '')}>
 								{props.children}
 							</div>
 							<BookProgressBar />
-						</BookContextProvider>
-						<SnackBar navbarRef={navbarRef} />
-						{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
-					</div>
+							<SnackBar navbarRef={navbarRef} />
+							{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
+						</div>
+					</BookContextProvider>
 				</main>
 			</SpinnerContextProvider>
 		</Fragment>

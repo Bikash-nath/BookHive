@@ -8,6 +8,7 @@ import { getBookDetails, getBestsellers, getLatestBooks, createBookReview, updat
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
+// import BookContext from '../../../store/bookContext'
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
@@ -34,6 +35,7 @@ function BookDetailPage(props) {
 	const { book } = props
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
+	// const bookCtx = useContext(BookContext)
 	const windowWidth = useWindowWidth()
 
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
@@ -146,6 +148,9 @@ function BookDetailPage(props) {
 					author: book.author.name,
 				},
 			})
+			// router.push({
+			// 	pathname: `/books/${book.slug}/read`,
+			// })
 		} else {
 			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe', status: 'fail' })
 		}
