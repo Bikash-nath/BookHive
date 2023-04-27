@@ -5,7 +5,7 @@ import useWindowWidth from '../../hooks/useWindowWidth'
 import SnackbarContext from '../../store/snackbarContext'
 import classes from './snackbar.module.css'
 import CloseIcon from '../../assets/icons/CloseIcon'
-import CheckIcon from '../../assets/icons/CheckIcon'
+import CheckCircleIcon from '../../assets/icons/CheckCircleIcon'
 import WarningIcon from '../../assets/icons/WarningIcon'
 import FeedbackIcon from '../../assets/icons/FeedbackIcon'
 import InValidIcon from '../../assets/icons/InValidIcon'
@@ -20,7 +20,7 @@ function SnackBar(props) {
 	const badges = {
 		success: {
 			color: 'bg-green-50 text-green-700 border-green-700 ring-green-600/20',
-			icon: <CheckIcon dimensions={'w-6s h-6'} />,
+			icon: <CheckCircleIcon dimensions={'w-6s h-6'} />,
 		},
 		info: {
 			color: 'bg-blue-50 text-blue-700 border-blue-700 ring-blue-700/10',
@@ -53,17 +53,15 @@ function SnackBar(props) {
 	}, [message, router.asPath])
 
 	// box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); bg-[#323232]
-	return message ? (
+	return message?.title ? (
 		<div
 			className={
-				message.title
-					? 'fixed overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
-					  (windowWidth < 1280
-							? props.navbarRef.current
-								? 'left-0 bottom-14'
-								: 'left-0 bottom-0'
-							: 'left-[13.5vw] bottom-0')
-					: 'hidden'
+				'fixed overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
+				(windowWidth < 1280
+					? props.navbarRef.current
+						? 'left-0 bottom-28'
+						: 'left-0 bottom-0'
+					: 'left-[13.5vw] bottom-0')
 			}>
 			<div
 				className={

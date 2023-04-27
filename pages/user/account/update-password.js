@@ -40,7 +40,7 @@ function UpdatePassword(props) {
 				snackbarCtx.addMessage({ title: user, status: 'invalid' })
 			}
 			setUpdating(false)
-		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'invalid' })
+		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'warning' })
 	}
 
 	useEffect(() => {

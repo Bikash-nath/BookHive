@@ -5,12 +5,11 @@ import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'
 import AccountIcon from '../../assets/icons/AccountIcon'
-import SearchIcon from '../../assets/icons/SearchIcon'
 import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 
 function Navbar(props) {
 	const router = useRouter()
-	const currentRoute = router.pathname
+	const currentRoute = router.asPath
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 

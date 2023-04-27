@@ -1,19 +1,22 @@
 import { useState, useEffect, useContext } from 'react'
 
-import SnackbarContext from '../../store/snackbarContext'
 import { createBook } from '../../API/books'
+import SnackbarContext from '../../store/snackbarContext'
+import SpinnerContext from '../../store/spinnerContext'
 import ImageIcon from '../../assets/icons/ImageIcon'
 import PlusIcon from '../../assets/icons/PlusIcon'
 import CrossIcon from '../../assets/icons/CrossIcon'
 import SelectMenu from '../ui/SelectMenu'
 
-function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
+function BookAddForm({ saveBook, saveBookHandler, selectBookHandler, setAddBookModal }) {
 	const snackbarCtx = useContext(SnackbarContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
+
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [ISBN_10, setISBN_10] = useState('')
 	const [ISBN_13, setISBN_13] = useState('')
-	const [image, setImage] = useState('')
+	const [image, setImage] = useState('book_img.jpg')
 	const [language, setLanguage] = useState('')
 	const [publisher, setPublisher] = useState('')
 	const [publicationDate, setPublicationDate] = useState('')
@@ -23,6 +26,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 	useEffect(() => {
 		if (saveBook) {
 			;(async () => {
+				toggleSpinner(true)
 				const book = { title, description, ISBN_10, ISBN_13, image, language, publisher, publicationDate }
 				const data = await createBook(book)
 				if (!data.book) snackbarCtx.addMessage({ title: data, status: 'fail' })
@@ -31,6 +35,8 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 					setAddBookModal(false)
 					snackbarCtx.addMessage({ title: 'Book saved', status: 'success' })
 				}
+				saveBookHandler(false)
+				toggleSpinner(false)
 				//  else snackbarCtx.addMessage({ title: 'Please enter correct book details', status: 'fail'})
 			})()
 		}
@@ -91,13 +97,7 @@ function BookAddForm({ saveBook, selectBookHandler, setAddBookModal }) {
 									htmlFor='file-upload'
 									className='relative cursor-pointer rounded-md font-semibold text-[#8C6AFF] focus-within:outline-none focus-within:border-2 focus-within:border-[#8C6AFF] focus-within:border-offset-2 hover:text-indigo-500'>
 									<span>Upload a file</span>
-									<input
-										id='file-upload'
-										name='file-upload'
-										type='file'
-										onChange={(e) => console.log('File event', e)}
-										className='sr-only'
-									/>
+									<input id='book-image' name='book-image' type='file' className='sr-only' />
 								</label>
 								<p className='text-sm leading-5 text-gray-400 pl-1'>or drag and drop</p>
 							</div>

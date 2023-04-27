@@ -1,17 +1,15 @@
-import { useState, useEffect, useRef, useContext, Fragment } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Image from 'next/image'
 
-import UserContext from '../../../../store/userContext'
 import { getUserProfile, updateUserProfile } from '../../../../API/userProfile'
+import UserContext from '../../../../store/userContext'
 import SnackbarContext from '../../../../store/snackbarContext'
 import SpinnerContext from '../../../../store/spinnerContext'
 import LoginBanner from '../../../../components/login/LoginBanner'
 import PageHeader from '../../../../components/layouts/PageHeader'
 import AccountIcon from '../../../../assets/icons/AccountIcon'
-import { formattedDate } from '../../../../utils/helpers/formatDate'
 
 function EditProfilePage(props) {
 	const snackbarCtx = useContext(SnackbarContext)

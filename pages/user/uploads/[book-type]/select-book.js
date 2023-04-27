@@ -2,8 +2,10 @@ import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import { createUpload } from '../../../../API/userUploads'
 import UserContext from '../../../../store/userContext'
 import SnackbarContext from '../../../../store/snackbarContext'
+import SpinnerContext from '../../../../store/spinnerContext'
 import BookUploadModal from '../../../../components/modals/BookUploadModal'
 import BookCard from '../../../../components/cards/BookCard'
 import LoginBanner from '../../../../components/login/LoginBanner'
@@ -21,6 +23,7 @@ import UploadIcon from '../../../../assets/icons/UploadIcon'
 function SelectBook() {
 	const snackbarCtx = useContext(SnackbarContext)
 	const { user } = useContext(UserContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
 
 	const [activeUser, setActiveUser] = useState(null)
 	const [showSearchModal, setShowSearchModal] = useState(false)
@@ -37,10 +40,26 @@ function SelectBook() {
 		setActiveUser(user?.data)
 	}, [user])
 
-	const nextPageHandler = () => {
+	const nextPageHandler = async () => {
 		if (!selectedBook)
-			snackbarCtx.addMessage({ title: 'Please select a book which you want to upload', status: 'fail' })
-		else router.push('/user/uploads')
+			snackbarCtx.addMessage({ title: 'Please select a book which you want to upload', status: 'warning' })
+		else if (!selectedBookType || !selectedFileType)
+			snackbarCtx.addMessage({ title: 'Please select book file which you want to upload', status: 'warning' })
+		else {
+			console.log(selectedBookType, selectedFileType, selectedBook)
+			toggleSpinner(true)
+			const upload = await createUpload({
+				book: selectedBook._id,
+				bookType,
+			})
+			console.log('upload', upload)
+			if (!upload.book) {
+				snackbarCtx.addMessage({ title: upload, status: 'fail' })
+			} else {
+				router.push('/user/uploads')
+			}
+			toggleSpinner(false)
+		}
 	}
 
 	return (
@@ -165,13 +184,14 @@ function SelectBook() {
 						addBookModal && (
 							<BookUploadModal
 								title='Add New Book'
+								book={selectedBook}
 								cancelBookHandler={setAddBookModal}
 								saveBookHandler={() => {
 									setSaveBook(true)
-									document.body.style.overflowY = 'auto'
 								}}>
 								<BookUploadForm
 									saveBook={saveBook}
+									saveBookHandler={setSaveBook}
 									selectBookHandler={setSelectedBook}
 									setAddBookModal={setAddBookModal}
 								/>

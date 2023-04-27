@@ -52,7 +52,7 @@ function SearchSuggestion({ keyword, showSuggestion }) {
 								<p
 									key='author'
 									className='font-medium text-xs leading-snug tracking-wide truncate text-gray-200 pt-[0.1rem]'>
-									by {`${book.author.name}`}
+									by {`${book.author?.name}`}
 								</p>
 							</div>
 						</div>

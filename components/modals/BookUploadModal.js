@@ -5,12 +5,21 @@ function BookUploadModal(props) {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			document.body.style.overflowY = 'hidden'
-			modalRef.current.style.overflowY = 'auto'
+			if (document.body.style.overflowY !== 'hidden') {
+				document.body.style.overflowY = 'hidden'
+				modalRef.current.style.overflowY = 'auto'
+			}
 		}
 	})
 
 	const closeModalHandler = () => {
+		if (props.book) {
+			props.cancelBookHandler(false)
+			document.body.style.overflowY = 'auto'
+		}
+	}
+
+	const cancelModalHandler = () => {
 		props.cancelBookHandler(false)
 		document.body.style.overflowY = 'auto'
 	}
@@ -28,10 +37,13 @@ function BookUploadModal(props) {
 					<div className='flex flex-row-reverse border-t border-slate-700 gap-4 mt-2 pt-4 xl:pt-6'>
 						<button
 							className={props.book ? 'btn-next' : 'btn-next-inactive'}
-							onClick={props.saveBookHandler}>
+							onClick={() => {
+								props.saveBookHandler()
+								closeModalHandler()
+							}}>
 							{props.book ? 'Select' : 'Save'}
 						</button>
-						<button className='btn-next-inactive' onClick={closeModalHandler}>
+						<button className='btn-next-inactive' onClick={cancelModalHandler}>
 							Cancel
 						</button>
 					</div>
