@@ -8,7 +8,9 @@ function BookListCards({ books, selectedBook, selectBookHandler }) {
 			<div
 				className={
 					'flex items-start justify-between relative rounded-md w-full h-32 p-1 cursor-pointer group-hover:flex ring-1 ' +
-					(selectedBook?._id === book._id ? 'bg-green-100 ring-green-600' : 'bg-[#192132] ring-slate-700')
+					(selectedBook?._id === book._id
+						? 'bg-green-600 ring-green-600 bg-opacity-20'
+						: 'bg-[#192132] ring-slate-700')
 				}
 				onClick={() => selectBookHandler(book)}>
 				<Image

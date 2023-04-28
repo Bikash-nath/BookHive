@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { ReactReader, ReactReaderStyle } from 'react-reader'
 // import BookContext from '../../../store/bookContext'
-import CloseIcon from '../../../assets/icons/CloseIcon'
+import CrossIcon from '../../../assets/icons/CrossIcon'
 import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import MinusCircleIcon from '../../../assets/icons/MinusCircleIcon'
 import readerStyles from '../../../utils/constants/readerStyles'
@@ -108,9 +108,9 @@ function BookEpubReader() {
 					</div>
 				</div>
 				<div
-					className='group absolute top-1 right-1 z-10 xl:top-2 xl:right-5 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+					className='group absolute top-1 right-1 z-10 xl:top-2 xl:right-5 p-1 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 bg-opacity-10 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 					onClick={() => router.back()}>
-					<CloseIcon />
+					<CrossIcon />
 				</div>
 			</div>
 		</Fragment>

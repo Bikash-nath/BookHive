@@ -46,14 +46,13 @@ function SelectBook() {
 		else if (!selectedBookType || !selectedFileType)
 			snackbarCtx.addMessage({ title: 'Please select book file which you want to upload', status: 'warning' })
 		else {
-			console.log(selectedBookType, selectedFileType, selectedBook)
 			toggleSpinner(true)
 			const upload = await createUpload({
 				book: selectedBook._id,
 				bookType,
 			})
 			console.log('upload', upload)
-			if (!upload.book) {
+			if (!upload.data) {
 				snackbarCtx.addMessage({ title: upload, status: 'fail' })
 			} else {
 				router.push('/user/uploads')

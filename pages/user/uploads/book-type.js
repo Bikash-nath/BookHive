@@ -29,7 +29,7 @@ function UploadBookType() {
 	const activeClassHandler = (type) => {
 		return (
 			'flex items-center w-full rounded-lg w-full sm:w-80 my-6 p-4 gap-6 ring-2 ' +
-			(bookType === type ? 'bg-purple-100 ring-[#8C6AFF]' : 'bg-[#192136] ring-[#192136]')
+			(bookType === type ? 'bg-purple-500 ring-[#8C6AFF] bg-opacity-10' : 'bg-[#192136] ring-[#192136]')
 		)
 	}
 
