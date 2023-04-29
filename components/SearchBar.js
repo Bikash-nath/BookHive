@@ -26,13 +26,6 @@ export default function SearchBar() {
 		// const inputWidth = Math.round(inputRef.current.getBoundingClientRect().width)
 	}, [router.asPath, activeSearch])
 
-	const keywordHandler = (e) => {
-		e.preventDefault()
-		setKeyword(e.target.value)
-		setShowSuggestion(true)
-		prevRoute && setPrevRoute(false)
-	}
-
 	const searchHandler = () => {
 		if (router.query.keyword !== keyword && keyword && keyword !== ' ') {
 			inputRef.current.blur()
@@ -42,6 +35,13 @@ export default function SearchBar() {
 			})
 		}
 		setShowSuggestion(false)
+	}
+
+	const keywordHandler = (e) => {
+		e.preventDefault()
+		setKeyword(e.target.value)
+		setShowSuggestion(true)
+		prevRoute && setPrevRoute(false)
 	}
 
 	return (
@@ -69,6 +69,9 @@ export default function SearchBar() {
 					<input
 						type='text'
 						value={keyword}
+						onKeyUp={(e) => {
+							if (e.key === 'Enter') searchHandler()
+						}}
 						onChange={keywordHandler}
 						ref={inputRef}
 						className={

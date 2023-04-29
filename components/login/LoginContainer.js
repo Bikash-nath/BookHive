@@ -26,7 +26,7 @@ function LoginContainer(props) {
 					{props.children}
 				</div>
 				<Link href='/'>
-					<div className='group absolute top-3 right-4 xl:top-8 xl:right-8 p-1 flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
+					<div className='group absolute top-3 right-4 xl:top-8 xl:right-8 p-1 flex items-center justify-center w-8 h-8 bg-slate-800 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'>
 						<CrossIcon />
 					</div>
 				</Link>

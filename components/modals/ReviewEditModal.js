@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 // import { useRouter } from 'next/router'
 
 import ButtonSpinner from '../widgets/ButtonSpinner'
@@ -11,7 +11,7 @@ function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editRe
 	const [description, setDescription] = useState('')
 	const [loading, setLoading] = useState(false)
 
-	// const router = useRouter()
+	const titleRef = useRef()
 
 	useEffect(() => {
 		if (review) {
@@ -19,7 +19,10 @@ function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editRe
 			setTitle(review.title)
 			setDescription(review.description)
 		}
-	}, [review])
+		if (rating && !title) {
+			titleRef.current.focus()
+		}
+	}, [review, rating])
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
@@ -58,12 +61,13 @@ function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editRe
 				<div className='w-full my-4'>
 					<input
 						value={title}
+						ref={titleRef}
 						onChange={(e) => {
 							setTitle(e.target.value)
 						}}
 						placeholder='Enter a title of your review'
 						type='text'
-						className='input-field'
+						className='input-field text-base'
 					/>
 					<div className='flex justify-end w-full'>
 						<p className='text-sm text-gray-400'>maximum 50 characters</p>
@@ -77,7 +81,7 @@ function ReviewEditModal({ review, reviewSubmitHandler, addReviewHandler, editRe
 						}}
 						placeholder='What did you like or dislike?'
 						rows='4'
-						className='input-field'
+						className='input-field text-base'
 					/>
 					<div className='flex justify-end w-full'>
 						<p className='text-sm text-gray-400'>minimum 50 characters</p>

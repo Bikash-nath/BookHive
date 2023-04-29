@@ -22,7 +22,18 @@ function UpdateEmail(props) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
-	const submitHandler = async () => {
+	useEffect(() => {
+		if (!userCtx.user?.data) router.push('/')
+	}, [userCtx.user, router])
+
+	const submitFormHandler = async () => {
+		if (!email) {
+			return snackbarCtx.addMessage({ title: 'Please provide your email', status: 'warning' })
+		} else if (!newEmail) {
+			return snackbarCtx.addMessage({ title: 'Please provide new email', status: 'warning' })
+		} else if (!password) {
+			return snackbarCtx.addMessage({ title: 'Please provide your password', status: 'warning' })
+		}
 		if (email === newEmail) {
 			snackbarCtx.addMessage({ title: 'Your current email cannot be same as new email', status: 'invalid' })
 			return
@@ -39,9 +50,9 @@ function UpdateEmail(props) {
 		setUpdating(false)
 	}
 
-	useEffect(() => {
-		if (!userCtx.user?.data) router.push('/')
-	}, [userCtx.user, router])
+	const submitKeyHandler = (e) => {
+		if (e.key === 'Enter') submitFormHandler(e)
+	}
 
 	return (
 		<Fragment>
@@ -55,6 +66,7 @@ function UpdateEmail(props) {
 					<input
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						onKeyUp={submitKeyHandler}
 						placeholder='Enter your current email'
 						type='email'
 						className='input-field my-4'
@@ -62,6 +74,7 @@ function UpdateEmail(props) {
 					<input
 						value={newEmail}
 						onChange={(e) => setNewEmail(e.target.value)}
+						onKeyUp={submitKeyHandler}
 						placeholder='Enter your new email'
 						type='email'
 						className='input-field my-4'
@@ -70,6 +83,7 @@ function UpdateEmail(props) {
 						<input
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							onKeyUp={submitKeyHandler}
 							placeholder='Your current password'
 							type={!showPassword ? 'password' : 'text'}
 							className='input-field box-border'
@@ -94,7 +108,7 @@ function UpdateEmail(props) {
 					</div>
 					<div className='flex items-center justify-end my-3 md:my-6'>
 						<button
-							onClick={submitHandler}
+							onClick={submitFormHandler}
 							className={
 								email !== newEmail && email.includes('@') && newEmail.includes('@') && password
 									? 'btn-next'

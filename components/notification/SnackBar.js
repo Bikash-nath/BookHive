@@ -19,23 +19,23 @@ function SnackBar(props) {
 
 	const badges = {
 		success: {
-			color: 'bg-green-400 bg-opacity-90 text-green-700 border-green-700 ring-green-600/20',
-			icon: <CheckCircleIcon dimensions={'w-6s h-6'} />,
+			color: 'bg-green-500/10 text-green-500 border-green-700 ring-green-600/20',
+			icon: <CheckCircleIcon dimensions={'w-6 h-6'} />,
 		},
 		info: {
-			color: 'bg-blue-400 bg-opacity-90 text-blue-700 border-blue-700 ring-blue-700/10',
+			color: 'bg-blue-700/10 text-blue-500 border-blue-700 ring-blue-700/10',
 			icon: <FeedbackIcon dimensions={'w-6 h-6'} />,
 		},
 		warning: {
-			color: 'bg-yellow-400 bg-opacity-90 text-yellow-800 border-yellow-800 ring-yellow-600/20',
+			color: 'bg-yellow-500/10 text-yellow-500 border-yellow-800 ring-yellow-600/20',
 			icon: <WarningIcon dimensions={'w-6 h-6'} />,
 		},
 		fail: {
-			color: 'bg-red-400 bg-opacity-90 text-red-700 border-red-700 ring-red-600/10',
+			color: 'bg-red-500/10 text-red-500 border-red-700 ring-red-500/10',
 			icon: <CloseIcon dimensions={'w-6 h-6'} />,
 		},
 		invalid: {
-			color: 'bg-red-400 bg-opacity-90 text-red-700 border-red-700 ring-red-600/10',
+			color: 'bg-red-500/10 text-red-500 border-red-700 ring-red-500/10',
 			icon: <InValidIcon dimensions={'w-6 h-6'} />,
 		},
 	}
@@ -56,16 +56,18 @@ function SnackBar(props) {
 	return message?.title ? (
 		<div
 			className={
-				'fixed overflow-hidden m-2 xl:m-3 w-auto z-20 ' +
+				'fixed overflow-hidden m-2 xl:m-3 w-auto z-20 bg-black rounded-md ' +
 				(windowWidth < 1280
-					? props.navbarRef.current
+					? props.bookbarRef.current
 						? 'left-0 bottom-28'
+						: props.navbarRef.current
+						? 'left-0 bottom-14'
 						: 'left-0 bottom-0'
 					: 'left-[13.5vw] bottom-0')
 			}>
 			<div
 				className={
-					'inline-flex items-center justify-between w-full rounded-md bg-[#192139] border-l-4 box-border ring-1 ring-inset select-none ' +
+					'inline-flex items-center justify-between w-full rounded-md border-l-4 box-border ring-1 ring-inset select-none ' +
 					(badges[message.status] ? badges[message.status].color : '')
 				}
 				vshow='show'

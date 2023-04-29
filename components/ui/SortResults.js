@@ -31,7 +31,9 @@ function SortResults({ showSuggestionHandler }) {
 						onClick={sortButtonHandler}
 						aria-expanded='false'
 						aria-haspopup='true'>
-						<SortIcon dimensions='h-7 w-7' />
+						<div className={showSortOption ? 'text-white' : 'text-slate-300'}>
+							<SortIcon dimensions='h-7 w-7' />
+						</div>
 					</button>
 				</div>
 

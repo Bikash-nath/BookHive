@@ -24,7 +24,16 @@ function UpdatePassword(props) {
 	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
-	const submitHandler = async () => {
+	useEffect(() => {
+		if (!userCtx.user?.data) router.push('/')
+	}, [userCtx.user, router])
+
+	const submitFormHandler = async () => {
+		if (!passwordCurrent) {
+			return snackbarCtx.addMessage({ title: 'Please provide your password', status: 'warning' })
+		} else if (!newPassword) {
+			return snackbarCtx.addMessage({ title: 'Please provide new password', status: 'warning' })
+		}
 		if (newPassword === newPasswordConfirm) {
 			setUpdating(true)
 			const user = await updateUserPassword({
@@ -43,9 +52,9 @@ function UpdatePassword(props) {
 		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'warning' })
 	}
 
-	useEffect(() => {
-		if (!userCtx.user?.data) router.push('/')
-	}, [userCtx.user, router])
+	const submitKeyHandler = (e) => {
+		if (e.key === 'Enter') submitFormHandler(e)
+	}
 
 	return (
 		<Fragment>
@@ -60,6 +69,7 @@ function UpdatePassword(props) {
 						<input
 							value={passwordCurrent}
 							onChange={(e) => setPasswordCurrent(e.target.value)}
+							onKeyUp={submitKeyHandler}
 							placeholder='Enter your password'
 							type={!showPasswordCurrent ? 'password' : 'text'}
 							className='input-field mb-4'
@@ -86,6 +96,7 @@ function UpdatePassword(props) {
 						<input
 							value={newPassword}
 							onChange={(e) => setNewPassword(e.target.value)}
+							onKeyUp={submitKeyHandler}
 							placeholder='Enter your newPassword'
 							type={!showNewPassword ? 'password' : 'text'}
 							className='input-field mb-4'
@@ -112,6 +123,7 @@ function UpdatePassword(props) {
 						<input
 							value={newPasswordConfirm}
 							onChange={(e) => setNewPasswordConfirm(e.target.value)}
+							onKeyUp={submitKeyHandler}
 							placeholder='Confirm your newPassword'
 							type={!showNewPasswordConfirm ? 'newPassword' : 'text'}
 							className='input-field mb-4'
@@ -137,7 +149,7 @@ function UpdatePassword(props) {
 
 					<div className='flex items-center justify-end my-3 md:my-6'>
 						<button
-							onClick={submitHandler}
+							onClick={submitFormHandler}
 							className={
 								passwordCurrent && newPassword.length > 8 && newPassword === newPasswordConfirm
 									? 'btn-next'

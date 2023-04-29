@@ -19,10 +19,6 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 		inputRef.current.focus()
 	}, [])
 
-	const keywordHandler = (e) => {
-		setKeyword(e.target.value)
-		setSearchSubmitted(false)
-	}
 	const searchBookHandler = async () => {
 		if (!keyword) return
 		toggleSpinner(true)
@@ -33,14 +29,22 @@ function BookSearchModal({ selectedBook, selectBookHandler }) {
 		setSearchSubmitted(true)
 	}
 
+	const keywordHandler = (e) => {
+		setKeyword(e.target.value)
+		setSearchSubmitted(false)
+	}
+
 	return (
 		<Fragment>
 			<div className='relative w-full'>
 				<input
 					type='text'
 					value={keyword}
-					onChange={keywordHandler}
 					ref={inputRef}
+					onChange={keywordHandler}
+					onKeyUp={(e) => {
+						if (e.key === 'Enter') searchBookHandler()
+					}}
 					className='w-full box-border h-10 p-4 text-white text-lg rounded-full bg-slate-700 outline-none focus:ring-1 focus:ring-[#8C6AFF]'
 					placeholder='Search books'
 				/>

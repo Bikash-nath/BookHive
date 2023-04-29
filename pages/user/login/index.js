@@ -22,8 +22,13 @@ function LoginEmailPage() {
 	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
-	const submitHandler = async (e) => {
+	const submitFormHandler = async (e) => {
 		e.preventDefault()
+		if (!email) {
+			return snackbarCtx.addMessage({ title: 'Please provide your email', status: 'warning' })
+		} else if (!password) {
+			return snackbarCtx.addMessage({ title: 'Please provide your password', status: 'warning' })
+		}
 		setLoading(true)
 		const user = await login(email, password)
 		if (user.data) {
@@ -33,6 +38,10 @@ function LoginEmailPage() {
 			snackbarCtx.addMessage({ title: user, status: 'invalid' })
 		}
 		setLoading(false)
+	}
+
+	const submitKeyHandler = (e) => {
+		if (e.key === 'Enter') submitFormHandler(e)
 	}
 
 	useEffect(() => {
@@ -54,6 +63,7 @@ function LoginEmailPage() {
 					onChange={(e) => {
 						setEmail(e.target.value)
 					}}
+					onKeyUp={submitKeyHandler}
 					placeholder='Enter email address or phone'
 					type='email'
 					className='input-field my-4'
@@ -62,6 +72,7 @@ function LoginEmailPage() {
 					<input
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						onKeyUp={submitKeyHandler}
 						placeholder='Enter your password'
 						type={!showPassword ? 'password' : 'text'}
 						className='input-field box-border'
@@ -89,7 +100,7 @@ function LoginEmailPage() {
 						<div className='font-medium text-purple-400'>Forgot password ?</div>
 					</Link>
 					<button
-						onClick={submitHandler}
+						onClick={submitFormHandler}
 						className={email && password?.length > 8 ? 'btn-next' : 'btn-next-inactive'}>
 						{loading ? (
 							<ButtonSpinner />

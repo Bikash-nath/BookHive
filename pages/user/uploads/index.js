@@ -24,17 +24,18 @@ function UploadsPage() {
 
 	useEffect(() => {
 		setActiveUser(user?.data)
-		;(async () => {
-			toggleSpinner(true)
-			const data = await getUploads()
-			console.log('uploads', data)
-			if (!data.uploads) {
-				snackbarCtx.addMessage({ title: uploads, status: 'fail' })
-			} else {
-				setUploads(data.uploads)
-			}
-			toggleSpinner(false)
-		})()
+		if (activeUser) {
+			;(async () => {
+				toggleSpinner(true)
+				const data = await getUploads()
+				if (!data.uploads) {
+					snackbarCtx.addMessage({ title: data, status: 'fail' })
+				} else {
+					setUploads(data.uploads)
+				}
+				toggleSpinner(false)
+			})()
+		}
 	}, [user])
 
 	return (

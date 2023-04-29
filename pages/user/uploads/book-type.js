@@ -22,7 +22,7 @@ function UploadBookType() {
 	}, [user])
 
 	const nextPageHandler = () => {
-		if (!bookType) snackbarCtx.addMessage({ title: 'Please select a book type', status: 'fail' })
+		if (!bookType) snackbarCtx.addMessage({ title: 'Please select a book type', status: 'warning' })
 		else router.push(`/user/uploads/${bookType}/select-book`)
 	}
 

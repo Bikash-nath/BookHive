@@ -25,8 +25,15 @@ function SignUpPage() {
 	const snackbarCtx = useContext(SnackbarContext)
 	const router = useRouter()
 
-	const submitHandler = async (e) => {
+	const submitFormHandler = async (e) => {
 		e.preventDefault()
+		if (!name) {
+			return snackbarCtx.addMessage({ title: 'Please provide your name', status: 'warning' })
+		} else if (!email) {
+			return snackbarCtx.addMessage({ title: 'Please provide your email', status: 'warning' })
+		} else if (!password) {
+			return snackbarCtx.addMessage({ title: 'Please provide your password', status: 'warning' })
+		}
 		if (password === passwordConfirm) {
 			setLoading(true)
 			const user = await signup(name, email, password, passwordConfirm)
@@ -38,7 +45,11 @@ function SignUpPage() {
 				snackbarCtx.addMessage({ title: user, status: 'invalid' })
 			}
 			setLoading(false)
-		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'invalid' })
+		} else snackbarCtx.addMessage({ title: 'Provided passwords do not match', status: 'warning' })
+	}
+
+	const submitKeyHandler = (e) => {
+		if (e.key === 'Enter') submitFormHandler(e)
 	}
 
 	useEffect(() => {
@@ -58,6 +69,7 @@ function SignUpPage() {
 				<input
 					value={name}
 					onChange={(e) => setName(e.target.value)}
+					onKeyUp={submitKeyHandler}
 					placeholder='Name'
 					type='text'
 					className='input-field mb-4'
@@ -65,6 +77,7 @@ function SignUpPage() {
 				<input
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
+					onKeyUp={submitKeyHandler}
 					placeholder='Email address or phone'
 					type='email'
 					className='input-field mb-4'
@@ -73,6 +86,7 @@ function SignUpPage() {
 					<input
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						onKeyUp={submitKeyHandler}
 						placeholder='Password'
 						type={!showPassword ? 'password' : 'text'}
 						className='input-field mb-4'
@@ -99,6 +113,7 @@ function SignUpPage() {
 					<input
 						value={passwordConfirm}
 						onChange={(e) => setPasswordConfirm(e.target.value)}
+						onKeyUp={submitKeyHandler}
 						placeholder='Confirm password'
 						type={!showPasswordConfirm ? 'password' : 'text'}
 						className='input-field mb-4'
@@ -124,7 +139,7 @@ function SignUpPage() {
 
 				<div className='flex items-center justify-end my-3 md:my-6'>
 					<button
-						onClick={submitHandler}
+						onClick={submitFormHandler}
 						className={
 							name && email && password && password === passwordConfirm ? 'btn-next' : 'btn-next-inactive'
 						}>
