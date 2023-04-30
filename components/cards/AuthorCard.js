@@ -7,7 +7,7 @@ function AuthorCard({ author }) {
 			className='flex items-center justify-center w-full h-full xl:my-2 rounded-xl group-hover:flex select-none'
 			key={author._id}>
 			<Link href={`/authors/${author.slug}`}>
-				<div className='flex flex-col w-28 h-36 xl:w-40 xl:h-48 rounded-xl xl:p-0.5 hover:scale-105 transform duration-100 backdrop-blur-sm'>
+				<div className='flex flex-col w-28 h-36 xl:w-40 xl:h-48 rounded-xl xl:p-0.5  hover:bg-[#192132]'>
 					<div className='flex justify-center w-full h-full p-1 xl:p-1.5'>
 						<Image
 							src={process.env.AUTHORS_URL + author.image}

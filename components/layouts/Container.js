@@ -17,6 +17,7 @@ function Container(props) {
 	const headerRef = useRef()
 	const windowWidth = useWindowWidth()
 	const navbarRef = useRef()
+	const bookbarRef = useRef()
 	const { activeSpinner } = useContext(SpinnerContext)
 	const { activeSearch } = useContext(SearchToggleContext)
 
@@ -32,8 +33,8 @@ function Container(props) {
 							<div className={'relative h-full ' + (activeSearch || activeSpinner ? 'opacity-30' : '')}>
 								{props.children}
 							</div>
-							<BookProgressBar />
-							<SnackBar navbarRef={navbarRef} />
+							<BookProgressBar bookbarRef={bookbarRef} />
+							<SnackBar navbarRef={navbarRef} bookbarRef={bookbarRef} />
 							{windowWidth < 1280 && <Navbar navbarRef={navbarRef} />}
 						</div>
 					</BookContextProvider>

@@ -19,7 +19,7 @@ function BookUploadModal(props) {
 	}
 
 	const cancelModalHandler = () => {
-		props.cancelBookHandler(false)
+		props.cancelBookHandler()
 		document.body.style.overflowY = 'auto'
 	}
 

@@ -169,7 +169,10 @@ function SelectBook() {
 						<BookUploadModal
 							title='Search & Select Book'
 							book={selectedBook}
-							cancelBookHandler={setShowSearchModal}
+							cancelBookHandler={() => {
+								setShowSearchModal(false)
+								setSelectedBook(null)
+							}}
 							saveBookHandler={() => {
 								if (selectedBook) {
 									setShowSearchModal(false)

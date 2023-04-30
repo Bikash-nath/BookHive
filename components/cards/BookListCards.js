@@ -3,16 +3,19 @@ import Image from 'next/image'
 import openLink from '../../utils/helpers/openLink'
 
 function BookListCards({ books, selectedBook, selectBookHandler }) {
+	const selectHandler = (book) => {
+		if (selectedBook !== book) selectBookHandler(book)
+		else selectBookHandler(null)
+	}
+
 	return books?.map((book, i) => (
-		<div className='flex flex-row' key={i}>
+		<div className='flex flex-row bg-black' key={i}>
 			<div
 				className={
 					'flex items-start justify-between relative rounded-md w-full h-32 p-1 cursor-pointer group-hover:flex ring-1 ' +
-					(selectedBook?._id === book._id
-						? 'bg-green-600 ring-green-600 bg-opacity-20'
-						: 'bg-[#192132] ring-slate-700')
+					(selectedBook?._id === book._id ? 'bg-green-700/80 ring-green-600' : 'bg-[#192132] ring-slate-700')
 				}
-				onClick={() => selectBookHandler(book)}>
+				onClick={() => selectHandler(book)}>
 				<Image
 					src={process.env.BOOKS_URL + book.image.path}
 					alt={book.title}
@@ -35,7 +38,12 @@ function BookListCards({ books, selectedBook, selectBookHandler }) {
 					<div className='flex items-center justify-center'>
 						<button
 							onClick={() => openLink(`/books/${book.slug}`)}
-							className='text-sm font-medium text-indigo-600 hover:text-indigo-500'>
+							className={
+								'text-sm font-medium ' +
+								(selectedBook?._id === book._id
+									? 'text-gray-300 hover:text-white'
+									: 'text-blue-600 hover:text-blue-500')
+							}>
 							Details
 						</button>
 					</div>

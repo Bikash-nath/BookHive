@@ -244,7 +244,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
 	const authors = await getTopAuthors()
 
-	const authorParams = authors.data.map((author) => ({
+	const authorParams = authors.data?.map((author) => ({
 		params: { authorId: author.slug.toString() },
 	}))
 

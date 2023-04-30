@@ -123,7 +123,7 @@ function Header(props) {
 													<div
 														className={
 															'absolute rounded-lg top-10 right-1 p-1 bg-[#192132] mt-2 border border-gray-900 bg-opacity-100 text-md' +
-															(!showNavBtn && 'hidden')
+															(!showNavBtn ? ' hidden' : '')
 														}>
 														<Link href='/user/account/profile'>
 															<div className={routeClassHandler('/account')}>

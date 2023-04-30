@@ -50,9 +50,11 @@ function Paginate({ totalPages, page, keyword }) {
 
 	const prevPage = () => {
 		if (currentPage > 1) return currentPage - 1
+		else return currentPage
 	}
 	const nextPage = () => {
 		if (currentPage < totalPages) return currentPage + 1
+		else return currentPage
 	}
 
 	//	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -63,7 +65,7 @@ function Paginate({ totalPages, page, keyword }) {
 					<div
 						className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
 						onClick={() => {
-							setCurrentPage(prevPage)
+							setCurrentPage(prevPage())
 						}}>
 						<ChevronLeftIcon dimensions='h-6 w-6' />
 					</div>
@@ -88,7 +90,7 @@ function Paginate({ totalPages, page, keyword }) {
 					<div
 						className='rounded-full text-center p-2 h-9 w-9 xl:h-10 xl:w-10 m-1 xl:m-1.5 text-[#aa14f0]'
 						onClick={() => {
-							setCurrentPage(nextPage)
+							setCurrentPage(nextPage())
 						}}>
 						{' '}
 						<ChevronRightIcon dimensions='h-6 w-6' />
