@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import HorizontalRuleText from '../ui/HorizontalRuleText'
+import HorizontalRuleText from '../widgets/HorizontalRuleText'
 
 function LoginOptions(props) {
 	return (

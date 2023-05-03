@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import { searchBooks } from '../API/books'
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/ui/SearchBar'
 import ListGridModal from '../components/modals/ListGridModal'
 import SpinnerContext from '../store/spinnerContext'
 import SnackbarContext from '../store/snackbarContext'
-import Paginate from '../components/widgets/Paginate'
+import Paginate from '../components/ui/Paginate'
 
 function SearchPage() {
 	const [searchResult, setSearchResult] = useState([])

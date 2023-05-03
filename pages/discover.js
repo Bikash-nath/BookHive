@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { getTopGenres } from '../API/genres'
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/ui/SearchBar'
 import PageHeader from '../components/layouts/PageHeader'
 import GenreCards from '../components/cards/GenreCards'
 import colors from '../utils/constants/genreColors'

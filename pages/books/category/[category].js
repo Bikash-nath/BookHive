@@ -7,7 +7,7 @@ import { getBestsellers, getTopAudiobooks, getLatestBooks, getIndianBooks } from
 import SpinnerContext from '../../../store/spinnerContext'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
-import Paginate from '../../../components/widgets/Paginate'
+import Paginate from '../../../components/ui/Paginate'
 
 function BookListPage(props) {
 	const { toggleSpinner } = useContext(SpinnerContext)

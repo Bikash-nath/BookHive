@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import { useRouter } from 'next/router'
 
-import SearchToggleContext from '../store/searchToggleContext'
-import SearchSuggestion from './widgets/SearchSuggesion'
-import SortResults from '../components/ui/SortResults'
-import NavigateBackButton from './ui/NavigateBackButton'
-import ArrowBackIcon from '../assets/icons/ArrowBackIcon'
+import SearchToggleContext from '../../store/searchToggleContext'
+import SearchSuggestion from './SearchSuggesion'
+import SortResults from './SortResults'
+import NavigateBackButton from './NavigateBackButton'
+import ArrowBackIcon from '../../assets/icons/ArrowBackIcon'
 
 export default function SearchBar() {
 	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
@@ -101,7 +101,11 @@ export default function SearchBar() {
 				</div>
 				{router.asPath.includes('/search') && <SortResults showSuggestionHandler={setShowSuggestion} />}
 			</div>
-			<SearchSuggestion keyword={keyword} showSuggestion={showSuggestion} />
+			<SearchSuggestion
+				keyword={keyword}
+				showSuggestion={showSuggestion}
+				showSuggestionHandler={setShowSuggestion}
+			/>
 		</div>
 	)
 }
