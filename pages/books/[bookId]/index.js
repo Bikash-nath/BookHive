@@ -8,7 +8,7 @@ import { getBookDetails, getBestsellers, getLatestBooks, createBookReview, updat
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
-// import BookContext from '../../../store/bookContext'
+import BookContext from '../../../store/bookContext'
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import BgCover from '../../../components/modals/BgCover'
 import { pickBgColor } from '../../../utils/helpers/pickBgColor'
@@ -35,7 +35,7 @@ function BookDetailPage(props) {
 	const { book } = props
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-	// const bookCtx = useContext(BookContext)
+	const bookCtx = useContext(BookContext)
 	const windowWidth = useWindowWidth()
 
 	const [readMoreDesc, setReadMoreDesc] = useState(false)
@@ -112,12 +112,15 @@ function BookDetailPage(props) {
 	const isReviewAllowed = () => {
 		if (reviewSubmitted || !activeUser) return false
 		else if (!book.reviews?.length) return true
-		return !book.reviews.some((review) => review.user._id === user.data?._id)
+		return !book.reviews.some((review) => review.user._id === user?.data?._id)
 	}
 
 	const editReviewHandler = (review) => {
 		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review', status: 'invalid' })
-		else setEditReview(review)
+		else {
+			bookCtx.setActiveBook(false)
+			setEditReview(review)
+		}
 	}
 
 	const reviewSubmitHandler = async (rating, title, description, reviewId) => {
@@ -141,18 +144,19 @@ function BookDetailPage(props) {
 		// 'https://bookhive-ebooks.s3.amazonaws.com/Never+Split+the+Difference_+Negotiating+as+if+Your+Life+Depended+on+It+by+Chris+Voss.epub'
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
+			bookCtx.addBook(book)
+			bookCtx.setActiveBook(false)
 			router.push({
 				pathname: `/books/${book.slug}/read`,
-				query: {
-					ebookLink: book.format.ebook.link,
-					author: book.author.name,
-				},
 			})
-			// router.push({
-			// 	pathname: `/books/${book.slug}/read`,
-			// })
 		} else {
-			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe', status: 'fail' })
+			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe!', status: 'fail' })
+		}
+	}
+
+	const audioBookHandler = () => {
+		if (!book.format?.audiobook?.fileType) {
+			snackbarCtx.addMessage({ title: 'Sorry, Audiobook not avialabe!', status: 'fail' })
 		}
 	}
 
@@ -245,7 +249,7 @@ function BookDetailPage(props) {
 								<BookReadIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='btn-inactive'>
+							<button className='btn-inactive' onClick={audioBookHandler}>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
@@ -347,7 +351,10 @@ function BookDetailPage(props) {
 							<div className='flex justify-start m-4 xl:m-8'>
 								<button
 									className='flex items-center rounded-lg w-fit p-3 gap-2 bg-[#152338]'
-									onClick={() => router.push(`/books/${book.slug}/report/`)}>
+									onClick={() => {
+										bookCtx.addBook(book)
+										router.push(`/books/${book.slug}/report/`)
+									}}>
 									<ReportIcon dimensions='h-7 w-7' />
 									<p className='text-base'>Report book</p>
 								</button>
@@ -372,7 +379,10 @@ function BookDetailPage(props) {
 								{isReviewAllowed() && ( //this is causing Hydration error (value returned in server!=client)
 									<button
 										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#152338]'
-										onClick={() => setAddReview(true)}>
+										onClick={() => {
+											setAddReview(true)
+											bookCtx.setActiveBook(false)
+										}}>
 										<p className='text-md font-semibold'>
 											{book.reviews.length
 												? 'Write a review'

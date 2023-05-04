@@ -29,7 +29,7 @@ function SearchSuggestion({ keyword, showSuggestion, showSuggestionHandler }) {
 		}
 	}, [keyword])
 
-	return showSuggestion && (loadingSearch || searchSuggestions.books) ? (
+	return showSuggestion && (loadingSearch || searchSuggestions.books?.length || searchSuggestions.authors?.length) ? (
 		<div className='absolute right-0 top-12 flex justify-center w-full z-10'>
 			<div
 				className='m-1 py-1 origin-top-right rounded-md bg-[#192139] shadow-2xl ring-1 ring-black ring-opacity-5 w-full max-h-screen overflow-y-scroll hide-scrollbar focus:outline-none'

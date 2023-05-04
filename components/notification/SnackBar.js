@@ -19,23 +19,23 @@ function SnackBar(props) {
 
 	const badges = {
 		success: {
-			color: 'bg-green-500/10 text-green-500 border-green-700 ring-green-600/20',
+			color: 'bg-green-500/20 text-green-400 border-green-600 ring-green-600/40',
 			icon: <CheckCircleIcon dimensions={'w-6 h-6'} />,
 		},
 		info: {
-			color: 'bg-blue-700/10 text-blue-500 border-blue-700 ring-blue-700/10',
+			color: 'bg-blue-700/10 text-blue-400 border-blue-600 ring-blue-700/30',
 			icon: <FeedbackIcon dimensions={'w-6 h-6'} />,
 		},
 		warning: {
-			color: 'bg-yellow-500/10 text-yellow-500 border-yellow-800 ring-yellow-600/20',
+			color: 'bg-yellow-500/30 text-yellow-400 border-yellow-800 ring-yellow-600/40',
 			icon: <WarningIcon dimensions={'w-6 h-6'} />,
 		},
 		fail: {
-			color: 'bg-red-500/10 text-red-500 border-red-700 ring-red-500/10',
+			color: 'bg-red-500/10 text-red-400 border-red-600 ring-red-500/30',
 			icon: <CloseIcon dimensions={'w-6 h-6'} />,
 		},
 		invalid: {
-			color: 'bg-red-500/10 text-red-500 border-red-700 ring-red-500/10',
+			color: 'bg-red-500/10 text-red-400 border-red-600 ring-red-500/30',
 			icon: <InValidIcon dimensions={'w-6 h-6'} />,
 		},
 	}

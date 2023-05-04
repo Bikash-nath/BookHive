@@ -10,18 +10,22 @@ const BookContext = createContext({
 
 export function BookContextProvider(props) {
 	const [currentBook, setCurrentBook] = useState({})
-	const [bookState, setBookState] = useState({})
+	const [bookState, setBookState] = useState(false)
 
 	function addBookHandler(bookData) {
 		console.log('addBookHandler', bookData)
 		setCurrentBook(bookData)
+		setBookState(false)
 	}
 
 	function removeBookHandler() {
+		console.log('removeBookHandler', null)
 		setCurrentBook(null)
+		setBookState(false)
 	}
 
 	function setActiveHandler(activeState) {
+		console.log('setActiveHandler', activeState)
 		setBookState(activeState)
 	}
 

@@ -1,5 +1,6 @@
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
@@ -9,9 +10,13 @@ import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 
 function Navbar(props) {
 	const router = useRouter()
-	const currentRoute = router.asPath
+	const [currentRoute, setCurrentRoute] = useState(router.pathname)
 	const paths = ['login', 'signup']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
+
+	useEffect(() => {
+		setCurrentRoute(router.asPath)
+	}, [router.asPath])
 
 	const routeClassHandler = (route) => {
 		// console.log('router', router.asPath, router.pathname)

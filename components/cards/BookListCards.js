@@ -24,7 +24,7 @@ function BookListCards({ books, selectedBook, selectBookHandler }) {
 					className='object-contain rounded-md w-fit h-[7.5rem]'
 				/>
 				<div className='flex flex-col justify-center w-7/12 h-full p-2'>
-					<p className='font-semibold leading-5 line-clamp-2 text-white '>{book.title}</p>
+					<p className='font-semibold leading-5 line-clamp-2 text-white'>{book.title}</p>
 					<p className='font-medium truncate text-gray-300 py-1.5'>{`By ${book.author.name}`}</p>
 				</div>
 				<div className='flex flex-col items-end justify-between h-full w-1/6 p-2'>
