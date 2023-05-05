@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext, Fragment } from 'react'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 import { ReactReader, ReactReaderStyle } from 'react-reader'
 import BookContext from '../../../store/bookContext'
@@ -18,11 +18,14 @@ function BookEpubReader() {
 	const [size, setSize] = useState(100)
 
 	useEffect(() => {
-		console.log('bookCtx.book', bookCtx.book)
+		// console.log('bookCtx.book', bookCtx.book)
 		if (bookCtx.book) {
 			setTitle(bookCtx.book.title)
 			setAuthor(bookCtx.book.author?.name)
-			setEbookLink('http://127.0.0.1:5000/ebooks/' + bookCtx.book.format?.ebook.link)
+			// setEbookLink('http://127.0.0.1:5000/ebooks/' + bookCtx.book.format?.ebook.link)
+			setEbookLink(process.env.EBOOK_URL + bookCtx.book.format?.ebook.link)
+		} else {
+			//fetch book details based on slug (on-refresh)
 		}
 	}, [bookCtx.book])
 
@@ -57,11 +60,9 @@ function BookEpubReader() {
 		}
 	}
 
-	if (bookCtx.book.format) {
-		console.log('link', bookCtx.book.format.ebook.link)
-		console.log('ebook.link', 'http://127.0.0.1:5000/ebooks/' + bookCtx.book.format.ebook.link)
-	}
 	//bg-#fbf0d9
+	console.log('ebookLink', ebookLink)
+
 	return (
 		<Fragment>
 			<Head>
@@ -73,7 +74,7 @@ function BookEpubReader() {
 					title={title + ' by ' + author}
 					location={location}
 					locationChanged={locationChanged}
-					url={process.env.EBOOK_URL + ebookLink}
+					url={ebookLink}
 					readerStyles={{ ...ReactReaderStyle, ...readerStyles }}
 					tocChanged={(toc) => (tocRef.current = toc)}
 					epubOptions={{
@@ -113,7 +114,7 @@ function BookEpubReader() {
 				<div
 					className='group absolute top-1 right-1 z-10 xl:top-2 xl:right-5 p-1 m-0.5 xl:m-1 xl:scale-110 flex items-center justify-center w-6 h-6 bg-gray-400 bg-opacity-10 rounded-full hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 					onClick={bookCloseHandler}>
-					<ChevronDownIcon />
+					<ChevronDownIcon dimensions='h-7 w-7' stroke='white' />
 				</div>
 			</div>
 		</Fragment>

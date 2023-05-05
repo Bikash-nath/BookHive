@@ -20,6 +20,7 @@ const nextConfig = (phase) => {
 				AUTHORS_URL: 'http://127.0.0.1:5000/img/authors/',
 				GENRES_URL: 'http://127.0.0.1:5000/img/genres/',
 				USERS_URL: 'http://127.0.0.1:5000/img/users/',
+				EBOOK_URL: 'http://127.0.0.1:5000/ebooks/',
 			},
 		}
 
