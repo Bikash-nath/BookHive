@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import SearchToggleContext from '../../store/searchToggleContext'
 import SearchSuggestion from './SearchSuggesion'
 import SortResults from './SortResults'
-import NavigateBackButton from './NavigateBackButton'
+import NavigateBackButton from '../buttons/NavigateBackButton'
 import ArrowBackIcon from '../../assets/icons/ArrowBackIcon'
 
 export default function SearchBar() {

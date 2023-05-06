@@ -1,4 +1,4 @@
-import LoginButton from '../ui/LoginButton'
+import LoginButton from '../buttons/LoginButton'
 
 export default function LoginBanner({ title, message, icon }) {
 	const pageIcon = {

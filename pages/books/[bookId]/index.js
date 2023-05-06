@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext, useRef, Fragment } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import { getBookDetails, getBestsellers, getLatestBooks, createBookReview, updateBookReview } from '../../../API/books'
 import { favouriteBook, getLibraryBooks } from '../../../API/userLibrary'
@@ -17,6 +17,7 @@ import GenreListModal from '../../../components/modals/GenreListModal'
 import ReviewCard from '../../../components/cards/ReviewCard'
 import ReviewEditModal from '../../../components/modals/ReviewEditModal'
 import DialogBox from '../../../components/notification/DialogBox'
+import ShareButton from '../../../components/buttons/ShareButton'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -25,7 +26,6 @@ import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon'
 import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
-import ShareIcon from '../../../assets/icons/ShareIcon'
 import ReportIcon from '../../../assets/icons/ReportIcon'
 
 // import openInNewTab from '../../utils/helpers/openLink'
@@ -77,6 +77,7 @@ function BookDetailPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryBooks()
+				console.log('library.books', library)
 				if (!library.books) snackbarCtx.addMessage({ title: library, status: 'invalid' })
 				else {
 					if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
@@ -160,20 +161,6 @@ function BookDetailPage(props) {
 		}
 	}
 
-	const shareBookHandler = async () => {
-		if (navigator?.share) {
-			await navigator.share({
-				title: book.title,
-				url: window.location.origin + router.asPath,
-			})
-		} else {
-			snackbarCtx.addMessage({
-				title: 'Sorry! Web Share API is not supported in this browser',
-				status: 'fail',
-			})
-		}
-	}
-
 	return book ? (
 		<Fragment>
 			<Head>
@@ -184,11 +171,7 @@ function BookDetailPage(props) {
 			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<TopNavModal
-						rightIcon={
-							<div onClick={shareBookHandler}>
-								<ShareIcon dimensions='h-6 w-6' color='' />
-							</div>
-						}
+						rightIcon={<ShareButton />}
 						lastIcon={
 							<div onClick={favouriteBookHandler}>
 								{isFavourite ? (
@@ -238,10 +221,8 @@ function BookDetailPage(props) {
 
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center w-fit xl:px-10 space-x-8 xl:space-y-4 right-2'>
-							<div
-								onClick={shareBookHandler}
-								className='hidden xl:flex absolute top-4 right-36 m-1 cursor-pointer'>
-								<ShareIcon dimensions='h-7 w-7' color='' />
+							<div className='hidden xl:flex absolute top-4 right-36 m-1 cursor-pointer'>
+								<ShareButton />
 							</div>
 							<button
 								className={book.format?.ebook?.link ? 'btn-active' : 'btn-inactive'}

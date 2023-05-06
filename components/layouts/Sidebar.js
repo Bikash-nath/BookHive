@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import UserContext from '../../store/userContext'
-import Logo from '../widgets/Logo'
+import Logo from '../buttons/Logo'
 import HomeIcon from '../../assets/icons/HomeIcon'
 import DiscoverIcon from '../../assets/icons/DiscoverIcon'
 import LibraryIcon from '../../assets/icons/LibraryIcon'

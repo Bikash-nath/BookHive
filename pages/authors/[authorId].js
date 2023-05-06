@@ -13,12 +13,11 @@ import { pickBgColor } from '../../utils/helpers/pickBgColor'
 import ListGridModal from '../..//components/modals/ListGridModal'
 import GenreListModal from '../../components/modals/GenreListModal'
 import TopNavModal from '../../components/modals/TopNavModal'
-import ButtonSpinner from '../../components/widgets/ButtonSpinner'
+import ShareButton from '../../components/buttons/ShareButton'
 import StarIcon from '../../assets/icons/StarIcon'
 import HeartIcon from '../../assets/icons/HeartIcon'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../assets/icons/ChevronDownIcon'
-import ShareIcon from '../../assets/icons/ShareIcon'
 
 function AuthorDetailPage(props) {
 	const { author } = props
@@ -110,15 +109,7 @@ function AuthorDetailPage(props) {
 
 			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
-					<TopNavModal
-						rightIcon={
-							<div onClick={shareAuthorHandler}>
-								<ShareIcon dimensions='h-6 w-6' color='' />
-							</div>
-						}
-						pageTitle={author.name}
-						coverRef={coverRef}
-					/>
+					<TopNavModal rightIcon={<ShareButton />} pageTitle={author.name} coverRef={coverRef} />
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
 					<div className='flex items-center justify-center w-full xl:max-w-2xl p-2 pt-11 xl:pt-4 gap-2 ms:gap-3 md:gap-4'>
@@ -155,10 +146,8 @@ function AuthorDetailPage(props) {
 
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center relative w-fit xl:min-h-[12rem] text-white'>
-							<div
-								onClick={shareAuthorHandler}
-								className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
-								<ShareIcon dimensions='h-7 w-7' color='' />
+							<div className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
+								<ShareButton />
 							</div>
 							{isFollowing ? (
 								<button className='btn-inactive' onClick={followAuthorHandler}>

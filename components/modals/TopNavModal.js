@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import NavigateBackButton from '../ui/NavigateBackButton'
+import NavigateBackButton from '../buttons/NavigateBackButton'
 
 export default function TopNavModal({ rightIcon, lastIcon, pageTitle, coverRef }) {
 	const [opacity, setOpacity] = useState(0)

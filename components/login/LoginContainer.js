@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import Logo from '../widgets/Logo'
+import Logo from '../buttons/Logo'
 import CrossIcon from '../../assets/icons/CrossIcon'
 
 function LoginContainer(props) {
