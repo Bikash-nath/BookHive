@@ -63,6 +63,11 @@ function BookDetailPage(props) {
 		}
 	}, [descRef?.current])
 
+	useEffect(() => {
+		if (addReview || editReview) bookCtx.setActiveBook(false)
+		else bookCtx.setActiveBook(true)
+	}, [addReview, editReview])
+
 	const readMoreDescHandler = () => {
 		const descEl = descRef.current
 		if (descEl) {
@@ -77,7 +82,6 @@ function BookDetailPage(props) {
 			;(async () => {
 				setLoadingFavourite(true)
 				const library = await getLibraryBooks()
-				console.log('library.books', library)
 				if (!library.books) snackbarCtx.addMessage({ title: library, status: 'invalid' })
 				else {
 					if (library.books.find((b) => b.slug === book?.slug)) setFavourite(true)
@@ -117,9 +121,9 @@ function BookDetailPage(props) {
 	}
 
 	const editReviewHandler = (review) => {
-		if (!user?.data) snackbarCtx.addMessage({ title: 'Please login to give book review', status: 'invalid' })
-		else {
-			bookCtx.setActiveBook(false)
+		if (!user?.data) {
+			snackbarCtx.addMessage({ title: 'Please login to give book review', status: 'invalid' })
+		} else {
 			setEditReview(review)
 		}
 	}
@@ -146,7 +150,6 @@ function BookDetailPage(props) {
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
 			bookCtx.addBook(book)
-			bookCtx.setActiveBook(false)
 			router.push({
 				pathname: `/books/${book.slug}/read`,
 			})
@@ -171,7 +174,7 @@ function BookDetailPage(props) {
 			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
 					<TopNavModal
-						rightIcon={<ShareButton />}
+						rightIcon={<ShareButton title={book.title} />}
 						lastIcon={
 							<div onClick={favouriteBookHandler}>
 								{isFavourite ? (
@@ -222,7 +225,7 @@ function BookDetailPage(props) {
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center w-fit xl:px-10 space-x-8 xl:space-y-4 right-2'>
 							<div className='hidden xl:flex absolute top-4 right-36 m-1 cursor-pointer'>
-								<ShareButton />
+								<ShareButton title={book.title} />
 							</div>
 							<button
 								className={book.format?.ebook?.link ? 'btn-active' : 'btn-inactive'}
@@ -362,7 +365,6 @@ function BookDetailPage(props) {
 										className='flex justify-between items-center gap-16 p-4 rounded-md bg-[#152338]'
 										onClick={() => {
 											setAddReview(true)
-											bookCtx.setActiveBook(false)
 										}}>
 										<p className='text-md font-semibold'>
 											{book.reviews.length

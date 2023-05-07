@@ -2,26 +2,33 @@ import { useEffect, useRef, useContext, Fragment, useState } from 'react'
 import Head from 'next/head'
 
 import { getLibraryAuthors } from '../../../API/userLibrary'
+import UserContext from '../../../store/userContext'
 import SpinnerContext from '../../../store/spinnerContext'
 import useWindowWidth from '../../../hooks/useWindowWidth'
 import ListGridModal from '../../../components/modals/ListGridModal'
 import TopNavModal from '../../../components/modals/TopNavModal'
 
 function LibraryAuthorssPage() {
+	const userCtx = useContext(UserContext)
 	const { toggleSpinner } = useContext(SpinnerContext)
+	const [activeUser, setActiveUser] = useState(null)
+	const [authors, setAuthors] = useState([])
+
 	const coverRef = useRef(null)
 	const pageRef = useRef(null)
 	const windowWidth = useWindowWidth()
-	const [authors, setAuthors] = useState([])
 
 	useEffect(() => {
-		;(async () => {
-			toggleSpinner(true)
-			const { authors } = await getLibraryAuthors()
-			if (authors) setAuthors(authors)
-			toggleSpinner(false)
-		})()
-	}, [])
+		if (!activeUser) setActiveUser(userCtx.user)
+		else {
+			;(async () => {
+				toggleSpinner(true)
+				const { authors } = await getLibraryAuthors()
+				if (authors) setAuthors(authors)
+				toggleSpinner(false)
+			})()
+		}
+	}, [activeUser])
 
 	return authors.length ? (
 		<Fragment>

@@ -109,7 +109,11 @@ function AuthorDetailPage(props) {
 
 			<div className='cover-page-bg pb-16 xl:pb-8'>
 				{windowWidth < 1280 && (
-					<TopNavModal rightIcon={<ShareButton />} pageTitle={author.name} coverRef={coverRef} />
+					<TopNavModal
+						rightIcon={<ShareButton title={author.name} />}
+						pageTitle={author.name}
+						coverRef={coverRef}
+					/>
 				)}
 				<BgCover color={props.color} coverRef={coverRef}>
 					<div className='flex items-center justify-center w-full xl:max-w-2xl p-2 pt-11 xl:pt-4 gap-2 ms:gap-3 md:gap-4'>
@@ -147,7 +151,7 @@ function AuthorDetailPage(props) {
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center relative w-fit xl:min-h-[12rem] text-white'>
 							<div className='hidden xl:flex absolute top-0 right-0 cursor-pointer'>
-								<ShareButton />
+								<ShareButton title={author.name} />
 							</div>
 							{isFollowing ? (
 								<button className='btn-inactive' onClick={followAuthorHandler}>

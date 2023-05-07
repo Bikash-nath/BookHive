@@ -1,14 +1,16 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import ShareIcon from '../../assets/icons/ShareIcon'
 import SnackbarContext from '../../store/snackbarContext'
 
-export default function ShareButton() {
+export default function ShareButton({ title }) {
 	const snackbarCtx = useContext(SnackbarContext)
+	const router = useRouter()
 
 	const shareBookHandler = async () => {
 		if (navigator?.share) {
 			await navigator.share({
-				title: book.title,
+				title,
 				url: window.location.origin + router.asPath,
 			})
 		} else {

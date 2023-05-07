@@ -20,9 +20,10 @@ import LogoutIcon from '../../assets/icons/LogoutIcon'
 
 function Header(props) {
 	const [showNavBtn, setShowNavBtn] = useState(false)
-
-	const userCtx = useContext(UserContext)
 	const [activeUser, setActiveUser] = useState(null)
+
+	const router = useRouter()
+	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
 	const { activeSearch, toggleSearch } = useContext(SearchToggleContext)
 
@@ -31,16 +32,16 @@ function Header(props) {
 		// if (!activeUser?.data) getUserProfile()
 	}, [userCtx.user])
 
-	const router = useRouter()
+	const toggleButtonHandler = () => {
+		setShowNavBtn(false)
+		toggleSearch(false) //if (activeSearch)
+	}
 
 	useEffect(() => {
-		router.events.on('routeChangeComplete', () => {
-			setShowNavBtn(false)
-			toggleSearch(false) //if (activeSearch)
-		})
+		router.events.on('routeChangeComplete', toggleButtonHandler)
 
 		return () => {
-			router.events.off('routeChangeComplete', () => {})
+			router.events.off('routeChangeComplete', toggleButtonHandler)
 		}
 	}, [router.events])
 

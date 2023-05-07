@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import { getUploads } from '../../../API/userUploads'
+import BookContext from '../../../store/bookContext'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
 import SpinnerContext from '../../../store/spinnerContext'
@@ -16,6 +17,7 @@ function UploadsPage() {
 	const { user } = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
 	const { toggleSpinner } = useContext(SpinnerContext)
+	const { activeBook } = useContext(BookContext)
 
 	const [activeUser, setActiveUser] = useState(null)
 	const [uploads, setUploads] = useState([])
@@ -81,7 +83,11 @@ function UploadsPage() {
 						</div>
 					)}
 
-					<div className='flex w-full xl:w-[85.5vw] justify-center fixed bottom-24 xl:bottom-16'>
+					<div
+						className={
+							'flex w-full xl:w-[85.5vw] justify-center fixed xl:bottom-16 ' +
+							(activeBook ? 'bottom-36' : 'bottom-24')
+						}>
 						<button
 							className='flex items-center gap-1 md:gap-2 p-1 xl:p-[.4rem] rounded-full bg-slate-700 shadow-sm shadow-gray-700'
 							onClick={() => router.push('/user/uploads/book-type')}>

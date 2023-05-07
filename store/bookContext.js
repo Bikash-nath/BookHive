@@ -13,19 +13,16 @@ export function BookContextProvider(props) {
 	const [bookState, setBookState] = useState(false)
 
 	function addBookHandler(bookData) {
-		console.log('addBookHandler', bookData)
 		setCurrentBook(bookData)
 		setBookState(false)
 	}
 
 	function removeBookHandler() {
-		console.log('removeBookHandler', null)
 		setCurrentBook(null)
 		setBookState(false)
 	}
 
 	function setActiveHandler(activeState) {
-		console.log('setActiveHandler', activeState)
 		setBookState(activeState)
 	}
 
