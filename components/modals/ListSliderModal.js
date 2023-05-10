@@ -51,7 +51,7 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 				</div>
 				{windowWidth < 1280 ? (
 					<div className='overflow-hidden overflow-x-scroll hide-scrollbar'>
-						<div className='flex items-start justify-start gap-2 sm:gap-3 w-full h-full'>
+						<div className='flex items-start justify-start gap-2 sm:gap-3 w-fit h-full'>
 							{silderContent}
 						</div>
 					</div>

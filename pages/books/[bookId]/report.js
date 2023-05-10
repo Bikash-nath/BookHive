@@ -2,7 +2,6 @@ import { useState, useEffect, useContext, Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import BookContext from '../../../store/bookContext'
 import UserContext from '../../../store/userContext'
 import SnackbarContext from '../../../store/snackbarContext'
 import LoginBanner from '../../../components/login/LoginBanner'
@@ -12,20 +11,16 @@ import ReportIcon from '../../../assets/icons/ReportIcon'
 function SettingsPage() {
 	const userCtx = useContext(UserContext)
 	const snackbarCtx = useContext(SnackbarContext)
-	const bookCtx = useContext(BookContext)
+	const router = useRouter()
 
 	const [title, setTitle] = useState('')
-	// const [author, setAuthor] = useState('')
 	const [activeUser, setActiveUser] = useState(null)
 	const [selected, setSelected] = useState(null)
 
 	useEffect(() => {
 		setActiveUser(userCtx.user)
-		if (!title) setTitle(bookCtx.book.title)
-		// if(!author) setAuthor(bookCtx.book.author)
+		if (!title) setTitle(router.asPath.split('.')[1]?.split('/report')[0]?.split('-').join(' '))
 	}, [activeUser])
-
-	const router = useRouter()
 
 	const reportSubmitHandler = (e) => {
 		e.preventDefault()

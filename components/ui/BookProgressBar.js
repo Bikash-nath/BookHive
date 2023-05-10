@@ -11,11 +11,11 @@ function BookProgressBar() {
 	const bookCtx = useContext(BookContext)
 	const book = bookCtx.book
 	const bgColor = book.slug && pickBgColor(book.slug)
+	const [showRoute, setShowRoute] = useState(false)
 
+	const router = useRouter()
 	const bookbarRef = useRef(null)
 	const windowWidth = useWindowWidth()
-	const router = useRouter()
-	const [showRoute, setShowRoute] = useState(false)
 
 	const showRouteHandler = () => {
 		const paths = ['/read', 'user/login', 'user/signup', 'user/account/', 'user/uploads/']

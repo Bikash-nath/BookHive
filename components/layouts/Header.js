@@ -123,7 +123,7 @@ function Header(props) {
 												{showNavBtn && (
 													<div
 														className={
-															'absolute rounded-lg top-10 right-1 p-1 bg-[#192132] mt-2 border border-gray-900 bg-opacity-100 text-md' +
+															'absolute rounded-lg top-10 right-1 p-1 bg-[#192132] border border-slate-900 bg-opacity-100 text-md' +
 															(!showNavBtn ? ' hidden' : '')
 														}>
 														<Link href='/user/account/profile'>
@@ -135,7 +135,7 @@ function Header(props) {
 														<Link href={'/user/account/settings'}>
 															<button className={routeClassHandler('/settings')}>
 																<SettingsIcon dimensions='h-7 w-7' />
-																<p className='w-[4.9rem]'>Settings</p>
+																<p className='w-[4.9rem] text-left'>Settings</p>
 															</button>
 														</Link>
 														<div

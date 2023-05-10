@@ -11,13 +11,11 @@ export default function ListGridModal({ listTitle, books, authors, coverRef, rig
 			{listTitle && (
 				<div
 					className={
-						'flex items-center justify-start relative px-1 xl:p-6 gap-8 ' +
+						'flex items-center justify-center xl:justify-start relative w-full px-1 xl:p-6 gap-8 ' +
 						(!router.pathname.includes('/authors/') ? 'py-12' : 'py-1 xl:py-2')
 					}
 					ref={coverRef}>
-					<h3 className='text-xl xl:text-2xl font-semibold leading-relaxed text-center xl:text-left'>
-						{listTitle}
-					</h3>
+					<h3 className='text-xl xl:text-2xl font-semibold leading-relaxed'>{listTitle}</h3>
 					<div className='hidden xl:flex cursor-pointer m-2'>{rightIcon}</div>
 				</div>
 			)}

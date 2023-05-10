@@ -6,7 +6,6 @@ import UserContext from '../../../store/userContext'
 import SpinnerContext from '../../../store/spinnerContext'
 import PageHeader from '../../../components/layouts/PageHeader'
 import ListSliderModal from '../../../components/modals/ListSliderModal'
-import ListGridModal from '../../../components/modals/ListGridModal'
 import GenreListModal from '../../../components/modals/GenreListModal'
 import LoginBanner from '../../../components/login/LoginBanner'
 import LibraryIcon from '../../../assets/icons/LibraryIcon'
@@ -56,29 +55,21 @@ function LibraryPage() {
 					) : (
 						<div className='pb-16 xl:pb-8'>
 							{library.books?.length ? (
-								library.books.length > 3 ? (
-									<ListSliderModal
-										listTitle='Saved books'
-										listLink={library.books.length > 6 ? '/user/library/user-books' : undefined}
-										books={library.books}
-									/>
-								) : (
-									<ListGridModal listTitle='Saved books' books={library.books} />
-								)
+								<ListSliderModal
+									listTitle='Saved books'
+									listLink={library.books.length > 6 ? '/user/library/user-books' : null}
+									books={library.books}
+								/>
 							) : (
 								<></>
 							)}
 
 							{library.authors?.length ? (
-								library.authors.length > 3 ? (
-									<ListSliderModal
-										listTitle='Followed authors'
-										listLink={library.authors.length > 6 ? '/user/library/user-authors' : undefined}
-										authors={library.authors}
-									/>
-								) : (
-									<ListGridModal listTitle='Followed authors' authors={library.authors} />
-								)
+								<ListSliderModal
+									listTitle='Followed authors'
+									listLink={library.authors.length > 6 ? '/user/library/user-authors' : null}
+									authors={library.authors}
+								/>
 							) : (
 								<></>
 							)}

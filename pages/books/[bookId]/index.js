@@ -150,6 +150,7 @@ function BookDetailPage(props) {
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
 			bookCtx.addBook(book)
+			bookCtx.setActiveBook(true)
 			router.push({
 				pathname: `/books/${book.slug}/read`,
 			})
