@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { getBestsellers, getLatestBooks, getTopAudiobooks } from '../API/books'
 import { getTopAuthors } from '../API/authors'
 import { getUserProfile } from '../API/userProfile'
+import { getReadHistory } from '../API/userLibrary'
+import SpinnerContext from '../store/spinnerContext'
 import useWindowWidth from '../hooks/useWindowWidth'
 import UserContext from '../store/userContext'
 import PageHeader from '../components/layouts/PageHeader'
@@ -16,12 +18,26 @@ import BellIcon from '../assets/icons/BellIcon'
 
 function HomePage(props) {
 	const { user } = useContext(UserContext)
+	const { toggleSpinner } = useContext(SpinnerContext)
+
 	const [activeUser, setActiveUser] = useState(null)
+	const [readHistory, setReadHistory] = useState([])
 	const windowWidth = useWindowWidth()
 
 	useEffect(() => {
-		if (!activeUser) getUserProfile()
-		setActiveUser(user?.data)
+		;(async () => {
+			if (!activeUser) {
+				await getUserProfile()
+				setActiveUser(user?.data)
+			} else {
+				toggleSpinner(true)
+				const data = await getReadHistory()
+				if (data.readHistory.length) {
+					setReadHistory(data.readHistory)
+				}
+				toggleSpinner(false)
+			}
+		})()
 	}, [user])
 
 	const getGreeting = () => {
@@ -76,7 +92,18 @@ function HomePage(props) {
 						</div>
 					</div>
 				)}
+
 				<div className='py-2 xl:py-6'>
+					{readHistory?.length ? (
+						<ListSliderModal
+							listTitle='Continue reading'
+							listLink={readHistory.length > 6 ? '/user/library/read-history' : null}
+							books={readHistory.books}
+						/>
+					) : (
+						<></>
+					)}
+
 					<ListSliderModal
 						listTitle='Latest Arrivals'
 						listLink='/books/category/latest'

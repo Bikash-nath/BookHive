@@ -150,7 +150,9 @@ function BookDetailPage(props) {
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
 			bookCtx.addBook(book)
-			bookCtx.setActiveBook(true)
+			setTimeout(() => {
+				if (!bookCtx.activeBook) bookCtx.setActiveBook(true) //not show progress-bar before read page is rendered
+			}, 1000)
 			router.push({
 				pathname: `/books/${book.slug}/read`,
 			})

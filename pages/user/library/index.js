@@ -54,6 +54,16 @@ function LibraryPage() {
 						</div>
 					) : (
 						<div className='pb-16 xl:pb-8'>
+							{library.readHistory?.length ? (
+								<ListSliderModal
+									listTitle='Read history'
+									listLink={library.readHistory.length > 6 ? '/user/library/read-history' : null}
+									books={library.readHistory.books}
+								/>
+							) : (
+								<></>
+							)}
+
 							{library.books?.length ? (
 								<ListSliderModal
 									listTitle='Saved books'

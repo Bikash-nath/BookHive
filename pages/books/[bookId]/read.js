@@ -2,7 +2,8 @@ import { useState, useEffect, useRef, useContext, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-// import { addReadHistory } from '../../../API/userLibrary'
+import { getBookDetails } from '../../../API/books'
+import { addReadHistory } from '../../../API/userLibrary'
 import { ReactReader, ReactReaderStyle } from 'react-reader'
 import BookContext from '../../../store/bookContext'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
@@ -10,7 +11,7 @@ import PlusCircleIcon from '../../../assets/icons/PlusCircleIcon'
 import MinusCircleIcon from '../../../assets/icons/MinusCircleIcon'
 import readerStyles from '../../../utils/constants/readerStyles'
 
-function BookEpubReader() {
+function BookReaderPage() {
 	const router = useRouter()
 	const bookCtx = useContext(BookContext)
 	const [title, setTitle] = useState('')
@@ -19,35 +20,29 @@ function BookEpubReader() {
 	const [size, setSize] = useState(100)
 
 	useEffect(() => {
-		if (bookCtx.book) {
+		if (bookCtx.book.title) {
 			setTitle(bookCtx.book.title)
 			setAuthor(bookCtx.book.author?.name)
-			// setEbookLink('http://127.0.0.1:5000/ebooks/' + bookCtx.book.format?.ebook.link)
 			setEbookLink(process.env.EBOOK_URL + bookCtx.book.format?.ebook.link)
-			// setTimeout(() => {
-			// 	addReadHistory(bookCtx.book.slug)
-			// }, 2000)
-		} else if (bookCtx) {
+			setTimeout(() => {
+				addReadHistory(bookCtx.book.slug)
+			}, 500)
+		} else if (bookCtx.book && router.asPath.includes('-')) {
 			;(async () => {
 				try {
 					const bookId = router.asPath.split('/books/')[1]?.split('/read')[0]
-					console.log('bookId', bookId)
-					if (bookId) {
-						const book = await getBookDetails(bookId)
-						if (!book.data) router.push(`/books/${bookId}`)
-						else {
-							bookCtx.addBook(book)
-							// setTitle(book.data.title)
-							// setAuthor(book.data.author?.name)
-							// setEbookLink(process.env.EBOOK_URL + book.data.format?.ebook.link)
-						}
+					const book = await getBookDetails(bookId)
+					if (!book.data) router.push(`/books/${bookId}`)
+					else {
+						bookCtx.addBook(book.data)
 					}
-				} catch {
+				} catch (err) {
+					console.log('Error', err)
 					router.push('/')
 				}
 			})()
 		}
-	}, [bookCtx.book])
+	}, [bookCtx.book, router.asPath])
 
 	const bookCloseHandler = () => {
 		bookCtx.setActiveBook(true)
@@ -86,7 +81,7 @@ function BookEpubReader() {
 		<Fragment>
 			<Head>
 				<title>{title}</title>
-				<meta name='description' content='A ebook' />
+				<meta name='description' content='Ebook reader page' />
 			</Head>
 			<div className='relative h-full w-full'>
 				<ReactReader
@@ -140,4 +135,4 @@ function BookEpubReader() {
 	)
 }
 
-export default BookEpubReader
+export default BookReaderPage

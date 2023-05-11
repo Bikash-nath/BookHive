@@ -43,7 +43,7 @@ export const getUserLibrary = async () => {
 	}
 }
 
-export const getLibraryBooks = async () => {
+export const getReadHistory = async () => {
 	try {
 		const config = {
 			headers: {
@@ -51,14 +51,29 @@ export const getLibraryBooks = async () => {
 				Accept: 'application/json',
 			},
 		}
-		const res = await axios.get('/users/library/books/', { withCredentials: true }, config)
+		const res = await axios.get('/users/library/readHistory/', { withCredentials: true }, config)
 		return res.data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
 	}
 }
 
-export const favouriteBook = async (book) => {
+export const addReadHistory = async (bookId) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+		const res = await axios.patch('/users/library/addReadHistory/', { bookId }, { withCredentials: true }, config)
+		return res.data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+export const removeReadHistory = async (bookId) => {
 	try {
 		const config = {
 			headers: {
@@ -67,11 +82,41 @@ export const favouriteBook = async (book) => {
 			},
 		}
 		const res = await axios.patch(
-			'/users/library/favourite/book/',
-			{ book },
+			'/users/library/removeReadHistory/',
+			{ bookId },
 			{ withCredentials: true },
 			config
 		)
+		return res.data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+export const getLibraryBooks = async () => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+		const res = await axios.get('/users/library/books', { withCredentials: true }, config)
+		return res.data
+	} catch (error) {
+		return error.response?.data.message ? error.response.data.message : error.message
+	}
+}
+
+export const favouriteBook = async (bookId) => {
+	try {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		}
+		const res = await axios.patch('/users/library/favourite/book/', { bookId }, { withCredentials: true }, config)
 		return res.data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -93,7 +138,7 @@ export const getLibraryAuthors = async () => {
 	}
 }
 
-export const followAuthor = async (author) => {
+export const followAuthor = async (authorId) => {
 	try {
 		const config = {
 			headers: {
@@ -101,12 +146,7 @@ export const followAuthor = async (author) => {
 				Accept: 'application/json',
 			},
 		}
-		const res = await axios.patch(
-			'/users/library/follow/author/',
-			{ author },
-			{ withCredentials: true },
-			config
-		)
+		const res = await axios.patch('/users/library/follow/author/', { authorId }, { withCredentials: true }, config)
 		return res.data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
@@ -128,7 +168,7 @@ export const getLibraryGenres = async () => {
 	}
 }
 
-export const favouriteGenre = async (genre) => {
+export const favouriteGenre = async (genreId) => {
 	try {
 		const config = {
 			headers: {
@@ -136,12 +176,7 @@ export const favouriteGenre = async (genre) => {
 				Accept: 'application/json',
 			},
 		}
-		const res = await axios.patch(
-			'/users/library/favourite/genre/',
-			{ genre },
-			{ withCredentials: true },
-			config
-		)
+		const res = await axios.patch('/users/library/favourite/genre/', { genreId }, { withCredentials: true }, config)
 		return res.data
 	} catch (error) {
 		return error.response?.data.message ? error.response.data.message : error.message
