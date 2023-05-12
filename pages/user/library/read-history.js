@@ -52,12 +52,12 @@ function ReadHistoryPage() {
 				<div className='page-gradient h-full'>
 					<div className='pb-16 xl:pb-8' ref={pageRef}>
 						{windowWidth < 1280 ? (
-							<TopNavModal pageTitle='Library books' pageRef={pageRef} coverRef={coverRef} />
+							<TopNavModal pageTitle='Read History' pageRef={pageRef} coverRef={coverRef} />
 						) : (
 							<PageHeader pageTitle='Read history' />
 						)}
 						{readHistory.length ? (
-							<ListGridModal listTitle='Library books' books={readHistory.books} coverRef={coverRef} />
+							<ListGridModal listTitle='Read History' books={readHistory} coverRef={coverRef} />
 						) : (
 							<div className='flex flex-col items-center justify-center h-[93vh]'>
 								<HistoryIcon dimensions='h-20 w-20' />

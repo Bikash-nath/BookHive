@@ -154,7 +154,7 @@ function BookDetailPage(props) {
 				if (!bookCtx.activeBook) bookCtx.setActiveBook(true) //not show progress-bar before read page is rendered
 			}, 1000)
 			router.push({
-				pathname: `/books/${book.slug}/read`,
+				pathname: `/books/${book.slug}/read-book`,
 			})
 		} else {
 			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe!', status: 'fail' })
@@ -242,14 +242,14 @@ function BookDetailPage(props) {
 							</button>
 							<div className='hidden xl:flex w-full'>
 								{isFavourite ? (
-									<button className={'btn-inactive'} onClick={favouriteBookHandler}>
-										<LibraryIcon dimensions='h-7 w-7' />
-										<span className='font-semibold'>Saved in Library</span>
+									<button className='btn-inactive' onClick={favouriteBookHandler}>
+										<BookmarkIcon dimensions='h-7 w-7' color='white' />
+										<span className='font-semibold'>Saved</span>
 									</button>
 								) : (
-									<button className={'btn-active'} onClick={favouriteBookHandler}>
-										<LibraryIcon dimensions='h-7 w-7' />
-										<span className='font-semibold'>Add To Library</span>
+									<button className='btn-active' onClick={favouriteBookHandler}>
+										<BookmarkIcon dimensions='h-7 w-7' />
+										<span className='font-semibold'>Favourite</span>
 									</button>
 								)}
 							</div>

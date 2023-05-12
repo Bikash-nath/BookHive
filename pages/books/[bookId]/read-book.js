@@ -18,15 +18,13 @@ function BookReaderPage() {
 	const [author, setAuthor] = useState('')
 	const [ebookLink, setEbookLink] = useState('')
 	const [size, setSize] = useState(100)
+	const [loadHistory, setLoadHistory] = useState(false)
 
 	useEffect(() => {
-		if (bookCtx.book.title) {
+		if (bookCtx.book.title && !title) {
 			setTitle(bookCtx.book.title)
 			setAuthor(bookCtx.book.author?.name)
 			setEbookLink(process.env.EBOOK_URL + bookCtx.book.format?.ebook.link)
-			setTimeout(() => {
-				addReadHistory(bookCtx.book.slug)
-			}, 500)
 		} else if (bookCtx.book && router.asPath.includes('-')) {
 			;(async () => {
 				try {
@@ -43,6 +41,15 @@ function BookReaderPage() {
 			})()
 		}
 	}, [bookCtx.book, router.asPath])
+
+	useEffect(() => {
+		setLoadHistory(() => true)
+		if (loadHistory) {
+			setTimeout(async () => {
+				await addReadHistory(bookCtx.book.slug)
+			}, 2000)
+		}
+	}, [loadHistory])
 
 	const bookCloseHandler = () => {
 		bookCtx.setActiveBook(true)
@@ -83,7 +90,7 @@ function BookReaderPage() {
 				<title>{title}</title>
 				<meta name='description' content='Ebook reader page' />
 			</Head>
-			<div className='relative h-full w-full'>
+			<div className='relative h-screen w-screen xl:h-full xl:w-full'>
 				<ReactReader
 					title={title + ' by ' + author}
 					location={location}

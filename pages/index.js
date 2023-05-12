@@ -32,13 +32,13 @@ function HomePage(props) {
 			} else {
 				toggleSpinner(true)
 				const data = await getReadHistory()
-				if (data.readHistory.length) {
+				if (data.readHistory?.length) {
 					setReadHistory(data.readHistory)
 				}
 				toggleSpinner(false)
 			}
 		})()
-	}, [user])
+	}, [activeUser])
 
 	const getGreeting = () => {
 		const timeNow = new Date().getHours()
@@ -96,9 +96,9 @@ function HomePage(props) {
 				<div className='py-2 xl:py-6'>
 					{readHistory?.length ? (
 						<ListSliderModal
-							listTitle='Continue reading'
+							listTitle='Continue Reading'
 							listLink={readHistory.length > 6 ? '/user/library/read-history' : null}
-							books={readHistory.books}
+							books={readHistory}
 						/>
 					) : (
 						<></>

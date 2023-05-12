@@ -27,6 +27,7 @@ function LibraryPage() {
 			})()
 		}
 	}, [activeUser])
+	console.log('library', library)
 
 	return (
 		<Fragment>
@@ -58,7 +59,7 @@ function LibraryPage() {
 								<ListSliderModal
 									listTitle='Read history'
 									listLink={library.readHistory.length > 6 ? '/user/library/read-history' : null}
-									books={library.readHistory.books}
+									books={library.readHistory}
 								/>
 							) : (
 								<></>
