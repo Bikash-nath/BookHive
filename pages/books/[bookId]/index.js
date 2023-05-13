@@ -20,13 +20,13 @@ import DialogBox from '../../../components/notification/DialogBox'
 import ShareButton from '../../../components/buttons/ShareButton'
 import HeadphoneIcon from '../../../assets/icons/HeadphoneIcon'
 import BookReadIcon from '../../../assets/icons/BookReadIcon'
-import LibraryIcon from '../../../assets/icons/LibraryIcon'
 import BookmarkIcon from '../../../assets/icons/BookmarkIcon'
 import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon'
 import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
 import StarIcon from '../../../assets/icons/StarIcon'
 import ReportIcon from '../../../assets/icons/ReportIcon'
+// import LibraryIcon from '../../../assets/icons/LibraryIcon'
 
 // import openInNewTab from '../../utils/helpers/openLink'
 // import BookPdfReader from '../../../components/book/BookPdfReader'
@@ -65,7 +65,7 @@ function BookDetailPage(props) {
 
 	useEffect(() => {
 		if (addReview || editReview) bookCtx.setActiveBook(false)
-		else bookCtx.setActiveBook(true)
+		else bookCtx.setActiveBook('read')
 	}, [addReview, editReview])
 
 	const readMoreDescHandler = () => {
@@ -150,12 +150,13 @@ function BookDetailPage(props) {
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
 			bookCtx.addBook(book)
-			setTimeout(() => {
-				if (!bookCtx.activeBook) bookCtx.setActiveBook(true) //not show progress-bar before read page is rendered
-			}, 1000)
-			router.push({
+			bookCtx.setActiveListen(false)
+			router.replace({
 				pathname: `/books/${book.slug}/read-book`,
 			})
+			setTimeout(() => {
+				bookCtx.setActiveBook('read') //don't show progress-bar before read page is rendered
+			}, 1000)
 		} else {
 			snackbarCtx.addMessage({ title: 'Sorry, Book not avialabe!', status: 'fail' })
 		}
@@ -165,6 +166,10 @@ function BookDetailPage(props) {
 		if (!book.format?.audiobook?.fileType) {
 			snackbarCtx.addMessage({ title: 'Sorry, Audiobook not avialabe!', status: 'fail' })
 		}
+		bookCtx.addBook(book)
+		bookCtx.setActiveBook('listen')
+		bookCtx.setActiveListen(true)
+		router.push('#listen')
 	}
 
 	return book ? (

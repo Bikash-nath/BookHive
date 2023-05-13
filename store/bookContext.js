@@ -4,26 +4,33 @@ const BookContext = createContext({
 	book: { title: '', slug: '', image: '', author: {} },
 	addBook: function (bookData) {},
 	removeBook: function () {},
-	activeBook: false,
+	activeBook: null,
 	setActiveBook: function (activeState) {},
+	activeListen: false,
+	setActiveListen: function (listenState) {},
 })
 
 export function BookContextProvider(props) {
 	const [currentBook, setCurrentBook] = useState({})
-	const [bookState, setBookState] = useState(false)
+	const [bookState, setBookState] = useState(null)
+	const [listenState, setListenState] = useState(false)
 
 	function addBookHandler(bookData) {
 		setCurrentBook(bookData)
-		setBookState(false)
+		setBookState(null)
 	}
 
 	function removeBookHandler() {
 		setCurrentBook(null)
-		setBookState(false)
+		setBookState(null)
 	}
 
 	function setActiveHandler(activeState) {
 		setBookState(activeState)
+	}
+
+	function setListenHandler(listenState) {
+		setListenState(listenState)
 	}
 
 	const context = {
@@ -32,6 +39,8 @@ export function BookContextProvider(props) {
 		removeBook: removeBookHandler,
 		activeBook: bookState,
 		setActiveBook: setActiveHandler,
+		activeListen: listenState,
+		setActiveListen: setListenHandler,
 	}
 
 	return <BookContext.Provider value={context}>{props.children}</BookContext.Provider>

@@ -11,7 +11,7 @@ import PlusCircleIcon from '../../assets/icons/PlusCircleIcon'
 function Navbar(props) {
 	const router = useRouter()
 	const [currentRoute, setCurrentRoute] = useState(router.pathname)
-	const paths = ['login', 'signup', 'read-book']
+	const paths = ['login', 'signup', 'read-book', 'listen']
 	const showRoute = !paths.find((path) => currentRoute.includes(path))
 
 	useEffect(() => {

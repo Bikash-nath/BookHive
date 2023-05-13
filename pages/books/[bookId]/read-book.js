@@ -52,7 +52,8 @@ function BookReaderPage() {
 	}, [loadHistory])
 
 	const bookCloseHandler = () => {
-		bookCtx.setActiveBook(true)
+		bookCtx.setActiveBook('read')
+		bookCtx.setActiveListen(false)
 		router.back()
 	}
 
