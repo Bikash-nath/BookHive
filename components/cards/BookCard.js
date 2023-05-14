@@ -9,9 +9,11 @@ function BookCard({ book }) {
 		<div className='flex items-center justify-center w-full h-full xl:my-2 rounded-md group-hover:flex select-none'>
 			<Link href={`/books/${book.slug}`}>
 				<div className='relative flex flex-col w-28 h-52 xl:w-40 xl:h-72 rounded-md p-[0.1rem] xl:p-[0.2rem] bg-[#192132] xl:hover:bg-slate-800 xl:hover:scale-105 transform duration-100'>
-					{/* <button className='absolute top-1 right-1 xl:top-2 xl:right-2 z-10 rounded-full bg-slate-900 p-1'>
-						<HeadphoneIcon className='' dimensions='h-5 w-5' />
-					</button> */}
+					{book.format?.audiobook?.chapters.link && (
+						<button className='absolute top-1 right-1 xl:top-2 xl:right-2 z-10 rounded-full bg-slate-900 p-1'>
+							<HeadphoneIcon className='' dimensions='h-5 w-5' />
+						</button>
+					)}
 					<Image
 						src={process.env.BOOKS_URL + book.image.path}
 						alt={book.title}
@@ -26,7 +28,7 @@ function BookCard({ book }) {
 						<p
 							key='author'
 							className='text-xs xl:text-sm font-light truncate leading-relaxed text-gray-200 py-[.1rem] xl:py-[.2rem]'>
-							{`${book.author.name}`}
+							{`${book.author?.name}`}
 						</p>
 					</div>
 				</div>

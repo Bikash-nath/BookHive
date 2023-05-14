@@ -98,7 +98,7 @@ function HomePage(props) {
 						<ListSliderModal
 							listTitle='Continue Reading'
 							listLink={readHistory.length > 6 ? '/user/library/read-history' : null}
-							books={readHistory}
+							historyBooks={readHistory}
 						/>
 					) : (
 						<></>

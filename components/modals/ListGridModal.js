@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
-// import Link from 'next/link'
+
 import BookCard from '../cards/BookCard'
 import AuthorCard from '../cards/AuthorCard'
+import BookHistoryCard from '../cards/BookHistoryCard'
 
-export default function ListGridModal({ listTitle, books, authors, coverRef, rightIcon }) {
+export default function ListGridModal({ listTitle, coverRef, rightIcon, books, authors, historyBooks }) {
 	const router = useRouter()
 
 	return (
@@ -31,8 +32,10 @@ export default function ListGridModal({ listTitle, books, authors, coverRef, rig
 								</h3>
 							</div>
 						)
-					) : (
+					) : authors ? (
 						authors?.map((author, i) => <AuthorCard author={author} key={i} />)
+					) : (
+						historyBooks?.map((historyBook, i) => <BookHistoryCard book={historyBook} key={i} />)
 					)}
 				</div>
 			</div>

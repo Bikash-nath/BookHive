@@ -57,7 +57,7 @@ function ReadHistoryPage() {
 							<PageHeader pageTitle='Read history' />
 						)}
 						{readHistory.length ? (
-							<ListGridModal listTitle='Read History' books={readHistory} coverRef={coverRef} />
+							<ListGridModal listTitle='Read History' historyBooks={readHistory} coverRef={coverRef} />
 						) : (
 							<div className='flex flex-col items-center justify-center h-[93vh]'>
 								<HistoryIcon dimensions='h-20 w-20' />

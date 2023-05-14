@@ -25,6 +25,7 @@ function BookListener({ bgColor }) {
 	const [author, setAuthor] = useState('')
 	const [currTrack, setCurrTrack] = useState({})
 	const [audioBookLink, setAudioBookLink] = useState('')
+	const [trackIndex, setTrackIndex] = useState(0)
 	const [loadHistory, setLoadHistory] = useState(false)
 
 	const router = useRouter()
@@ -52,12 +53,65 @@ function BookListener({ bgColor }) {
 				await addReadHistory(bookCtx.book.slug)
 			}, 1000)
 		}
+		// setAudioBookLink(process.env.AUDIOBOOK_URL + book.format?.audiobook?.chapters.link)
 		setAudioBookLink('/audiobook.mp3')
 		if (!currTrack.src) {
 			setCurrTrack(document.createElement('audio'))
 			currTrack.src = audioBookLink
-		}
+		} else loadTrack()
 	}, [loadHistory])
+
+	let updateTimer
+
+	function resetValues() {
+		currTime.current.textContent = '00:00'
+		totalDuration.current.textContent = '00:00'
+		seekSlider.current.value = 0
+	}
+
+	function seekUpdate() {
+		let seekPosition = 0
+
+		// Check if the current track duration is a legible number
+		if (!isNaN(currTrack.duration)) {
+			seekPosition = currTrack.currentTime * (100 / currTrack.duration)
+			seekSlider.value = seekPosition
+
+			// Calculate the time left and the total duration
+			let currentMinutes = Math.floor(currTrack.currentTime / 60)
+			let currentSeconds = Math.floor(currTrack.currentTime - currentMinutes * 60)
+			let durationMinutes = Math.floor(currTrack.duration / 60)
+			let durationSeconds = Math.floor(currTrack.duration - durationMinutes * 60)
+
+			// Add a zero to the single digit time values
+			if (currentSeconds < 10) currentSeconds = '0' + currentSeconds
+			if (durationSeconds < 10) durationSeconds = '0' + durationSeconds
+			if (currentMinutes < 10) currentMinutes = '0' + currentMinutes
+			if (durationMinutes < 10) durationMinutes = '0' + durationMinutes
+
+			// Display the updated duration
+			currTime.textContent = currentMinutes + ':' + currentSeconds
+			totalDuration.textContent = durationMinutes + ':' + durationSeconds
+		}
+	}
+
+	function loadTrack(track_index) {
+		// Clear the previous seek timer
+		clearInterval(updateTimer)
+		resetValues()
+
+		// Load a new track
+		currTrack.src = audioBookLink
+		currTrack.load()
+		console.log('currTrack:-', currTrack)
+
+		// Set an interval of 500 ms for updating the seek slider
+		if (updateTimer) clearInterval(updateTimer)
+		updateTimer = setInterval(seekUpdate, 500)
+
+		// Move to the next track if the current finishes playing
+		currTrack.addEventListener('ended', nextTrack)
+	}
 
 	function playTrack() {
 		currTrack.play()
@@ -85,18 +139,6 @@ function BookListener({ bgColor }) {
 
 	function skipForward() {
 		currTrack.currentTime = currTrack.currentTime + 10
-	}
-
-	function seekTo() {
-		// Calculate the seek position from the seek slider
-		const seekto = currTrack.duration * (seekSlider.value / 100)
-
-		// Set the current track position to the calculated seek position
-		currTrack.currentTime = seekto
-	}
-
-	function setVolume() {
-		currTrack.volume = volumeSlider.value / 100
 	}
 
 	const readBookHandler = () => {
@@ -158,8 +200,7 @@ function BookListener({ bgColor }) {
 							max='100'
 							value='0'
 							ref={seekSlider}
-							className={classes.seekSlider}
-							onChange={seekTo}
+							className={classes.seekSlider + ' w-full'}
 						/>
 						<div className='flex justify-between w-full text-gray-200'>
 							<div ref={currTime} className='p-1'>
@@ -171,12 +212,12 @@ function BookListener({ bgColor }) {
 						</div>
 					</div>
 
-					<div className='flex items-center justify-between w-full gap-4'>
+					<div className='flex items-center justify-between w-full gap-4 text-white'>
 						<div className='player-btn' ref={prevBtn} onClick={prevTrack}>
 							<PrevTrackIcon dimensions='h-7 w-7' />
 						</div>
 						<div className='player-btn' ref={prevBtn} onClick={skipBackward}>
-							<SkipBackwardIcon dimensions='h-7 w-7' />
+							<SkipBackwardIcon dimensions='h-8 w-8' />
 						</div>
 						{bookCtx.isPlaying ? (
 							<div className='player-btn' ref={pauseBtn} onClick={pauseTrack}>
@@ -188,7 +229,7 @@ function BookListener({ bgColor }) {
 							</div>
 						)}
 						<div className='player-btn' ref={nextBtn} onClick={skipForward}>
-							<SkipForwardIcon dimensions='h-7 w-7' />
+							<SkipForwardIcon dimensions='h-8 w-8' />
 						</div>
 						<div className='player-btn' ref={nextBtn} onClick={nextTrack}>
 							<NextTrackIcon dimensions='h-7 w-7' />
@@ -204,7 +245,6 @@ function BookListener({ bgColor }) {
 							value='99'
 							ref={volumeSlider}
 							className={classes.volumeSlider}
-							onChange={setVolume}
 						/>
 						<VolumeFullIcon dimensions='h-5 w-5' />
 					</div>

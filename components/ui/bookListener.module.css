@@ -34,12 +34,12 @@
 
 .seek_slider {
 	width: 100%;
-	height: 5px;
+	height: 4px;
 	color: white;
 }
 
 .volume_slider {
 	width: 35%;
-	height: 4px;
+	height: 3px;
 	color: white;
 }

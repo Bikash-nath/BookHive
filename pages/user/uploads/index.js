@@ -50,7 +50,7 @@ function UploadsPage() {
 			{!activeUser ? (
 				<LoginBanner
 					title='Your Uploads'
-					message='Login as a creator or author to upload books, short stories or poems'
+					message='Login as a creator or author to upload books, short stories, poems or blogs'
 					icon={<PlusCircleIcon />}
 				/>
 			) : (

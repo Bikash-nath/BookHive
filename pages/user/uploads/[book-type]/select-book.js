@@ -51,7 +51,6 @@ function SelectBook() {
 				book: selectedBook._id,
 				bookType,
 			})
-			console.log('upload', upload)
 			if (!upload.data) {
 				snackbarCtx.addMessage({ title: upload, status: 'fail' })
 			} else {

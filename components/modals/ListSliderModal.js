@@ -1,14 +1,16 @@
 // import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import useWindowWidth from '../../hooks/useWindowWidth'
+
 import BookCard from '../cards/BookCard'
 import AuthorCard from '../cards/AuthorCard'
+import BookHistoryCard from '../cards/BookHistoryCard'
+import { settings } from '../../utils/constants/sliderSettings'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { settings } from '../../utils/constants/sliderSettings'
 
-export default function ListSliderModal({ listTitle, listLink, books, authors }) {
+export default function ListSliderModal({ listTitle, listLink, books, authors, historyBooks }) {
 	const windowWidth = useWindowWidth()
 
 	// const autoPlay = listLink?.includes('/latest')
@@ -30,8 +32,10 @@ export default function ListSliderModal({ listTitle, listLink, books, authors })
 				<h3 className='text-lg md:text-xl w-full p-6 text-center xl:text-left'>No books found</h3>
 			</div>
 		)
-	) : (
+	) : authors ? (
 		authors?.map((author, i) => <AuthorCard author={author} key={i} />)
+	) : (
+		historyBooks?.map((historyBook, i) => <BookHistoryCard book={historyBook} key={i} />)
 	)
 
 	return (

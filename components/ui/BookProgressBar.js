@@ -26,7 +26,6 @@ function BookProgressBar() {
 
 	useEffect(() => {
 		router.events.on('routeChangeComplete', showRouteHandler)
-		console.log('bookCtx', bookCtx)
 		return () => {
 			router.events.off('routeChangeComplete', showRouteHandler)
 		}
@@ -42,7 +41,8 @@ function BookProgressBar() {
 		showRouteHandler()
 	}, [bookCtx.activeBook])
 
-	const readBookHandler = () => {
+	const readBookHandler = (e) => {
+		// console.log('dataset', e.target.dataset)
 		if (bookCtx.activeBook === 'listen') {
 			bookCtx.setShowPlayer(true)
 			// bookCtx.setPlaying(true)
@@ -84,15 +84,21 @@ function BookProgressBar() {
 								{book.title}
 							</p>
 						</div>
-						<div className='flex w-fit items-start text-gray-200 p-1 mx-1 box-border rounded-full cursor-pointer'>
+						<div
+							data-user='playBtn'
+							className='flex w-fit items-start text-gray-200 mx-1 box-border rounded-full cursor-pointer'>
 							{bookCtx.activeBook === 'read' ? (
-								<ChevronUpIcon dimensions={'w-5 h-5'} />
+								<ChevronUpIcon dimensions={'w-6 h-6'} />
 							) : bookCtx.isPlaying ? (
-								<div className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'>
+								<div
+									className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'
+									onClick={() => bookCtx.setPlaying(false)}>
 									<PauseTrackIcon dimensions='h-8 w-8' />
 								</div>
 							) : (
-								<div className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'>
+								<div
+									className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'
+									onClick={() => bookCtx.setPlaying(true)}>
 									<PlayTrackIcon dimensions='h-8 w-8' />
 								</div>
 							)}
