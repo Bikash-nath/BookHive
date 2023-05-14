@@ -6,14 +6,17 @@ const BookContext = createContext({
 	removeBook: function () {},
 	activeBook: null,
 	setActiveBook: function (activeState) {},
-	activeListen: false,
-	setActiveListen: function (listenState) {},
+	isPlaying: false,
+	setPlaying: function (isPlaying) {},
+	showPlayer: false,
+	setShowPlayer: function (playerState) {},
 })
 
 export function BookContextProvider(props) {
 	const [currentBook, setCurrentBook] = useState({})
 	const [bookState, setBookState] = useState(null)
-	const [listenState, setListenState] = useState(false)
+	const [showPlayer, setShowPlayer] = useState(false)
+	const [isPlaying, setPlaying] = useState(false)
 
 	function addBookHandler(bookData) {
 		setCurrentBook(bookData)
@@ -25,12 +28,16 @@ export function BookContextProvider(props) {
 		setBookState(null)
 	}
 
-	function setActiveHandler(activeState) {
+	function activeBookHandler(activeState) {
 		setBookState(activeState)
 	}
 
-	function setListenHandler(listenState) {
-		setListenState(listenState)
+	function showPlayerHandler(showPlayer) {
+		setShowPlayer(showPlayer)
+	}
+
+	function playHandler(isPlaying) {
+		setPlaying(isPlaying)
 	}
 
 	const context = {
@@ -38,9 +45,11 @@ export function BookContextProvider(props) {
 		addBook: addBookHandler,
 		removeBook: removeBookHandler,
 		activeBook: bookState,
-		setActiveBook: setActiveHandler,
-		activeListen: listenState,
-		setActiveListen: setListenHandler,
+		setActiveBook: activeBookHandler,
+		showPlayer: showPlayer,
+		setShowPlayer: showPlayerHandler,
+		isPlaying: isPlaying,
+		setPlaying: playHandler,
 	}
 
 	return <BookContext.Provider value={context}>{props.children}</BookContext.Provider>

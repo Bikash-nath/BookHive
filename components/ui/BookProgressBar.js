@@ -7,6 +7,8 @@ import BookContext from '../../store/bookContext'
 import BookListener from './BookListener'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import ChevronUpIcon from '../../assets/icons/ChevronUpIcon'
+import PlayTrackIcon from '../../assets/icons/PlayTrackIcon'
+import PauseTrackIcon from '../../assets/icons/PauseTrackIcon'
 
 function BookProgressBar() {
 	const bookCtx = useContext(BookContext)
@@ -24,6 +26,7 @@ function BookProgressBar() {
 
 	useEffect(() => {
 		router.events.on('routeChangeComplete', showRouteHandler)
+		console.log('bookCtx', bookCtx)
 		return () => {
 			router.events.off('routeChangeComplete', showRouteHandler)
 		}
@@ -31,17 +34,18 @@ function BookProgressBar() {
 
 	useEffect(() => {
 		if (bookCtx.activeBook === 'listen') {
-			console.log('2.BPBar', bookCtx.activeBook, '  activeListen:', bookCtx.activeListen)
-			bookCtx.setActiveListen(true)
+			bookCtx.setShowPlayer(true)
+			if (bookCtx.bookformat?.audiobook?.chapters.link) {
+				bookCtx.setPlaying(true)
+			}
 		}
 		showRouteHandler()
-		// console.log('1.BookProgressBar', bookCtx.activeBook, '  activeListen:', bookCtx.activeListen)
-		// console.log('cond:', showRoute, bookCtx.activeBook, book.title)
 	}, [bookCtx.activeBook])
 
 	const readBookHandler = () => {
 		if (bookCtx.activeBook === 'listen') {
-			bookCtx.setActiveListen(true)
+			bookCtx.setShowPlayer(true)
+			// bookCtx.setPlaying(true)
 			router.push('#listen')
 		} else
 			router.push({
@@ -53,16 +57,10 @@ function BookProgressBar() {
 		<div
 			className={
 				'fixed overflow-hidden rounded-md z-20 xl:m-1 w-full md:max-w-sm bg-black select-none ' +
-				(windowWidth < 1280 && !bookCtx.activeListen ? 'right-0 bottom-14' : 'right-0 bottom-0')
+				(windowWidth < 1280 && !bookCtx.showPlayer ? 'right-0 bottom-14' : 'right-0 bottom-0')
 			}>
-			{/* {console.log('BPB', bookCtx.activeBook, '  activeListen:', bookCtx.activeListen)} */}
-			{bookCtx.activeListen && bookCtx.activeBook === 'listen' && router.asPath.includes('#listen') ? (
-				<BookListener
-					book={book}
-					activeListenHandler={bookCtx.setActiveListen}
-					activeBookHandler={bookCtx.setActiveBook}
-					bgColor={bgColor}
-				/>
+			{bookCtx.showPlayer && bookCtx.activeBook === 'listen' && router.asPath.includes('#listen') ? (
+				<BookListener bgColor={bgColor} />
 			) : (
 				<div
 					className={`flex items-center justify-between w-full rounded-md opacity-95 hover:bg-opacity-90 ring-1 ring-slate-800 cursor-pointer bg-${bgColor}-800`}
@@ -79,15 +77,25 @@ function BookProgressBar() {
 							/>
 						</div>
 						<div className='flex flex-col justify-center w-full h-full px-1 overflow-hidden'>
-							<p className='font-normal text-xs mt-0.5 xl:mt-1 tracking-wide truncate text-slate-200'>
-								Continue {bookCtx.activeListen === 'read' ? 'reading' : 'listening'}
+							<p className='font-normal text-xs mt-0.5 xl:mt-1 tracking-wide truncate text-slate-100'>
+								Continue {bookCtx.activeBook === 'read' ? 'reading' : 'listening'}
 							</p>
 							<p className='font-medium text-base leading-relaxed tracking-wide truncate text-white pt-[.20rem] xl:pt-1.5'>
 								{book.title}
 							</p>
 						</div>
 						<div className='flex w-fit items-start text-gray-200 p-1 mx-1 box-border rounded-full cursor-pointer'>
-							<ChevronUpIcon dimensions={'w-5 h-5'} st />
+							{bookCtx.activeBook === 'read' ? (
+								<ChevronUpIcon dimensions={'w-5 h-5'} />
+							) : bookCtx.isPlaying ? (
+								<div className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'>
+									<PauseTrackIcon dimensions='h-8 w-8' />
+								</div>
+							) : (
+								<div className='m-2 opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer'>
+									<PlayTrackIcon dimensions='h-8 w-8' />
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

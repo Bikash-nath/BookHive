@@ -35,7 +35,6 @@ function BookReaderPage() {
 						bookCtx.addBook(book.data)
 					}
 				} catch (err) {
-					console.log('Error', err)
 					router.push('/')
 				}
 			})()
@@ -47,13 +46,13 @@ function BookReaderPage() {
 		if (loadHistory) {
 			setTimeout(async () => {
 				await addReadHistory(bookCtx.book.slug)
-			}, 2000)
+			}, 1000)
 		}
 	}, [loadHistory])
 
 	const bookCloseHandler = () => {
 		bookCtx.setActiveBook('read')
-		bookCtx.setActiveListen(false)
+		bookCtx.setShowPlayer(false)
 		router.back()
 	}
 

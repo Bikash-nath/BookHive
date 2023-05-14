@@ -89,6 +89,10 @@
 	@apply block w-full rounded-md px-2 py-1.5 bg-[#192136] text-white text-sm sm:text-base sm:leading-6 shadow-sm placeholder:text-gray-400 focus:outline-none ring-1 ring-gray-500 focus:ring-2 focus:ring-[#8C6AFF];
 }
 
+.player-btn {
+	@apply m-2 rounded-full opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer;
+}
+
 @layer components {
 	body {
 		font-family: 'Merriweather Sans', sans-serif;

@@ -4,12 +4,12 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	height: 5px;
 	background: rgb(255, 255, 255);
 	opacity: 0.7;
 	-webkit-transition: 0.2s;
 	transition: opacity 0.2s;
-	color: yellow;
+	color: white;
+	border: 0;
 }
 
 /* Modify the appearance of the slider thumb */
@@ -23,7 +23,7 @@
 	background: white;
 	cursor: pointer;
 	border-radius: 50%;
-	color: yellow;
+	color: white;
 }
 
 /* Change the opacity when mouse is hovered */
@@ -34,10 +34,12 @@
 
 .seek_slider {
 	width: 100%;
-	color: yellow;
+	height: 5px;
+	color: white;
 }
 
 .volume_slider {
 	width: 35%;
-	color: yellow;
+	height: 4px;
+	color: white;
 }

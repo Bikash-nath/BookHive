@@ -64,8 +64,11 @@ function BookDetailPage(props) {
 	}, [descRef?.current])
 
 	useEffect(() => {
-		if (addReview || editReview) bookCtx.setActiveBook(false)
-		else bookCtx.setActiveBook('read')
+		if (addReview || editReview) {
+			bookCtx.setActiveBook(false)
+		} else if (!bookCtx.activeBook) {
+			bookCtx.setActiveBook('read')
+		}
 	}, [addReview, editReview])
 
 	const readMoreDescHandler = () => {
@@ -150,7 +153,7 @@ function BookDetailPage(props) {
 		// 'https://drive.google.com/uc?id=1hm2Zd_UqBFKr9PZ5pxk8OwGgvJznCFXd&export=download'
 		if (book.format?.ebook?.link) {
 			bookCtx.addBook(book)
-			bookCtx.setActiveListen(false)
+			bookCtx.setShowPlayer(false)
 			router.replace({
 				pathname: `/books/${book.slug}/read-book`,
 			})
@@ -168,7 +171,8 @@ function BookDetailPage(props) {
 		}
 		bookCtx.addBook(book)
 		bookCtx.setActiveBook('listen')
-		bookCtx.setActiveListen(true)
+		// bookCtx.setPlaying(true)
+		bookCtx.setShowPlayer(true)
 		router.push('#listen')
 	}
 
