@@ -1,3 +1,13 @@
+#audioSeekBar {
+	height: 5px;
+	-webkit-appearance: none;
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 8px;
+	background: #3b7677;
+	cursor: pointer;
+}
+
 /* Modify the appearance of the slider */
 .seek_slider,
 .volume_slider {

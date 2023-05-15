@@ -1,10 +1,6 @@
 export default function HeadphoneIcon({ dimensions, color }) {
 	return (
-		<svg
-			viewBox='0 0 24 24'
-			fill={'white'}
-			className={dimensions}
-			xmlns='http://www.w3.org/2000/svg'>
+		<svg viewBox='0 0 24 24' fill={'white'} className={dimensions} xmlns='http://www.w3.org/2000/svg'>
 			<title>Audiobook</title>
 			<path
 				opacity='0.4'
@@ -12,11 +8,11 @@ export default function HeadphoneIcon({ dimensions, color }) {
 			/>
 			<path
 				d='M5.94 12.45H5.81C3.71 12.45 2 14.16 2 16.26V18.14C2 20.24 3.71 21.95 5.81 21.95H5.94C8.04 21.95 9.75 20.24 9.75 18.14V16.26C9.75 14.16 8.04 12.45 5.94 12.45Z'
-				fill='#6a7584'
+				fill='#d6c8ff'
 			/>
 			<path
 				d='M18.19 12.45H18.06C15.96 12.45 14.25 14.16 14.25 16.26V18.14C14.25 20.24 15.96 21.95 18.06 21.95H18.19C20.29 21.95 22 20.24 22 18.14V16.26C22 14.16 20.29 12.45 18.19 12.45Z'
-				fill='#6a7584'
+				fill='#d6c8ff'
 			/>
 		</svg>
 	)

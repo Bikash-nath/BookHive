@@ -20,7 +20,7 @@ function BookProgressBar() {
 	const windowWidth = useWindowWidth()
 
 	const showRouteHandler = () => {
-		const paths = ['/read', 'user/login', 'user/signup', '/account/update', '/edit', 'user/uploads/']
+		const paths = ['/read-book', 'user/login', 'user/signup', '/account/update', '/edit', 'user/uploads/']
 		setShowRoute(!paths.find((path) => router.asPath.includes(path)))
 	}
 

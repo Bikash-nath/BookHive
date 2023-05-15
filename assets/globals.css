@@ -90,7 +90,7 @@
 }
 
 .player-btn {
-	@apply m-2 rounded-full opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer;
+	@apply m-2 rounded-full opacity-100 xl:opacity-80 hover:opacity-100 transition-opacity duration-1000 cursor-pointer;
 }
 
 @layer components {

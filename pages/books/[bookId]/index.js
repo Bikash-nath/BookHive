@@ -171,7 +171,7 @@ function BookDetailPage(props) {
 		}
 		bookCtx.addBook(book)
 		bookCtx.setActiveBook('listen')
-		// bookCtx.setPlaying(true)
+		bookCtx.setPlaying(true)
 		bookCtx.setShowPlayer(true)
 		router.push('#listen')
 	}
@@ -233,7 +233,6 @@ function BookDetailPage(props) {
 							)}
 						</div>
 					</div>
-
 					<div className='xl:min-w-[20rem]'>
 						<div className='flex xl:flex-col items-end justify-center w-fit xl:px-10 space-x-8 xl:space-y-4 right-2'>
 							<div className='hidden xl:flex absolute top-4 right-36 m-1 cursor-pointer'>
@@ -245,7 +244,9 @@ function BookDetailPage(props) {
 								<BookReadIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Read</span>
 							</button>
-							<button className='btn-inactive' onClick={audioBookHandler}>
+							<button
+								className={book.format?.audiobook?.chapters.length ? 'btn-active' : 'btn-inactive'}
+								onClick={audioBookHandler}>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>
 							</button>
