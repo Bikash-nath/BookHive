@@ -166,8 +166,9 @@ function BookDetailPage(props) {
 	}
 
 	const audioBookHandler = () => {
-		if (!book.format?.audiobook?.fileType) {
+		if (!book.format?.audiobook?.link) {
 			snackbarCtx.addMessage({ title: 'Sorry, Audiobook not avialabe!', status: 'fail' })
+			return
 		}
 		bookCtx.addBook(book)
 		bookCtx.setActiveBook('listen')
@@ -245,7 +246,7 @@ function BookDetailPage(props) {
 								<span className='font-semibold'>Read</span>
 							</button>
 							<button
-								className={book.format?.audiobook?.chapters.length ? 'btn-active' : 'btn-inactive'}
+								className={book.format?.audiobook?.link ? 'btn-active' : 'btn-inactive'}
 								onClick={audioBookHandler}>
 								<HeadphoneIcon dimensions='h-7 w-7' />
 								<span className='font-semibold'>Listen</span>

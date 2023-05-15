@@ -22,7 +22,7 @@ function BookHistoryCard({ book }) {
 				? setBookState('play')
 				: setBookState('pause')
 		} else {
-			book.format?.ebook.link ? setBookState('read') : setBookState('listen')
+			book.format?.audiobook?.link ? setBookState('listen') : setBookState('read')
 		}
 	}, [bookCtx.isPlaying])
 

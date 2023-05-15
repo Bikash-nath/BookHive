@@ -65,7 +65,7 @@ function ReviewCard(props) {
 		}
 
 		const data = await likeBookReview(reviewId)
-		console.log('review:-\n', data, typeof data)
+		// console.log('review:-\n', data, typeof data)
 		if (!data.review) {
 			if (likedReview) {
 				setLikedReview(false)

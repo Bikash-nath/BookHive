@@ -21,7 +21,7 @@ const nextConfig = (phase) => {
 				GENRES_URL: 'http://127.0.0.1:5000/img/genres/',
 				USERS_URL: 'http://127.0.0.1:5000/img/users/',
 				EBOOK_URL: 'http://127.0.0.1:5000/ebooks/',
-				AUDIOBOOK_URL: 'http://127.0.0.1:8000/audio-books/',
+				AUDIOBOOK_URL: 'http://127.0.0.1:5000/audio-books/',
 			},
 		}
 
@@ -45,7 +45,7 @@ const nextConfig = (phase) => {
 			BOOKS_URL: 'https://bookhive-book.s3.ap-south-1.amazonaws.com/',
 			AUTHORS_URL: 'https://bookhive-author.s3.ap-south-1.amazonaws.com/',
 			EBOOK_URL: 'https://bookhive-ebook.s3.ap-south-1.amazonaws.com/',
-			AUDIOBOOK_URL: 'http://127.0.0.1:8000/audio-books/',
+			AUDIOBOOK_URL: 'http://127.0.0.1:5000/audio-books/',
 			GENRES_URL: 'https://bookhive-genre.s3.ap-south-1.amazonaws.com/',
 			USERS_URL: '',
 		},

@@ -28,10 +28,10 @@ function BookListener({ bgColor }) {
 	const [audioBookSrc, setAudioBookSrc] = useState('')
 	const [trackIndex, setTrackIndex] = useState(0)
 	const [trackProgress, setTrackProgress] = useState(0)
-	const [trackVol, setTrackVol] = useState(50)
+	const [trackVol, setTrackVol] = useState(1)
 
-	const audioSrc = book.format?.audiobook?.chapters.length
-		? 'http://127.0.0.1:5000/audio-books/' + book.format?.audiobook?.chapters[0].link
+	const audioSrc = book.format?.audiobook?.link
+		? 'http://127.0.0.1:5000/audio-books/' + book.format?.audiobook?.link
 		: '/audiobook.mp3'
 	const audioRef = useRef(new Audio(audioSrc))
 	const intervalRef = useRef()
@@ -75,17 +75,19 @@ function BookListener({ bgColor }) {
 
 	useEffect(() => {
 		if (bookCtx.isPlaying && audioRef.current.src) {
+			audioRef.current.volume = trackVol
 			audioRef.current.play()
 			startTimer()
 		} else if (audioRef.current.src) {
 			clearInterval(intervalRef.current)
 			audioRef.current.pause()
 		}
-	}, [audioRef.current, bookCtx.isPlaying])
+	}, [bookCtx.isPlaying, trackVol, audioRef.current])
 
 	// Handle setup when changing tracks
 	useEffect(() => {
 		if (isReady.current && bookCtx.isPlaying) {
+			audioRef.current.volume = trackVol
 			audioRef.current.play()
 			bookCtx.setPlaying(true)
 			startTimer()
@@ -110,6 +112,11 @@ function BookListener({ bgColor }) {
 			bookCtx.setPlaying(true)
 		}
 		startTimer()
+	}
+
+	const volumeHandler = (e) => {
+		setTrackVol(e.target.value)
+		audioRef.current.volume = Math.floor(e.target.value / 100)
 	}
 
 	function toPrevTrack() {
@@ -276,11 +283,13 @@ function BookListener({ bgColor }) {
 						<input
 							type='range'
 							value={trackVol}
-							step='1'
+							step='0.1'
 							min='0'
-							max='100'
+							max='1'
 							className={classes.volumeSlider}
-							onChange={() => {}}
+							onChange={volumeHandler}
+							onMouseUp={volumeHandler}
+							onKeyUp={volumeHandler}
 						/>
 
 						<VolumeFullIcon dimensions='h-6 w-6' />
